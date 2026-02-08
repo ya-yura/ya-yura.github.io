@@ -75,7 +75,7 @@
       <div class="mx-auto max-w-[1360px] px-4 py-4 lg:px-6">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div class="min-w-0">
-            <p class="text-xs font-semibold tracking-wide text-zinc-600">Встроенная тепловизионная камера • кейс‑спецификация</p>
+            <p class="text-xs font-semibold tracking-wide text-zinc-600">Встроенная тепловизионная камера • UX‑архитектура (кейс)</p>
             <p class="mt-1 text-sm font-medium text-zinc-900">Система взаимодействия, основанная на состояниях</p>
           </div>
           <div class="flex items-center gap-2">
@@ -211,6 +211,79 @@
                   <li><span class="font-medium text-zinc-900">Меню</span>: навигация; настройки живут глубже; Quick Menu ≠ Main Menu.</li>
                   <li><span class="font-medium text-zinc-900">Инструменты анализа</span>: оверлеи, а не режимы.</li>
                   <li><span class="font-medium text-zinc-900">Ошибки</span>: отдельные состояния с действиями восстановления.</li>
+                </ul>
+              </div>
+
+              <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                <div class="rounded-xl border border-zinc-200 bg-white p-5">
+                  <p class="text-sm font-semibold text-zinc-900">Артефакт: модель слоёв поверх Live View</p>
+                  <p class="mt-2 text-sm leading-6 text-zinc-700">
+                    Главная точка риска — конкурирующие слои (оверлей + меню + подсказка + ошибка). Я закрепил правило “не более одного оверлея”
+                    и прописал приоритеты, чтобы поведение было предсказуемым в любой комбинации.
+                  </p>
+                  <svg viewBox="0 0 980 220" class="mt-4 h-auto w-full rounded-lg border border-zinc-200 bg-zinc-50 p-4" role="img" aria-label="Слои: Live View → Overlay (tool) → Quick Menu → Error/Confirm">
+                    <defs>
+                      <style>
+                        .b { fill: var(--surface-0); stroke: var(--border-subtle); stroke-width: 2; }
+                        .h { font: 600 13px var(--font-sans); fill: var(--text-1); }
+                        .s { font: 500 12px var(--font-sans); fill: var(--text-3); }
+                        .a { stroke: var(--text-2); stroke-width: 2; fill: none; marker-end: url(#mL); }
+                      </style>
+                      <marker id="mL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--text-2)"></path>
+                      </marker>
+                    </defs>
+                    <rect class="b" x="40" y="60" width="200" height="90" rx="12"></rect>
+                    <text class="h" x="60" y="95">Live View</text>
+                    <text class="s" x="60" y="115">основа</text>
+                    <text class="s" x="60" y="135">не блокируем</text>
+
+                    <rect class="b" x="290" y="40" width="220" height="130" rx="12"></rect>
+                    <text class="h" x="310" y="80">Overlay‑tool</text>
+                    <text class="s" x="310" y="100">измерение/анализ</text>
+                    <text class="s" x="310" y="120">ровно один</text>
+                    <text class="s" x="310" y="140">над Live View</text>
+
+                    <rect class="b" x="560" y="60" width="180" height="90" rx="12"></rect>
+                    <text class="h" x="580" y="95">Quick Menu</text>
+                    <text class="s" x="580" y="115">“рычаги”</text>
+                    <text class="s" x="580" y="135">без чисел</text>
+
+                    <rect class="b" x="790" y="60" width="160" height="90" rx="12"></rect>
+                    <text class="h" x="810" y="95">Error/Confirm</text>
+                    <text class="s" x="810" y="115">восстановление</text>
+                    <text class="s" x="810" y="135">без тупиков</text>
+
+                    <path class="a" d="M240 105 L290 105"></path>
+                    <path class="a" d="M510 105 L560 105"></path>
+                    <path class="a" d="M740 105 L790 105"></path>
+                  </svg>
+                </div>
+
+                <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5">
+                  <p class="text-sm font-semibold text-zinc-900">Impact‑модель (как бы проверяли в продукте)</p>
+                  <p class="mt-2 text-sm leading-6 text-zinc-700">
+                    В embedded‑интерфейсах “эффект” обычно проявляется не в конверсии, а в цене ошибок и цене тестирования.
+                    Поэтому я завязываю дизайн на измеримые прокси.
+                  </p>
+                  <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                    <li><span class="font-medium text-zinc-900">Time to action</span> ↓: время до включения нужного инструмента/оверлея.</li>
+                    <li><span class="font-medium text-zinc-900">Backtrack rate</span> ↓: “нажал не туда → вернулся”.</li>
+                    <li><span class="font-medium text-zinc-900">QA defects</span> ↓: баги из‑за конфликтов слоёв и неописанных переходов.</li>
+                    <li><span class="font-medium text-zinc-900">Training time</span> ↓: меньше функций “надо помнить”, больше мышечной памяти.</li>
+                  </ul>
+                  <p class="mt-3 text-xs leading-5 text-zinc-600">
+                    В документе ниже я оставляю handoff‑таблицы, чтобы разработка и QA могли тестировать без “додумывания”.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-5 rounded-xl border border-zinc-200 bg-white p-5">
+                <p class="text-sm font-semibold text-zinc-900">Альтернативы, которые сознательно отрезал</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li><span class="font-medium text-zinc-900">“Всё в меню”</span> → медленно, плохо для одной руки и мышечной памяти.</li>
+                  <li><span class="font-medium text-zinc-900">“Режимы вместо оверлеев”</span> → растёт комбинаторика и риск конфликтов.</li>
+                  <li><span class="font-medium text-zinc-900">“RGB как просто индикатор”</span> → без языка и объяснения сигнал превращается в шум.</li>
                 </ul>
               </div>
             </div>
