@@ -308,6 +308,546 @@
             </div>
 
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+              <pre class="CodeBlock overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-5 text-xs leading-5 text-slate-100">
+┌───────────────────────────────┐
+│ Фронтенд                      │
+│ (templates / UI)              │
+└───────────────┬───────────────┘
+                │ HTTP
+┌───────────────▼───────────────┐
+│ Бэкенд                         │
+│ Django views + forms           │
+└───────┬───────────────┬───────┘
+        │ ORM           │ Media
+┌───────▼──────────┐   ┌▼──────────────────────┐
+│ БД               │   │ Media storage          │
+│ SQLite (MVP)     │   │ локально (MEDIA_ROOT)  │
+│ → PostgreSQL     │   │ для dev                │
+└──────────────────┘   └────────────────────────┘
+
+┌─────────────────────────────────────────────┐
+│ Интеграции (MVP — заглушки)                  │
+│ будущие: оплаты, OAuth2                      │
+└─────────────────────────────────────────────┘</pre
+              >
+
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold tracking-tight text-slate-900">Пояснение</h3>
+                <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                  <li><span class="font-medium text-slate-900">Фронтенд:</span> templates / UI.</li>
+                  <li><span class="font-medium text-slate-900">Бэкенд:</span> Django views + forms.</li>
+                  <li><span class="font-medium text-slate-900">БД:</span> SQLite для MVP, возможность PostgreSQL.</li>
+                  <li><span class="font-medium text-slate-900">Хранилище медиа:</span> локально через MEDIA_ROOT для dev.</li>
+                  <li><span class="font-medium text-slate-900">Интеграции:</span> в MVP — заглушки, будущие: оплаты, OAuth2.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- DATA MODEL -->
+          <section id="data" class="mt-10 space-y-4">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-xl font-semibold tracking-tight text-slate-900">Модель данных</h2>
+              <p class="text-sm leading-6 text-slate-700">ER-схема (упрощённо): сущности и связи уровня MVP.</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+              <pre class="CodeBlock overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-5 font-mono text-xs leading-5 text-slate-100">
+User
+  │
+  │ 1..* (Participant)
+  ▼
+Participant ────────────► Event
+   │ 0..1                 │ 0..1
+   │                      ▼
+   └──────────────► Team     Tournament
+                     │        (привязан к Event)
+                     └──────────────────────────</pre
+              >
+
+              <div class="space-y-4">
+                <div class="SpecCard rounded-xl border border-slate-200 bg-white p-6">
+                  <h3 class="text-sm font-semibold tracking-tight text-slate-900">Event — ключевые поля</h3>
+                  <ul class="mt-4 list-disc pl-5 text-sm leading-6 text-slate-700">
+                    <li>name, description, date, time, sport_type(choices), location, team_limit, author(FK), slug(unique), cover(ImageField)</li>
+                  </ul>
+                </div>
+
+                <div class="SpecCard rounded-xl border border-slate-200 bg-white p-6">
+                  <div class="flex items-center justify-between gap-3">
+                    <h3 class="text-sm font-semibold tracking-tight text-slate-900">Инварианты</h3>
+                  </div>
+                  <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                    <li><span class="font-medium text-slate-900">slug</span> должен быть уникальным (генерация с суффиксом при коллизии)</li>
+                    <li><span class="font-medium text-slate-900">cover</span> опционален (null/blank)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- API -->
+          <section id="api" class="mt-10 space-y-4">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-xl font-semibold tracking-tight text-slate-900">API (уровень MVP)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold tracking-tight text-slate-900">Auth</h3>
+                <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                  <li><span class="font-mono text-slate-900">POST</span> /auth/register</li>
+                  <li><span class="font-mono text-slate-900">POST</span> /auth/login</li>
+                </ul>
+              </div>
+
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold tracking-tight text-slate-900">Events</h3>
+                <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                  <li><span class="font-mono text-slate-900">GET</span> /event?filters…</li>
+                  <li><span class="font-mono text-slate-900">POST</span> /event/create</li>
+                  <li><span class="font-mono text-slate-900">GET</span> /event/{id}</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ITERATIONS -->
+          <section id="iterations" class="mt-10 space-y-4">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-xl font-semibold tracking-tight text-slate-900">План спринтов</h2>
+              <p class="text-sm leading-6 text-slate-700">План спринтов (3–4 месяца): 6 спринтов.</p>
+            </div>
+
+            <div class="TableWrap overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <table class="w-full min-w-[980px] border-separate border-spacing-0">
+                <thead>
+                  <tr class="text-left text-xs font-semibold uppercase tracking-wide text-slate-600">
+                    <th class="border-b border-slate-200 px-4 py-3">Спринт</th>
+                    <th class="border-b border-slate-200 px-4 py-3">Цель</th>
+                    <th class="border-b border-slate-200 px-4 py-3">Инкремент</th>
+                    <th class="border-b border-slate-200 px-4 py-3">Критерии</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-slate-700">
+                  <tr class="align-top hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 font-medium text-slate-900">Sprint 1</td>
+                    <td class="border-b border-slate-100 px-4 py-3">требования + архитектура + каркас проекта + базовые модели</td>
+                    <td class="border-b border-slate-100 px-4 py-3">проект поднимается, модели мигрируют</td>
+                    <td class="border-b border-slate-100 px-4 py-3">окружение, миграции, базовые сущности</td>
+                  </tr>
+                  <tr class="align-top hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 font-medium text-slate-900">Sprint 2</td>
+                    <td class="border-b border-slate-100 px-4 py-3">создание/просмотр событий, регистрация</td>
+                    <td class="border-b border-slate-100 px-4 py-3">создание Event, список/детали, регистрация/вход</td>
+                    <td class="border-b border-slate-100 px-4 py-3">сквозной сценарий</td>
+                  </tr>
+                  <tr class="align-top hover:bg-slate-50">
+                    <td class="px-4 py-3 font-medium text-slate-900">Sprint 6</td>
+                    <td class="px-4 py-3">стабилизация, тест-прогон, документация</td>
+                    <td class="px-4 py-3">стенд доступен</td>
+                    <td class="px-4 py-3">фиксация дефектов</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- DEBUG STORY -->
+          <section id="debug" class="mt-10 space-y-4">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-xl font-semibold tracking-tight text-slate-900">Диагностика загрузки обложек (cover)</h2>
+            </div>
+
+            <div class="SpecCard rounded-xl border border-slate-200 bg-white p-6 space-y-4">
+              <ul class="space-y-2 text-sm leading-6 text-slate-700">
+                <li>MEDIA_URL/MEDIA_ROOT настроены.</li>
+                <li>Проблема была в обработке формы: форма инициализировалась без <span class="font-mono text-slate-900">request.FILES</span>.</li>
+              </ul>
+
+              <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <pre class="CodeBlock overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-5 font-mono text-xs leading-5 text-slate-100">До:
+form = EventForm(request.POST or None)</pre>
+                <pre class="CodeBlock overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-5 font-mono text-xs leading-5 text-slate-100">После:
+form = EventForm(request.POST or None, request.FILES or None)</pre>
+              </div>
+            </div>
+          </section>
+
+          <!-- RESULTS -->
+          <section id="results" class="mt-10 space-y-4">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-xl font-semibold tracking-tight text-slate-900">Результат</h2>
+            </div>
+
+            <div class="SpecCard rounded-xl border border-slate-200 bg-white p-6">
+              <div class="grid gap-6 lg:grid-cols-2">
+                <div>
+                  <h3 class="text-sm font-semibold tracking-tight text-slate-900">Что было готово к реализации</h3>
+                  <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                    <li>Зафиксирован MVP‑объём и границы.</li>
+                    <li>IA + сущности домена и связи.</li>
+                    <li>Контракт API для ключевых экранов.</li>
+                    <li>План поставки спринтами + критерии приёмки.</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h3 class="text-sm font-semibold tracking-tight text-slate-900">Как бы измерял эффект</h3>
+                  <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                    <li><span class="font-medium text-slate-900">Conversion</span>: просмотр → регистрация на событие.</li>
+                    <li><span class="font-medium text-slate-900">Time to publish</span>: время до публикации турнира.</li>
+                    <li><span class="font-medium text-slate-900">Drop-off</span>: точки отказа в сценарии “создать турнир”.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer class="mt-10 border-t border-slate-200 pt-6">
+            <p class="text-sm leading-6 text-slate-700">
+              Если развивать продукт дальше, логичный следующий уровень — платёжные сценарии, SSO, рейтинги/лиги, live‑счёт, расширенные роли,
+              уведомления и календарь организатора.
+            </p>
+          </footer>
+        </main>
+
+        <!-- Desktop TOC -->
+        <aside class="hidden lg:block">
+          <div class="sticky top-8">
+            <div class="rounded-xl border border-slate-200 bg-white p-5">
+              <div class="text-sm font-semibold tracking-tight text-slate-900">Содержание</div>
+              <nav class="mt-4">
+                <ul class="space-y-1 text-sm">
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#hero">Контекст</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#scope">Объём MVP</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#roles">Пользователи и роли</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#ia">IA</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#arch">Архитектура</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#data">Данные</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#api">API</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#iterations">Спринты</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#debug">Debug</a></li>
+                  <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#results">Результат</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!doctype html>
+<html lang="ru" class="h-full bg-zinc-50 text-zinc-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Кейс — Платформа управления спортивными мероприятиями и турнирами</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind-config.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+
+  <body class="min-h-full bg-zinc-50 text-zinc-900 antialiased">
+    <a
+      href="#hero"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:shadow"
+      >Перейти к началу документа</a
+    >
+
+    <header class="border-b border-slate-200 bg-white">
+      <div class="mx-auto max-w-[1320px] px-4 py-6 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-3">
+          <div class="flex flex-col gap-1">
+            <h1 class="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              Платформа управления спортивными мероприятиями и турнирами
+            </h1>
+            <p class="max-w-3xl text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+              Спроектировал MVP‑контур продукта: от публичного каталога и регистрации до создания турнира и построения сетки.
+              Фокус кейса — как я «упаковал» сложную предметку в понятные сценарии, IA и контракт данных/API, чтобы команда могла быстро
+              и без переосмыслений реализовать функциональность.
+            </p>
+            <p class="mt-2 text-xs leading-5 text-slate-600">
+              <span class="font-semibold text-slate-700">Роль</span>: продуктовый дизайнер (UX/IA + спецификация)
+              <span class="text-slate-300" aria-hidden="true">•</span>
+              <span class="font-semibold text-slate-700">Артефакты</span>: MVP‑scope, роли, IA, модель данных, API, план итераций
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
+              >MVP</span
+            >
+            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
+              >Django</span
+            >
+            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
+              >Турниры / Сетка</span
+            >
+            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
+              >Лента + фильтры</span
+            >
+            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
+              >Карта мероприятий</span
+            >
+            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
+              >Загрузка медиа</span
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-[1320px] px-4 py-6 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10">
+        <!-- Mobile TOC -->
+        <div class="lg:hidden">
+          <details class="rounded-xl border border-slate-200 bg-white">
+            <summary class="cursor-pointer select-none px-4 py-3 text-sm font-medium text-slate-900">
+              Навигация по документу
+              <span class="ml-2 text-xs font-normal text-slate-600">(разделы)</span>
+            </summary>
+            <nav class="border-t border-slate-200 px-2 py-2">
+              <ul class="space-y-1 text-sm">
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#hero">Контекст</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#scope">Объём MVP</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#roles">Пользователи и роли</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#ia">Информационная архитектура (IA)</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#arch">Системная архитектура</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#data">Модель данных</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#api">API (уровень MVP)</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#iterations">План спринтов</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#payment">Оплата и приемка</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#debug">Диагностика загрузки cover</a></li>
+                <li><a class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#results">Результат</a></li>
+              </ul>
+            </nav>
+          </details>
+        </div>
+
+        <!-- Main -->
+        <main class="min-w-0">
+          <!-- HERO / Context -->
+          <section id="hero" class="space-y-4">
+            <div class="SpecCard rounded-xl border border-slate-200 bg-white p-6">
+              <div class="flex items-start justify-between gap-6">
+                <div class="space-y-2">
+                  <h2 class="text-lg font-semibold tracking-tight text-slate-900">Контекст</h2>
+                </div>
+              </div>
+
+              <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div class="rounded-lg bg-slate-50 p-4">
+                  <div class="text-xs font-medium uppercase tracking-wide text-slate-600">Роль</div>
+                  <div class="mt-1 text-sm font-medium text-slate-900">Продуктовое проектирование + системная декомпозиция требований</div>
+                </div>
+                <div class="rounded-lg bg-slate-50 p-4">
+                  <div class="text-xs font-medium uppercase tracking-wide text-slate-600">Формат</div>
+                  <div class="mt-1 text-sm font-medium text-slate-900">Этапная разработка спринтами, инкрементальная поставка</div>
+                </div>
+                <div class="rounded-lg bg-slate-50 p-4 sm:col-span-2">
+                  <div class="text-xs font-medium uppercase tracking-wide text-slate-600">Цель MVP</div>
+                  <div class="mt-1 text-sm font-medium text-slate-900">
+                    закрыть минимально жизнеспособный сценарий: найти событие → зарегистрироваться → создать команду → создать мероприятие →
+                    сформировать турнирную структуру
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCOPE -->
+          <section id="scope" class="mt-10 space-y-4">
+            <div class="flex items-end justify-between gap-6">
+              <div>
+                <h2 class="text-xl font-semibold tracking-tight text-slate-900">Что входит в MVP</h2>
+              </div>
+            </div>
+
+            <div class="TableWrap overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <table class="w-full min-w-[720px] border-separate border-spacing-0">
+                <thead>
+                  <tr class="text-left text-xs font-semibold uppercase tracking-wide text-slate-600">
+                    <th class="border-b border-slate-200 px-4 py-3">Функции</th>
+                    <th class="border-b border-slate-200 px-4 py-3">Статус</th>
+                    <th class="border-b border-slate-200 px-4 py-3">Примечание</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm">
+                  <tr class="hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-900">Отображение будущих турниров</td>
+                    <td class="border-b border-slate-100 px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-900">Отображение прошлых турниров</td>
+                    <td class="border-b border-slate-100 px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-900">Составление турнирной сетки</td>
+                    <td class="border-b border-slate-100 px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-900">Регистрация пользователя</td>
+                    <td class="border-b border-slate-100 px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-900">Создание команды</td>
+                    <td class="border-b border-slate-100 px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-900">Создание мероприятия</td>
+                    <td class="border-b border-slate-100 px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-900">Отображение мероприятий по виду спорта</td>
+                    <td class="border-b border-slate-100 px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-900">Отображение мероприятий на карте</td>
+                    <td class="border-b border-slate-100 px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="border-b border-slate-100 px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 py-3 text-slate-900">Сортировка мероприятий в ленте по фильтру</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-accent-50 px-2.5 py-1 text-xs font-medium text-accent-800"
+                        >В объёме</span
+                      >
+                    </td>
+                    <td class="px-4 py-3 text-slate-700">—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- USERS & ROLES -->
+          <section id="roles" class="mt-10 space-y-4">
+            <h2 class="text-xl font-semibold tracking-tight text-slate-900">Пользователи и роли (коротко и строго)</h2>
+
+            <div class="SpecCard rounded-xl border border-slate-200 bg-white p-6">
+              <ul class="space-y-2 text-sm leading-6 text-slate-700">
+                <li><span class="font-medium text-slate-900">Гость:</span> просмотр ленты/карты/деталей.</li>
+                <li><span class="font-medium text-slate-900">Пользователь:</span> регистрация, создание команды, участие.</li>
+                <li>
+                  <span class="font-medium text-slate-900">Организатор (автор события):</span> создание/редактирование мероприятия,
+                  управление данными события.
+                </li>
+                <li><span class="font-medium text-slate-900">Администратор:</span> модерация (как системная роль).</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- IA -->
+          <section id="ia" class="mt-10 space-y-4">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-xl font-semibold tracking-tight text-slate-900">Информационная архитектура (IA)</h2>
+            </div>
+
+            <div class="SpecCard rounded-xl border border-slate-200 bg-white p-6">
+              <h3 class="text-sm font-semibold tracking-tight text-slate-900">Базовый сайт</h3>
+              <ul class="mt-4 grid grid-cols-1 gap-3 text-sm leading-6 text-slate-700 md:grid-cols-2">
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Главная / Лента мероприятий</div>
+                  <div class="mt-1">фильтры, сортировка</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Карта мероприятий</div>
+                  <div class="mt-1">отображение мероприятий на карте</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Будущие турниры</div>
+                  <div class="mt-1">отображение будущих турниров</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Прошедшие турниры + результаты/архив</div>
+                  <div class="mt-1">отображение прошлых турниров</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Страница мероприятия</div>
+                  <div class="mt-1">детали, обложка, место/время, вид спорта</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Создание мероприятия</div>
+                  <div class="mt-1">создание мероприятия</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Регистрация / Вход</div>
+                  <div class="mt-1">регистрация / вход</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Профиль пользователя</div>
+                  <div class="mt-1">профиль пользователя</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">Команды</div>
+                  <div class="mt-1">создание/управление</div>
+                </li>
+                <li class="rounded-lg bg-slate-50 p-4">
+                  <div class="font-medium text-slate-900">О проекте / Контакты</div>
+                  <div class="mt-1">как статические</div>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- SYSTEM ARCHITECTURE -->
+          <section id="arch" class="mt-10 space-y-4">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-xl font-semibold tracking-tight text-slate-900">Системная архитектура</h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
               <!-- CodeBlock -->
               <pre class="CodeBlock overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-5 text-xs leading-5 text-slate-100">
 ┌───────────────────────────────┐
