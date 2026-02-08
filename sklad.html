@@ -1,0 +1,1248 @@
+<!doctype html>
+<html lang="ru" class="h-full scroll-smooth bg-zinc-50 text-zinc-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Склад‑15 — складская UX‑архитектура (кейс‑спецификация)</title>
+    <meta
+      name="description"
+      content="Инженерная спецификация кейса: складская UX‑архитектура для «Склад‑15» (PWA для ТСД, offline‑first, scan‑first, измеримый UX, режим двух операторов)."
+    />
+
+    <!-- Inter (допустимый внешний ресурс) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared tokens + base rules -->
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+
+    <!-- Tailwind CSS через CDN (без сборки) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind-config.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+
+  <body class="h-full antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-accent focus:shadow"
+      >Перейти к содержанию</a
+    >
+
+    <header class="border-b border-slate-200">
+      <div class="mx-auto max-w-[1360px] px-4 py-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="min-w-0">
+            <p class="text-xs font-semibold tracking-wide text-slate-500">Склад‑15 • Кейс / инженерная спецификация</p>
+            <p class="mt-1 text-sm font-medium text-slate-900">Складская UX‑архитектура (PWA, ТСД)</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <a
+              href="#context"
+              class="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 shadow-paper hover:border-slate-300"
+            >
+              <span class="inline-block h-2 w-2 rounded-full bg-accent" aria-hidden="true"></span>
+              Ограничения
+            </a>
+            <a
+              href="#flows"
+              class="inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
+              >Сценарии</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Мобильное оглавление: dropdown -->
+    <div class="border-b border-slate-200 lg:hidden">
+      <div class="mx-auto max-w-[1360px] px-4 py-4 sm:px-6">
+        <label class="block">
+          <span class="text-xs font-semibold tracking-wide text-slate-600">Оглавление</span>
+          <select
+            id="tocSelect"
+            class="mt-1 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-accent focus:outline-none"
+            aria-label="Оглавление"
+          >
+            <option value="top">1) Вводная</option>
+            <option value="context">2) Контекст и ограничения</option>
+            <option value="research">3) Исследование</option>
+            <option value="hypotheses">4) Ключевые гипотезы</option>
+            <option value="constitution">5) Системный дизайн и UX‑конституция</option>
+            <option value="flows">6) Сценарии</option>
+            <option value="flow-receiving">— Приёмка</option>
+            <option value="flow-placement">— Размещение</option>
+            <option value="flow-picking">— Подбор</option>
+            <option value="flow-shipping">— Отгрузка</option>
+            <option value="flow-returns">— Возврат и списание</option>
+            <option value="flow-inventory">— Инвентаризация</option>
+            <option value="flow-labels">— Штрихкоды и этикетки</option>
+            <option value="flow-settings">— Настройки</option>
+            <option value="metrics">7) Метрики и план измерений</option>
+            <option value="iterations">8) Итерации</option>
+            <option value="testing">9) Стратегия тестирования</option>
+            <option value="outcome">10) Результат и ценность продукта</option>
+            <option value="appendix">11) Приложение: архитектура</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-8 py-8 lg:grid-cols-[320px_1fr]">
+        <!-- Десктоп‑оглавление (липкое) -->
+        <aside class="hidden lg:block">
+          <div class="sticky top-6">
+            <div class="rounded-xl border border-slate-200 bg-white p-4">
+              <div class="flex items-center justify-between gap-3">
+                <p class="text-xs font-semibold tracking-wide text-slate-600">ОГЛАВЛЕНИЕ</p>
+                <a href="#top" class="toc-link text-xs font-semibold text-accent hover:underline" data-toc-link>Вверх</a>
+              </div>
+              <nav class="mt-3" aria-label="Оглавление">
+                <ul class="space-y-1 text-sm">
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#top" data-toc-link>1) Вводная</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#context" data-toc-link>2) Контекст и ограничения</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#research" data-toc-link>3) Исследование</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#hypotheses" data-toc-link>4) Ключевые гипотезы</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#constitution" data-toc-link>5) Системный дизайн и UX‑конституция</a></li>
+                  <li>
+                    <a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flows" data-toc-link>6) Сценарии</a>
+                    <ul class="mt-1 space-y-1 border-l border-slate-200 pl-3">
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-receiving" data-toc-link>Приёмка</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-placement" data-toc-link>Размещение</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-picking" data-toc-link>Подбор</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-shipping" data-toc-link>Отгрузка</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-returns" data-toc-link>Возврат и списание</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-inventory" data-toc-link>Инвентаризация</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-labels" data-toc-link>Штрихкоды и этикетки</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-settings" data-toc-link>Настройки</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#metrics" data-toc-link>7) Метрики и план измерений</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#iterations" data-toc-link>8) Итерации</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#testing" data-toc-link>9) Стратегия тестирования</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#outcome" data-toc-link>10) Результат и ценность продукта</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#appendix" data-toc-link>11) Приложение</a></li>
+                </ul>
+              </nav>
+              <div class="mt-4 border-t border-slate-200 pt-3 text-xs text-slate-600">
+                <p>Тема: светлая, AA+ контраст. Акцент: <span class="font-semibold text-accent">синий</span>.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <main id="main" class="min-w-0">
+          <div class="mb-6 rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-sm font-semibold text-slate-900">Это инженерная спецификация (приложение к кейсу)</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Если читаешь как рекрутер/нанимающий менеджер — сначала открой короткую версию кейса: вызов → решения → результат.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <a
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
+                href="./Склад-15 — складская UX‑архитектура (кейс‑спецификация).html"
+                >Открыть кейс</a
+              >
+              <a
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
+                href="./uv.html"
+                >Оглавление кейсов</a
+              >
+            </div>
+          </div>
+          <!-- 1) Hero -->
+          <section id="top">
+            <div class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+              <p class="text-xs font-semibold tracking-wide text-slate-500">1) Вводная</p>
+              <h1 class="mt-2 text-balance text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl">
+                Складская UX‑архитектура для «Склад‑15»: от экранов данных к сценариям действий
+              </h1>
+              <p class="mt-3 max-w-3xl text-pretty text-base leading-7 text-slate-700 sm:text-lg">
+                Прототип PWA для работы на ТСД: offline‑first, scan‑first, измеримый UX и поддержка двух операторов.
+              </p>
+              <p class="mt-4 text-sm leading-6 text-slate-600">
+                <span class="font-semibold text-slate-700">Роль</span>: продукт / UX‑архитектор
+                <span class="text-slate-300" aria-hidden="true">•</span>
+                <span class="font-semibold text-slate-700">Объём</span>: сквозные операторские сценарии
+                <span class="text-slate-300" aria-hidden="true">•</span>
+                <span class="font-semibold text-slate-700">Артефакты</span>: UX‑конституция, сценарии, план метрик, архитектурный план PWA
+              </p>
+            </div>
+            <div class="mt-4 flex justify-end">
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+          </section>
+
+          <!-- 2) Context & Constraints -->
+          <section id="context" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">2) Контекст и ограничения</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Условия склада</h3>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                  <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent"></span>Шум, перчатки, спешка; низкий «бюджет внимания».</li>
+                  <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent"></span>Нестабильный Wi‑Fi: обрывы — рутина, не исключение.</li>
+                  <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent"></span>Сканирование — основной ввод; тап — вторичный.</li>
+                  <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent"></span>Требование offline‑first: продолжать работу без сети и согласовать позже.</li>
+                  <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent"></span>Высокая цена ошибки: неверный подбор/ячейка/отгрузка → прямые потери.</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-accent-50 p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Необсуждаемые принципы</h3>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-800">
+                  <li><span class="font-semibold">Ясность следующего шага</span> &gt; контекст &gt; история</li>
+                  <li><span class="font-semibold">Офлайн</span> — нормальный режим</li>
+                  <li><span class="font-semibold">Ошибки</span> — сценарии, а не вина</li>
+                  <li><span class="font-semibold">Сканирование</span> &gt; тап</li>
+                  <li><span class="font-semibold">Один экран</span> = одно решение</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3) Research -->
+          <section id="research" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">3) Исследование</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <ul class="space-y-2 text-sm leading-6 text-slate-700">
+                <li>- Анализ документации «Склад‑15».</li>
+                <li>- Декомпозиция реальных операторских сценариев по операциям.</li>
+                <li>- Трения: слишком много переходов по меню; непоследовательные паттерны; списки без действий; неясно «что дальше».</li>
+                <li>- Артефакты: CJM/JTBD; модель «Следующее/Сейчас/Сделано»; сценарии по модулям.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 4) Key Hypotheses -->
+          <section id="hypotheses" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">4) Ключевые гипотезы</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <p class="text-sm leading-6 text-slate-700">
+                Гипотезы и измерение — см. спецификацию в версиях документа.
+              </p>
+            </div>
+          </section>
+
+          <!-- 5) System Design & UX Constitution -->
+          <section id="constitution" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">5) Системный дизайн и UX‑конституция</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <p class="text-sm leading-6 text-slate-700">
+                Принципы: «следующий шаг сверху», «офлайн — норма», «ошибка = сценарий», «сканирование &gt; тап», «один экран — одно решение».
+              </p>
+              <p class="mt-3 text-xs text-slate-600">
+                Паттерны: ActionHeader, ContextBar, ProgressChip, ScanZone, ErrorHint, ConfirmSheet, OfflineBadge, PartnerBadge.
+              </p>
+            </div>
+          </section>
+
+          <!-- 6) User Flows -->
+          <section id="flows" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">6) Сценарии</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <p class="text-sm leading-6 text-slate-700">
+                Формат каждого сценария: <span class="font-semibold text-slate-900">A)</span> Next/Now/Done, <span class="font-semibold text-slate-900">B)</span> путь оператора,
+                <span class="font-semibold text-slate-900">C)</span> типовые ошибки и реакция системы, <span class="font-semibold text-slate-900">D)</span> правила завершения,
+                <span class="font-semibold text-slate-900">E)</span> offline-first требования.
+              </p>
+              <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 text-sm text-slate-700">
+                <li><a class="toc-link font-semibold text-accent hover:underline" href="#flow-receiving" data-toc-link>Приёмка</a></li>
+                <li><a class="toc-link font-semibold text-accent hover:underline" href="#flow-placement" data-toc-link>Размещение</a></li>
+                <li><a class="toc-link font-semibold text-accent hover:underline" href="#flow-picking" data-toc-link>Подбор</a></li>
+                <li><a class="toc-link font-semibold text-accent hover:underline" href="#flow-shipping" data-toc-link>Отгрузка</a></li>
+                <li><a class="toc-link font-semibold text-accent hover:underline" href="#flow-returns" data-toc-link>Возврат и списание</a></li>
+                <li><a class="toc-link font-semibold text-accent hover:underline" href="#flow-inventory" data-toc-link>Инвентаризация</a></li>
+                <li><a class="toc-link font-semibold text-accent hover:underline" href="#flow-labels" data-toc-link>Штрихкоды и этикетки</a></li>
+                <li><a class="toc-link font-semibold text-accent hover:underline" href="#flow-settings" data-toc-link>Настройки</a></li>
+              </ul>
+            </div>
+
+            <!-- Подразделы (якоря для TOC) -->
+            <div class="mt-6 space-y-6">
+              <section id="flow-receiving" class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Приёмка</h3>
+                  <a href="#flows" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>К списку сценариев</a>
+                </div>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[980px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">Блок</th>
+                        <th class="px-4 py-3">Спецификация</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">A) Next/Now/Done</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li><span class="font-semibold text-slate-900">Next</span>: скан товара.</li>
+                            <li><span class="font-semibold text-slate-900">Now</span>: сопоставление со строкой документа; факт +1 на позицию.</li>
+                            <li><span class="font-semibold text-slate-900">Done</span>: завершение документа с подтверждением расхождений (если есть).</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">B) Путь оператора</th>
+                        <td class="px-4 py-3">
+                          <ol class="list-decimal pl-5">
+                            <li>Открыть модуль «Приёмка».</li>
+                            <li>Выбрать документ/поставку.</li>
+                            <li>Войти в scan‑цикл (экран готов к скану).</li>
+                            <li>Сканировать товар → система сопоставляет строку → фиксирует факт.</li>
+                            <li>Повторять скан‑цикл до завершения.</li>
+                            <li>Завершить документ → показать сводку расхождений → подтвердить при необходимости.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">C) Ошибки и реакция</th>
+                        <td class="px-4 py-3">
+                          <div class="overflow-x-auto rounded-md border border-slate-200 bg-white">
+                            <table class="min-w-[820px] w-full text-left text-sm">
+                              <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                                <tr>
+                                  <th class="px-4 py-3">Ситуация</th>
+                                  <th class="px-4 py-3">Реакция системы</th>
+                                  <th class="px-4 py-3">Следующий шаг</th>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Неизвестный штрихкод</td>
+                                  <td class="px-4 py-3">Состояние ошибки с безопасными действиями: пересканировать / ручной ввод / отмена.</td>
+                                  <td class="px-4 py-3">Пересканировать или ввести вручную.</td>
+                                </tr>
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Offline в середине цикла</td>
+                                  <td class="px-4 py-3">Показ статуса offline; действия продолжают записываться в очередь синка.</td>
+                                  <td class="px-4 py-3">Продолжать сканирование; синк выполняется позже.</td>
+                                </tr>
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Расхождения при завершении</td>
+                                  <td class="px-4 py-3">Сводка расхождений + явное подтверждение.</td>
+                                  <td class="px-4 py-3">Подтвердить или вернуться к исправлению.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">D) Завершение</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Завершение — явное действие (без “тихого” автозавершения).</li>
+                            <li>Любое расхождение требует подтверждения при завершении.</li>
+                            <li>После завершения синхронизация выполняется асинхронно (очередь).</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">E) Offline-first</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Каждый скан и факт фиксируются локально до синка.</li>
+                            <li>UI отражает состояние очереди (queued/syncing/sync_failed).</li>
+                            <li>Повторные действия оператора не должны приводить к дублям без явного сигнала.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <section id="flow-placement" class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Размещение</h3>
+                  <a href="#flows" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>К списку сценариев</a>
+                </div>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[980px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">Блок</th>
+                        <th class="px-4 py-3">Спецификация</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">A) Next/Now/Done</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li><span class="font-semibold text-slate-900">Next</span>: скан ячейки.</li>
+                            <li><span class="font-semibold text-slate-900">Now</span>: скан товара → размещение в текущую ячейку.</li>
+                            <li><span class="font-semibold text-slate-900">Done</span>: завершение документа с подтверждением расхождений (если есть).</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">B) Путь оператора</th>
+                        <td class="px-4 py-3">
+                          <ol class="list-decimal pl-5">
+                            <li>Открыть модуль «Размещение».</li>
+                            <li>Выбрать документ.</li>
+                            <li>Сканировать ячейку → система фиксирует контекст текущей ячейки.</li>
+                            <li>Сканировать товар → система размещает в текущую ячейку.</li>
+                            <li>Смена ячейки: скан новой ячейки → контекст переключается сразу.</li>
+                            <li>Завершить документ → подтвердить расхождения при необходимости.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">C) Ошибки и реакция</th>
+                        <td class="px-4 py-3">
+                          <div class="overflow-x-auto rounded-md border border-slate-200 bg-white">
+                            <table class="min-w-[820px] w-full text-left text-sm">
+                              <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                                <tr>
+                                  <th class="px-4 py-3">Ситуация</th>
+                                  <th class="px-4 py-3">Реакция системы</th>
+                                  <th class="px-4 py-3">Следующий шаг</th>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Товар отсканирован до ячейки</td>
+                                  <td class="px-4 py-3">Блокирующее состояние: “Сканируйте ячейку”.</td>
+                                  <td class="px-4 py-3">Сканировать ячейку → повторить скан товара.</td>
+                                </tr>
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Offline</td>
+                                  <td class="px-4 py-3">Действия размещения пишутся в очередь; статус показывается.</td>
+                                  <td class="px-4 py-3">Продолжать; синк позже.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">D) Завершение</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Расхождения подтверждаются при завершении.</li>
+                            <li>Состояние завершения не отменяет очередь синка: она дожимается отдельно.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">E) Offline-first</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Контекст текущей ячейки хранится локально.</li>
+                            <li>Действия размещения идемпотентны при повторной отправке из очереди.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <section id="flow-picking" class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Подбор</h3>
+                  <a href="#flows" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>К списку сценариев</a>
+                </div>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[980px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">Блок</th>
+                        <th class="px-4 py-3">Спецификация</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">A) Next/Now/Done</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li><span class="font-semibold text-slate-900">Next</span>: скан ожидаемой ячейки.</li>
+                            <li><span class="font-semibold text-slate-900">Now</span>: скан товара → подтверждение строки/позиции.</li>
+                            <li><span class="font-semibold text-slate-900">Done</span>: завершение документа с подтверждением расхождений (если есть).</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">B) Путь оператора</th>
+                        <td class="px-4 py-3">
+                          <ol class="list-decimal pl-5">
+                            <li>Открыть модуль «Подбор».</li>
+                            <li>Выбрать документ/заказ.</li>
+                            <li>Сканировать ячейку → подтвердить попадание в ожидаемую (по маршруту).</li>
+                            <li>Сканировать товар → система фиксирует подбор по строке.</li>
+                            <li>Повторять до завершения.</li>
+                            <li>Завершить документ → подтвердить расхождения при необходимости.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">C) Ошибки и реакция</th>
+                        <td class="px-4 py-3">
+                          <div class="overflow-x-auto rounded-md border border-slate-200 bg-white">
+                            <table class="min-w-[820px] w-full text-left text-sm">
+                              <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                                <tr>
+                                  <th class="px-4 py-3">Ситуация</th>
+                                  <th class="px-4 py-3">Реакция системы</th>
+                                  <th class="px-4 py-3">Следующий шаг</th>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Неверная ячейка (out‑of‑order)</td>
+                                  <td class="px-4 py-3">Предупреждение с ожидаемой ячейкой; действие не скрывается.</td>
+                                  <td class="px-4 py-3">Вернуться в ожидаемую ячейку или продолжить осознанно.</td>
+                                </tr>
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Товар не найден в документе</td>
+                                  <td class="px-4 py-3">Состояние ошибки с безопасными действиями (перескан/ручной ввод/отмена).</td>
+                                  <td class="px-4 py-3">Пересканировать или отменить.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">D) Завершение</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Out‑of‑order не блокирует, но фиксируется как событие.</li>
+                            <li>Расхождения подтверждаются при завершении.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">E) Offline-first</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Подбор пишется в очередь; статус синка видим.</li>
+                            <li>Предупреждения/ошибки сохраняют корректность в offline режиме.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <section id="flow-shipping" class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Отгрузка</h3>
+                  <a href="#flows" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>К списку сценариев</a>
+                </div>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[980px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">Блок</th>
+                        <th class="px-4 py-3">Спецификация</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">A) Next/Now/Done</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li><span class="font-semibold text-slate-900">Next</span>: скан товара/короба (в зависимости от операции).</li>
+                            <li><span class="font-semibold text-slate-900">Now</span>: строгие проверки соответствия документу.</li>
+                            <li><span class="font-semibold text-slate-900">Done</span>: завершение с подтверждением расхождений (если есть).</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">B) Путь оператора</th>
+                        <td class="px-4 py-3">
+                          <ol class="list-decimal pl-5">
+                            <li>Открыть модуль «Отгрузка».</li>
+                            <li>Выбрать документ.</li>
+                            <li>Сканировать товар/тару → система выполняет проверки.</li>
+                            <li>При несовпадениях — переход в состояние ошибки/подтверждения.</li>
+                            <li>Завершить документ → подтвердить расхождения при необходимости.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">C) Ошибки и реакция</th>
+                        <td class="px-4 py-3">
+                          <div class="overflow-x-auto rounded-md border border-slate-200 bg-white">
+                            <table class="min-w-[820px] w-full text-left text-sm">
+                              <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                                <tr>
+                                  <th class="px-4 py-3">Ситуация</th>
+                                  <th class="px-4 py-3">Реакция системы</th>
+                                  <th class="px-4 py-3">Следующий шаг</th>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Лишний товар</td>
+                                  <td class="px-4 py-3">Блокирующее состояние с объяснением и безопасным действием.</td>
+                                  <td class="px-4 py-3">Убрать лишнее → продолжить.</td>
+                                </tr>
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Недостача при завершении</td>
+                                  <td class="px-4 py-3">Сводка расхождений + явное подтверждение.</td>
+                                  <td class="px-4 py-3">Подтвердить или вернуться к подбору.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">D) Завершение</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Критичные несовпадения — блокирующие; не прячутся тостами.</li>
+                            <li>Расхождения подтверждаются при завершении.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">E) Offline-first</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Статус синка видим на каждом критичном шаге.</li>
+                            <li>Очередь синка и ретраи диагностируемы.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <section id="flow-returns" class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Возврат и списание</h3>
+                  <a href="#flows" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>К списку сценариев</a>
+                </div>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[980px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">Блок</th>
+                        <th class="px-4 py-3">Спецификация</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">A) Next/Now/Done</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li><span class="font-semibold text-slate-900">Next</span>: скан товара.</li>
+                            <li><span class="font-semibold text-slate-900">Now</span>: выбор причины обязателен.</li>
+                            <li><span class="font-semibold text-slate-900">Done</span>: критичное действие подтверждается.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">B) Путь оператора</th>
+                        <td class="px-4 py-3">
+                          <ol class="list-decimal pl-5">
+                            <li>Открыть модуль «Возврат/Списание».</li>
+                            <li>Сканировать товар.</li>
+                            <li>Выбрать причину (обязательное поле).</li>
+                            <li>Подтвердить критичное действие.</li>
+                            <li>Действие уходит в очередь (online/offline).</li>
+                          </ol>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">C) Ошибки и реакция</th>
+                        <td class="px-4 py-3">
+                          <div class="overflow-x-auto rounded-md border border-slate-200 bg-white">
+                            <table class="min-w-[820px] w-full text-left text-sm">
+                              <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                                <tr>
+                                  <th class="px-4 py-3">Ситуация</th>
+                                  <th class="px-4 py-3">Реакция системы</th>
+                                  <th class="px-4 py-3">Следующий шаг</th>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Причина не выбрана</td>
+                                  <td class="px-4 py-3">Блокировать подтверждение; подсказка на обязательное поле.</td>
+                                  <td class="px-4 py-3">Выбрать причину → подтвердить.</td>
+                                </tr>
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Offline</td>
+                                  <td class="px-4 py-3">Действие в очереди + видимый статус “queued”.</td>
+                                  <td class="px-4 py-3">Продолжать; синк позже.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">D) Завершение</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Критичные действия — только через явное подтверждение.</li>
+                            <li>Подтверждение фиксируется как событие (для аудита).</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">E) Offline-first</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Операции пишутся в очередь; повторная отправка безопасна.</li>
+                            <li>UI обязан предотвращать повтор критичного действия из‑за неясного статуса.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <section id="flow-inventory" class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Инвентаризация</h3>
+                  <a href="#flows" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>К списку сценариев</a>
+                </div>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[980px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">Блок</th>
+                        <th class="px-4 py-3">Спецификация</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">A) Next/Now/Done</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li><span class="font-semibold text-slate-900">Next</span>: скан ячейки.</li>
+                            <li><span class="font-semibold text-slate-900">Now</span>: быстрый счёт (scan‑цикл) с возможностью пересчёта.</li>
+                            <li><span class="font-semibold text-slate-900">Done</span>: обработка расхождений: подтверждение или пересчёт.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">B) Путь оператора</th>
+                        <td class="px-4 py-3">
+                          <ol class="list-decimal pl-5">
+                            <li>Открыть модуль «Инвентаризация».</li>
+                            <li>Сканировать ячейку → войти в сессию ячейки.</li>
+                            <li>Сканировать товар → фиксировать количество.</li>
+                            <li>Завершить ячейку → показать расхождения.</li>
+                            <li>Подтвердить расхождения или запустить пересчёт.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">C) Ошибки и реакция</th>
+                        <td class="px-4 py-3">
+                          <div class="overflow-x-auto rounded-md border border-slate-200 bg-white">
+                            <table class="min-w-[820px] w-full text-left text-sm">
+                              <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                                <tr>
+                                  <th class="px-4 py-3">Ситуация</th>
+                                  <th class="px-4 py-3">Реакция системы</th>
+                                  <th class="px-4 py-3">Следующий шаг</th>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Скан товара без ячейки</td>
+                                  <td class="px-4 py-3">Блокировать действие: “Сканируйте ячейку”.</td>
+                                  <td class="px-4 py-3">Сканировать ячейку → продолжить.</td>
+                                </tr>
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Сильное расхождение</td>
+                                  <td class="px-4 py-3">Сценарий расхождений: показать diff + предложить пересчёт.</td>
+                                  <td class="px-4 py-3">Пересчёт или подтверждение.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">D) Завершение</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Расхождения не “прячутся”: их нужно подтвердить или пересчитать.</li>
+                            <li>Пересчёт — стандартный путь восстановления.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">E) Offline-first</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Сессия ячейки устойчива к online/offline переключениям.</li>
+                            <li>Конфликт синка оформляется как состояние (sync_failed → retry).</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <section id="flow-labels" class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Штрихкоды и этикетки</h3>
+                  <a href="#flows" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>К списку сценариев</a>
+                </div>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[980px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">Блок</th>
+                        <th class="px-4 py-3">Спецификация</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">A) Next/Now/Done</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li><span class="font-semibold text-slate-900">Next</span>: скан товара / скан штрихкода.</li>
+                            <li><span class="font-semibold text-slate-900">Now</span>: bind штрихкода + проверка уникальности.</li>
+                            <li><span class="font-semibold text-slate-900">Done</span>: выбор шаблона → печать.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">B) Путь оператора</th>
+                        <td class="px-4 py-3">
+                          <ol class="list-decimal pl-5">
+                            <li>Открыть модуль «Штрихкоды/Этикетки».</li>
+                            <li>Сканировать товар.</li>
+                            <li>Сканировать/ввести штрихкод → проверка уникальности.</li>
+                            <li>Привязать → выбрать шаблон → печать.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">C) Ошибки и реакция</th>
+                        <td class="px-4 py-3">
+                          <div class="overflow-x-auto rounded-md border border-slate-200 bg-white">
+                            <table class="min-w-[820px] w-full text-left text-sm">
+                              <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                                <tr>
+                                  <th class="px-4 py-3">Ситуация</th>
+                                  <th class="px-4 py-3">Реакция системы</th>
+                                  <th class="px-4 py-3">Следующий шаг</th>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Штрихкод не уникален</td>
+                                  <td class="px-4 py-3">Состояние ошибки + запрос другого штрихкода.</td>
+                                  <td class="px-4 py-3">Ввести/сканировать новый штрихкод.</td>
+                                </tr>
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Offline при проверке уникальности</td>
+                                  <td class="px-4 py-3">Состояние pending/queued проверки; запретить необратимые шаги без верификации.</td>
+                                  <td class="px-4 py-3">Дождаться синка или продолжить по безопасной ветке.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">D) Завершение</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Привязка подтверждается только после проверки уникальности.</li>
+                            <li>Выбор шаблона — явный шаг (без “скрытых дефолтов”).</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">E) Offline-first</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Печать может быть очередью (если допускается инфраструктурой).</li>
+                            <li>Проверки, требующие сервера, оформляются как состояния pending/sync_failed.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <section id="flow-settings" class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Настройки</h3>
+                  <a href="#flows" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>К списку сценариев</a>
+                </div>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[980px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">Блок</th>
+                        <th class="px-4 py-3">Спецификация</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">A) Next/Now/Done</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li><span class="font-semibold text-slate-900">Next</span>: выбрать категорию настроек.</li>
+                            <li><span class="font-semibold text-slate-900">Now</span>: изменить параметр и увидеть подтверждение.</li>
+                            <li><span class="font-semibold text-slate-900">Done</span>: применить без разрушения активных документов.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">B) Путь оператора</th>
+                        <td class="px-4 py-3">
+                          <ol class="list-decimal pl-5">
+                            <li>Открыть «Настройки».</li>
+                            <li>Выбрать категорию: соединение / сканер / обратная связь / синк / партнёр‑режим / диагностика.</li>
+                            <li>Изменить параметр → получить явное подтверждение состояния.</li>
+                            <li>Вернуться назад без потери контекста.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">C) Ошибки и реакция</th>
+                        <td class="px-4 py-3">
+                          <div class="overflow-x-auto rounded-md border border-slate-200 bg-white">
+                            <table class="min-w-[820px] w-full text-left text-sm">
+                              <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                                <tr>
+                                  <th class="px-4 py-3">Ситуация</th>
+                                  <th class="px-4 py-3">Реакция системы</th>
+                                  <th class="px-4 py-3">Следующий шаг</th>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                  <td class="px-4 py-3 font-medium text-slate-900">Сбой синхронизации</td>
+                                  <td class="px-4 py-3">Состояние sync_failed + явное действие retry.</td>
+                                  <td class="px-4 py-3">Retry или диагностика.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">D) Завершение</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Изменения не должны ломать активный документ/цикл без предупреждения.</li>
+                            <li>Критичные настройки требуют подтверждения.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">E) Offline-first</th>
+                        <td class="px-4 py-3">
+                          <ul class="list-disc pl-5">
+                            <li>Диагностика очереди синка доступна offline.</li>
+                            <li>Повтор отправки контролируемый: без бесконечного “тихого” ретрая.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <!-- 7) Metrics -->
+          <section id="metrics" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">7) Метрики и план измерений</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              Раздел фиксирует, что именно измеряется и какие события должны логироваться для расчёта показателей. Нужен, чтобы сравнивать версии
+              интерфейса по одному протоколу и проверять корректность offline‑очереди.
+            </p>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <ul class="space-y-2 text-sm leading-6 text-slate-700">
+                <li>- Avg receiving time per delivery</li>
+                <li>- Avg picking time per order</li>
+                <li>- % picking errors</li>
+                <li>- % inventory discrepancies</li>
+                <li>- receiving x minutes per y items</li>
+                <li>- picking x minutes per y lines</li>
+                <li>- inventory x minutes per y cells</li>
+              </ul>
+              <p class="mt-3 text-xs text-slate-600">Телеметрия «невидима» оператору: логируем события без прерывания scan‑цикла.</p>
+            </div>
+          </section>
+
+          <!-- 8) Iterations -->
+          <section id="iterations" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">8) Итерации</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              История изменений, сгруппированная по версиям. Нужна для понимания, какие паттерны считаются базовыми и что должно проверяться на
+              регрессии при последующих доработках.
+            </p>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <ul class="space-y-2 text-sm leading-6 text-slate-700">
+                <li>- v0: только списки документов → проблема: нет действий</li>
+                <li>- v1: экраны scan‑цикла</li>
+                <li>- v2: стандартизация компонентов и навигации</li>
+                <li>- v3: индикаторы синка и очередь</li>
+                <li>- v4: режим двух операторов</li>
+                <li>- v5: прод‑харденинг</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 9) Testing -->
+          <section id="testing" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">9) Стратегия тестирования</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              Чек‑листы проверок: сценарии модулей, матрица online/offline, тесты ввода и корректность телеметрии. Используется QA и как протокол
+              прогонов при изменениях логики синка и экранов.
+            </p>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <ul class="space-y-2 text-sm leading-6 text-slate-700">
+                <li>- Smoke + edge сценарии по модулям</li>
+                <li>- Offline‑матрица: переходы online/offline, конфликты, ретраи очереди</li>
+                <li>- Тесты ввода сканера: keyboard wedge vs ручной ввод</li>
+                <li>- Тесты корректности KPI‑телеметрии</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 10) Outcome -->
+          <section id="outcome" class="mt-12">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">10) Результат и ценность продукта</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              Сводка связей «паттерн → сценарий → измерение»: что изменилось качественно, что измеряется и где это зафиксировано в документе.
+            </p>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <ul class="space-y-2 text-sm leading-6 text-slate-700">
+                <li>- Качественно: меньше пауз, меньше «потери контекста», устойчивый офлайн.</li>
+                <li>- Измеримо: метрики из раздела 7.</li>
+                <li>- Ценность для продаж: меньше обучения, меньше ошибок, предсказуемый офлайн, enterprise‑готовность, режим двух операторов.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 11) Appendix -->
+          <section id="appendix" class="mt-12 pb-16">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">11) Приложение: снимок архитектуры</h2>
+              <a href="#top" class="toc-link text-sm font-semibold text-accent hover:underline" data-toc-link>Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              Справочный раздел для обсуждения с разработкой: схема данных и синхронизации, машина состояний документа и ключевые правила ретраев.
+            </p>
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Диаграмма</h3>
+                <svg viewBox="0 0 920 210" class="mt-4 h-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4" role="img" aria-label="Operator → PWA → IndexedDB → Sync Queue → API → ERP">
+                  <defs>
+                    <style>
+                      .n { fill: var(--surface-0); stroke: var(--border-subtle); stroke-width: 2; rx: 12; }
+                      .t { font: 600 14px var(--font-sans); fill: var(--text-1); }
+                      .s { font: 500 12px var(--font-sans); fill: var(--text-3); }
+                      .a { stroke: var(--color-accent); stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+                    </style>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                      <path d="M0,0 L8,3 L0,6 Z" fill="var(--color-accent)"></path>
+                    </marker>
+                  </defs>
+                  <rect class="n" x="20" y="70" width="150" height="70"></rect>
+                  <text class="t" x="95" y="102" text-anchor="middle">Оператор</text>
+                  <text class="s" x="95" y="122" text-anchor="middle">ТСД/сканер</text>
+                  <rect class="n" x="210" y="40" width="160" height="130"></rect>
+                  <text class="t" x="290" y="92" text-anchor="middle">PWA</text>
+                  <text class="s" x="290" y="112" text-anchor="middle">UI + scan‑цикл</text>
+                  <text class="s" x="290" y="132" text-anchor="middle">offline‑статус</text>
+                  <rect class="n" x="410" y="40" width="160" height="60"></rect>
+                  <text class="t" x="490" y="74" text-anchor="middle">IndexedDB</text>
+                  <text class="s" x="490" y="92" text-anchor="middle">кэш</text>
+                  <rect class="n" x="410" y="110" width="160" height="60"></rect>
+                  <text class="t" x="490" y="144" text-anchor="middle">Sync Queue</text>
+                  <text class="s" x="490" y="162" text-anchor="middle">retry</text>
+                  <rect class="n" x="610" y="70" width="120" height="70"></rect>
+                  <text class="t" x="670" y="102" text-anchor="middle">API</text>
+                  <text class="s" x="670" y="122" text-anchor="middle">события</text>
+                  <rect class="n" x="770" y="70" width="130" height="70"></rect>
+                  <text class="t" x="835" y="102" text-anchor="middle">ERP</text>
+                  <text class="s" x="835" y="122" text-anchor="middle">Склад‑15</text>
+                  <path class="a" d="M170 105 L210 105"></path>
+                  <path class="a" d="M370 75 L410 75"></path>
+                  <path class="a" d="M370 135 L410 135"></path>
+                  <path class="a" d="M570 105 L610 105"></path>
+                  <path class="a" d="M730 105 L770 105"></path>
+                </svg>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Машина состояний документа</h3>
+                <pre class="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-800"><code>new → in_progress → completed → synced (+ sync_failed → retry)</code></pre>
+              </div>
+            </div>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                  <tr>
+                    <th class="px-4 py-3">Факт спецификации (из этого документа)</th>
+                    <th class="px-4 py-3">Значение</th>
+                    <th class="px-4 py-3">Где зафиксировано</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-700">
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Секций (включая подпункты сценариев)</td>
+                    <td class="px-4 py-3">19</td>
+                    <td class="px-4 py-3">`&lt;section id=…&gt;` в документе</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Сценариев (flows)</td>
+                    <td class="px-4 py-3">8 (receiving, placement, picking, shipping, returns, inventory, labels, settings)</td>
+                    <td class="px-4 py-3">Раздел 6 (якоря `flow-*`)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Таблиц</td>
+                    <td class="px-4 py-3">17</td>
+                    <td class="px-4 py-3">Сценарии (A–E) + таблица фактов</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Диаграмм (SVG)</td>
+                    <td class="px-4 py-3">1</td>
+                    <td class="px-4 py-3">Раздел 11</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Правило синхронизации</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-900">sync_failed → retry</td>
+                    <td class="px-4 py-3">Раздел 11 (state machine)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <footer class="border-t border-slate-200">
+      <div class="mx-auto max-w-[1360px] px-4 py-6 text-xs text-slate-600 sm:px-6 lg:px-8">
+        <p>Один файл. HTML + Tailwind CDN. Минимальный JS: подсветка активного раздела и навигация по оглавлению.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Подсветка активного раздела + навигация select (мобильные).
+      (function () {
+        const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        // Only highlight TOC list items (avoid affecting “Наверх” links in content).
+        const links = Array.from(document.querySelectorAll("aside nav a.toc-link[data-toc-link]"));
+        const select = document.getElementById("tocSelect");
+
+        const ids = Array.from(
+          new Set(
+            links
+              .map((a) => (a.getAttribute("href") || "").trim())
+              .filter((h) => h.startsWith("#") && h.length > 1)
+              .map((h) => h.slice(1))
+          )
+        );
+        const targets = ids.map((id) => document.getElementById(id)).filter(Boolean);
+
+        function setActive(id) {
+          links.forEach((a) => {
+            const isActive = a.getAttribute("href") === "#" + id;
+            a.classList.toggle("bg-zinc-100", isActive);
+            a.classList.toggle("text-zinc-900", isActive);
+            a.classList.toggle("font-semibold", isActive);
+            a.classList.toggle("text-zinc-700", !isActive);
+            if (isActive) a.setAttribute("aria-current", "true");
+            else a.removeAttribute("aria-current");
+          });
+          if (select) select.value = id;
+        }
+
+        function scrollToId(id) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (prefersReduced) el.scrollIntoView({ block: "start" });
+          else el.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.replaceState(null, "", "#" + id);
+        }
+
+        if (select) {
+          select.addEventListener("change", () => scrollToId(select.value));
+        }
+
+        document.addEventListener("click", (e) => {
+          const a = e.target && e.target.closest && e.target.closest("a[data-toc-link]");
+          if (!a) return;
+          const href = a.getAttribute("href") || "";
+          if (!href.startsWith("#")) return;
+          const id = href.slice(1);
+          if (!id) return;
+          const el = document.getElementById(id);
+          if (!el) return;
+          e.preventDefault();
+          scrollToId(id);
+        });
+
+        if (!("IntersectionObserver" in window) || targets.length === 0) return;
+
+        let current = null;
+        const obs = new IntersectionObserver(
+          (entries) => {
+            const visible = entries
+              .filter((en) => en.isIntersecting)
+              .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+            if (visible.length === 0) return;
+            const id = visible[0].target.id;
+            if (id && id !== current) {
+              current = id;
+              setActive(id);
+            }
+          },
+          { root: null, rootMargin: "-25% 0px -65% 0px", threshold: [0.01, 0.1, 0.25] }
+        );
+
+        targets.forEach((t) => obs.observe(t));
+
+        const initial = location.hash && document.getElementById(location.hash.slice(1)) ? location.hash.slice(1) : "top";
+        setActive(initial);
+      })();
+    </script>
+  </body>
+</html>

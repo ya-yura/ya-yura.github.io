@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="ru" class="h-full bg-zinc-50 text-zinc-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Портфолио — кейсы (краткий вход)</title>
+    <meta
+      name="description"
+      content="Краткий вход в кейсы: складская UX‑архитектура (ТСД/PWA), UX тепловизионной камеры, спорт‑платформа (MVP)."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind-config.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+
+  <body class="min-h-full font-sans antialiased">
+    <main class="mx-auto max-w-[1100px] px-4 py-10 sm:px-6 lg:px-8">
+      <header class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+        <p class="text-xs font-semibold tracking-wide text-slate-600">Senior UI/UX • кейсы</p>
+        <h1 class="mt-2 text-balance text-2xl font-semibold leading-tight sm:text-3xl">Краткий вход в портфолио</h1>
+        <p class="mt-3 max-w-3xl text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+          Здесь — компактный «оглавительный» экран, чтобы рекрутеру было проще открыть нужный кейс. Внутри кейсов я показываю не “макеты”, а
+          решения: как формулирую проблему, снимаю риски, задаю контракты и оставляю измеримость.
+        </p>
+      </header>
+
+      <section class="mt-8 grid gap-4 lg:grid-cols-3">
+        <article class="rounded-xl border border-slate-200 bg-white p-6">
+          <p class="text-xs font-semibold tracking-wide text-slate-600">Склад • PWA • ТСД</p>
+          <h2 class="mt-2 text-lg font-semibold text-slate-900">Склад‑15 — UX‑архитектура</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-700">
+            Offline‑first, scan‑first, паттерны ошибок как сценарии, измеримость. Акцент: снижение ошибок и времени на операцию.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300" href="./Склад-15 — складская UX‑архитектура (кейс‑спецификация).html"
+              >Открыть кейс</a
+            >
+            <a class="inline-flex items-center rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300" href="./sklad.html"
+              >Спецификация</a
+            >
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6">
+          <p class="text-xs font-semibold tracking-wide text-slate-600">Embedded • State machine</p>
+          <h2 class="mt-2 text-lg font-semibold text-slate-900">Тепловизионная камера — UX поверх Live View</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-700">
+            Контракты ввода, слои оверлеев, Quick Menu, язык RGB, ошибки как состояния. Акцент: снятие неоднозначности для разработки/QA.
+          </p>
+          <div class="mt-4">
+            <a class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300" href="./UV-case.html"
+              >Открыть кейс</a
+            >
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6">
+          <p class="text-xs font-semibold tracking-wide text-slate-600">MVP • Platform</p>
+          <h2 class="mt-2 text-lg font-semibold text-slate-900">Спорт‑платформа — MVP контур</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-700">
+            IA, роли, модель данных и контракт API для быстрых итераций. Акцент: декомпозиция предметки и предсказуемая поставка.
+          </p>
+          <div class="mt-4">
+            <a class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300" href="./sport.html"
+              >Открыть кейс</a
+            >
+          </div>
+        </article>
+      </section>
+
+      <footer class="mt-10 text-sm leading-6 text-slate-600">
+        <p>
+          Примечание: если нужно — добавлю реальные скриншоты/прототипы (при отсутствии NDA‑ограничений) и упакую кейсы в единый сайт с навигацией.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
+
+<!doctype html>
+<html lang="ru" class="h-full bg-zinc-50 text-zinc-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Складская UX‑архитектура для «Склад‑15» — кейс‑спецификация</title>
+    <meta
+      name="description"
+      content="Складская UX‑архитектура для «Склад‑15»: PWA для ТСД (offline‑first, scan‑first), измеримый UX и поддержка работы двух операторов. Инженерная кейс‑спецификация."
+    />
+
+    <!-- Inter (allowed external font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Shared tokens + base rules -->
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+
+    <!-- Tailwind via CDN (no build tooling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind-config.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+
+  <body class="min-h-full font-sans antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:border focus:border-slate-200 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-accent"
+      >Перейти к содержанию</a
+    >
+
+    <!-- Мобильное оглавление: липкий dropdown сверху -->
+    <div class="md:hidden sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <div class="mx-auto max-w-[1360px] px-4 py-3">
+        <div class="flex items-center gap-3">
+          <div class="min-w-0 flex-1">
+            <label for="tocSelect" class="block text-xs font-semibold tracking-wide text-slate-600">ОГЛАВЛЕНИЕ</label>
+            <select
+              id="tocSelect"
+              class="mt-1 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-accent focus:outline-none"
+              aria-label="Перейти к разделу"
+            >
+              <option value="top">1) Вводная</option>
+              <option value="context">2) Контекст и ограничения</option>
+              <option value="research">3) Исследование</option>
+              <option value="hypotheses">4) Ключевые гипотезы</option>
+              <option value="constitution">5) Системный дизайн и UX‑конституция</option>
+              <option value="flows">6) Сценарии</option>
+              <option value="flow-receiving">— Приёмка</option>
+              <option value="flow-placement">— Размещение</option>
+              <option value="flow-picking">— Подбор</option>
+              <option value="flow-shipping">— Отгрузка</option>
+              <option value="flow-returns">— Возврат‑Списание</option>
+              <option value="flow-inventory">— Инвентаризация</option>
+              <option value="flow-labels">— Сбор ШК и этикетки</option>
+              <option value="flow-settings">— Настройки</option>
+              <option value="metrics">7) Метрики и план измерений</option>
+              <option value="iterations">8) Итерации</option>
+              <option value="testing">9) Стратегия тестирования</option>
+              <option value="outcome">10) Результат и ценность продукта</option>
+              <option value="appendix">11) Приложение: снимок архитектуры</option>
+            </select>
+          </div>
+          <a
+            href="#top"
+            data-toc-link
+            class="inline-flex shrink-0 items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-accent hover:underline"
+            >Наверх</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <header class="border-b border-slate-200">
+      <div class="mx-auto max-w-[1360px] px-4 py-4 md:px-6 lg:px-8">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="min-w-0">
+            <p class="text-xs font-semibold tracking-wide text-slate-500">«Склад‑15» • Кейс / спецификация</p>
+            <p class="mt-1 text-sm font-medium text-slate-900">Складская UX‑архитектура (PWA, ТСД)</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <a
+              href="#flows"
+              data-toc-link
+              class="inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
+              >Сценарии</a
+            >
+            <a
+              href="#metrics"
+              data-toc-link
+              class="inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
+              >Метрики</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-[1360px] px-4 py-8 md:px-6 lg:px-8">
+      <div class="md:grid md:grid-cols-[320px_1fr] md:gap-10">
+        <!-- Desktop TOC -->
+        <aside class="hidden md:block">
+          <div class="sticky top-6">
+            <div class="rounded-xl border border-slate-200 bg-white p-4">
+              <div class="flex items-center justify-between gap-3">
+                <p class="text-xs font-semibold tracking-wide text-slate-600">ОГЛАВЛЕНИЕ</p>
+                <a href="#top" data-toc-link class="text-xs font-medium text-accent hover:underline">Наверх</a>
+              </div>
+
+              <nav aria-label="Оглавление" class="mt-3">
+                <ul class="space-y-1 text-sm">
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#top" data-toc-link>1) Вводная</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#context" data-toc-link>2) Контекст и ограничения</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#research" data-toc-link>3) Исследование</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#hypotheses" data-toc-link>4) Ключевые гипотезы</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#constitution" data-toc-link>5) Системный дизайн и UX‑конституция</a></li>
+                  <li>
+                    <a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flows" data-toc-link>6) Сценарии</a>
+                    <ul class="mt-1 space-y-1 border-l border-slate-200 pl-3">
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-receiving" data-toc-link>— Приёмка</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-placement" data-toc-link>— Размещение</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-picking" data-toc-link>— Подбор</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-shipping" data-toc-link>— Отгрузка</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-returns" data-toc-link>— Возврат‑Списание</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-inventory" data-toc-link>— Инвентаризация</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-labels" data-toc-link>— Сбор ШК и этикетки</a></li>
+                      <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#flow-settings" data-toc-link>— Настройки</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#metrics" data-toc-link>7) Метрики и план измерений</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#iterations" data-toc-link>8) Итерации</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#testing" data-toc-link>9) Стратегия тестирования</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#outcome" data-toc-link>10) Результат и ценность продукта</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#appendix" data-toc-link>11) Приложение: снимок архитектуры</a></li>
+                </ul>
+              </nav>
+            </div>
+
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+              <p class="text-xs font-semibold tracking-wide text-slate-600">КОНТРАКТ СТРАНИЦЫ</p>
+              <ul class="mt-2 space-y-2 text-sm text-slate-700">
+                <li><span class="font-medium text-slate-900">Стиль</span>: монохром + один акцент</li>
+                <li><span class="font-medium text-slate-900">Артефакты</span>: таблицы, флоу, диаграммы, чек‑листы</li>
+                <li><span class="font-medium text-slate-900">JS</span>: только подсветка оглавления и плавная прокрутка</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+
+        <main id="main" class="min-w-0">
+          <!-- 1) Вводная -->
+          <section id="top" aria-label="Вводная">
+            <div class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+              <p class="text-xs font-semibold tracking-wide text-slate-500">1) Вводная</p>
+              <h1 class="mt-2 text-balance text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl">
+                Складская UX‑архитектура для «Склад‑15»: от экранов данных к сценариям действий
+              </h1>
+              <p class="mt-3 max-w-3xl text-pretty text-base leading-7 text-slate-700 sm:text-lg">
+                PWA‑прототип для ТСД: offline‑first, scan‑first, измеримый UX и поддержка работы двух операторов.
+              </p>
+              <p class="mt-4 text-sm leading-6 text-slate-600">
+                Роль: продуктовый дизайнер / UX‑архитектор
+                <span class="text-slate-300" aria-hidden="true">•</span>
+                Объём: end‑to‑end операторские сценарии
+                <span class="text-slate-300" aria-hidden="true">•</span>
+                Deliverables: UX‑конституция, флоу, план метрик, архитектурный blueprint PWA
+              </p>
+            </div>
+            <div class="mt-3 flex justify-end">
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+          </section>
+
+          <!-- 2) Контекст и ограничения -->
+          <section id="context" class="mt-10" aria-label="Контекст и ограничения">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">2) Контекст и ограничения</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Реальность склада</h3>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                  <li>Шум, перчатки, спешка → низкий бюджет внимания.</li>
+                  <li>Нестабильный Wi‑Fi: разрывы — рутина.</li>
+                  <li>Сканирование — первичный ввод (scan‑first).</li>
+                  <li>Offline‑first: работа продолжается, синхронизация позже.</li>
+                  <li>Высокая цена ошибки: пересорт, неверная ячейка, ошибки отгрузки.</li>
+                </ul>
+              </div>
+
+              <div class="rounded-xl border border-accent-200 bg-accent-50 p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Непереговорные требования</h3>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-800">
+                  <li>Ясность следующего шага &gt; контекст &gt; история</li>
+                  <li>Offline — это нормальный режим</li>
+                  <li>Ошибки — это сценарии, а не вина</li>
+                  <li>Сканирование &gt; нажатия</li>
+                  <li>Один экран = одно решение</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3) Исследование -->
+          <section id="research" class="mt-12" aria-label="Исследование">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">3) Исследование</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Входные данные (в рамках работы)</h3>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                  <li>Анализ документации «Склад‑15».</li>
+                  <li>Декомпозиция реальных операторских сценариев по операциям.</li>
+                  <li>Точки трения: лишние переходы по меню; несогласованные паттерны; списки без действий; слабая ясность “что дальше”.</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Выходные артефакты</h3>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                  <li>Карта CJM/JTBD по операциям и исключениям.</li>
+                  <li>Единая модель приоритета информации: Next / Now / Done.</li>
+                  <li>Операционные флоу по модулям.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-6">
+              <h3 class="text-sm font-semibold text-slate-900">Допущения полевой реальности</h3>
+              <ul class="mt-3 grid gap-2 text-sm leading-6 text-slate-700 sm:grid-cols-2">
+                <li>Сканер работает как keyboard wedge; фокус ввода должен быть стабильным.</li>
+                <li>Оператор часто сканирует, не читая экран.</li>
+                <li>Offline возможен в середине цикла; действия сохраняются локально.</li>
+                <li>“Что дальше” должно быть явным после каждого скана и исключения.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 4) Ключевые гипотезы -->
+          <section id="hypotheses" class="mt-12" aria-label="Ключевые гипотезы">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">4) Ключевые гипотезы</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+
+            <div class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                  <tr>
+                    <th class="px-4 py-3">Гипотеза</th>
+                    <th class="px-4 py-3">Ожидаемый эффект</th>
+                    <th class="px-4 py-3">Как измерять (метрика)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="px-4 py-3 text-slate-900">Интерфейс “следующее действие первым” снижает время до первого скана и ошибки.</td>
+                    <td class="px-4 py-3 text-slate-700">Быстрее вход в цикл; меньше неверных действий.</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-700">time_to_first_scan, %errors</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-slate-900">Замена table‑heavy экранов на “карточку одного фокуса” повышает пропускную способность сканов.</td>
+                    <td class="px-4 py-3 text-slate-700">Ниже нагрузка; меньше действий “не по той строке”.</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-700">scans_per_minute</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-slate-900">Навигация с сохранением контекста снижает возвраты и повторные шаги.</td>
+                    <td class="px-4 py-3 text-slate-700">Меньше “потери места” между списком/документом/циклом.</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-700">backtracks</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-slate-900">Offline‑first + видимое состояние синхронизации снижает тревожность и дубли действий.</td>
+                    <td class="px-4 py-3 text-slate-700">Больше доверия; меньше повторов.</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-700">duplicate_actions, sync_fail_rate</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-slate-900">Сессии двух операторов улучшают справедливость KPI и координацию.</td>
+                    <td class="px-4 py-3 text-slate-700">Ясная атрибуция; координация без лишних шагов.</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-700">operator_id/partner_id coverage</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-slate-900">Стандартизированные компоненты сокращают обучение.</td>
+                    <td class="px-4 py-3 text-slate-700">Меньше новых паттернов на модуль.</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-700">onboarding_time</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-slate-900">Видимый прогресс по документу снижает незавершённые/брошенные циклы.</td>
+                    <td class="px-4 py-3 text-slate-700">Меньше стоимости прерываний; выше уверенность в “готово”.</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-700">abandon_rate</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 5) Системный дизайн и UX‑конституция -->
+          <section id="constitution" class="mt-12" aria-label="Системный дизайн и UX‑конституция">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">5) Системный дизайн и UX‑конституция</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">“AI Constitution” (10–12 принципов)</h3>
+                <ol class="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-slate-700">
+                  <li>Следующее действие всегда явное и достижимое.</li>
+                  <li>Offline — норма; синхронизация — состояние, а не алерт.</li>
+                  <li>Сканирование &gt; нажатия. Интерфейс остаётся scan‑ready.</li>
+                  <li>Один экран = одно решение.</li>
+                  <li>Ошибки — сценарии с действиями восстановления.</li>
+                  <li>Исключения не ломают основной цикл сканирования.</li>
+                  <li>Навигация сохраняет контекст (документ + позиция в цикле).</li>
+                  <li>Критичные действия требуют явного подтверждения.</li>
+                  <li>Telemetry невидима оператору и достаточно полна для аналитики.</li>
+                  <li>Режим двух операторов — атрибуция first‑class (operator_id + partner_id).</li>
+                  <li>Компоненты переиспользуются между модулями; минимум “особых случаев”.</li>
+                </ol>
+              </div>
+
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Пирамида приоритета информации</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-700">Правило: показываем сверху вниз; скрываем снизу вверх.</p>
+                <pre class="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-800"><code>Следующее действие → Сейчас → Готово → Контекст → История (скрывать снизу вверх)</code></pre>
+
+                <h3 class="mt-6 text-sm font-semibold text-slate-900">Библиотека переиспользуемых паттернов</h3>
+                <ul class="mt-3 grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+                  <li><span class="font-mono text-xs">ActionHeader</span> — шапка действия</li>
+                  <li><span class="font-mono text-xs">ContextBar</span> — контекст</li>
+                  <li><span class="font-mono text-xs">ProgressChip</span> — прогресс</li>
+                  <li><span class="font-mono text-xs">ScanZone</span> — зона сканирования</li>
+                  <li><span class="font-mono text-xs">ErrorHint</span> — подсказка ошибки</li>
+                  <li><span class="font-mono text-xs">ConfirmSheet</span> — подтверждение</li>
+                  <li><span class="font-mono text-xs">OfflineBadge</span> — статус offline</li>
+                  <li><span class="font-mono text-xs">PartnerBadge</span> — партнёр</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 6) User Flows -->
+          <section id="flows" class="mt-12" aria-label="Сценарии">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">6) Сценарии</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <p class="text-sm leading-6 text-slate-700">
+                Каждый сценарий фиксирует: A) приоритет «Следующее/Сейчас/Сделано», B) путь оператора по шагам, C) типовые ошибки и реакцию системы,
+                D) правила завершения (включая подтверждение расхождений), E) где критичен offline‑first.
+              </p>
+            </div>
+
+            <div class="mt-6 space-y-6">
+              <!-- Receiving -->
+              <section id="flow-receiving" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Receiving / Приёмка</h3>
+                  <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+                </div>
+
+                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">A) Next / Now / Done</p>
+                    <p class="mt-2 text-sm text-slate-700"><span class="font-semibold text-slate-900">Next</span>: scan goods</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Now</span>: fact+1 per item</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Done</span>: discrepancy confirm on completion</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-white p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">E) Offline-first critical</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Each scan and fact+1 is written locally into a sync queue.</li>
+                      <li>UI shows sync state to avoid duplicates.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">B) Operator path</p>
+                    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+                      <li>Launch → Receiving module.</li>
+                      <li>List → select delivery/document.</li>
+                      <li>Document screen → ScanZone ready.</li>
+                      <li>Scan loop: scan item → match line → fact+1 → next scan.</li>
+                      <li>Exceptions: unknown code, mismatch → ErrorHint with action.</li>
+                      <li>Completion: discrepancy summary → confirm if needed → queued sync.</li>
+                    </ol>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">D) Completion rules</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Completion is an explicit action; no implicit auto-finish.</li>
+                      <li>Any discrepancy requires confirmation on completion.</li>
+                      <li>After completion: document state becomes completed; sync continues asynchronously.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[860px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">C) Typical error</th>
+                        <th class="px-4 py-3">System response</th>
+                        <th class="px-4 py-3">Next step</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Unknown barcode</td>
+                        <td class="px-4 py-3">ErrorHint + options (rescan / manual entry).</td>
+                        <td class="px-4 py-3">Rescan or enter manually.</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Offline mid-loop</td>
+                        <td class="px-4 py-3">OfflineBadge + “queued” state; continue scanning.</td>
+                        <td class="px-4 py-3">Continue; review queue later.</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Discrepancy at completion</td>
+                        <td class="px-4 py-3">ConfirmSheet with summary and explicit confirm.</td>
+                        <td class="px-4 py-3">Confirm or return to fix.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Placement -->
+              <section id="flow-placement" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Placement / Размещение</h3>
+                  <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+                </div>
+
+                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">A) Next / Now / Done</p>
+                    <p class="mt-2 text-sm text-slate-700"><span class="font-semibold text-slate-900">Next</span>: scan cell</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Now</span>: scan goods → place into current cell</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Done</span>: discrepancy confirm</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-white p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">E) Offline-first critical</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Current cell persists locally.</li>
+                      <li>Placement actions queue; sync later.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">B) Operator path</p>
+                    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+                      <li>Launch → Placement module.</li>
+                      <li>List → select document.</li>
+                      <li>Scan cell first (cell persists).</li>
+                      <li>Scan loop: scan goods → place to current cell.</li>
+                      <li>Switching cell: scan a new cell code → context switches immediately.</li>
+                      <li>Completion: discrepancy confirm if needed.</li>
+                    </ol>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">D) Completion rules</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Discrepancies are confirmed at completion.</li>
+                      <li>Completion doesn’t clear queued actions; sync continues.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[860px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">C) Typical error</th>
+                        <th class="px-4 py-3">System response</th>
+                        <th class="px-4 py-3">Next step</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Goods scanned before cell</td>
+                        <td class="px-4 py-3">Blocking hint: “Scan cell first”.</td>
+                        <td class="px-4 py-3">Scan cell → rescan goods.</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">New cell scanned mid-loop</td>
+                        <td class="px-4 py-3">Context switches; UI confirms current cell.</td>
+                        <td class="px-4 py-3">Continue scanning goods.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Picking -->
+              <section id="flow-picking" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Picking / Подбор</h3>
+                  <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+                </div>
+
+                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">A) Next / Now / Done</p>
+                    <p class="mt-2 text-sm text-slate-700"><span class="font-semibold text-slate-900">Next</span>: scan cell</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Now</span>: scan goods → confirm line</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Done</span>: discrepancy confirm</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-white p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">E) Offline-first critical</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Pick actions are queued; sync state remains visible.</li>
+                      <li>Out-of-order warnings still log telemetry offline.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">B) Operator path</p>
+                    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+                      <li>Launch → Picking module.</li>
+                      <li>List → select order/document.</li>
+                      <li>Scan expected cell (route sensitivity).</li>
+                      <li>Scan goods → confirm line → next.</li>
+                      <li>Out-of-order: warning (not silent) + allow continue.</li>
+                      <li>Completion: discrepancy confirm.</li>
+                    </ol>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">D) Completion rules</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Out-of-order doesn’t block but is measurable.</li>
+                      <li>Discrepancies require explicit confirm on completion.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[860px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">C) Typical error</th>
+                        <th class="px-4 py-3">System response</th>
+                        <th class="px-4 py-3">Next step</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Wrong cell (out-of-order)</td>
+                        <td class="px-4 py-3">Warning with expected cell info.</td>
+                        <td class="px-4 py-3">Return to expected cell or continue consciously.</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Goods not in order</td>
+                        <td class="px-4 py-3">ErrorHint: “Not found in document”.</td>
+                        <td class="px-4 py-3">Rescan / manual entry / cancel.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Shipping -->
+              <section id="flow-shipping" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Shipping / Отгрузка</h3>
+                  <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+                </div>
+
+                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">A) Next / Now / Done</p>
+                    <p class="mt-2 text-sm text-slate-700"><span class="font-semibold text-slate-900">Next</span>: scan goods/box</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Now</span>: strict checks</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Done</span>: discrepancy confirm</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-white p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">E) Offline-first critical</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Shipping is risk-sensitive; UI must keep sync state explicit.</li>
+                      <li>Queue retry must be inspectable in diagnostics.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">B) Operator path</p>
+                    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+                      <li>Launch → Shipping module.</li>
+                      <li>List → select document.</li>
+                      <li>Scan goods/box → validate → next scan.</li>
+                      <li>Exceptions are blocking when needed (strict checks).</li>
+                      <li>Completion: discrepancy confirm.</li>
+                    </ol>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">D) Completion rules</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Completion requires explicit confirmation for discrepancies.</li>
+                      <li>Blocking mismatches must propose a clear next action.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[860px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">C) Typical error</th>
+                        <th class="px-4 py-3">System response</th>
+                        <th class="px-4 py-3">Next step</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Extra goods</td>
+                        <td class="px-4 py-3">Blocking message + action.</td>
+                        <td class="px-4 py-3">Remove extra → continue.</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Missing lines at completion</td>
+                        <td class="px-4 py-3">Discrepancy summary + confirm.</td>
+                        <td class="px-4 py-3">Confirm or return to pick.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Returns & Write-off -->
+              <section id="flow-returns" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Returns &amp; Write-off / Возврат‑Списание</h3>
+                  <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+                </div>
+
+                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">A) Next / Now / Done</p>
+                    <p class="mt-2 text-sm text-slate-700"><span class="font-semibold text-slate-900">Next</span>: scan goods</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Now</span>: reason required</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Done</span>: confirm critical actions</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-white p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">E) Offline-first critical</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Actions queue; sync status prevents repeated write-offs.</li>
+                      <li>Critical confirms are logged for audit.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">B) Operator path</p>
+                    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+                      <li>Launch → Returns/Write-off module.</li>
+                      <li>Choose document (if applicable) or create operation.</li>
+                      <li>Scan goods → select reason (mandatory).</li>
+                      <li>Confirm critical action → queue sync.</li>
+                      <li>Completion/exit.</li>
+                    </ol>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">D) Completion rules</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Reason required for every operation.</li>
+                      <li>Critical actions must be explicitly confirmed.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[860px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">C) Typical error</th>
+                        <th class="px-4 py-3">System response</th>
+                        <th class="px-4 py-3">Next step</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">No reason selected</td>
+                        <td class="px-4 py-3">Block confirm + hint to choose reason.</td>
+                        <td class="px-4 py-3">Select reason → confirm.</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Offline during confirm</td>
+                        <td class="px-4 py-3">Queue action + show queued state.</td>
+                        <td class="px-4 py-3">Continue; sync later.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Inventory -->
+              <section id="flow-inventory" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Inventory / Инвентаризация</h3>
+                  <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+                </div>
+
+                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">A) Next / Now / Done</p>
+                    <p class="mt-2 text-sm text-slate-700"><span class="font-semibold text-slate-900">Next</span>: scan cell</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Now</span>: quick count actions</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Done</span>: discrepancy handling + re-count</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-white p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">E) Offline-first critical</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Cell session is resilient to network changes.</li>
+                      <li>Sync conflicts are explicit states (retry flow).</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">B) Operator path</p>
+                    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+                      <li>Launch → Inventory module.</li>
+                      <li>Scan cell → enter cell counting session.</li>
+                      <li>Blind mode optional.</li>
+                      <li>Scan loop: scan goods → quick count actions → next.</li>
+                      <li>Discrepancy: show diff → propose re-count.</li>
+                      <li>Complete cell → queue sync.</li>
+                    </ol>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">D) Completion rules</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Discrepancies require explicit handling (confirm or re-count).</li>
+                      <li>Re-count is supported as a safe remediation path.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[860px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">C) Typical error</th>
+                        <th class="px-4 py-3">System response</th>
+                        <th class="px-4 py-3">Next step</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Goods counted without cell</td>
+                        <td class="px-4 py-3">Block action: “Scan cell first”.</td>
+                        <td class="px-4 py-3">Scan cell → continue.</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Large discrepancy</td>
+                        <td class="px-4 py-3">Scenario: show diff + propose re-count.</td>
+                        <td class="px-4 py-3">Re-count or confirm discrepancy.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Barcode / Labels -->
+              <section id="flow-labels" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Barcode Collection &amp; Label Printing / Сбор ШК и Этикетки</h3>
+                  <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+                </div>
+
+                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">A) Next / Now / Done</p>
+                    <p class="mt-2 text-sm text-slate-700"><span class="font-semibold text-slate-900">Next</span>: scan goods/barcode</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Now</span>: bind barcode + uniqueness check</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Done</span>: select print template → print</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-white p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">E) Offline-first critical</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Print can be queued offline (optional).</li>
+                      <li>Uniqueness check may require queued verification.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">B) Operator path</p>
+                    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+                      <li>Launch → Labels module.</li>
+                      <li>Scan goods → scan/enter barcode.</li>
+                      <li>Uniqueness check → bind.</li>
+                      <li>Select template → print (or queue).</li>
+                    </ol>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">D) Completion rules</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Binding is confirmed only after uniqueness check.</li>
+                      <li>Template selection is explicit (no hidden defaults without UI).</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 overflow-x-auto rounded-lg border border-slate-200">
+                  <table class="min-w-[860px] w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                      <tr>
+                        <th class="px-4 py-3">C) Typical error</th>
+                        <th class="px-4 py-3">System response</th>
+                        <th class="px-4 py-3">Next step</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Barcode not unique</td>
+                        <td class="px-4 py-3">ErrorHint + request another barcode.</td>
+                        <td class="px-4 py-3">Scan/enter new barcode.</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 text-slate-900">Offline during uniqueness check</td>
+                        <td class="px-4 py-3">Queue verification + show pending state.</td>
+                        <td class="px-4 py-3">Continue or wait for sync.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Settings -->
+              <section id="flow-settings" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-slate-900">Settings / Настройки</h3>
+                  <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+                </div>
+
+                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">A) Next / Now / Done</p>
+                    <p class="mt-2 text-sm text-slate-700"><span class="font-semibold text-slate-900">Next</span>: choose category</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Now</span>: adjust parameter + see effect</p>
+                    <p class="mt-1 text-sm text-slate-700"><span class="font-semibold text-slate-900">Done</span>: apply without breaking documents</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-white p-4">
+                    <p class="text-xs font-semibold tracking-wide text-slate-600">E) Offline-first critical</p>
+                    <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                      <li>Sync queue diagnostics must work offline.</li>
+                      <li>Retry actions should be explicit and safe.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-5 rounded-lg border border-slate-200 p-4">
+                  <p class="text-xs font-semibold tracking-wide text-slate-600">Required settings scope</p>
+                  <ul class="mt-2 grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+                    <li>Connection</li>
+                    <li>Scanning mode</li>
+                    <li>Feedback</li>
+                    <li>Sync</li>
+                    <li>Partner mode</li>
+                    <li>Diagnostics</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <!-- 7) Metrics & Measurement Plan -->
+          <section id="metrics" class="mt-12" aria-label="Metrics and measurement plan">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">7) Metrics &amp; Measurement Plan</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              Раздел фиксирует список метрик и минимальный контракт событий для инструментирования. Нужен, чтобы сравнивать версии интерфейса по одному
+              протоколу и проверять корректность очереди синхронизации в offline‑first режимах.
+            </p>
+
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Exact metric list</h3>
+                <ul class="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
+                  <li>Avg receiving time per delivery</li>
+                  <li>Avg picking time per order</li>
+                  <li>% picking errors</li>
+                  <li>% inventory discrepancies</li>
+                  <li>receiving x minutes per y items</li>
+                  <li>picking x minutes per y lines</li>
+                  <li>inventory x minutes per y cells</li>
+                </ul>
+                <p class="mt-3 text-xs text-slate-600">x/y — нормализация метрик пропускной способности; значения задаются в отчётности.</p>
+              </div>
+
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Invisible telemetry requirement</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-700">
+                  Telemetry must not be shown to operators and must not add steps. It exists for measurement and correctness audits.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                  <tr>
+                    <th class="px-4 py-3">Event</th>
+                    <th class="px-4 py-3">When logged</th>
+                    <th class="px-4 py-3">Properties</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-700">
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-900">scan_success</td>
+                    <td class="px-4 py-3">Each successful scan in a loop</td>
+                    <td class="px-4 py-3 font-mono text-xs">operator_id, partner_id, doc_id, module, timestamp, offline_state</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-900">scan_error</td>
+                    <td class="px-4 py-3">Unknown code / mismatch / manual entry</td>
+                    <td class="px-4 py-3 font-mono text-xs">operator_id, partner_id, doc_id, module, timestamp, offline_state</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-900">doc_open</td>
+                    <td class="px-4 py-3">Document opened from list</td>
+                    <td class="px-4 py-3 font-mono text-xs">operator_id, partner_id, doc_id, module, timestamp, offline_state</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-900">doc_complete</td>
+                    <td class="px-4 py-3">Completion confirmed</td>
+                    <td class="px-4 py-3 font-mono text-xs">operator_id, partner_id, doc_id, module, timestamp, offline_state</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-900">sync_state_change</td>
+                    <td class="px-4 py-3">Queue transitions / retries</td>
+                    <td class="px-4 py-3 font-mono text-xs">doc_id, module, timestamp, offline_state</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                  <tr>
+                    <th class="px-4 py-3">Факт спецификации (из документа)</th>
+                    <th class="px-4 py-3">Значение</th>
+                    <th class="px-4 py-3">Где зафиксировано</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-700">
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Секций</td>
+                    <td class="px-4 py-3">10 + приложение</td>
+                    <td class="px-4 py-3">Оглавление / заголовки разделов</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Описанных user flows</td>
+                    <td class="px-4 py-3">8 (Receiving, Placement, Picking, Shipping, Returns, Inventory, Labels, Settings)</td>
+                    <td class="px-4 py-3">Раздел 6</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Событий телеметрии</td>
+                    <td class="px-4 py-3">5</td>
+                    <td class="px-4 py-3">Раздел 7 (Event table)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Машина состояний документа</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-900">new → in_progress → completed → synced (+ sync_failed → retry)</td>
+                    <td class="px-4 py-3">Раздел 11</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-slate-900">Наличие retry‑пути синхронизации</td>
+                    <td class="px-4 py-3">Да (sync_failed → retry)</td>
+                    <td class="px-4 py-3">Раздел 11</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 8) Iterations -->
+          <section id="iterations" class="mt-12" aria-label="Iterations">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">8) Итерации</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              История изменений по версиям: что добавлялось и какие паттерны закреплялись. Нужна для понимания эволюции решений и для регрессионных
+              проверок при дальнейшем развитии продукта.
+            </p>
+
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+              <ol class="relative space-y-6 border-l border-slate-200 pl-6 text-sm leading-6 text-slate-700">
+                <li>
+                  <span class="absolute -left-1.5 mt-1 h-3 w-3 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span class="font-semibold text-slate-900">v0</span>: только списки документов → проблема: нет действий.
+                </li>
+                <li>
+                  <span class="absolute -left-1.5 mt-1 h-3 w-3 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span class="font-semibold text-slate-900">v1</span>: экраны «скан‑цикла» с приоритетом действий.
+                </li>
+                <li>
+                  <span class="absolute -left-1.5 mt-1 h-3 w-3 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span class="font-semibold text-slate-900">v2</span>: стандартизация компонентов + модель навигации.
+                </li>
+                <li>
+                  <span class="absolute -left-1.5 mt-1 h-3 w-3 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span class="font-semibold text-slate-900">v3</span>: индикаторы синка + очередь офлайна.
+                </li>
+                <li>
+                  <span class="absolute -left-1.5 mt-1 h-3 w-3 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span class="font-semibold text-slate-900">v4</span>: сессии двух операторов.
+                </li>
+                <li>
+                  <span class="absolute -left-1.5 mt-1 h-3 w-3 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span class="font-semibold text-slate-900">v5</span>: стабилизация (производительность, ошибки, диагностика).
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <!-- 9) Testing Strategy -->
+          <section id="testing" class="mt-12" aria-label="Testing strategy">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">9) Testing Strategy</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              Чек‑листы проверок: сценарии модулей, матрица online/offline, тесты ввода и контроль качества телеметрии. Используется QA и как протокол
+              прогонов при изменениях логики синхронизации.
+            </p>
+
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Module scenarios (smoke + edge)</h3>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Receiving: scan loop → discrepancy confirm</label></li>
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Placement: cell persists; switch cell by scanning new cell</label></li>
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Picking: route sensitivity + out-of-order warning</label></li>
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Shipping: strict checks + blocking mismatches</label></li>
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Returns/Write-off: reason required + confirm critical actions</label></li>
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Inventory: discrepancy handling + re-count</label></li>
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Labels: uniqueness check + template selection</label></li>
+                </ul>
+              </div>
+
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Scanner input tests</h3>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Keyboard wedge: rapid scans without losing focus</label></li>
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Manual entry fallback: validation + retry path</label></li>
+                  <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> Mixed formats: normalization rules applied consistently</label></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-slate-200 bg-white p-6">
+              <h3 class="text-sm font-semibold text-slate-900">Offline-first test matrix</h3>
+              <div class="mt-3 overflow-x-auto rounded-lg border border-slate-200">
+                <table class="min-w-[980px] w-full text-left text-sm">
+                  <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                    <tr>
+                      <th class="px-4 py-3">Scenario</th>
+                      <th class="px-4 py-3">Online → Offline</th>
+                      <th class="px-4 py-3">Offline → Online</th>
+                      <th class="px-4 py-3">Sync conflicts</th>
+                      <th class="px-4 py-3">Queue retry</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200 text-slate-700">
+                    <tr>
+                      <td class="px-4 py-3 text-slate-900">Scan loop</td>
+                      <td class="px-4 py-3">Continue; queue grows</td>
+                      <td class="px-4 py-3">Queue drains; status updates</td>
+                      <td class="px-4 py-3">sync_failed state visible</td>
+                      <td class="px-4 py-3">retry until synced</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 text-slate-900">Completion confirm</td>
+                      <td class="px-4 py-3">Record locally; show queued</td>
+                      <td class="px-4 py-3">Sync completion</td>
+                      <td class="px-4 py-3">Explicit conflict state</td>
+                      <td class="px-4 py-3">Controlled retry</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-6">
+              <h3 class="text-sm font-semibold text-slate-900">KPI telemetry correctness</h3>
+              <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> operator_id &amp; partner_id are present in key events</label></li>
+                <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> doc_id and module are consistent across scan and completion</label></li>
+                <li><label class="flex gap-2"><input type="checkbox" class="mt-1" /> offline_state is correct at event time</label></li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 10) Outcome & Product Value -->
+          <section id="outcome" class="mt-12" aria-label="Результат и ценность продукта">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">10) Результат и ценность продукта</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              Сводка того, что изменилось в UX и что проверяется измерением. Раздел нужен, чтобы читатель видел связь между паттернами, сценариями и
+              метриками (без подмены данными или целевыми цифрами).
+            </p>
+
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Что изменилось (качественно)</h3>
+                <ul class="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
+                  <li>«Следующий шаг» виден в каждом модуле.</li>
+                  <li>Исключения описаны как сценарии с путём восстановления.</li>
+                  <li>Навигация сохраняет операционный контекст.</li>
+                  <li>Офлайн предсказуем: очередь + видимое состояние.</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Что измеряется</h3>
+                <ul class="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
+                  <li>Время на поставку/заказ/ячейку (раздел «Метрики»).</li>
+                  <li>Ошибки подбора; расхождения инвентаризации.</li>
+                  <li>Дубли действий при офлайне и после восстановления сети.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-6">
+              <h3 class="text-sm font-semibold text-slate-900">Инженерное обоснование</h3>
+              <ul class="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
+                <li>Снижение вариативности действий за счёт стандартизации паттернов.</li>
+                <li>Снижение ошибок за счёт проверок и явных исключений.</li>
+                <li>Предсказуемая работа офлайн: очередь + прозрачные статусы.</li>
+                <li>Поддержка двух операторов как отдельный режим с измеримыми сценариями.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 11) Appendix -->
+          <section id="appendix" class="mt-12 pb-16" aria-label="Приложение">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">11) Приложение: снимок архитектуры</h2>
+              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-700">
+              Справочные материалы для обсуждения с разработкой: архитектура данных и синхронизации, машина состояний документа и правила ретраев.
+            </p>
+
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Диаграмма (верхний уровень)</h3>
+                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <svg viewBox="0 0 980 180" role="img" aria-label="Operator → PWA → IndexedDB → Sync Queue → API → ERP" class="min-w-[820px] w-full">
+                    <defs>
+                      <style>
+                        .b { fill: var(--surface-0); stroke: var(--border-subtle); stroke-width: 2; }
+                        .t { font: 13px var(--font-sans); fill: var(--text-1); }
+                        .a { stroke: var(--text-2); stroke-width: 2; fill: none; marker-end: url(#m); }
+                      </style>
+                      <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--text-2)"></path>
+                      </marker>
+                    </defs>
+                    <rect class="b" x="20" y="60" width="130" height="60" rx="10"></rect>
+                    <text class="t" x="40" y="95">Operator</text>
+                    <rect class="b" x="180" y="60" width="140" height="60" rx="10"></rect>
+                    <text class="t" x="200" y="95">PWA</text>
+                    <rect class="b" x="350" y="60" width="150" height="60" rx="10"></rect>
+                    <text class="t" x="370" y="95">IndexedDB</text>
+                    <rect class="b" x="530" y="60" width="150" height="60" rx="10"></rect>
+                    <text class="t" x="550" y="95">Sync Queue</text>
+                    <rect class="b" x="710" y="60" width="110" height="60" rx="10"></rect>
+                    <text class="t" x="730" y="95">API</text>
+                    <rect class="b" x="850" y="60" width="110" height="60" rx="10"></rect>
+                    <text class="t" x="870" y="95">ERP</text>
+                    <path class="a" d="M150 90 L180 90"></path>
+                    <path class="a" d="M320 90 L350 90"></path>
+                    <path class="a" d="M500 90 L530 90"></path>
+                    <path class="a" d="M680 90 L710 90"></path>
+                    <path class="a" d="M820 90 L850 90"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="rounded-xl border border-slate-200 bg-white p-6">
+                <h3 class="text-sm font-semibold text-slate-900">Машина состояний документа</h3>
+                <pre class="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-800"><code>new → in_progress → completed → synced (+ sync_failed → retry)</code></pre>
+                <p class="mt-3 text-sm leading-6 text-slate-700">
+                  Правило: `sync_failed` — видимое состояние с действием retry (без «тихих» потерь).
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-slate-200 bg-white p-6">
+              <h3 class="text-sm font-semibold text-slate-900">Токены дизайна (мини-таблица)</h3>
+              <div class="mt-3 overflow-x-auto rounded-lg border border-slate-200">
+                <table class="min-w-[820px] w-full text-left text-sm">
+                  <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
+                    <tr>
+                      <th class="px-4 py-3">Token</th>
+                      <th class="px-4 py-3">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200">
+                    <tr>
+                      <td class="px-4 py-3 text-slate-900">Spacing</td>
+                      <td class="px-4 py-3 font-mono text-xs text-slate-700">4 / 6 / 8 / 12 / 16 / 24</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 text-slate-900">Font sizes</td>
+                      <td class="px-4 py-3 font-mono text-xs text-slate-700">12 / 14 / 16 / 18 / 20 / 24 / 32</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 text-slate-900">Radii</td>
+                      <td class="px-4 py-3 font-mono text-xs text-slate-700">8 / 12</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 text-slate-900">Borders</td>
+                      <td class="px-4 py-3 font-mono text-xs text-slate-700">1px slate-200</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 text-slate-900">Accent</td>
+                      <td class="px-4 py-3 font-mono text-xs text-slate-700">#1D4ED8</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 text-slate-900">Neutrals</td>
+                      <td class="px-4 py-3 font-mono text-xs text-slate-700">slate-50…900</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Minimal back-to-top -->
+    <a
+      href="#top"
+      data-toc-link
+      class="fixed bottom-4 right-4 z-50 hidden sm:inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-accent hover:underline"
+      aria-label="Наверх"
+      >Наверх</a
+    >
+
+    <script>
+      // Minimal JS: TOC active highlight + smooth scrolling.
+      (function () {
+        const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const tocLinks = Array.from(document.querySelectorAll("a.toc-link"));
+        const allLinks = Array.from(document.querySelectorAll("a[data-toc-link]"));
+        const tocSelect = document.getElementById("tocSelect");
+        const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+        function setActive(id) {
+          if (tocSelect) tocSelect.value = id;
+          for (const a of tocLinks) {
+            const isActive = a.getAttribute("href") === "#" + id;
+            a.classList.toggle("bg-zinc-100", isActive);
+            a.classList.toggle("text-zinc-900", isActive);
+            a.classList.toggle("font-semibold", isActive);
+            a.classList.toggle("text-zinc-700", !isActive);
+            if (isActive) a.setAttribute("aria-current", "true");
+            else a.removeAttribute("aria-current");
+          }
+        }
+
+        function scrollToId(id) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.focus({ preventScroll: true });
+          el.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+          history.replaceState(null, "", "#" + id);
+        }
+
+        if (tocSelect) tocSelect.addEventListener("change", () => scrollToId(tocSelect.value));
+
+        for (const a of allLinks) {
+          a.addEventListener("click", (e) => {
+            const href = a.getAttribute("href") || "";
+            if (!href.startsWith("#")) return;
+            const id = href.slice(1);
+            if (!document.getElementById(id)) return;
+            e.preventDefault();
+            scrollToId(id);
+          });
+        }
+
+        if (!("IntersectionObserver" in window)) {
+          setActive((location.hash || "#top").slice(1) || "top");
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visible = entries
+              .filter((e) => e.isIntersecting)
+              .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0];
+            if (visible && visible.target && visible.target.id) setActive(visible.target.id);
+          },
+          { root: null, threshold: [0.1, 0.2, 0.35], rootMargin: "-20% 0px -65% 0px" }
+        );
+
+        for (const s of sections) observer.observe(s);
+        setActive((location.hash || "#top").slice(1) || "top");
+      })();
+    </script>
+  </body>
+</html>

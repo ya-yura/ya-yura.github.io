@@ -1,0 +1,56 @@
+:root {
+  /* Typography */
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  /*
+    2026-style neutrals: slightly tinted, softer surfaces, lighter borders.
+    Goal: less “stark contrast”, more calm UI while keeping readability.
+  */
+  --neutral-50: #fbfbfd;
+  --neutral-100: #f6f7fb;
+  --neutral-200: #e9ecf3; /* borders */
+  --neutral-300: #d9dee9;
+  --neutral-400: #b4bccd;
+  --neutral-500: #8a94ab;
+  --neutral-600: #667089;
+  --neutral-700: #4b5366;
+  --neutral-800: #2f3442;
+  --neutral-900: #1b1f2a;
+  --neutral-950: #0f1117;
+
+  /* Accent: softer “product blue” */
+  --color-accent: #2563eb; /* blue-600 */
+  --color-accent-50: #eff6ff;
+  --color-accent-100: #dbeafe;
+  --color-accent-200: #bfdbfe;
+  --color-accent-800: #1e40af;
+
+  /* Primitives */
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --shadow-paper: 0 1px 0 rgba(15, 23, 42, 0.06);
+  --focus-ring-color: var(--color-accent);
+  --scroll-mt: 96px;
+
+  /* Semantic tokens (used by theme overrides) */
+  --surface-page: var(--neutral-50);
+  --surface-0: #ffffff;
+  --surface-1: var(--neutral-100);
+  --surface-2: color-mix(in srgb, var(--neutral-100) 55%, #ffffff);
+
+  --border-subtle: var(--neutral-200);
+  --border: var(--neutral-300);
+
+  --text-1: var(--neutral-900);
+  --text-2: var(--neutral-700);
+  --text-3: var(--neutral-600);
+  --text-weak: var(--neutral-500);
+
+  /* Back-compat for existing inline styles */
+  --accent: var(--color-accent);
+  --accent-50: var(--color-accent-50);
+  --accent-100: var(--color-accent-100);
+  --accent-200: var(--color-accent-200);
+}
+

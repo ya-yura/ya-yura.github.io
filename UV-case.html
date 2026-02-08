@@ -1,0 +1,1503 @@
+<!doctype html>
+<html lang="ru" class="h-full bg-zinc-50 text-zinc-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Кейс — UX встроенной тепловизионной камеры (архитектура взаимодействия)</title>
+    <meta
+      name="description"
+      content="Кейс senior UX: архитектура взаимодействия для встроенной тепловизионной камеры. Машины состояний поверх Live View, оверлеи и Quick Menu, язык RGB, ошибки как сценарии восстановления, handoff для разработки и QA."
+    />
+
+    <!-- Inter (разрешённый внешний шрифт) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Shared tokens + base rules -->
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+
+    <!-- Tailwind CSS через CDN (без сборки) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind-config.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+
+  <body class="min-h-full font-sans antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:border-zinc-200 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-zinc-900"
+      >Перейти к содержанию</a
+    >
+
+    <!-- Мобильное оглавление: липкий dropdown сверху -->
+    <div class="lg:hidden sticky top-0 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur supports-[backdrop-filter]:bg-zinc-50/80">
+      <div class="mx-auto max-w-[1360px] px-4 py-3">
+        <div class="flex items-center gap-3">
+          <div class="min-w-0 flex-1">
+            <label for="tocSelect" class="block text-xs font-semibold tracking-wide text-zinc-600">СОДЕРЖАНИЕ</label>
+            <select
+              id="tocSelect"
+              class="mt-1 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-accent focus:outline-none"
+              aria-label="Перейти к разделу"
+            >
+              <option value="hero">1) Вводная</option>
+              <option value="context">2) Контекст</option>
+              <option value="research">3) Исследование</option>
+              <option value="hypotheses">4) Гипотезы</option>
+              <option value="architecture">5) Архитектура системы</option>
+              <option value="device-sm">6) Машина состояний устройства</option>
+              <option value="liveview-sm">7) Машина состояний Live View</option>
+              <option value="quick-menu">8) Спецификация Quick Menu</option>
+              <option value="context-menu">9) Спецификация контекстного меню</option>
+              <option value="measurement">10) Режимы измерения</option>
+              <option value="rgb">11) Язык RGB</option>
+              <option value="profiles">12) Профили</option>
+              <option value="gallery">13) Галерея</option>
+              <option value="errors">14) Предупреждения и ошибки</option>
+              <option value="handoff">15) Передача в разработку</option>
+              <option value="iterations-testing">16) Итерации и план тестирования</option>
+            </select>
+          </div>
+          <a
+            href="#hero"
+            data-toc-link
+            class="inline-flex shrink-0 items-center rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-900"
+            >Наверх</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <header class="border-b border-zinc-200 bg-white">
+      <div class="mx-auto max-w-[1360px] px-4 py-4 lg:px-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="min-w-0">
+            <p class="text-xs font-semibold tracking-wide text-zinc-600">Встроенная тепловизионная камера • кейс‑спецификация</p>
+            <p class="mt-1 text-sm font-medium text-zinc-900">Система взаимодействия, основанная на состояниях</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <a
+              href="#quick-menu"
+              data-toc-link
+              class="inline-flex items-center rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-900"
+              >Quick Menu</a
+            >
+            <a
+              href="#handoff"
+              data-toc-link
+              class="inline-flex items-center rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-900"
+              >Передача</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-[1360px] px-4 py-8 lg:px-6">
+      <div class="lg:grid lg:grid-cols-[320px_1fr] lg:gap-10">
+        <!-- Desktop TOC -->
+        <aside class="hidden lg:block">
+          <div class="sticky top-6">
+            <div class="rounded-xl border border-zinc-200 bg-white p-4">
+              <div class="flex items-center justify-between gap-3">
+                <p class="text-xs font-semibold tracking-wide text-zinc-600">СОДЕРЖАНИЕ</p>
+                <a href="#hero" data-toc-link class="text-xs font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4"
+                  >Наверх</a
+                >
+              </div>
+              <nav aria-label="Оглавление" class="mt-3">
+                <ul class="space-y-1 text-sm">
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#hero" data-toc-link>1) Вводная</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#context" data-toc-link>2) Контекст</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#research" data-toc-link>3) Исследование</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#hypotheses" data-toc-link>4) Гипотезы</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#architecture" data-toc-link>5) Архитектура системы</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#device-sm" data-toc-link>6) Машина состояний устройства</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#liveview-sm" data-toc-link>7) Машина состояний Live View</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#quick-menu" data-toc-link>8) Спецификация Quick Menu</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#context-menu" data-toc-link>9) Спецификация контекстного меню</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#measurement" data-toc-link>10) Режимы измерения</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#rgb" data-toc-link>11) Язык RGB</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#profiles" data-toc-link>12) Профили</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#gallery" data-toc-link>13) Галерея</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#errors" data-toc-link>14) Предупреждения и ошибки</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#handoff" data-toc-link>15) Передача в разработку</a></li>
+                  <li><a class="toc-link block rounded-lg px-3 py-2 text-zinc-700 hover:bg-zinc-50" href="#iterations-testing" data-toc-link
+                    >16) Итерации и план тестирования</a
+                  ></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="mt-4 rounded-xl border border-zinc-200 bg-white p-4">
+              <p class="text-xs font-semibold tracking-wide text-zinc-600">ПРАВИЛА</p>
+              <ul class="mt-2 space-y-2 text-sm text-zinc-700">
+                <li><span class="font-medium text-zinc-900">Модель</span>: состояния → события → эффекты.</li>
+                <li><span class="font-medium text-zinc-900">Слои</span>: не больше одного оверлея над Live View.</li>
+                <li><span class="font-medium text-zinc-900">Ошибки</span>: отдельные состояния с действиями.</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+
+        <main id="main" class="min-w-0">
+          <!-- 1) Вводная -->
+          <section id="hero" aria-label="Вводная">
+            <div class="rounded-xl border border-zinc-200 bg-white p-6 sm:p-8">
+              <p class="text-xs font-semibold tracking-wide text-zinc-600">1) Вводная</p>
+              <h1 class="mt-2 text-balance text-2xl font-semibold leading-tight sm:text-3xl">
+                UX встроенной тепловизионной камеры: архитектура машины состояний поверх Live View
+              </h1>
+              <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5">
+                  <p class="text-sm font-semibold text-zinc-900">Вызов (в терминах продукта)</p>
+                  <div class="mt-3 space-y-3 text-sm leading-6 text-zinc-700">
+                    <p>
+                      Встроенная камера живёт в режиме <span class="font-medium text-zinc-900">Live View</span>, а пользователь работает одной рукой,
+                      в перчатках и с ограниченным вниманием. Если слои интерфейса “спорят” друг с другом, это превращается в ошибки измерения,
+                      длинное обучение и дорогой QA.
+                    </p>
+                    <p>
+                      Моя задача как дизайнера — задать <span class="font-medium text-zinc-900">однозначный контракт взаимодействия</span>:
+                      что происходит при каждом вводе, какие эффекты допустимы, и какие переходы считаются ошибкой.
+                    </p>
+                  </div>
+                </div>
+                <div class="rounded-xl border border-zinc-200 bg-white p-5">
+                  <p class="text-sm font-semibold text-zinc-900">Моя роль и вклад</p>
+                  <div class="mt-3 space-y-4 text-sm text-zinc-700">
+                    <p>
+                      <span class="font-medium text-zinc-900">Роль</span>: продуктовый/системный дизайнер.
+                      Я спроектировал модель взаимодействия (state machine), правила слоёв поверх Live View и handoff‑таблицы для разработки/QA.
+                    </p>
+                    <div>
+                      <p class="font-medium text-zinc-900">Ограничения ввода и среды</p>
+                      <ul class="mt-2 list-disc pl-5">
+                        <li>4 кнопки + триггер + сенсорный экран</li>
+                        <li>Одна рука, перчатки, плохая видимость</li>
+                        <li>Высокая цена ошибки</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p class="font-medium text-zinc-900">Артефакты в этом документе</p>
+                      <ul class="mt-2 list-disc pl-5">
+                        <li>Домены 00–10 и границы ответственности</li>
+                        <li>Машины состояний устройства и Live View</li>
+                        <li>Спеки Quick Menu / контекстного меню</li>
+                        <li>Семантика RGB‑сигналов + экран объяснения</li>
+                        <li>Таксономия ошибок + шаблоны экранов</li>
+                        <li>Таблицы передачи в разработку: список событий, State→Event→Effect, контракт кнопок</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-5 rounded-xl border border-zinc-200 bg-white p-5">
+                <p class="text-sm font-semibold text-zinc-900">Результат (почему это senior‑уровень)</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li><span class="font-medium text-zinc-900">Снята неоднозначность</span>: формат <span class="font-mono text-xs text-zinc-900">State → Event → Effect</span> уменьшает «трактовки» при реализации.</li>
+                  <li><span class="font-medium text-zinc-900">Стабилизированы слои</span>: правило «не более одного оверлея над Live View» + разделение Quick Menu и Main Menu.</li>
+                  <li><span class="font-medium text-zinc-900">Согласован язык сигналов</span>: RGB семантика + сценарии объяснения пользователю.</li>
+                  <li><span class="font-medium text-zinc-900">Ошибки как сценарии</span>: отдельные состояния с путём восстановления, а не “сообщения”.</li>
+                </ul>
+              </div>
+              <div class="mt-5 rounded-xl border border-zinc-200 bg-zinc-50 p-5">
+                <p class="text-sm font-semibold text-zinc-900">Ключевые правила (как требования)</p>
+                <ul class="mt-3 list-disc pl-5 text-sm text-zinc-700">
+                  <li><span class="font-medium text-zinc-900">Один слой</span>: не более одного оверлея над Live View.</li>
+                  <li><span class="font-medium text-zinc-900">Quick Menu</span>: панель рабочих рычагов, без конфигурации и чисел.</li>
+                  <li><span class="font-medium text-zinc-900">Меню</span>: навигация; настройки живут глубже; Quick Menu ≠ Main Menu.</li>
+                  <li><span class="font-medium text-zinc-900">Инструменты анализа</span>: оверлеи, а не режимы.</li>
+                  <li><span class="font-medium text-zinc-900">Ошибки</span>: отдельные состояния с действиями восстановления.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 2) Контекст -->
+          <section id="context" aria-label="Контекст">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">2) Контекст (пользователи + полевая реальность)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Раздел фиксирует условия использования и ограничения ввода. Он нужен, чтобы читатель понимал, почему ниже контракты кнопок/оверлеев
+              формализованы и какие компромиссы считаются допустимыми.
+            </p>
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Пользователь</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Оператор, которому нужен быстрый, повторяемый цикл измерения/фиксации.</li>
+                  <li>Интерфейс должен быть управляем на мышечной памяти, без “поиска” функций.</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Поле</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Плохая видимость, ограниченное внимание, перчатки.</li>
+                  <li>Кнопки — первичный канал управления; touch — вспомогательный.</li>
+                  <li>Ошибки дорого стоят, поэтому требуются “безопасные” контракты и подтверждения.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Элемент</th>
+                    <th class="px-4 py-3">Назначение</th>
+                    <th class="px-4 py-3">Контракт</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Left</td>
+                    <td class="px-4 py-3">Назад / Выход / Закрыть</td>
+                    <td class="px-4 py-3">Всегда безопасный выход/отмена (везде).</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Up / Down</td>
+                    <td class="px-4 py-3">Навигация</td>
+                    <td class="px-4 py-3">В меню: перемещение. Вне меню: циклическая смена палитры.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Right</td>
+                    <td class="px-4 py-3">Меню / Питание</td>
+                    <td class="px-4 py-3">Короткое: Quick Menu / подтверждение; удержание 1–1.5 с: Main Menu; удержание ~2.5–3 с: подтверждение выключения.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Триггер</td>
+                    <td class="px-4 py-3">Снимок</td>
+                    <td class="px-4 py-3">Заморозка кадра (freeze frame).</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Тач: тап</td>
+                    <td class="px-4 py-3">Quick Menu</td>
+                    <td class="px-4 py-3">Разрешено открытие Quick Menu тапом.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Тач: долгий тап (Live View)</td>
+                    <td class="px-4 py-3">Контекстное меню</td>
+                    <td class="px-4 py-3">Открывает контекстное меню Live View.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 3) Исследование -->
+          <section id="research" aria-label="Исследование">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">3) Исследование (провалы UX рынка; почему «сырость»)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Фиксация повторяющихся ошибок рынка как основание для правил в следующих разделах. Раздел нужен, чтобы читатель видел причинно‑следственную
+              связь: «наблюдаемая проблема → контракт/запрет в спецификации».
+            </p>
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Наблюдаемые провалы</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Экран‑ориентированная архитектура вместо состояния задачи.</li>
+                  <li>Инструменты анализа оформлены как “режимы” → потеря контекста Live View.</li>
+                  <li>Вложенные оверлеи (“матрёшка”) без ясных правил выхода.</li>
+                  <li>Контракты кнопок не стабильны: одинаковые действия в разных местах ведут себя по‑разному.</li>
+                  <li>Ошибки в виде тостов/плашек без модели восстановления.</li>
+                  <li>RGB/индикаторы без объяснения смысла и приоритета.</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Вывод</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">
+                  Для полевого устройства интерфейс должен быть формализован: состояния, события, эффекты, приоритеты сигналов и ошибки
+                  как сценарии. Это снижает риск “сырости” при росте функций.
+                </p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">
+                  Дальше в документе: Исследование → Гипотезы → Архитектура → Спецификации → Передача в разработку → Итерации и тестовые сценарии.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 4) Гипотезы -->
+          <section id="hypotheses" aria-label="Гипотезы">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">4) Гипотезы (3 принципа)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Принципы, по которым принимаются решения дальше в документе. Раздел нужен как проверка целостности: новые функции должны добавляться как
+              состояния/переходы, не ломая правила слоёв и контракт ввода.
+            </p>
+            <div class="mt-4 grid gap-4 lg:grid-cols-3">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">1) Машина состояний</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">
+                  UI определяется состоянием задачи, а не “экраном”. Экран — представление текущего состояния; навигация — допустимые переходы.
+                </p>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">2) Оверлеи — сначала</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">
+                  Быстрые действия живут в Quick Menu поверх Live View; конфигурация и “глубина” — в Main Menu/настройках.
+                </p>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">3) Один сигнал — один смысл</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">
+                  Любой сигнал (RGB/индикатор/текст) имеет одно толкование, приоритет и путь “что делать дальше”.
+                </p>
+              </div>
+            </div>
+            <div class="mt-6 rounded-xl border border-zinc-200 bg-zinc-50 p-6">
+              <p class="text-sm font-semibold text-zinc-900">Правила слоёв</p>
+              <p class="mt-2 text-sm leading-6 text-zinc-700">
+                Меню — навигация. Настройки — глубже. Quick Menu ≠ Main Menu. Не больше одного слоя поверх Live View. Вложенные оверлеи запрещены.
+              </p>
+            </div>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Гипотеза</th>
+                    <th class="px-4 py-3">Что наблюдаем (проверяемо)</th>
+                    <th class="px-4 py-3">Как проверить</th>
+                    <th class="px-4 py-3">Что логировать</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">State‑driven</td>
+                    <td class="px-4 py-3">Стабильный контракт кнопок в одинаковых состояниях</td>
+                    <td class="px-4 py-3">Прогоны сценариев по таблице State→Event→Effect</td>
+                    <td class="px-4 py-3 font-mono text-xs">state_id, event_id, effect_id, timestamp</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Quick Menu</td>
+                    <td class="px-4 py-3">Частые действия выполняются без глубокой навигации</td>
+                    <td class="px-4 py-3">Тест “действие за 2–3 шага” по чек‑листу</td>
+                    <td class="px-4 py-3 font-mono text-xs">open_quick_menu, select_item, confirm</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Один сигнал</td>
+                    <td class="px-4 py-3">Сигнал → один следующий шаг, без “догадок”</td>
+                    <td class="px-4 py-3">Юзабилити‑проверка: интерпретация + действие</td>
+                    <td class="px-4 py-3 font-mono text-xs">signal_id, user_action, result</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-zinc-200 bg-white p-6">
+              <p class="text-sm font-semibold text-zinc-900">Decision log (минимум)</p>
+              <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                <li>Запрет “оверлей внутри оверлея” выбран ради предсказуемого выхода и тестируемости.</li>
+                <li>Quick Menu отделён от Main Menu, чтобы не размывать навигацию и конфигурацию.</li>
+                <li>Ошибки оформляются как состояния, чтобы всегда иметь путь восстановления.</li>
+              </ul>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 5) Архитектура системы -->
+          <section id="architecture" aria-label="Архитектура системы">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">5) Архитектура системы (модули 00–10 как домены)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Доменная декомпозиция нужна для передачи в разработку: каждый модуль имеет свои состояния, события и эффекты.
+            </p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">00</p><p class="mt-1 text-sm font-semibold text-zinc-900">Запуск и питание</p><p class="mt-2 text-sm text-zinc-700">Запуск, подтверждение выключения, безопасные переходы.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">01</p><p class="mt-1 text-sm font-semibold text-zinc-900">Оболочка устройства</p><p class="mt-2 text-sm text-zinc-700">Глобальные состояния и фокус ввода.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">02</p><p class="mt-1 text-sm font-semibold text-zinc-900">Ядро Live View</p><p class="mt-2 text-sm text-zinc-700">Поток изображения и его базовые состояния.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">03</p><p class="mt-1 text-sm font-semibold text-zinc-900">Quick Menu</p><p class="mt-2 text-sm text-zinc-700">Оверлей “рычагов” поверх Live View.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">04</p><p class="mt-1 text-sm font-semibold text-zinc-900">Контекстное меню Live View</p><p class="mt-2 text-sm text-zinc-700">Контекстные действия + микро‑обучение.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">05</p><p class="mt-1 text-sm font-semibold text-zinc-900">Режимы измерения</p><p class="mt-2 text-sm text-zinc-700">Spot / Line / Area и совместимость статистики.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">06</p><p class="mt-1 text-sm font-semibold text-zinc-900">Оверлеи анализа</p><p class="mt-2 text-sm text-zinc-700">Hot/Cold/Min/Max и статистика Line/Area как оверлеи.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">07</p><p class="mt-1 text-sm font-semibold text-zinc-900">Язык RGB</p><p class="mt-2 text-sm text-zinc-700">Сигналы: цвет+паттерн+приоритет; обучение.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">08</p><p class="mt-1 text-sm font-semibold text-zinc-900">Профили / пресеты</p><p class="mt-2 text-sm text-zinc-700">Дефолты палитры/порогов/RGB/оверлеев/инспекции.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">09</p><p class="mt-1 text-sm font-semibold text-zinc-900">Галерея (инженерная)</p><p class="mt-2 text-sm text-zinc-700">Просмотр и безопасные операции с файлами.</p></div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-5"><p class="font-mono text-xs text-zinc-600">10</p><p class="mt-1 text-sm font-semibold text-zinc-900">Предупреждения и ошибки</p><p class="mt-2 text-sm text-zinc-700">Таксономия и экраны восстановления/сервиса.</p></div>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 6) Машина состояний устройства -->
+          <section id="device-sm" aria-label="Машина состояний устройства">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">6) Машина состояний устройства (диаграмма + пояснение)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Устройство описывается как набор состояний. Ошибка — это состояние. Переходы управляются событиями от кнопок/тача и системными условиями.
+            </p>
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white p-5">
+              <svg viewBox="0 0 1120 280" role="img" aria-label="Диаграмма состояний устройства" class="min-w-[980px] w-full">
+                <defs>
+                  <style>
+                    .b { fill: var(--surface-0); stroke: var(--border-subtle); stroke-width: 2; }
+                    .t { font: 14px var(--font-sans); fill: var(--text-1); }
+                    .s { font: 12px var(--font-sans); fill: var(--text-3); }
+                    .a { stroke: var(--text-2); stroke-width: 2; fill: none; marker-end: url(#m); }
+                  </style>
+                  <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--text-2)"></path>
+                  </marker>
+                </defs>
+
+                <rect class="b" x="30" y="40" width="180" height="70" rx="10"></rect>
+                <text class="t" x="50" y="70">ЗАПУСК</text>
+                <text class="s" x="50" y="92">инициализация</text>
+
+                <rect class="b" x="250" y="40" width="220" height="70" rx="10"></rect>
+                <text class="t" x="270" y="70">LIVE VIEW</text>
+                <text class="s" x="270" y="92">основная работа</text>
+
+                <rect class="b" x="510" y="40" width="220" height="70" rx="10"></rect>
+                <text class="t" x="530" y="70">MAIN MENU</text>
+                <text class="s" x="530" y="92">единственный хаб</text>
+
+                <rect class="b" x="770" y="40" width="170" height="70" rx="10"></rect>
+                <text class="t" x="790" y="70">НАСТРОЙКИ</text>
+                <text class="s" x="790" y="92">глубже меню</text>
+
+                <rect class="b" x="960" y="40" width="130" height="70" rx="10"></rect>
+                <text class="t" x="980" y="70">ГАЛЕРЕЯ</text>
+                <text class="s" x="980" y="92">инженерно</text>
+
+                <rect class="b" x="510" y="160" width="260" height="70" rx="10"></rect>
+                <text class="t" x="530" y="190">ПОДТВ. ВЫКЛЮЧЕНИЯ</text>
+                <text class="s" x="530" y="212">Right=ОК / Left=Отмена</text>
+
+                <rect class="b" x="250" y="160" width="220" height="70" rx="10"></rect>
+                <text class="t" x="270" y="190">ЭКРАН ОШИБКИ</text>
+                <text class="s" x="270" y="212">блокирующая/фатальная</text>
+
+                <path class="a" d="M210 75 L250 75"></path>
+                <path class="a" d="M470 75 L510 75"></path>
+                <path class="a" d="M730 75 L770 75"></path>
+                <path class="a" d="M940 75 L960 75"></path>
+
+                <path class="a" d="M620 110 L620 160"></path>
+                <path class="a" d="M360 110 L360 160"></path>
+
+                <path class="a" d="M770 75 L730 75"></path>
+                <path class="a" d="M960 75 L940 75"></path>
+                <path class="a" d="M510 75 L470 75"></path>
+
+                <text class="s" x="520" y="28">Правая кнопка: 1–1.5 с</text>
+                <text class="s" x="520" y="250">Правая кнопка: ~2.5–3 с</text>
+              </svg>
+            </div>
+            <div class="mt-6 rounded-xl border border-zinc-200 bg-zinc-50 p-6">
+              <p class="text-sm font-semibold text-zinc-900">Пояснение ключевых переходов</p>
+              <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                <li><span class="font-medium text-zinc-900">Main Menu</span>: удержание правой кнопки 1–1.5 с.</li>
+                <li><span class="font-medium text-zinc-900">Выключение</span>: удержание правой кнопки ~2.5–3 с → экран подтверждения. Подтвердить: Right; отмена: Left.</li>
+                <li><span class="font-medium text-zinc-900">Ошибки</span>: “Ошибки — это отдельные состояния с вариантами действий, а не тосты.”</li>
+              </ul>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 7) Машина состояний Live View -->
+          <section id="liveview-sm" aria-label="Машина состояний Live View">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">7) Машина состояний Live View (таблица + правила оверлеев)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Live View — ядро работы. Меню и инструменты анализа не превращаются в “режимы” и не создают вложенность.
+              “Инструменты анализа — это оверлеи поверх изображения, а не режимы.”
+            </p>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[1100px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Состояние</th>
+                    <th class="px-4 py-3">Интерфейс</th>
+                    <th class="px-4 py-3">Кнопки</th>
+                    <th class="px-4 py-3">Оверлеи</th>
+                    <th class="px-4 py-3">RGB</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">LV_LIVE</td>
+                    <td class="px-4 py-3">Поток изображения + минимальные индикаторы</td>
+                    <td class="px-4 py-3">Вверх/Вниз: палитра; Right (коротко): Quick Menu; Right (удержание): Main Menu; Триггер: freeze</td>
+                    <td class="px-4 py-3">Разрешён максимум один слой (Quick Menu / контекстное меню / оверлей анализа)</td>
+                    <td class="px-4 py-3">Сигнал по таблице приоритетов; не зависит от “нахожусь ли в меню”</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">LV_FREEZE</td>
+                    <td class="px-4 py-3">Замороженный кадр для оценки</td>
+                    <td class="px-4 py-3">Left: выйти; Вверх/Вниз: палитра; Right (коротко): Quick Menu</td>
+                    <td class="px-4 py-3">Те же правила оверлеев; без «матрёшки»</td>
+                    <td class="px-4 py-3">Опциональный сигнал статуса freeze, если документирован</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">LV_QUICK_MENU</td>
+                    <td class="px-4 py-3">Оверлей рабочих рычагов</td>
+                    <td class="px-4 py-3">Up/Down: выбор; Right: подтвердить; Left: закрыть</td>
+                    <td class="px-4 py-3">Запрещены вложенные оверлеи</td>
+                    <td class="px-4 py-3">RGB не меняет смысл из‑за факта открытия меню</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">LV_CONTEXT_MENU</td>
+                    <td class="px-4 py-3">Контекстные действия + микро‑обучение</td>
+                    <td class="px-4 py-3">Up/Down: выбор; Right: действие; Left: закрыть</td>
+                    <td class="px-4 py-3">Один слой; выход Left / тап вне области</td>
+                    <td class="px-4 py-3">Разрешён переход в экран объяснения “Почему горит RGB?”</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">LV_ERROR</td>
+                    <td class="px-4 py-3">Экран ошибки (блокирующая/фатальная)</td>
+                    <td class="px-4 py-3">Только безопасные действия</td>
+                    <td class="px-4 py-3">Оверлеи запрещены</td>
+                    <td class="px-4 py-3">Сигнал максимального приоритета</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-zinc-200 bg-zinc-50 p-6">
+              <p class="text-sm font-semibold text-zinc-900">Правила оверлеев</p>
+              <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                <li>“Меню — навигация. Настройки — глубже. Quick Menu ≠ Main Menu. Не больше одного слоя поверх Live View.”</li>
+                <li>Оверлей закрывается Left; Quick Menu также может закрыться по timeout или тапу вне области.</li>
+                <li>Опасные действия (удаление/выключение/сброс критичного) — только через отдельные состояния подтверждения.</li>
+              </ul>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 8) Спецификация Quick Menu -->
+          <section id="quick-menu" aria-label="Спецификация Quick Menu">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">8) Спецификация Quick Menu (элементы + правила + маппинг ввода)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Контракт Quick Menu: фиксированный состав пунктов, правила входа/выхода и маппинг ввода. Раздел нужен, чтобы быстрые действия оставались
+              предсказуемыми и не превращались в «второе меню» с вложенными оверлеями.
+            </p>
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Назначение</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">
+                  “Quick Menu — это панель рабочих рычагов поверх Live View, без чисел и конфигурации.”
+                  Оно не является навигацией по устройству и не заменяет Main Menu.
+                </p>
+                <p class="mt-4 text-sm font-semibold text-zinc-900">Вход / выход</p>
+                <ul class="mt-2 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li><span class="font-medium text-zinc-900">Вход</span>: Right (коротко) или тап по экрану</li>
+                  <li><span class="font-medium text-zinc-900">Выход</span>: Left или таймаут или тап вне области</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Пункты (точно)</p>
+                <ol class="mt-3 list-decimal pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Режим измерения (Spot / Line / Area)</li>
+                  <li>Профиль / пресет измерений</li>
+                  <li>Инструменты анализа (Hot/Cold/Min/Max/Line/Area stats depending on mode)</li>
+                  <li>RGB-индикация (вкл/выкл / режим)</li>
+                  <li>Режим инспекции (Inspection Mode)</li>
+                  <li>Галерея (быстрый переход)</li>
+                </ol>
+                <div class="mt-4 rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+                  <p class="text-xs font-semibold tracking-wide text-zinc-600">ПАЛИТРА</p>
+                  <p class="mt-2 text-sm leading-6 text-zinc-700">
+                    Вверх/Вниз вне меню циклически переключает палитру. Палитра не дублируется как пункт Quick Menu.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[900px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Ввод</th>
+                    <th class="px-4 py-3">Эффект</th>
+                    <th class="px-4 py-3">Правило</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3">Вверх / Вниз</td>
+                    <td class="px-4 py-3">Выбор пункта</td>
+                    <td class="px-4 py-3">Только внутри Quick Menu</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3">Right</td>
+                    <td class="px-4 py-3">Подтвердить</td>
+                    <td class="px-4 py-3">Не открывает вложенные оверлеи</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3">Left</td>
+                    <td class="px-4 py-3">Закрыть</td>
+                    <td class="px-4 py-3">Всегда безопасный выход</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 9) Спецификация контекстного меню -->
+          <section id="context-menu" aria-label="Спецификация контекстного меню">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">9) Спецификация контекстного меню (матрица пунктов по режимам)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Контекстное меню — слой для редких/объясняющих действий, зависящий от текущего режима. Раздел нужен, чтобы состав пунктов был
+              воспроизводим по матрице «режим → пункты» и не конфликтовал с Quick Menu.
+            </p>
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Контракт</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li><span class="font-medium text-zinc-900">Вход</span>: долгий тап</li>
+                  <li><span class="font-medium text-zinc-900">Выход</span>: Left или тап вне области</li>
+                  <li><span class="font-medium text-zinc-900">Навигация</span>: Вверх/Вниз; Right — выбрать</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Базовые пункты (всегда)</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Заблокировать диапазон / снять блокировку (переключатель)</li>
+                  <li>Сбросить авто-настройки (действие)</li>
+                  <li>Показать подсказку (микро‑обучение)</li>
+                  <li>Почему горит RGB? (справка)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Пункт</th>
+                    <th class="px-4 py-3">Spot</th>
+                    <th class="px-4 py-3">Line</th>
+                    <th class="px-4 py-3">Area</th>
+                    <th class="px-4 py-3">Примечание</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Заблокировать диапазон / снять блокировку</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Переключатель фиксирует авто‑диапазон</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Сбросить авто-настройки</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Действие без скрытых эффектов</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Показать подсказку</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Короткое обучение в моменте</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Статистика линии/области</td>
+                    <td class="px-4 py-3">Нет</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Только если режим поддерживает</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Почему горит RGB?</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Открывает экран объяснения</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 10) Режимы измерения -->
+          <section id="measurement" aria-label="Режимы измерения">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">10) Режимы измерения (Spot/Line/Area) + оверлеи анализа</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Режим измерения определяет допустимые статистики. Инструменты анализа остаются оверлеями.
+              “Инструменты анализа — это оверлеи поверх изображения, а не режимы.”
+            </p>
+            <div class="mt-6 grid gap-4 lg:grid-cols-3">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Spot</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">Точечное измерение. Минимальная визуальная нагрузка.</p>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Line</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">Линия. Разрешена статистика линии как оверлей.</p>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Area</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">Область. Разрешена статистика области как оверлей.</p>
+              </div>
+            </div>
+            <div class="mt-6 rounded-xl border border-zinc-200 bg-zinc-50 p-6">
+              <p class="text-sm font-semibold text-zinc-900">Концепт оверлеев анализа</p>
+              <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                <li>Универсальные: горячая/холодная/мин/макс точки (если включены).</li>
+                <li>Режимные: статистика линии / статистика области.</li>
+                <li>Выход всегда Left; не допускается “оверлей внутри оверлея”.</li>
+              </ul>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 11) Язык RGB -->
+          <section id="rgb" aria-label="Язык RGB">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">11) Язык RGB (таблица сигналов + обучение)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              RGB рассматривается как контракт устройства: каждому сигналу соответствует одно толкование, приоритет и требование к UI (объяснение и
+              следующий шаг). Раздел нужен, чтобы «цвет» не становился декоративным и двусмысленным.
+            </p>
+
+            <!-- Акцент разрешён ТОЛЬКО в этом разделе -->
+            <div class="mt-4 rounded-xl border border-zinc-200 bg-white p-6">
+              <div
+                class="rounded-xl border p-5"
+                style="
+                  border-color: color-mix(in srgb, var(--accent) 35%, var(--border-subtle));
+                  background: color-mix(in srgb, var(--accent) 8%, var(--surface-0));
+                "
+              >
+                <p class="text-sm font-semibold" style="color: var(--accent);">Принцип</p>
+                <p class="mt-2 text-sm leading-6 text-zinc-800">
+                  “RGB — часть UX: цвет + паттерн = однозначный смысл. Никакой магии без объяснений.”
+                </p>
+                <p class="mt-2 text-sm leading-6 text-zinc-700">Сигнал описывается как: смысл → цвет → паттерн → приоритет → триггер.</p>
+              </div>
+
+              <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200">
+                <table class="min-w-[1100px] w-full text-left text-sm">
+                  <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                    <tr>
+                      <th class="px-4 py-3">Signal ID</th>
+                      <th class="px-4 py-3">Семантика (одно толкование)</th>
+                      <th class="px-4 py-3">Код цвета (firmware)</th>
+                      <th class="px-4 py-3">Паттерн</th>
+                      <th class="px-4 py-3">Приоритет</th>
+                      <th class="px-4 py-3">Требование к UI</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                    <tr>
+                      <td class="px-4 py-3 font-mono text-xs text-zinc-900">SIG_INFO</td>
+                      <td class="px-4 py-3">Информационный статус. Действие не требуется.</td>
+                      <td class="px-4 py-3 font-mono text-xs">FW_RGB_INFO</td>
+                      <td class="px-4 py-3">Короткий импульс</td>
+                      <td class="px-4 py-3">Низкий</td>
+                      <td class="px-4 py-3">Не блокировать; допускается скрыть в фоне.</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 font-mono text-xs text-zinc-900">SIG_WARN</td>
+                      <td class="px-4 py-3">Предупреждение. Можно продолжить, но требуется внимание.</td>
+                      <td class="px-4 py-3 font-mono text-xs">FW_RGB_WARN</td>
+                      <td class="px-4 py-3">Медленное мигание</td>
+                      <td class="px-4 py-3">Средний</td>
+                      <td class="px-4 py-3">Показать краткое объяснение и безопасный следующий шаг.</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 font-mono text-xs text-zinc-900">SIG_ERR_BLOCK</td>
+                      <td class="px-4 py-3">Блокирующая ошибка. Нужны действия оператора.</td>
+                      <td class="px-4 py-3 font-mono text-xs">FW_RGB_ERR_BLOCK</td>
+                      <td class="px-4 py-3">Быстрое мигание</td>
+                      <td class="px-4 py-3">Высокий</td>
+                      <td class="px-4 py-3">Перевести в состояние ошибки с 1–2 безопасными действиями.</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 font-mono text-xs text-zinc-900">SIG_ERR_FATAL</td>
+                      <td class="px-4 py-3">Фатальная ошибка / требуется сервис.</td>
+                      <td class="px-4 py-3 font-mono text-xs">FW_RGB_ERR_FATAL</td>
+                      <td class="px-4 py-3">Статичный свет</td>
+                      <td class="px-4 py-3">Критический</td>
+                      <td class="px-4 py-3">Показать шаги, код ошибки и запретить “опасные” действия.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="mt-6 rounded-xl border border-zinc-200 bg-zinc-50 p-6">
+                <p class="text-sm font-semibold text-zinc-900">Экран микро‑обучения: “Что означает RGB?”</p>
+                <p class="mt-2 text-sm leading-6 text-zinc-700">
+                  Вход: контекстное меню → “Почему горит RGB?”. Контент — один экран: “сейчас” → “значит” → “что делать”.
+                </p>
+                <div class="mt-4 rounded-lg border border-zinc-200 bg-white p-4">
+                  <p class="text-xs font-semibold tracking-wide text-zinc-600">СКЕЛЕТ ЭКРАНА</p>
+                  <ul class="mt-2 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                    <li>Сейчас: [цвет], [паттерн]</li>
+                    <li>Значит: [одна фраза]</li>
+                    <li>Действие: [один следующий шаг]</li>
+                    <li>Левая кнопка: назад</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 12) Профили -->
+          <section id="profiles" aria-label="Профили">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">12) Профили (пресеты + матрица влияния)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Профили/пресеты влияют на дефолты: палитра, пороги, RGB‑поведение, оверлеи, режим инспекции. Имена пресетов — продуктовая деталь; здесь фиксируется контракт влияний.
+            </p>
+            <div class="mt-6 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Контракт профиля (уровень UX)</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Пресет выбирается в Quick Menu.</li>
+                  <li>Пресет задаёт дефолты, но не меняет контракт кнопок.</li>
+                  <li>Любое “сильное” изменение должно объясняться одной строкой в UI.</li>
+                  <li>Профиль — это набор параметров, а не “режим” (не меняет слои и приоритеты сигналов).</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Структура данных (handoff)</p>
+                <p class="mt-2 text-sm leading-6 text-zinc-700">
+                  Для разработки профиль задаётся как структура параметров. Значения и набор полей фиксируются в коде и в таблице ниже; имена пресетов — отдельный слой продукта.
+                </p>
+              </div>
+            </div>
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[1100px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Параметр</th>
+                    <th class="px-4 py-3">Описание</th>
+                    <th class="px-4 py-3">Тип / диапазон</th>
+                    <th class="px-4 py-3">Можно менять профилем</th>
+                    <th class="px-4 py-3">Примечание</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">palette_default</td>
+                    <td class="px-4 py-3">Палитра по умолчанию</td>
+                    <td class="px-4 py-3 font-mono text-xs">enum / определяется реализацией</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Не меняет контракт кнопок Up/Down.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">thresholds</td>
+                    <td class="px-4 py-3">Пороговые значения (если применимы)</td>
+                    <td class="px-4 py-3 font-mono text-xs">object / определяется реализацией</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Должны быть объяснимы в UI в одном экране.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">rgb_behavior</td>
+                    <td class="px-4 py-3">Поведение RGB‑семантики (вкл/режим)</td>
+                    <td class="px-4 py-3 font-mono text-xs">enum / определяется реализацией</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Не меняет смысл сигналов из раздела 11.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">overlays_default</td>
+                    <td class="px-4 py-3">Оверлеи анализа по умолчанию</td>
+                    <td class="px-4 py-3 font-mono text-xs">set&lt;overlay_id&gt; / определяется реализацией</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Соблюдает правило “один слой”.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">inspection_mode</td>
+                    <td class="px-4 py-3">Режим инспекции</td>
+                    <td class="px-4 py-3 font-mono text-xs">boolean / определяется реализацией</td>
+                    <td class="px-4 py-3">Да</td>
+                    <td class="px-4 py-3">Должен быть видимым состоянием, а не “скрытой магией”.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 13) Галерея -->
+          <section id="gallery" aria-label="Галерея">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">13) Галерея (экраны + флоу; безопасное удаление)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Галерея — инженерный инструмент, а не фотоальбом. Приоритет: метаданные, точность и безопасные операции.
+            </p>
+            <div class="mt-6 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Обязательные экраны</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>сетка (grid)</li>
+                  <li>детальный просмотр</li>
+                  <li>информация о файле</li>
+                  <li>подтверждение удаления</li>
+                  <li>множественный выбор</li>
+                  <li>пустое состояние</li>
+                  <li>ошибка чтения</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Дата‑фильтр (опционально)</p>
+                <p class="mt-3 text-sm leading-6 text-zinc-700">
+                  Фильтр по дате — вторичный способ. Он не является обязательным первым шагом навигации и не должен мешать базовой сетке.
+                </p>
+              </div>
+            </div>
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Флоу удаления</th>
+                    <th class="px-4 py-3">Условие</th>
+                    <th class="px-4 py-3">Гарантия</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Контекстное меню файла → “Удалить” → подтверждение</td>
+                    <td class="px-4 py-3">Всегда</td>
+                    <td class="px-4 py-3">Нет случайного удаления (только через подтверждение)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Множественный выбор → контекстное меню → подтверждение</td>
+                    <td class="px-4 py-3">Опционально</td>
+                    <td class="px-4 py-3">Подтверждение отдельно, без “опасных” кнопок рядом с навигацией</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 14) Предупреждения и ошибки -->
+          <section id="errors" aria-label="Предупреждения и ошибки">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">14) Предупреждения и ошибки (таксономия + пример экрана)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              “Ошибки — это отдельные состояния с вариантами действий, а не тосты.”
+              Текст — “без паники”: коротко, человечески, без технического мусора; код ошибки — отдельной строкой.
+            </p>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[1100px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Класс</th>
+                    <th class="px-4 py-3">Определение</th>
+                    <th class="px-4 py-3">Интерфейс</th>
+                    <th class="px-4 py-3">Действия</th>
+                    <th class="px-4 py-3">RGB</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3">
+                      <span
+                        class="inline-flex items-center rounded-md border px-2 py-1 text-xs font-semibold"
+                        style="border-color: color-mix(in srgb, var(--accent) 35%, var(--border-subtle)); color: var(--accent);"
+                        >ПРЕДУПРЕЖДЕНИЕ</span
+                      >
+                      <span class="ml-2 font-medium text-zinc-900">Восстанавливаемая</span>
+                    </td>
+                    <td class="px-4 py-3">Можно продолжить; требуется внимание</td>
+                    <td class="px-4 py-3">Экран/панель статуса с ясным смыслом</td>
+                    <td class="px-4 py-3">1–2 безопасных варианта</td>
+                    <td class="px-4 py-3">Сигнал по таблице приоритетов</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3"><span class="font-medium text-zinc-900">Блокирующая</span></td>
+                    <td class="px-4 py-3">Работа остановлена до действия</td>
+                    <td class="px-4 py-3">Отдельный экран ошибки</td>
+                    <td class="px-4 py-3">Восстановление (например: перезапуск)</td>
+                    <td class="px-4 py-3">Высокий приоритет</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3">
+                      <span
+                        class="inline-flex items-center rounded-md border px-2 py-1 text-xs font-semibold"
+                        style="border-color: color-mix(in srgb, var(--accent) 35%, var(--border-subtle)); color: var(--accent);"
+                        >ФАТАЛЬНО</span
+                      >
+                      <span class="ml-2 font-medium text-zinc-900">Фатальная</span>
+                    </td>
+                    <td class="px-4 py-3">Нужен сервис; не устраняется на месте</td>
+                    <td class="px-4 py-3">Экран + код ошибки</td>
+                    <td class="px-4 py-3">Перезагрузка / сервис</td>
+                    <td class="px-4 py-3">Максимальный приоритет</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-zinc-200 bg-white p-6">
+              <p class="text-sm font-semibold text-zinc-900">Пример экрана (обязательный)</p>
+              <div class="mt-4 rounded-xl border border-zinc-200 bg-zinc-50 p-6">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p class="text-lg font-semibold text-zinc-900">Системная ошибка</p>
+                    <p class="mt-2 text-sm leading-6 text-zinc-700">
+                      Камера не может продолжить работу. Это не ваша ошибка. Попробуйте перезагрузить устройство. Если проблема повторяется — обратитесь в сервис.
+                    </p>
+                    <p class="mt-3 text-xs text-zinc-600">Код: ERR-XXXX</p>
+                  </div>
+                  <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2">
+                    <p class="text-xs font-semibold text-zinc-700">RGB</p>
+                    <p class="mt-1 text-xs text-zinc-600">красный, статичный</p>
+                  </div>
+                </div>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <button type="button" class="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-900">
+                    Перезагрузить
+                  </button>
+                  <button type="button" class="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-900">
+                    Обратиться в сервис
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 15) Передача в разработку -->
+          <section id="handoff" aria-label="Передача в разработку">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">15) Передача в разработку (список событий; State→Event→Effect; контракт кнопок)</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Передача оформляется как таблицы. Цель — исключить разночтения и закрепить контракт управления для устройства с высокой ценой ошибки.
+            </p>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[1100px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Событие</th>
+                    <th class="px-4 py-3">Источник</th>
+                    <th class="px-4 py-3">Данные</th>
+                    <th class="px-4 py-3">Примечания</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_LEFT</td>
+                    <td class="px-4 py-3">Левая кнопка</td>
+                    <td class="px-4 py-3">—</td>
+                    <td class="px-4 py-3">Назад/выход/закрыть (всегда)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_UP / EV_DOWN</td>
+                    <td class="px-4 py-3">Кнопки Вверх/Вниз</td>
+                    <td class="px-4 py-3">—</td>
+                    <td class="px-4 py-3">Меню‑навигация или смена палитры вне меню</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_RIGHT_SHORT</td>
+                    <td class="px-4 py-3">Правая кнопка</td>
+                    <td class="px-4 py-3">—</td>
+                    <td class="px-4 py-3">Вход в Quick Menu / подтверждение</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_RIGHT_LONG_MENU</td>
+                    <td class="px-4 py-3">Правая кнопка</td>
+                    <td class="px-4 py-3">duration=1–1.5s</td>
+                    <td class="px-4 py-3">Открыть Main Menu</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_RIGHT_LONG_POWER</td>
+                    <td class="px-4 py-3">Правая кнопка</td>
+                    <td class="px-4 py-3">duration≈2.5–3s</td>
+                    <td class="px-4 py-3">Открыть подтверждение выключения</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_TRIGGER_CAPTURE</td>
+                    <td class="px-4 py-3">Триггер</td>
+                    <td class="px-4 py-3">—</td>
+                    <td class="px-4 py-3">Заморозка кадра (freeze frame)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_TAP</td>
+                    <td class="px-4 py-3">Сенсорный ввод</td>
+                    <td class="px-4 py-3">x,y</td>
+                    <td class="px-4 py-3">Открыть Quick Menu (разрешено)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_LONG_TAP_LIVEVIEW</td>
+                    <td class="px-4 py-3">Сенсорный ввод</td>
+                    <td class="px-4 py-3">x,y,duration</td>
+                    <td class="px-4 py-3">Открыть контекстное меню Live View</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[1100px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Состояние</th>
+                    <th class="px-4 py-3">Событие</th>
+                    <th class="px-4 py-3">Эффект</th>
+                    <th class="px-4 py-3">Примечания</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">LV_LIVE</td>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_RIGHT_SHORT</td>
+                    <td class="px-4 py-3">Открыть Quick Menu</td>
+                    <td class="px-4 py-3">Фокус ввода → оверлей</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">LV_LIVE</td>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_UP / EV_DOWN</td>
+                    <td class="px-4 py-3">Цикл палитр</td>
+                    <td class="px-4 py-3">Без пункта палитры в Quick Menu</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">LV_QUICK_MENU</td>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_LEFT</td>
+                    <td class="px-4 py-3">Закрыть Quick Menu</td>
+                    <td class="px-4 py-3">Возврат в LV_LIVE</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">ANY</td>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_RIGHT_LONG_MENU</td>
+                    <td class="px-4 py-3">Открыть Main Menu</td>
+                    <td class="px-4 py-3">Main Menu — единственный навигационный хаб</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">ANY</td>
+                    <td class="px-4 py-3 font-mono text-xs text-zinc-900">EV_RIGHT_LONG_POWER</td>
+                    <td class="px-4 py-3">Открыть подтверждение выключения</td>
+                    <td class="px-4 py-3">Подтверждение отдельным состоянием</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[1100px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Кнопка</th>
+                    <th class="px-4 py-3">Контракт</th>
+                    <th class="px-4 py-3">Запрещено</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Left</td>
+                    <td class="px-4 py-3">Назад / Выход / Закрыть (всегда)</td>
+                    <td class="px-4 py-3">Опасные действия</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Up/Down</td>
+                    <td class="px-4 py-3">Меню‑навигация; вне меню — палитра</td>
+                    <td class="px-4 py-3">Несвязанные перегрузки</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Right (short)</td>
+                    <td class="px-4 py-3">Вход в Quick Menu; подтверждение/выбор</td>
+                    <td class="px-4 py-3">Дублирование Left</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Right (long 1–1.5s)</td>
+                    <td class="px-4 py-3">Открыть Main Menu</td>
+                    <td class="px-4 py-3">Вложенные меню поверх оверлеев</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Right (longer ~2.5–3s)</td>
+                    <td class="px-4 py-3">Подтверждение выключения</td>
+                    <td class="px-4 py-3">Выключение без подтверждения</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-zinc-900">Trigger</td>
+                    <td class="px-4 py-3">Снимок (freeze frame)</td>
+                    <td class="px-4 py-3">Удаление/сброс</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- 16) Итерации и план тестирования -->
+          <section id="iterations-testing" aria-label="Итерации и проверочные сценарии">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">16) Итерации и проверочные сценарии</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-zinc-700">
+              Раздел фиксирует порядок уточнения спецификации и набор проверок, которыми подтверждается корректность контрактов ввода, правил слоёв и
+              интерпретации сигналов. Используется как чек‑лист для QA и для регрессии.
+            </p>
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Итерации</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Уточнение машин состояний (устройство + Live View).</li>
+                  <li>Фиксация правил слоёв (без «матрёшки») и контрактов ввода.</li>
+                  <li>Спеки Quick Menu / контекстного меню и совместимость оверлеев.</li>
+                  <li>Язык RGB + экран обучения “Почему горит RGB?”.</li>
+                  <li>Ошибки как состояния + шаблоны экранов ошибок.</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Проверочные сценарии</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Одна рука/перчатки: скорость и число ошибок на ключевых действиях.</li>
+                  <li>Плохая видимость: распознавание статусов, читаемость оверлеев.</li>
+                  <li>Безопасность: удаление/выключение/сброс (случайные действия).</li>
+                  <li>Понимание RGB: однозначность интерпретации и действие “что делать”.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 overflow-x-auto rounded-xl border border-zinc-200 bg-white">
+              <table class="min-w-[980px] w-full text-left text-sm">
+                <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                  <tr>
+                    <th class="px-4 py-3">Измерение</th>
+                    <th class="px-4 py-3">Определение</th>
+                    <th class="px-4 py-3">Как измеряется</th>
+                    <th class="px-4 py-3">Критерий успеха</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Ошибки ввода</td>
+                    <td class="px-4 py-3">Неверные действия на сценарий</td>
+                    <td class="px-4 py-3">Наблюдение + лог EV_*</td>
+                    <td class="px-4 py-3">Сравнение версий по одинаковому чек‑листу</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Время до действия</td>
+                    <td class="px-4 py-3">Время от входа в состояние до эффекта</td>
+                    <td class="px-4 py-3">Тайминг по событиям</td>
+                    <td class="px-4 py-3">Сравнение распределений по одной методике</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-zinc-900">Понимание RGB</td>
+                    <td class="px-4 py-3">Доля корректных интерпретаций</td>
+                    <td class="px-4 py-3">Тест “значение+следующий шаг”</td>
+                    <td class="px-4 py-3">Однозначность интерпретации по протоколу теста</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <div class="my-10 border-t border-zinc-200"></div>
+
+          <!-- Закрывающий блок (не часть нумерации 1–16): audit-safe резюме -->
+          <section aria-label="Резюме и проверяемые артефакты">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-semibold text-zinc-900 sm:text-xl">Резюме и проверяемые артефакты</h2>
+              <a href="#hero" data-toc-link class="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4">Наверх</a>
+            </div>
+
+            <div class="mt-4 grid gap-6 lg:grid-cols-2">
+              <div class="rounded-xl border border-zinc-200 bg-white p-6">
+                <p class="text-sm font-semibold text-zinc-900">Что здесь можно проверить</p>
+                <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-zinc-700">
+                  <li>Декомпозицию доменов 00–10 и границы ответственности (раздел 5).</li>
+                  <li>Машину состояний устройства и ключевые переходы (раздел 6).</li>
+                  <li>Машину состояний Live View + правила слоёв (раздел 7).</li>
+                  <li>Контракт Quick Menu и маппинг ввода (раздел 8).</li>
+                  <li>Матрицу контекстного меню по режимам (раздел 9).</li>
+                  <li>Таксономию ошибок и шаблон экрана восстановления (раздел 14).</li>
+                  <li>Handoff-таблицы: события и State→Event→Effect (раздел 15).</li>
+                </ul>
+              </div>
+
+              <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-6">
+                <p class="text-sm font-semibold text-zinc-900">Факты спецификации (из этого документа)</p>
+                <div class="mt-3 overflow-x-auto rounded-lg border border-zinc-200 bg-white">
+                  <table class="min-w-[820px] w-full text-left text-sm">
+                    <thead class="bg-zinc-50 text-xs font-semibold tracking-wide text-zinc-700">
+                      <tr>
+                        <th class="px-4 py-3">Показатель</th>
+                        <th class="px-4 py-3">Значение</th>
+                        <th class="px-4 py-3">Где зафиксировано</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Секций спецификации (1–16)</td>
+                        <td class="px-4 py-3">16</td>
+                        <td class="px-4 py-3">Оглавление / заголовки разделов</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Таблиц</td>
+                        <td class="px-4 py-3">14</td>
+                        <td class="px-4 py-3">Разделы 2, 7–9, 11–16</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Диаграмм (SVG)</td>
+                        <td class="px-4 py-3">1</td>
+                        <td class="px-4 py-3">Раздел 6</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Событий ввода (EV_*)</td>
+                        <td class="px-4 py-3">13 упоминаний</td>
+                        <td class="px-4 py-3">Раздел 15 (таблица событий)</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Состояний Live View (LV_*)</td>
+                        <td class="px-4 py-3">9 упоминаний</td>
+                        <td class="px-4 py-3">Раздел 7 (таблица состояния)</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Пунктов Quick Menu (фиксированный список)</td>
+                        <td class="px-4 py-3">6</td>
+                        <td class="px-4 py-3">Раздел 8 (“Пункты (точно)”) </td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Верхняя граница шагов: открыть Quick Menu → выполнить пункт</td>
+                        <td class="px-4 py-3">2–7 действий ввода (1 + k + 1, k∈[0..5])</td>
+                        <td class="px-4 py-3">Раздел 8 (вход/навигация/подтверждение)</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Выход из оверлея</td>
+                        <td class="px-4 py-3">1 действие ввода (Left)</td>
+                        <td class="px-4 py-3">Разделы 7–9 (правила оверлеев/контракты меню)</td>
+                      </tr>
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-zinc-900">Правило слоёв</td>
+                        <td class="px-4 py-3">≤ 1 оверлей над Live View</td>
+                        <td class="px-4 py-3">Разделы 4 и 7</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Минимальная ссылка “наверх” -->
+    <a
+      href="#hero"
+      data-toc-link
+      class="fixed bottom-4 right-4 z-50 hidden sm:inline-flex items-center rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-900"
+      aria-label="Наверх"
+      >Наверх</a
+    >
+
+    <script>
+      // Минимальный JS: подсветка активного раздела в оглавлении + плавная прокрутка.
+      (function () {
+        const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const tocLinks = Array.from(document.querySelectorAll("a.toc-link"));
+        const allLinks = Array.from(document.querySelectorAll("a[data-toc-link]"));
+        const tocSelect = document.getElementById("tocSelect");
+        const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+        function setActive(id) {
+          if (tocSelect) tocSelect.value = id;
+          for (const a of tocLinks) {
+            const isActive = a.getAttribute("href") === "#" + id;
+            a.classList.toggle("bg-zinc-100", isActive);
+            a.classList.toggle("text-zinc-900", isActive);
+            a.classList.toggle("font-semibold", isActive);
+            a.classList.toggle("text-zinc-700", !isActive);
+            if (isActive) a.setAttribute("aria-current", "true");
+            else a.removeAttribute("aria-current");
+          }
+        }
+
+        function scrollToId(id) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.focus({ preventScroll: true });
+          el.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+          history.replaceState(null, "", "#" + id);
+        }
+
+        if (tocSelect) tocSelect.addEventListener("change", () => scrollToId(tocSelect.value));
+
+        for (const a of allLinks) {
+          a.addEventListener("click", (e) => {
+            const href = a.getAttribute("href") || "";
+            if (!href.startsWith("#")) return;
+            const id = href.slice(1);
+            if (!document.getElementById(id)) return;
+            e.preventDefault();
+            scrollToId(id);
+          });
+        }
+
+        if (!("IntersectionObserver" in window)) {
+          setActive((location.hash || "#hero").slice(1) || "hero");
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visible = entries
+              .filter((e) => e.isIntersecting)
+              .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0];
+            if (visible && visible.target && visible.target.id) setActive(visible.target.id);
+          },
+          { root: null, threshold: [0.1, 0.2, 0.35], rootMargin: "-20% 0px -65% 0px" }
+        );
+
+        for (const s of sections) observer.observe(s);
+        setActive((location.hash || "#hero").slice(1) || "hero");
+      })();
+    </script>
+  </body>
+</html>

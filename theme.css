@@ -1,0 +1,119 @@
+/*
+  Tokenized theme layer:
+  Re-maps frequently used Tailwind utility classes to CSS variables.
+  Goal: change a token once → all documents update consistently.
+*/
+
+/* Page/background primitives */
+html {
+  background: var(--surface-page);
+  color: var(--text-1);
+}
+
+/* Surfaces */
+.bg-white {
+  background-color: var(--surface-0) !important;
+}
+.bg-slate-50,
+.bg-zinc-50 {
+  background-color: var(--surface-1) !important;
+}
+
+/* Translucent surfaces used in sticky headers */
+.bg-white\/95 {
+  background-color: color-mix(in srgb, var(--surface-0) 95%, transparent) !important;
+}
+.bg-white\/80 {
+  background-color: color-mix(in srgb, var(--surface-0) 80%, transparent) !important;
+}
+.bg-zinc-50\/95 {
+  background-color: color-mix(in srgb, var(--surface-1) 95%, transparent) !important;
+}
+.bg-zinc-50\/80 {
+  background-color: color-mix(in srgb, var(--surface-1) 80%, transparent) !important;
+}
+
+/* Borders */
+.border-slate-200,
+.border-zinc-200 {
+  border-color: var(--border-subtle) !important;
+}
+.border-slate-300,
+.border-zinc-300 {
+  border-color: var(--border) !important;
+}
+
+/* Dividers (table rows etc.) */
+.divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+.divide-zinc-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--border-subtle) !important;
+}
+
+/* Text (neutral) */
+.text-slate-900,
+.text-zinc-900 {
+  color: var(--text-1) !important;
+}
+.text-slate-800,
+.text-zinc-800 {
+  color: color-mix(in srgb, var(--text-1) 86%, var(--text-2)) !important;
+}
+.text-slate-700,
+.text-zinc-700 {
+  color: var(--text-2) !important;
+}
+.text-slate-600,
+.text-zinc-600 {
+  color: var(--text-3) !important;
+}
+.text-slate-500,
+.text-zinc-500 {
+  color: var(--text-weak) !important;
+}
+
+/* Accent */
+.text-accent {
+  color: var(--color-accent) !important;
+}
+.bg-accent-50 {
+  background-color: var(--color-accent-50) !important;
+}
+.border-accent-200 {
+  border-color: var(--color-accent-200) !important;
+}
+.bg-accent {
+  background-color: var(--color-accent) !important;
+}
+
+/* Underline decoration */
+.decoration-zinc-300,
+.decoration-slate-300,
+.decoration-zinc-400,
+.decoration-slate-400 {
+  text-decoration-color: color-mix(in srgb, var(--border) 65%, transparent) !important;
+}
+
+/* Radii (map common Tailwind radii to tokens) */
+.rounded-xl {
+  border-radius: var(--radius-12) !important;
+}
+.rounded-lg {
+  border-radius: var(--radius-8) !important;
+}
+.rounded-md {
+  border-radius: 10px !important;
+}
+.rounded {
+  border-radius: 6px !important;
+}
+
+/* Shadow */
+.shadow-paper {
+  box-shadow: var(--shadow-paper) !important;
+}
+
+/* TOC link baseline (even if utility mix differs slightly) */
+a.toc-link {
+  text-underline-offset: 4px;
+}
+
