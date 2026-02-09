@@ -1,12 +1,15 @@
 <!doctype html>
-<html lang="ru" class="h-full scroll-smooth bg-zinc-50 text-zinc-900">
+<html lang="ru" class="h-full scroll-smooth bg-slate-50 text-slate-900">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
 
-    <title>Портфолио — кейсы</title>
-    <meta name="description" content="Три кейса: складская UX‑архитектура (ТСД/PWA), UX встроенного ИК‑устройства (тепловизионная камера), спорт‑платформа (MVP)." />
+    <title>Портфолио — Senior Product UX (архитектура сценариев)</title>
+    <meta
+      name="description"
+      content="Портфолио senior product UX: архитектура сценариев, состояния/контракты взаимодействия, offline‑first, handoff для dev/QA. Кейсы: склад (ТСД/PWA) и embedded (тепловизор)."
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,36 +22,9 @@
     <link rel="stylesheet" href="./theme.css" />
 
     <style>
-      .hero-grid {
-        background-image:
-          radial-gradient(900px 450px at 15% -5%, color-mix(in srgb, var(--color-accent-100) 55%, transparent), transparent 55%),
-          radial-gradient(800px 500px at 95% 0%, color-mix(in srgb, var(--neutral-200) 55%, transparent), transparent 60%);
-      }
-
-      .case-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: var(--radius-12);
-        background: linear-gradient(
-          135deg,
-          color-mix(in srgb, var(--color-accent-100) 55%, transparent),
-          transparent 35%,
-          color-mix(in srgb, var(--neutral-200) 45%, transparent)
-        );
-        opacity: 0;
-        transition: opacity 200ms ease;
-        pointer-events: none;
-      }
-
-      .case-card:hover::before {
-        opacity: 0.85;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .case-card::before {
-          transition: none;
-        }
+      /* Keep the homepage strictly “document-like”: no decorative effects. */
+      .reading {
+        max-width: 78ch;
       }
     </style>
   </head>
@@ -61,35 +37,75 @@
     >
 
     <main class="mx-auto max-w-[1120px] px-4 py-10 sm:px-6 lg:px-8">
-      <header class="hero-grid rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <div class="flex flex-col gap-4">
+      <header class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="text-xs font-semibold tracking-wide text-slate-600">Пылёв Юрий • Senior Product UX</div>
+          <nav class="flex flex-wrap items-center gap-2 text-sm">
+            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#cases">Кейсы</a>
+            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#about">Обо мне</a>
+            <a class="rounded-lg px-3 py-2 font-semibold text-accent hover:bg-accent-50" href="#contact">Связаться</a>
+          </nav>
+        </div>
+
+        <div class="mt-5 grid gap-6 lg:grid-cols-[1fr_360px]">
           <div>
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Senior UX • кейсы</p>
-            <h1 class="mt-2 text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Вход в портфолио</h1>
-            <p class="mt-3 max-w-3xl text-pretty text-sm leading-6 text-slate-700 sm:text-base">
-              Три кейса в одном стиле: складская UX‑архитектура (ТСД/PWA), UX встроенного ИК‑устройства (тепловизионная камера) и спорт‑платформа (MVP).
-              Внутри — не просто экраны, а контракты, сценарии, состояния и измеримость.
+            <h1 class="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              Проектирую сложные сценарии так, чтобы ими можно было пользоваться и их можно было измерять
+            </h1>
+            <p class="mt-3 reading text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+              Мой фокус — <span class="font-semibold text-slate-900">UX‑архитектура</span>: сценарии, состояния, контракты взаимодействия и handoff для dev/QA.
+              Делаю интерфейсы не “красивыми”, а <span class="font-semibold text-slate-900">предсказуемыми</span> в реальных условиях: офлайн, сканер, одна рука, высокая цена ошибки.
             </p>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              <a
+                href="#cases"
+                class="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+                >Смотреть кейсы</a
+              >
+              <a
+                href="#contact"
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
+                >Связаться</a
+              >
+              <a
+                href="./uv.html"
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
+                >Краткий вход</a
+              >
+            </div>
           </div>
 
-          <div class="flex flex-wrap gap-2">
-            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
-              >Сценарии</span
-            >
-            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
-              >State machine</span
-            >
-            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
-              >Offline‑first</span
-            >
-            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
-              >Handoff для dev/QA</span
-            >
-            <a
-              href="./uv.html"
-              class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-900 hover:border-slate-300"
-              >Краткий вход</a
-            >
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-xs font-semibold tracking-wide text-slate-600">Быстрые сигналы</p>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li><span class="font-semibold text-slate-900">Домены</span>: складские операции (ТСД/PWA), embedded‑устройства</li>
+              <li><span class="font-semibold text-slate-900">Формат</span>: сценарии → решения → критерии успеха → handoff</li>
+              <li><span class="font-semibold text-slate-900">Артефакты</span>: state machine, паттерны, telemetry/metrics plan, тест‑матрица</li>
+            </ul>
+            <div class="mt-4 rounded-lg border border-slate-200 bg-white p-4">
+              <p class="text-xs font-semibold tracking-wide text-slate-600">Статус</p>
+              <p class="mt-2 text-sm font-semibold text-slate-900">Готов к работе</p>
+              <p class="mt-2 text-xs leading-5 text-slate-600">Откликнусь и пришлю детали по запросу (формат, доступность, условия).</p>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-2">
+              <a
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:border-slate-300"
+                href="mailto:sharikov@gmail.com"
+                >Email</a
+              >
+              <a
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:border-slate-300"
+                href="https://t.me/PythonDVP"
+                >Telegram</a
+              >
+              <a
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:border-slate-300"
+                href="https://krasnodar.hh.ru/resume/ffc2ae69ff0df278e20039ed1f496a76646375"
+                >CV</a
+              >
+            </div>
           </div>
         </div>
       </header>
@@ -97,7 +113,7 @@
       <section id="cases" class="mt-8 grid gap-4 md:grid-cols-2">
         <a
           href="./Склад-15 — складская UX‑архитектура (кейс‑спецификация).html"
-          class="case-card group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-paper transition will-change-transform hover:-translate-y-[1px] hover:border-slate-300 focus:outline-none"
+          class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-paper hover:border-slate-300 focus:outline-none"
           aria-label="Открыть кейс: Склад‑15 — складская UX‑архитектура"
         >
           <div class="relative">
@@ -125,14 +141,14 @@
 
             <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
               <span>Открыть кейс</span>
-              <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
+              <span aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
         <a
           href="./UV-case.html"
-          class="case-card group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-paper transition will-change-transform hover:-translate-y-[1px] hover:border-slate-300 focus:outline-none"
+          class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-paper hover:border-slate-300 focus:outline-none"
           aria-label="Открыть кейс: UX встроенной тепловизионной камеры (ИК‑устройство)"
         >
           <div class="relative">
@@ -160,46 +176,142 @@
 
             <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
               <span>Открыть кейс</span>
-              <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
+              <span aria-hidden="true">→</span>
             </div>
-          </div>
-        </a>
-
-        <a
-          href="./sport.html"
-          class="case-card group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-paper transition will-change-transform hover:-translate-y-[1px] hover:border-slate-300 focus:outline-none"
-          aria-label="Открыть кейс: Спорт‑платформа — MVP контур"
-        >
-          <div class="relative">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">MVP • Platform</p>
-            <h2 class="mt-2 text-balance text-lg font-semibold text-slate-900 sm:text-xl">Спорт‑платформа — MVP контур</h2>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Упаковал предметную область в понятные сценарии, IA и контракт данных/API, чтобы команда быстро и предсказуемо собрала MVP.
-            </p>
-
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>MVP‑scope + роли + IA</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>Модель данных и API‑контракт</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>План итераций и критерии приёмки</span>
-              </li>
-            </ul>
           </div>
         </a>
       </section>
 
-      <footer class="mt-10 text-sm leading-6 text-slate-600">
-        <p>
-          Подсказка: открывается локально без сборки. Если захочешь — добавлю верхнее меню, фильтры и единую навигацию “назад к списку” внутри
-          кейсов.
+      <section id="about" class="mt-10 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <h2 class="text-xl font-semibold tracking-tight text-slate-900">Обо мне: как думаю и как работаю</h2>
+          <a href="#top" class="text-sm font-semibold text-accent hover:underline underline-offset-4">Наверх</a>
+        </div>
+
+        <p class="mt-3 reading text-sm leading-6 text-slate-700 sm:text-base">
+          Я хорошо чувствую границу между “дизайн как макет” и “дизайн как система”. В кейсах выше я показываю второе: как превращаю хаос требований,
+          ограничений и исключений в предсказуемые сценарии, паттерны и измеримость.
         </p>
+
+        <div class="mt-6 grid gap-4 lg:grid-cols-3">
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-sm font-semibold text-slate-900">Как принимаю решения</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Отталкиваюсь от <span class="font-semibold text-slate-900">рисков и сценариев</span>: где цена ошибки максимальна, что ломается в офлайне,
+              где пользователь “теряет следующий шаг”.
+            </p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-sm font-semibold text-slate-900">Как работаю с неопределённостью</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Фиксирую гипотезы как проверяемые контракты: <span class="font-semibold text-slate-900">ожидаемый эффект → метрика → событие</span>.
+              Если данных нет — честно формулирую, какие данные нужны и как их собрать.
+            </p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-sm font-semibold text-slate-900">Как работаю с командой</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Делаю handoff без “трактовок”: состояния, ошибки, правила завершения, тест‑матрицы. Это экономит время разработки и QA.
+            </p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <p class="text-sm font-semibold text-slate-900">Как защищаю UX</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Не “продаю красоту”. Привязываю решения к бизнес‑рискам (SLA, ошибки, стоимость обучения) и к пользовательской боли (время, внимание, стресс).
+            </p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <p class="text-sm font-semibold text-slate-900">Что важно в продукте</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Предсказуемость, устойчивость к исключениям, измеримость. В критичных системах “не упасть” часто важнее “сделать богаче”.
+            </p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <p class="text-sm font-semibold text-slate-900">Как выглядел бы следующий шаг</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Подключить реальные данные и закрыть цикл улучшений: baseline → изменения → сравнение → регрессия по метрикам.
+              Использую продуктовую аналитику и событийное логирование как часть дизайна: какие события логировать, какими полями сегментировать, как сравнивать версии.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-white p-5 lg:col-span-3">
+            <p class="text-sm font-semibold text-slate-900">Измеримость: аналитика, логирование, наблюдаемость (как системная часть UX)</p>
+            <p class="mt-2 reading text-sm leading-6 text-slate-700">
+              В продукте с высокой ценой ошибки “измеримость” — это не отчёт в конце, а контракт, который проектируется вместе с интерфейсом.
+              Ниже — типовой, реалистичный набор, который я закладываю в handoff.
+            </p>
+            <div class="mt-4 grid gap-4 lg:grid-cols-3">
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                <p class="text-xs font-semibold tracking-wide text-slate-600">Product analytics</p>
+                <ul class="mt-2 space-y-2 text-sm leading-6 text-slate-700">
+                  <li><span class="font-semibold text-slate-900">События</span>: единые имена + обязательные свойства.</li>
+                  <li><span class="font-semibold text-slate-900">Инструменты</span>: Amplitude / Mixpanel / PostHog / GA4 (по ситуации).</li>
+                  <li><span class="font-semibold text-slate-900">Артефакт</span>: event dictionary + примеры запросов.</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                <p class="text-xs font-semibold tracking-wide text-slate-600">Logging & errors</p>
+                <ul class="mt-2 space-y-2 text-sm leading-6 text-slate-700">
+                  <li><span class="font-semibold text-slate-900">Ошибки</span>: taxonomy (код/тип/контекст/шаг сценария).</li>
+                  <li><span class="font-semibold text-slate-900">Инструменты</span>: Sentry (ошибки), OpenTelemetry (трейсы) — по зрелости.</li>
+                  <li><span class="font-semibold text-slate-900">Цель</span>: находить “провалы сценариев”, а не только 500‑ки.</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                <p class="text-xs font-semibold tracking-wide text-slate-600">Data layer</p>
+                <ul class="mt-2 space-y-2 text-sm leading-6 text-slate-700">
+                  <li><span class="font-semibold text-slate-900">Хранилище</span>: BigQuery / ClickHouse (часто для событий).</li>
+                  <li><span class="font-semibold text-slate-900">Дашборды</span>: Metabase / Grafana / Looker Studio (командный доступ).</li>
+                  <li><span class="font-semibold text-slate-900">Правило</span>: KPI измеряются без “шумных” UI‑элементов для операторов.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <h2 class="text-xl font-semibold tracking-tight text-slate-900">Связаться</h2>
+          <a href="#top" class="text-sm font-semibold text-accent hover:underline underline-offset-4">Наверх</a>
+        </div>
+
+        <div class="mt-4 grid gap-4 lg:grid-cols-[1fr_360px]">
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-sm font-semibold text-slate-900">Коротко, что прислать</p>
+            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
+              <li>Роль/уровень и контекст продукта (B2B/B2C, web/embedded, индустрия).</li>
+              <li>Какая “боль” сейчас горит (ошибки, скорость, обучение, офлайн, SLA).</li>
+              <li>Процесс найма и формат работы (офис/гибрид/удалёнка).</li>
+            </ul>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <p class="text-sm font-semibold text-slate-900">Контакты</p>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li>
+                <span class="font-semibold text-slate-900">Email</span>:
+                <a class="font-semibold text-accent hover:underline underline-offset-4" href="mailto:sharikov@gmail.com">sharikov@gmail.com</a>
+              </li>
+              <li>
+                <span class="font-semibold text-slate-900">Telegram</span>:
+                <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://t.me/PythonDVP">@PythonDVP</a>
+              </li>
+              <li>
+                <span class="font-semibold text-slate-900">CV</span>:
+                <a
+                  class="font-semibold text-accent hover:underline underline-offset-4"
+                  href="https://krasnodar.hh.ru/resume/ffc2ae69ff0df278e20039ed1f496a76646375"
+                  >hh.ru</a
+                >
+              </li>
+            </ul>
+            <p class="mt-4 text-xs leading-5 text-slate-600">Обычно отвечаю в течение 1–2 рабочих дней.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="mt-8 text-sm leading-6 text-slate-600">
+        <p>Локально открывается без сборки. Стиль — “инженерный документ”: сценарии, контракты, измеримость.</p>
       </footer>
     </main>
   </body>
