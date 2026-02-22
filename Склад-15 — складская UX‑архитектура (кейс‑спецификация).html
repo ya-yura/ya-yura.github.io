@@ -1,575 +1,144 @@
 <!doctype html>
-<html lang="ru" class="h-full bg-slate-50 text-slate-900">
+<html lang="ru" class="h-full scroll-smooth bg-slate-50 text-slate-900">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
-    <title>Склад‑15 — складская UX‑архитектура (кейс)</title>
+    <title>Склад-15 — кейс по снижению операционного риска</title>
     <meta
       name="description"
-      content="Кейс senior UX: архитектура интерфейса для ТСД (PWA, offline‑first, scan‑first). Снижение ошибок и фрикции в складских операциях через сценарии, паттерны восстановления и измеримость."
+      content="Склад-15: кейс про стоимость ошибки в складских операциях. Скан-ориентированный контракт взаимодействия, видимость офлайн-правды, состояния восстановления, передача в разработку/QA и протокол измерения."
     />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="./tokens.css" />
     <link rel="stylesheet" href="./base.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./tailwind-config.js"></script>
     <link rel="stylesheet" href="./theme.css" />
-    <style>
-      .case-prose {
-        max-width: 74ch;
-      }
-    </style>
   </head>
-
   <body class="min-h-full font-sans antialiased">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:border-slate-200 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900"
       >Перейти к содержанию</a
     >
-
-    <div class="lg:hidden sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div class="mx-auto max-w-[1200px] px-4 py-3">
-        <div class="flex items-center gap-3">
-          <div class="min-w-0 flex-1">
-            <label for="tocSelect" class="block text-xs font-semibold tracking-wide text-slate-600">СОДЕРЖАНИЕ</label>
-            <select
-              id="tocSelect"
-              class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-accent focus:outline-none"
-              aria-label="Перейти к разделу"
+    <main id="main" class="mx-auto max-w-[1040px] px-4 py-10 sm:px-6 lg:px-8">
+      <header class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="text-xs font-semibold tracking-wide text-slate-600">КЕЙС • Складские операции • PWA/ТСД</p>
+          <nav class="flex flex-wrap gap-2 text-sm">
+            <a href="./index.html" class="rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-900 hover:border-slate-300">На главную</a>
+            <a href="./safety-reliability-principles.html" class="rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-900 hover:border-slate-300"
+              >Надёжность/безопасность</a
             >
-              <option value="top">Вводная</option>
-              <option value="challenge">Вызов / проблема</option>
-              <option value="role">Моя роль и подход</option>
-              <option value="process">Процесс</option>
-              <option value="decisions">Ключевые решения</option>
-              <option value="result">Результат</option>
-              <option value="learnings">Выводы</option>
-              <option value="appendix">Приложение</option>
-            </select>
-          </div>
-          <a href="#top" data-toc-link class="inline-flex shrink-0 items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900"
-            >Наверх</a
-          >
+          </nav>
         </div>
-      </div>
-    </div>
+        <h1 class="mt-3 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Склад-15: как снизить стоимость операционной ошибки</h1>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Тот же домен и те же ограничения, но подача как корпоративный артефакт: риск, протокол, передача в команду и измеримость.
+        </p>
+      </header>
 
-    <header class="border-b border-slate-200 bg-white">
-      <div class="mx-auto max-w-[1200px] px-4 py-6 lg:px-6">
-        <div class="flex flex-wrap items-start justify-between gap-4">
-          <div class="min-w-0">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Кейс • Складские операции • PWA для ТСД</p>
-            <h1 class="mt-2 text-balance text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl" id="top">
-              Склад‑15: складская UX‑архитектура для ТСД — от «экранов данных» к сценариям действий
-            </h1>
-            <p class="mt-3 case-prose text-pretty text-sm leading-6 text-slate-700 sm:text-base">
-              Проектирование интерфейса для среды с высокой ценой ошибки: нестабильная связь, перчатки, шум, сканер как основной ввод.
-              В фокусе — предсказуемый scan‑цикл, offline‑first синхронизация и измеримость качества.
-            </p>
-            <p class="mt-3 text-xs leading-5 text-slate-600">
-              <span class="font-semibold text-slate-700">Роль</span>: UX‑архитектор / продуктовый дизайнер
-              <span class="text-slate-300" aria-hidden="true">•</span>
-              <span class="font-semibold text-slate-700">Выход</span>: сценарии + паттерны + measurement plan + handoff
-            </p>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="tldr">
+        <h2 class="text-lg font-semibold text-slate-900">Коротко</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Цена ошибки:</span> неверная операция на складе быстро превращается в SLA-риск, возвраты и повторную работу.</li>
+          <li><span class="font-semibold text-slate-900">Рычаг:</span> scan-first контракт взаимодействия + видимость офлайн-правды + состояния восстановления.</li>
+          <li><span class="font-semibold text-slate-900">Поставка:</span> таблицы состояний, переиспользуемые паттерны, критерии приёмки, QA-матрица, словарь событий.</li>
+          <li><span class="font-semibold text-slate-900">Измерение:</span> база → изменение → сравнение → регрессия; без выдуманных цифр.</li>
+        </ul>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="executive-summary">
+        <h2 class="text-lg font-semibold text-slate-900">A. Исполнительное резюме</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Контекст: складские операции живут на балансе скорости и точности. Цена ошибки — это не только “не тот экран”, а прямые потери: срыв SLA, возвраты,
+          повторные перемещения, дорогая диагностика в конце смены. Среда ограничивает интерфейс: офлайн, сканер как основной ввод, шум, перчатки, одна рука.
+          Моя роль: архитектор риск-ориентированного UX операционных интерфейсов. Выход работы: контракт взаимодействия, паттерны поведения в исключениях, протокол измерения и передача в команду,
+          пригодный для разработки и QA без трактовок.
+        </p>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="cost-of-error">
+        <h2 class="text-lg font-semibold text-slate-900">B. Цена ошибки</h2>
+        <div class="mt-3 space-y-3">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Риск: неверное размещение/подбор</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Последствие: неправильный товар в цепочке, пересборка и сдвиг отгрузки. Почему интерфейс это допускал: неявная верификация результата скана до фиксации эффекта.</p>
           </div>
-          <div class="flex flex-wrap gap-2">
-            <a href="./index.html" class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
-              >На главную</a
-            >
-            <a href="./index.html#cases" class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
-              >Кейсы</a
-            >
-            <a href="./index.html#contact" class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
-              >Связаться</a
-            >
-            <a href="./sklad.html" class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300"
-              >Инженерная спека</a
-            >
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Риск: дубли действий в офлайне</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Последствие: повторная запись и конфликт статусов. Почему интерфейс это допускал: оператор не видел границу “действие принято локально” и “доставлено в систему”.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Риск: потеря следующего шага</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Последствие: операционный цикл распадается, растёт время и число ошибок выбора. Почему интерфейс это допускал: не фиксировалось явное состояние завершения и перехода.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Риск: сетевой обрыв = хаос повторов</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Последствие: оператор “страхуется” ручными повторами, создавая новые дефекты. Почему интерфейс это допускал: не было прозрачной модели синхронизации и пути восстановления.</p>
           </div>
         </div>
+      </section>
 
-        <div class="mt-6 grid gap-3 sm:grid-cols-3">
-          <div class="rounded-xl border border-slate-200 bg-white p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Вызов</p>
-            <p class="mt-2 text-sm font-semibold text-slate-900">Снизить ошибки и время на операцию</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">Стабилизировать scan‑цикл и восстановление в исключениях.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-white p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Ограничения</p>
-            <p class="mt-2 text-sm font-semibold text-slate-900">Офлайн, перчатки, шум</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">Сканер — основной ввод, тап — запасной.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-white p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Подход</p>
-            <p class="mt-2 text-sm font-semibold text-slate-900">Сценарии → паттерны → измеримость</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">Делаю UX проверяемым, а не «обсуждаемым».</p>
-          </div>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="protocol">
+        <h2 class="text-lg font-semibold text-slate-900">C. Протокол</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Политика scan-first:</span> ключевой ввод начинается сканом, ручной ввод — контролируемое исключение.</li>
+          <li><span class="font-semibold text-slate-900">Цикл операции:</span> готовность к скану → проверка → фиксация эффекта → следующий шаг как обязательный контракт операции.</li>
+          <li><span class="font-semibold text-slate-900">Видимость офлайн-правды:</span> очередь, состояние синка и подтверждение записи видимы оператору.</li>
+          <li><span class="font-semibold text-slate-900">Состояния восстановления:</span> каждая ошибка = состояние с безопасными действиями, не тупик.</li>
+          <li><span class="font-semibold text-slate-900">Правила завершения:</span> “done” фиксируется только при выполнении критериев завершения и обработке mismatch.</li>
+          <li><span class="font-semibold text-slate-900">Мультиоператорность как норма:</span> атрибуция действий и видимость партнёра в совместной операции.</li>
+        </ul>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="artifacts">
+        <h2 class="text-lg font-semibold text-slate-900">D. Артефакты (передача в разработку/QA)</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+          <li>Диаграмма состояний и таблицы состояний по операциям: приёмка, размещение, отбор, перемещения.</li>
+          <li>Переиспользуемые паттерны: `ActionHeader`, `ScanZone`, `ErrorHint`, `OfflineBadge`.</li>
+          <li>Критерии приёмки для критичных переходов и завершения операций.</li>
+          <li>QA-матрица тестов: валидные/невалидные переходы, офлайн-сценарии, коллизии нескольких операторов.</li>
+          <li>Минимальный словарь событий для продуктовой и операционной аналитики.</li>
+        </ul>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="measurement-protocol">
+        <h2 class="text-lg font-semibold text-slate-900">E. Протокол измерения</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Проверка эффекта строится как цикл: база → изменение → сравнение → регрессия. Это не “обещание процента”, а воспроизводимая методика сравнения версий.
+        </p>
+        <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50">
+          <table class="w-full min-w-[860px] text-left text-sm">
+            <thead class="bg-white text-xs font-semibold tracking-wide text-slate-600">
+              <tr>
+                <th class="px-4 py-3">Показатель / событие</th>
+                <th class="px-4 py-3">Что считаем</th>
+                <th class="px-4 py-3">Обязательные поля</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr><td class="px-4 py-3">TTFS</td><td class="px-4 py-3">Время до первого валидного скана</td><td class="px-4 py-3">operation_id, doc_id, operator_id, offline_flag</td></tr>
+              <tr><td class="px-4 py-3">Error rate by type</td><td class="px-4 py-3">Частота ошибок по таксономии</td><td class="px-4 py-3">error_type, action_id, operation_id</td></tr>
+              <tr><td class="px-4 py-3">Duplicates</td><td class="px-4 py-3">Повторные фиксации одной операции</td><td class="px-4 py-3">doc_id, action_id, operator_id, partner_id</td></tr>
+              <tr><td class="px-4 py-3">Время завершения / доработка</td><td class="px-4 py-3">Длительность и доработки после завершения</td><td class="px-4 py-3">doc_complete, mismatch_flag, rework_flag</td></tr>
+              <tr><td class="px-4 py-3">Ключевые события</td><td class="px-4 py-3">doc_open, scan_success, scan_error, doc_complete, sync_state_change</td><td class="px-4 py-3">operation_id, doc_id, operator_id, partner_id, action_id, offline_flag, error_type</td></tr>
+            </tbody>
+          </table>
         </div>
-      </div>
-    </header>
+      </section>
 
-    <div class="mx-auto max-w-[1200px] px-4 py-8 lg:px-6">
-      <div class="lg:grid lg:grid-cols-[280px_1fr] lg:gap-10">
-        <aside class="hidden lg:block">
-          <div class="sticky top-6">
-            <div class="rounded-xl border border-slate-200 bg-white p-4">
-              <p class="text-xs font-semibold tracking-wide text-slate-600">СОДЕРЖАНИЕ</p>
-              <nav class="mt-3" aria-label="Оглавление">
-                <ul class="space-y-1 text-sm">
-                  <li><a class="toc-link block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#challenge" data-toc-link>Вызов / проблема</a></li>
-                  <li><a class="toc-link block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#role" data-toc-link>Моя роль и подход</a></li>
-                  <li><a class="toc-link block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#process" data-toc-link>Процесс</a></li>
-                  <li><a class="toc-link block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#decisions" data-toc-link>Решения</a></li>
-                  <li><a class="toc-link block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#result" data-toc-link>Результат</a></li>
-                  <li><a class="toc-link block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#learnings" data-toc-link>Выводы</a></li>
-                  <li><a class="toc-link block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-50" href="#appendix" data-toc-link>Приложение</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </aside>
-
-        <main id="main" class="min-w-0 space-y-10">
-          <section id="challenge" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">Вызов / проблема</h2>
-              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
-            </div>
-            <div class="mt-4 grid gap-6 lg:grid-cols-2">
-              <div>
-                <p class="text-sm font-semibold text-slate-900">Бизнес‑контекст</p>
-                <p class="mt-2 case-prose text-sm leading-6 text-slate-700">
-                  Склад зарабатывает на скорости и точности. Ошибки в размещении/подборе/отгрузке — это потери и срыв SLA. Лишние шаги и
-                  «паузы на подумать» размножаются на тысячи повторов.
-                </p>
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-slate-900">Пользовательский контекст</p>
-                <p class="mt-2 case-prose text-sm leading-6 text-slate-700">
-                  Одна рука, перчатки, шум, нестабильный Wi‑Fi. Сканер — основной канал ввода. Интерфейс должен поддерживать цикл и восстановление,
-                  а не чтение.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section id="role" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">Моя роль и подход</h2>
-              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
-            </div>
-            <div class="mt-4 grid gap-6 lg:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">Что делал лично</p>
-                <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li>Разложил операции на сценарии + исключения.</li>
-                  <li>Собрал паттерны: scan‑ready, подтверждения, ошибки, офлайн‑статусы.</li>
-                  <li>Зафиксировал measurement plan (метрики + события + свойства).</li>
-                </ul>
-              </div>
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">Принципы</p>
-                <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li><span class="font-medium text-slate-900">Next/Now/Done</span> — приоритет информации.</li>
-                  <li><span class="font-medium text-slate-900">Offline‑first</span> — норма, не edge case.</li>
-                  <li><span class="font-medium text-slate-900">Handoff‑ready</span> — минимум трактовок при реализации и QA.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section id="process" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">Процесс</h2>
-              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
-            </div>
-            <div class="mt-4 grid gap-6 lg:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">1) С чего начал (и почему не с “экранов”)</p>
-                <p class="mt-2 text-sm leading-6 text-slate-700">
-                  Любая складская операция — это повторяемый цикл: <span class="font-medium text-slate-900">готовность к скану → проверка → эффект → следующий скан</span>.
-                  Поэтому я собирал архитектуру вокруг цикла и исключений, а не вокруг меню и таблиц.
-                </p>
-                <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li>Разложил операции на шаги и обязательные проверки (блокирующие и неблокирующие).</li>
-                  <li>Сформулировал “done” для каждой операции (включая завершение с расхождениями).</li>
-                  <li>Описал ошибки как сценарии восстановления (без стыда и без тостов «что-то пошло не так»).</li>
-                </ul>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
-                <p class="text-sm font-semibold text-slate-900">2) Как я сделал UX измеримым</p>
-                <p class="mt-2 text-sm leading-6 text-slate-700">
-                  В таких продуктах спор “удобно/неудобно” бессмысленен без протокола измерения. Поэтому параллельно с UX‑архитектурой я зафиксировал,
-                  какие события логируем и что считаем нормой.
-                </p>
-                <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li><span class="font-medium text-slate-900">События</span>: scan_success, scan_error, doc_open, doc_complete, sync_state_change.</li>
-                  <li><span class="font-medium text-slate-900">Поля</span>: operation_id, doc_id, operator_id, partner_id, action_id, offline_flag.</li>
-                  <li><span class="font-medium text-slate-900">Риски</span>: дубли действий в офлайне, потеря контекста, “переходы ради переходов”.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-6">
-              <p class="text-sm font-semibold text-slate-900">Артефакт: ядро взаимодействия как петля (не как “экранный маршрут”)</p>
-              <p class="mt-2 case-prose text-sm leading-6 text-slate-700">
-                Это главный перенос мышления. “Экранный дизайн” в ТСД‑среде ломается на исключениях. Петля держит и норму, и сбои.
-              </p>
-              <svg viewBox="0 0 980 210" class="mt-4 h-auto min-w-[820px] w-full rounded-lg border border-slate-200 bg-white p-4" role="img" aria-label="Loop: Список → Scan-ready → Исключения → Завершение → обратно в Scan-ready">
-                <defs>
-                  <style>
-                    .b { fill: var(--surface-0); stroke: var(--border-subtle); stroke-width: 2; }
-                    .t { font: 600 13px var(--font-sans); fill: var(--text-1); }
-                    .s { font: 500 12px var(--font-sans); fill: var(--text-3); }
-                    .a { stroke: var(--text-2); stroke-width: 2; fill: none; marker-end: url(#m); }
-                  </style>
-                  <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                    <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--text-2)"></path>
-                  </marker>
-                </defs>
-                <rect class="b" x="30" y="60" width="170" height="70" rx="12"></rect>
-                <text class="t" x="50" y="92">Список/документ</text>
-                <text class="s" x="50" y="112">быстрый вход</text>
-
-                <rect class="b" x="240" y="35" width="200" height="120" rx="12"></rect>
-                <text class="t" x="260" y="78">Scan‑ready</text>
-                <text class="s" x="260" y="98">Next/Now/Done</text>
-                <text class="s" x="260" y="118">фокус на ввод</text>
-
-                <rect class="b" x="485" y="60" width="200" height="70" rx="12"></rect>
-                <text class="t" x="505" y="92">Исключения</text>
-                <text class="s" x="505" y="112">восстановление</text>
-
-                <rect class="b" x="730" y="60" width="220" height="70" rx="12"></rect>
-                <text class="t" x="750" y="92">Завершение</text>
-                <text class="s" x="750" y="112">сводка/подтверждение</text>
-
-                <path class="a" d="M200 95 L240 95"></path>
-                <path class="a" d="M440 95 L485 95"></path>
-                <path class="a" d="M685 95 L730 95"></path>
-                <path class="a" d="M585 130 C 585 175 345 175 345 155"></path>
-                <path class="a" d="M840 130 C 840 190 140 190 140 130"></path>
-              </svg>
-            </div>
-
-            <div class="mt-6 rounded-xl border border-slate-200 bg-white p-6">
-              <p class="text-sm font-semibold text-slate-900">Артефакт: «до/после» логики (почему это не “косметика”)</p>
-              <div class="mt-4 grid gap-4 lg:grid-cols-2">
-                <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-                  <p class="text-xs font-semibold tracking-wide text-slate-600">До</p>
-                  <p class="mt-2 text-sm font-semibold text-slate-900">Меню → поиск функции → экран данных</p>
-                  <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-slate-700">
-                    <li>много развилок</li>
-                    <li>часто неясно «что дальше»</li>
-                    <li>ошибка — тост/тупик</li>
-                    <li>офлайн проявляется «внезапно»</li>
-                  </ul>
-                </div>
-                <div class="rounded-xl border border-slate-200 bg-accent-50 p-5">
-                  <p class="text-xs font-semibold tracking-wide text-slate-600">После</p>
-                  <p class="mt-2 text-sm font-semibold text-slate-900">Сценарий → scan‑цикл → исключения → done</p>
-                  <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-slate-700">
-                    <li>одна главная “ось” действий</li>
-                    <li>ошибки — сценарии восстановления</li>
-                    <li>офлайн — видимый режим с очередью</li>
-                    <li>измеримость заложена заранее</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-6 rounded-xl border border-slate-200 bg-white p-6">
-              <p class="text-sm font-semibold text-slate-900">Выборочно: один сценарий в “боевом” виде</p>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Чтобы было понятно, что это не слова. Ниже — выжимка формата, который реально снимает неоднозначность для разработки и QA.
-              </p>
-              <details class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
-                <summary class="cursor-pointer select-none text-sm font-semibold text-slate-900">Приёмка (выжимка спецификации)</summary>
-                <div class="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white">
-                  <table class="min-w-[980px] w-full text-left text-sm">
-                    <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
-                      <tr>
-                        <th class="px-4 py-3">Блок</th>
-                        <th class="px-4 py-3">Спецификация</th>
-                      </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-200 text-slate-700">
-                      <tr>
-                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">Next/Now/Done</th>
-                        <td class="px-4 py-3">
-                          <ul class="list-disc pl-5">
-                            <li><span class="font-semibold text-slate-900">Next</span>: скан товара.</li>
-                            <li><span class="font-semibold text-slate-900">Now</span>: сопоставление со строкой документа + эффект.</li>
-                            <li><span class="font-semibold text-slate-900">Done</span>: завершение с подтверждением расхождений.</li>
-                          </ul>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">Ошибки</th>
-                        <td class="px-4 py-3">
-                          <ul class="list-disc pl-5">
-                            <li>неизвестный штрихкод → состояние ошибки → перескан/ввод/отмена</li>
-                            <li>offline → запись в очередь + видимый статус синка</li>
-                            <li>расхождения при завершении → сводка + подтверждение</li>
-                          </ul>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="px-4 py-3 font-mono text-xs text-slate-900">Контракт измерения</th>
-                        <td class="px-4 py-3 font-mono text-xs text-slate-900">
-                          doc_open → scan_success/scan_error → doc_complete (+ sync_state_change)
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p class="mt-4 text-sm leading-6 text-slate-700">
-                  Полная версия сценариев по всем операциям — в <a class="font-semibold text-accent hover:underline" href="./sklad.html">`sklad.html`</a>.
-                </p>
-              </details>
-            </div>
-          </section>
-
-          <section id="decisions" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">Ключевые решения</h2>
-              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
-            </div>
-            <div class="mt-4 grid gap-4 lg:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">1) Scan‑first как политика интерфейса</p>
-                <p class="mt-2 text-sm leading-6 text-slate-700">
-                  Сканер — “клавиатура” склада. Я сделал так, чтобы система большую часть времени находилась в состоянии <span class="font-medium text-slate-900">готовности к скану</span>,
-                  а ручной ввод был запасным маршрутом.
-                </p>
-                <p class="mt-3 text-xs leading-5 text-slate-600">
-                  Альтернатива, которую я сознательно избегал: постоянная навигация по меню и таблицам → рост ошибок и времени на действие.
-                </p>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">2) Ошибка = сценарий (а не “сообщение”)</p>
-                <p class="mt-2 text-sm leading-6 text-slate-700">
-                  “Не найдено”, “не в документе”, “обрыв сети” — это состояния, где у пользователя есть безопасные, понятные действия.
-                  Это снижает стоимость ошибки и делает обучение предсказуемым.
-                </p>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">3) Offline‑first как контракт доверия</p>
-                <p class="mt-2 text-sm leading-6 text-slate-700">
-                  Явный статус синка + очередь действий снимают главный страх оператора: “я сделал — система запомнила?”.
-                  Это напрямую влияет на дубли и хаотичные повторы.
-                </p>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">4) Два оператора — first‑class сценарий</p>
-                <p class="mt-2 text-sm leading-6 text-slate-700">
-                  Атрибуция operator_id + partner_id — не “аналитика ради аналитики”, а условие честных KPI и управляемой кооперации.
-                </p>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-6 lg:col-span-2">
-                <p class="text-sm font-semibold text-slate-900">Набор переиспользуемых паттернов (то, что ускоряет разработку)</p>
-                <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 text-sm text-slate-700">
-                  <div class="rounded-xl border border-slate-200 bg-white p-4">
-                    <p class="font-semibold text-slate-900">ActionHeader</p>
-                    <p class="mt-1 text-xs leading-5 text-slate-600">действие + статус</p>
-                  </div>
-                  <div class="rounded-xl border border-slate-200 bg-white p-4">
-                    <p class="font-semibold text-slate-900">ScanZone</p>
-                    <p class="mt-1 text-xs leading-5 text-slate-600">готовность к вводу</p>
-                  </div>
-                  <div class="rounded-xl border border-slate-200 bg-white p-4">
-                    <p class="font-semibold text-slate-900">ErrorHint</p>
-                    <p class="mt-1 text-xs leading-5 text-slate-600">восстановление</p>
-                  </div>
-                  <div class="rounded-xl border border-slate-200 bg-white p-4">
-                    <p class="font-semibold text-slate-900">OfflineBadge</p>
-                    <p class="mt-1 text-xs leading-5 text-slate-600">доверие к синку</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="result" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">Результат и влияние</h2>
-              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
-            </div>
-            <div class="mt-4 grid gap-6 lg:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">Что было готово к реализации</p>
-                <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li>Сквозные сценарии операций + исключения + правила завершения (включая расхождения).</li>
-                  <li>Единые паттерны scan‑цикла (поведение повторяется между модулями).</li>
-                  <li>Offline‑контракт: очередь действий, статусы, правила дублирования.</li>
-                  <li>Measurement plan: события и KPI, пригодные для регрессии UX.</li>
-                </ul>
-                <p class="mt-3 text-xs leading-5 text-slate-600">
-                  Это снижает стоимость разработки: меньше трактовок, меньше “а давайте как в другом модуле”, проще тестировать.
-                </p>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
-                <p class="text-sm font-semibold text-slate-900">Impact‑модель (честно)</p>
-                <p class="mt-2 text-sm leading-6 text-slate-700">
-                  Я не придумываю A/B цифры, если их нет. Но я фиксирую <span class="font-medium text-slate-900">ожидаемый эффект</span> и <span class="font-medium text-slate-900">как мы его проверим</span>.
-                </p>
-                <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li><span class="font-medium text-slate-900">TTFS</span> ↓ за счёт scan‑ready состояния.</li>
-                  <li><span class="font-medium text-slate-900">%errors</span> ↓ за счёт блокирующих проверок и восстановления.</li>
-                  <li><span class="font-medium text-slate-900">duplicates</span> ↓ за счёт офлайн‑очереди и явного статуса.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-white p-6">
-              <p class="text-sm font-semibold text-slate-900">Контракт измерения (минимальный набор)</p>
-              <table class="mt-3 min-w-[980px] w-full text-left text-sm">
-                <thead class="bg-slate-50 text-xs font-semibold tracking-wide text-slate-700">
-                  <tr>
-                    <th class="px-4 py-3">Метрика</th>
-                    <th class="px-4 py-3">Зачем</th>
-                    <th class="px-4 py-3">События</th>
-                    <th class="px-4 py-3">Примечание</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 text-slate-700">
-                  <tr>
-                    <td class="px-4 py-3 font-medium text-slate-900">Time to first scan</td>
-                    <td class="px-4 py-3">Фрикция входа в цикл</td>
-                    <td class="px-4 py-3 font-mono text-xs">doc_open, scan_success</td>
-                    <td class="px-4 py-3">сегментация по операции</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-3 font-medium text-slate-900">Error rate</td>
-                    <td class="px-4 py-3">Цена ошибок</td>
-                    <td class="px-4 py-3 font-mono text-xs">scan_error, scan_success</td>
-                    <td class="px-4 py-3">тип ошибки обязателен</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-3 font-medium text-slate-900">Duplicate actions</td>
-                    <td class="px-4 py-3">Офлайн‑риск</td>
-                    <td class="px-4 py-3 font-mono text-xs">sync_state_change + action_id</td>
-                    <td class="px-4 py-3">нужна идемпотентность</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section id="learnings" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">Выводы</h2>
-              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
-            </div>
-            <ul class="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-              <li>В высокорисковых системах UX — это дисциплина состояний и восстановления, а не “экраны”.</li>
-              <li>Измеримость должна проектироваться вместе с интерфейсом.</li>
-            </ul>
-          </section>
-
-          <section id="appendix" class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <h2 class="text-lg font-semibold text-slate-900 sm:text-xl">Приложение</h2>
-              <a href="#top" data-toc-link class="text-sm font-medium text-accent hover:underline">Наверх</a>
-            </div>
-            <div class="mt-4 grid gap-4 lg:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
-                <p class="text-sm font-semibold text-slate-900">Полная инженерная спецификация</p>
-                <p class="mt-2 text-sm leading-6 text-slate-700">
-                  Детальные таблицы сценариев, ошибок и требований offline‑очереди — в отдельном документе (чтобы основной кейс читался быстро).
-                </p>
-                <a class="mt-4 inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 hover:border-slate-300" href="./sklad.html"
-                  >Открыть `sklad.html`</a
-                >
-              </div>
-              <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <p class="text-sm font-semibold text-slate-900">Что я бы добавил при наличии прод‑доступа</p>
-                <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li>Сравнение “до/после” по TTFS и error rate на одной и той же операции.</li>
-                  <li>Теплокарту типов ошибок по складам/сменам (как вход в приоритизацию).</li>
-                  <li>Сегментацию по оператору/партнёру для выявления обучения и системных проблем.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
-    </div>
-
-    <script>
-      (function () {
-        const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const tocLinks = Array.from(document.querySelectorAll("a.toc-link"));
-        const allLinks = Array.from(document.querySelectorAll("a[data-toc-link]"));
-        const tocSelect = document.getElementById("tocSelect");
-        const sections = Array.from(document.querySelectorAll("main section[id], header h1[id]"));
-
-        function setActive(id) {
-          if (tocSelect) tocSelect.value = id;
-          for (const a of tocLinks) {
-            const isActive = a.getAttribute("href") === "#" + id;
-            a.classList.toggle("bg-slate-100", isActive);
-            a.classList.toggle("text-slate-900", isActive);
-            a.classList.toggle("font-semibold", isActive);
-            a.classList.toggle("text-slate-700", !isActive);
-            if (isActive) a.setAttribute("aria-current", "true");
-            else a.removeAttribute("aria-current");
-          }
-        }
-
-        function scrollToId(id) {
-          const el = document.getElementById(id);
-          if (!el) return;
-          if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
-          el.focus({ preventScroll: true });
-          el.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
-          history.replaceState(null, "", "#" + id);
-        }
-
-        if (tocSelect) tocSelect.addEventListener("change", () => scrollToId(tocSelect.value));
-
-        for (const a of allLinks) {
-          a.addEventListener("click", (e) => {
-            const href = a.getAttribute("href") || "";
-            if (!href.startsWith("#")) return;
-            const id = href.slice(1);
-            if (!document.getElementById(id)) return;
-            e.preventDefault();
-            scrollToId(id);
-          });
-        }
-
-        if (!("IntersectionObserver" in window)) {
-          setActive((location.hash || "#top").slice(1) || "top");
-          return;
-        }
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            const visible = entries
-              .filter((e) => e.isIntersecting)
-              .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0];
-            if (visible && visible.target && visible.target.id) setActive(visible.target.id);
-          },
-          { root: null, threshold: [0.1, 0.2, 0.35], rootMargin: "-20% 0px -65% 0px" }
-        );
-
-        for (const s of sections) observer.observe(s);
-        setActive((location.hash || "#top").slice(1) || "top");
-      })();
-    </script>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="prod-access">
+        <h2 class="text-lg font-semibold text-slate-900">F. Что сделал бы с прод-доступом</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+          <li>Сегментации по складам, сменам, типам операций и профилям операторов.</li>
+          <li>Карту ошибок и дубликатов по сменам для приоритизации изменений.</li>
+          <li>Сравнение версий протокола по регрессии (не только средние, но и хвосты распределений).</li>
+        </ul>
+      </section>
+    </main>
   </body>
 </html>
-

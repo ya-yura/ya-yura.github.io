@@ -4,31 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
-
-    <title>Портфолио — Senior Product UX (архитектура сценариев)</title>
+    <title>Портфолио — снижение стоимости человеческой ошибки</title>
     <meta
       name="description"
-      content="Портфолио senior product UX: архитектура сценариев, состояния/контракты взаимодействия, offline‑first, handoff для dev/QA. Кейсы: склад (ТСД/PWA) и embedded (тепловизор)."
+      content="Портфолио: проектирование интерфейсов для корпоративных B2B-систем с высокой ценой ошибки. Риск-контуры, контракт взаимодействия, модель состояний, восстановление, протокол измерения и передача в разработку/QA."
     />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="./tokens.css" />
     <link rel="stylesheet" href="./base.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./tailwind-config.js"></script>
     <link rel="stylesheet" href="./theme.css" />
-
-    <style>
-      /* Keep the homepage strictly “document-like”: no decorative effects. */
-      .reading {
-        max-width: 78ch;
-      }
-    </style>
   </head>
-
   <body class="min-h-full font-sans antialiased">
     <a
       href="#cases"
@@ -39,281 +28,151 @@
     <main class="mx-auto max-w-[1120px] px-4 py-10 sm:px-6 lg:px-8">
       <header class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
         <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="text-xs font-semibold tracking-wide text-slate-600">Пылёв Юрий • Senior Product UX</div>
-          <nav class="flex flex-wrap items-center gap-2 text-sm">
+          <div class="text-xs font-semibold tracking-wide text-slate-600">Пылёв Юрий • Дизайн операционных систем</div>
+          <nav class="flex flex-wrap items-center gap-2 text-sm" aria-label="Главная навигация">
             <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#cases">Кейсы</a>
             <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#about">Обо мне</a>
+            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="./safety-reliability-principles.html"
+              >Надёжность и безопасность</a
+            >
             <a class="rounded-lg px-3 py-2 font-semibold text-accent hover:bg-accent-50" href="#contact">Связаться</a>
           </nav>
         </div>
 
-        <div class="mt-5 grid gap-6 lg:grid-cols-[1fr_360px]">
+        <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
           <div>
             <h1 class="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              Проектирую сложные сценарии так, чтобы ими можно было пользоваться и их можно было измерять
+              Снижаю стоимость человеческой ошибки в рабочих системах
             </h1>
-            <p class="mt-3 reading text-pretty text-sm leading-6 text-slate-700 sm:text-base">
-              Мой фокус — <span class="font-semibold text-slate-900">UX‑архитектура</span>: сценарии, состояния, контракты взаимодействия и handoff для dev/QA.
-              Делаю интерфейсы не “красивыми”, а <span class="font-semibold text-slate-900">предсказуемыми</span> в реальных условиях: офлайн, сканер, одна рука, высокая цена ошибки.
+            <p class="mt-3 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+              Проектирую интерфейсы, в которых оператор не ломает процесс в реальных условиях: офлайн, сканер, одна рука, перчатки, шум.
+            </p>
+            <p class="mt-2 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+              Работаю как системный слой между продуктом, разработкой и QA: от риск-контуров до измеримого протокола.
             </p>
 
             <div class="mt-5 flex flex-wrap gap-2">
-              <a
-                href="#cases"
-                class="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+              <a href="#cases" class="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
                 >Смотреть кейсы</a
               >
               <a
-                href="#contact"
+                href="./safety-reliability-principles.html"
                 class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
-                >Связаться</a
-              >
-              <a
-                href="./uv.html"
-                class="inline-flex items-center rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
-                >Краткий вход</a
+                >Принципы надёжности и безопасности</a
               >
             </div>
           </div>
 
           <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Быстрые сигналы</p>
+            <p class="text-xs font-semibold tracking-wide text-slate-600">Что получите</p>
             <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li><span class="font-semibold text-slate-900">Домены</span>: складские операции (ТСД/PWA), embedded‑устройства</li>
-              <li><span class="font-semibold text-slate-900">Формат</span>: сценарии → решения → критерии успеха → handoff</li>
-              <li><span class="font-semibold text-slate-900">Артефакты</span>: state machine, паттерны, telemetry/metrics plan, тест‑матрица</li>
+              <li><span class="font-semibold text-slate-900">Риск-контуры</span>: где цена ошибки максимальна и почему.</li>
+              <li><span class="font-semibold text-slate-900">Контракт взаимодействия</span>: однозначные правила ввода, переходов и завершения.</li>
+              <li><span class="font-semibold text-slate-900">Модель состояний</span>: состояния и переходы без “серых зон”.</li>
+              <li><span class="font-semibold text-slate-900">Восстановление после сбоев</span>: ошибка как состояние с путём восстановления.</li>
+              <li><span class="font-semibold text-slate-900">Протокол измерения</span>: события, поля, база/сравнение/регрессия.</li>
+              <li><span class="font-semibold text-slate-900">Тест-матрица QA</span>: проверка сценариев без трактовок.</li>
             </ul>
-            <div class="mt-4 rounded-lg border border-slate-200 bg-white p-4">
-              <p class="text-xs font-semibold tracking-wide text-slate-600">Статус</p>
-              <p class="mt-2 text-sm font-semibold text-slate-900">Готов к работе</p>
-              <p class="mt-2 text-xs leading-5 text-slate-600">Откликнусь и пришлю детали по запросу (формат, доступность, условия).</p>
-            </div>
-
-            <div class="mt-4 flex flex-wrap gap-2">
-              <a
-                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:border-slate-300"
-                href="mailto:sharikov@gmail.com"
-                >Email</a
-              >
-              <a
-                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:border-slate-300"
-                href="https://t.me/PythonDVP"
-                >Telegram</a
-              >
-              <a
-                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:border-slate-300"
-                href="https://krasnodar.hh.ru/resume/ffc2ae69ff0df278e20039ed1f496a76646375"
-                >CV</a
-              >
-            </div>
           </div>
         </div>
       </header>
 
-      <section id="cases" class="mt-8 grid gap-4 md:grid-cols-2">
-        <a
-          href="./Склад-15 — складская UX‑архитектура (кейс‑спецификация).html"
-          class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-paper hover:border-slate-300 focus:outline-none"
-          aria-label="Открыть кейс: Склад‑15 — складская UX‑архитектура"
-        >
-          <div class="relative">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Склад • PWA • ТСД</p>
-            <h2 class="mt-2 text-balance text-lg font-semibold text-slate-900 sm:text-xl">Склад‑15 — складская UX‑архитектура</h2>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Offline‑first и scan‑first, сценарии операций как “контракты”, паттерны ошибок как восстановление. Фокус: снижение ошибок и времени
-              на операцию.
-            </p>
-
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>Сценарии: приёмка, размещение, отбор/перемещения</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>Измеримость UX: что и как считать, чтобы улучшать</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>Риск‑контуры: offline, сканер, два оператора</span>
-              </li>
-            </ul>
-
-            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
-              <span>Открыть кейс</span>
-              <span aria-hidden="true">→</span>
-            </div>
-          </div>
-        </a>
-
-        <a
-          href="./UV-case.html"
-          class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-paper hover:border-slate-300 focus:outline-none"
-          aria-label="Открыть кейс: UX встроенной тепловизионной камеры (ИК‑устройство)"
-        >
-          <div class="relative">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">ИК‑устройство • Embedded • State machine</p>
-            <h2 class="mt-2 text-balance text-lg font-semibold text-slate-900 sm:text-xl">Тепловизионная камера — UX поверх Live View</h2>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Архитектура взаимодействия для устройства: состояния вместо “хаоса”, оверлеи, быстрые меню, язык RGB. Фокус: убрать неоднозначность
-              для разработки и QA.
-            </p>
-
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>Машины состояний устройства и Live View</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>Quick Menu + контекстные действия как контракт</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>Ошибки/предупреждения как сценарии восстановления</span>
-              </li>
-            </ul>
-
-            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
-              <span>Открыть кейс</span>
-              <span aria-hidden="true">→</span>
-            </div>
-          </div>
-        </a>
-      </section>
-
-      <section id="about" class="mt-10 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <div class="flex flex-wrap items-start justify-between gap-4">
-          <h2 class="text-xl font-semibold tracking-tight text-slate-900">Обо мне: как думаю и как работаю</h2>
-          <a href="#top" class="text-sm font-semibold text-accent hover:underline underline-offset-4">Наверх</a>
-        </div>
-
-        <p class="mt-3 reading text-sm leading-6 text-slate-700 sm:text-base">
-          Я хорошо чувствую границу между “дизайн как макет” и “дизайн как система”. В кейсах выше я показываю второе: как превращаю хаос требований,
-          ограничений и исключений в предсказуемые сценарии, паттерны и измеримость.
-        </p>
-
-        <div class="mt-6 grid gap-4 lg:grid-cols-3">
+      <section class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Где я сильнее всего</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
           <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-sm font-semibold text-slate-900">Как принимаю решения</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Отталкиваюсь от <span class="font-semibold text-slate-900">рисков и сценариев</span>: где цена ошибки максимальна, что ломается в офлайне,
-              где пользователь “теряет следующий шаг”.
-            </p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-sm font-semibold text-slate-900">Как работаю с неопределённостью</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Фиксирую гипотезы как проверяемые контракты: <span class="font-semibold text-slate-900">ожидаемый эффект → метрика → событие</span>.
-              Если данных нет — честно формулирую, какие данные нужны и как их собрать.
-            </p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-sm font-semibold text-slate-900">Как работаю с командой</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Делаю handoff без “трактовок”: состояния, ошибки, правила завершения, тест‑матрицы. Это экономит время разработки и QA.
-            </p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-white p-5">
-            <p class="text-sm font-semibold text-slate-900">Как защищаю UX</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Не “продаю красоту”. Привязываю решения к бизнес‑рискам (SLA, ошибки, стоимость обучения) и к пользовательской боли (время, внимание, стресс).
-            </p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-white p-5">
-            <p class="text-sm font-semibold text-slate-900">Что важно в продукте</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Предсказуемость, устойчивость к исключениям, измеримость. В критичных системах “не упасть” часто важнее “сделать богаче”.
-            </p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-white p-5">
-            <p class="text-sm font-semibold text-slate-900">Как выглядел бы следующий шаг</p>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Подключить реальные данные и закрыть цикл улучшений: baseline → изменения → сравнение → регрессия по метрикам.
-              Использую продуктовую аналитику и событийное логирование как часть дизайна: какие события логировать, какими полями сегментировать, как сравнивать версии.
-            </p>
-          </div>
-
-          <div class="rounded-xl border border-slate-200 bg-white p-5 lg:col-span-3">
-            <p class="text-sm font-semibold text-slate-900">Измеримость: аналитика, логирование, наблюдаемость (как системная часть UX)</p>
-            <p class="mt-2 reading text-sm leading-6 text-slate-700">
-              В продукте с высокой ценой ошибки “измеримость” — это не отчёт в конце, а контракт, который проектируется вместе с интерфейсом.
-              Ниже — типовой, реалистичный набор, который я закладываю в handoff.
-            </p>
-            <div class="mt-4 grid gap-4 lg:grid-cols-3">
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-                <p class="text-xs font-semibold tracking-wide text-slate-600">Product analytics</p>
-                <ul class="mt-2 space-y-2 text-sm leading-6 text-slate-700">
-                  <li><span class="font-semibold text-slate-900">События</span>: единые имена + обязательные свойства.</li>
-                  <li><span class="font-semibold text-slate-900">Инструменты</span>: Amplitude / Mixpanel / PostHog / GA4 (по ситуации).</li>
-                  <li><span class="font-semibold text-slate-900">Артефакт</span>: event dictionary + примеры запросов.</li>
-                </ul>
-              </div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-                <p class="text-xs font-semibold tracking-wide text-slate-600">Logging & errors</p>
-                <ul class="mt-2 space-y-2 text-sm leading-6 text-slate-700">
-                  <li><span class="font-semibold text-slate-900">Ошибки</span>: taxonomy (код/тип/контекст/шаг сценария).</li>
-                  <li><span class="font-semibold text-slate-900">Инструменты</span>: Sentry (ошибки), OpenTelemetry (трейсы) — по зрелости.</li>
-                  <li><span class="font-semibold text-slate-900">Цель</span>: находить “провалы сценариев”, а не только 500‑ки.</li>
-                </ul>
-              </div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-                <p class="text-xs font-semibold tracking-wide text-slate-600">Data layer</p>
-                <ul class="mt-2 space-y-2 text-sm leading-6 text-slate-700">
-                  <li><span class="font-semibold text-slate-900">Хранилище</span>: BigQuery / ClickHouse (часто для событий).</li>
-                  <li><span class="font-semibold text-slate-900">Дашборды</span>: Metabase / Grafana / Looker Studio (командный доступ).</li>
-                  <li><span class="font-semibold text-slate-900">Правило</span>: KPI измеряются без “шумных” UI‑элементов для операторов.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <div class="flex flex-wrap items-start justify-between gap-4">
-          <h2 class="text-xl font-semibold tracking-tight text-slate-900">Связаться</h2>
-          <a href="#top" class="text-sm font-semibold text-accent hover:underline underline-offset-4">Наверх</a>
-        </div>
-
-        <div class="mt-4 grid gap-4 lg:grid-cols-[1fr_360px]">
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-sm font-semibold text-slate-900">Коротко, что прислать</p>
-            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-              <li>Роль/уровень и контекст продукта (B2B/B2C, web/embedded, индустрия).</li>
-              <li>Какая “боль” сейчас горит (ошибки, скорость, обучение, офлайн, SLA).</li>
-              <li>Процесс найма и формат работы (офис/гибрид/удалёнка).</li>
-            </ul>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-white p-5">
-            <p class="text-sm font-semibold text-slate-900">Контакты</p>
+            <h3 class="text-sm font-semibold text-slate-900">Домены</h3>
             <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li>
-                <span class="font-semibold text-slate-900">Email</span>:
-                <a class="font-semibold text-accent hover:underline underline-offset-4" href="mailto:sharikov@gmail.com">sharikov@gmail.com</a>
-              </li>
-              <li>
-                <span class="font-semibold text-slate-900">Telegram</span>:
-                <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://t.me/PythonDVP">@PythonDVP</a>
-              </li>
-              <li>
-                <span class="font-semibold text-slate-900">CV</span>:
-                <a
-                  class="font-semibold text-accent hover:underline underline-offset-4"
-                  href="https://krasnodar.hh.ru/resume/ffc2ae69ff0df278e20039ed1f496a76646375"
-                  >hh.ru</a
-                >
-              </li>
+              <li>Складские операции (ТСД/PWA)</li>
+              <li>Встроенные / индустриальные интерфейсы</li>
+              <li>Админ-панели / операционные интерфейсы</li>
             </ul>
-            <p class="mt-4 text-xs leading-5 text-slate-600">Обычно отвечаю в течение 1–2 рабочих дней.</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Типовые риски</h3>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li>Offline и рассинхронизация действий</li>
+              <li>Scan-first ввод и ошибки атрибуции</li>
+              <li>Работа в перчатках / одной рукой</li>
+              <li>Критичные действия без безопасного подтверждения</li>
+              <li>Неоднозначные состояния и “потеря следующего шага”</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <footer class="mt-8 text-sm leading-6 text-slate-600">
-        <p>Локально открывается без сборки. Стиль — “инженерный документ”: сценарии, контракты, измеримость.</p>
-      </footer>
+      <section id="cases" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Доказательства за 60 секунд</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          <a
+            href="./Склад-15 — складская UX‑архитектура (кейс‑спецификация).html"
+            class="rounded-xl border border-slate-200 bg-slate-50 p-5 hover:border-slate-300 focus:outline-none"
+            aria-label="Открыть кейс Склад-15"
+          >
+            <p class="text-xs font-semibold tracking-wide text-slate-600">Склад • PWA • ТСД</p>
+            <h3 class="mt-2 text-lg font-semibold text-slate-900">Склад‑15</h3>
+            <p class="mt-3 text-xs font-semibold tracking-wide text-slate-600">Что могло пойти не так (риск)</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Неверные размещения, дубли действий в офлайне, потеря следующего шага в операции.</p>
+            <p class="mt-3 text-xs font-semibold tracking-wide text-slate-600">Что я изменил (протокол)</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Скан-ориентированный цикл, видимость состояния синхронизации, правила завершения, состояния восстановления.</p>
+            <p class="mt-3 text-xs font-semibold tracking-wide text-slate-600">Как измеряли бы эффект (события/KPI)</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">TTFS, error rate by type, duplicates, completion time, rework.</p>
+          </a>
+
+          <a href="./UV-case.html" class="rounded-xl border border-slate-200 bg-slate-50 p-5 hover:border-slate-300 focus:outline-none" aria-label="Открыть кейс тепловизора">
+            <p class="text-xs font-semibold tracking-wide text-slate-600">ИК-устройство • Встроенный интерфейс • Живое изображение</p>
+            <h3 class="mt-2 text-lg font-semibold text-slate-900">Тепловизионная камера</h3>
+            <p class="mt-3 text-xs font-semibold tracking-wide text-slate-600">Что могло пойти не так (риск)</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Конкурирующие оверлеи, путаница режимов, неоднозначная реакция на одинаковый ввод.</p>
+            <p class="mt-3 text-xs font-semibold tracking-wide text-slate-600">Что я изменил (протокол)</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Состояние → событие → эффект, правило одного оверлея, восстановление как часть контракта.</p>
+            <p class="mt-3 text-xs font-semibold tracking-wide text-slate-600">Как измеряли бы эффект (события/KPI)</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Время до первого валидного измерения, частота предупреждений, прокси путаницы режимов.</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="about" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Обо мне</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Проектирую интерфейсы для операционных и встроенных систем, где ошибка стоит дорого и быстро превращается в SLA-риск. Работаю на стыке UX, продукта,
+          разработки и QA: формализую поведение системы так, чтобы решения можно было реализовать и проверить без трактовок. Полезен там, где нужно одновременно
+          увеличить надёжность процесса, сократить операционные потери и оставить измеримый контур улучшений.
+        </p>
+        <div class="mt-4 grid gap-4 md:grid-cols-3">
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Сначала риск</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Определяю точки максимальной цены ошибки: где ломается процесс, кто платит за сбой и как это проявляется в поле.</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Сначала контракт</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Фиксирую состояния, исключения и правила завершения как контракт взаимодействия для разработки/QA.</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Сначала измеримость</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Собираю словарь событий, таксономию ошибок и QA-матрицу, чтобы UX был проверяемым, а не субъективным.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Связаться</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">Присылайте роль, контекст продукта и главную операционную боль: ошибки, скорость, обучение, офлайн, SLA.</p>
+        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+          <li>
+            <span class="font-semibold text-slate-900">Email:</span>
+            <a class="font-semibold text-accent hover:underline underline-offset-4" href="mailto:sharikov@gmail.com">sharikov@gmail.com</a>
+          </li>
+          <li>
+            <span class="font-semibold text-slate-900">Telegram:</span>
+            <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://t.me/PythonDVP">@PythonDVP</a>
+          </li>
+          <li>
+            <span class="font-semibold text-slate-900">CV:</span>
+            <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://krasnodar.hh.ru/resume/ffc2ae69ff0df278e20039ed1f496a76646375">hh.ru</a>
+          </li>
+        </ul>
+      </section>
     </main>
   </body>
 </html>
-
