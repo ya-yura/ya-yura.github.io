@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ru" class="h-full scroll-smooth bg-slate-50 text-slate-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>UX сложных систем — снижение ошибок оператора в критическом интерфейсе</title>
+    <meta
+      name="description"
+      content="Как уменьшить ошибки оператора в сложных B2B-системах через систему защитных UX-решений: визуальную иерархию, разведение действий, контекст перед действием и ошибкоустойчивые сценарии."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind-config.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="min-h-full font-sans antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:border-slate-200 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900"
+      >Перейти к содержанию</a
+    >
+    <main id="main" class="mx-auto max-w-[1120px] px-4 py-10 sm:px-6 lg:px-8">
+      <header class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="text-xs font-semibold tracking-wide text-slate-600">КЕЙС • B2B • Высокая цена ошибки</div>
+          <nav class="flex flex-wrap items-center gap-2 text-sm" aria-label="Навигация">
+            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="./index.html#cases">Кейсы</a>
+            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="./index.html#about">Обо мне</a>
+            <a class="rounded-lg px-3 py-2 font-semibold text-accent hover:bg-accent-50" href="./index.html#contact">Связаться</a>
+          </nav>
+        </div>
+
+        <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
+          <div>
+            <h1 class="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              UX сложных систем: снижение ошибок оператора в критическом интерфейсе
+            </h1>
+            <p class="mt-3 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+              Как уменьшить ошибки оператора в сложных B2B-системах через систему защитных UX-решений: визуальную иерархию, разведение действий, контекст перед действием и ошибкоустойчивые сценарии.
+            </p>
+            <p class="mt-2 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+              Работаю как системный слой между продуктом, разработкой и QA: формализую поведение системы так, чтобы решения можно было реализовать и проверить без трактовок.
+            </p>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              <a href="#solution" class="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+                >Смотреть решение</a
+              >
+              <a
+                href="./safety-reliability-principles.html"
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
+                >Принципы надёжности и безопасности</a
+              >
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-xs font-semibold tracking-wide text-slate-600">Что получите</p>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li><span class="font-semibold text-slate-900">Система защиты</span>: не одна фича, а набор взаимосвязанных решений.</li>
+              <li><span class="font-semibold text-slate-900">Визуальная иерархия</span>: критические состояния и действия — мгновенно.</li>
+              <li><span class="font-semibold text-slate-900">Контекст перед действием</span>: ответы на «что? где? можно ли откатить?».</li>
+              <li><span class="font-semibold text-slate-900">Ошибкоустойчивость</span>: предпросмотр, мягкая валидация, черновик.</li>
+              <li><span class="font-semibold text-slate-900">Измеримый эффект</span>: меньше сбоев, ниже стоимость ошибки, быстрее адаптация.</li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <section class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Где я сильнее всего</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Домены</h3>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li>Складские операции (ТСД/PWA)</li>
+              <li>Встроенные / индустриальные интерфейсы</li>
+              <li>Админ-панели / операционные интерфейсы</li>
+            </ul>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Типовые риски</h3>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li>Ошибки из-за визуальной неоднозначности</li>
+              <li>Критические и рутинные действия рядом</li>
+              <li>Перегрузка второстепенной информацией</li>
+              <li>Неправильные подтверждения (слабые или частые)</li>
+              <li>Неочевидные последствия выбора</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="solution" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Решение: система защитных UX-решений</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Снижение ошибок — не одной «фичей», а через систему защитных решений, которые работают вместе.
+        </p>
+
+        <div class="mt-6 grid gap-6 lg:grid-cols-2">
+          <div class="space-y-6">
+            <div class="rounded-xl border border-slate-200 bg-white p-6">
+              <h3 class="text-base font-semibold text-slate-900">1) Визуальная иерархия по степени риска</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-700">
+                Критические состояния, необратимые действия и тревожные сигналы должны отличаться мгновенно — не только цветом, но и структурой, приоритетом в композиции, формой и контекстом.
+              </p>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-white p-6">
+              <h3 class="text-base font-semibold text-slate-900">2) Разведение опасных и рутинных действий</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-700">
+                Опасные команды не должны стоять рядом с частыми повседневными действиями. Для них нужен отдельный паттерн: иное расположение, иной вес кнопки, дополнительная смысловая пауза.
+              </p>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-white p-6">
+              <h3 class="text-base font-semibold text-slate-900">3) Контекст перед действием</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-700">
+                Перед подтверждением система должна коротко отвечать на три вопроса:
+                <span class="font-semibold text-slate-900">что именно изменится</span>,
+                <span class="font-semibold text-slate-900">где именно изменится</span>,
+                <span class="font-semibold text-slate-900">можно ли откатить</span>.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="rounded-xl border border-slate-200 bg-white p-6">
+              <h3 class="text-base font-semibold text-slate-900">4) Снижение нагрузки на память</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-700">
+                Оператор не должен помнить важные условия «из головы». Интерфейс сам подсказывает состояние объекта, зависимости, ограничения и возможные последствия.
+              </p>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-white p-6">
+              <h3 class="text-base font-semibold text-slate-900">5) Ошибкоустойчивые сценарии</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-700">
+                Где возможно — предпросмотр, мягкая валидация, понятные предупреждения, черновик вместо мгновенного применения, история действий и быстрый откат.
+              </p>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+              <h3 class="text-base font-semibold text-slate-900">Как это работает вместе</h3>
+              <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Визуальная иерархия выделяет критическое.</li>
+                <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Разведение действий предотвращает случайный клик.</li>
+                <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Контекст снижает когнитивную нагрузку.</li>
+                <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Ошибкоустойчивость делает систему спокойной.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Результат</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Такой подход помогает:
+        </p>
+
+        <div class="mt-6 grid gap-6 lg:grid-cols-2">
+          <div class="rounded-xl border border-slate-200 bg-white p-6">
+            <h3 class="text-sm font-semibold text-slate-900">Что изменилось (качественно)</h3>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Снизилась вероятность случайных действий.</li>
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Сократилось число ошибок на стыке похожих сценариев.</li>
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Ускорилось принятие решений в типовых операциях.</li>
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Система стала более предсказуемой и спокойной.</li>
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Уменьшилась зависимость от «сверхвнимательности» оператора.</li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-accent-50 p-6">
+            <h3 class="text-sm font-semibold text-slate-900">Что измеримо (для бизнеса)</h3>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Меньше операционных сбоев.</li>
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Ниже стоимость ошибки.</li>
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Быстрее адаптация новых сотрудников.</li>
+              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Выше надёжность процессов.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Обо мне</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Проектирую интерфейсы для операционных и встроенных систем, где ошибка стоит дорого и быстро превращается в SLA-риск. Работаю на стыке UX, продукта,
+          разработки и QA: формализую поведение системы так, чтобы решения можно было реализовать и проверить без трактовок. Полезен там, где нужно одновременно
+          увеличить надёжность процесса, сократить операционные потери и оставить измеримый контур улучшений.
+        </p>
+        <div class="mt-4 grid gap-4 md:grid-cols-3">
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Сначала риск</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Определяю точки максимальной цены ошибки: где ломается процесс, кто платит за сбой и как это проявляется в поле.</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Сначала контракт</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Фиксирую состояния, исключения и правила завершения как контракт взаимодействия для разработки/QA.</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-sm font-semibold text-slate-900">Сначала измеримость</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Собираю словарь событий, таксономию ошибок и QA-матрицу, чтобы UX был проверяемым, а не субъективным.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Связаться</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">Присылайте роль, контекст продукта и главную операционную боль: ошибки, скорость, обучение, офлайн, SLA.</p>
+        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+          <li>
+            <span class="font-semibold text-slate-900">Email:</span>
+            <a class="font-semibold text-accent hover:underline underline-offset-4" href="mailto:sharikov@gmail.com">sharikov@gmail.com</a>
+          </li>
+          <li>
+            <span class="font-semibold text-slate-900">Telegram:</span>
+            <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://t.me/PythonDVP">@PythonDVP</a>
+          </li>
+          <li>
+            <span class="font-semibold text-slate-900">CV:</span>
+            <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://krasnodar.hh.ru/resume/ffc2ae69ff0df278e20039ed1f496a76646375">hh.ru</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
