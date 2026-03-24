@@ -4,14 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
-    <title>Как снизить когнитивную нагрузку в интерфейсе</title>
+    <title>Снижение когнитивной нагрузки — UX-кейс</title>
     <meta
       name="description"
-      content="UX-кейс по снижению когнитивной нагрузки: группировка, иерархия, контекст и progressive disclosure для сложных B2B-систем."
+      content="Кейс о том, как я упрощал сложный B2B-интерфейс через иерархию, группировку, контекст и постепенное раскрытие."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta
+      name="keywords"
+      content="UX кейс, когнитивная нагрузка, B2B UX, продуктовый дизайн, информационная архитектура"
+    />
     <link rel="stylesheet" href="./tokens.css" />
     <link rel="stylesheet" href="./base.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,10 +25,10 @@
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:border-slate-200 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900"
       >Перейти к содержанию</a
     >
-    <main id="main" class="mx-auto max-w-[1120px] px-4 py-10 sm:px-6 lg:px-8">
+    <main id="main" class="mx-auto max-w-[1040px] px-4 py-10 sm:px-6 lg:px-8">
       <header class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
         <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="text-xs font-semibold tracking-wide text-slate-600">КЕЙС • B2B • Снижение нагрузки</div>
+          <div class="text-xs font-semibold tracking-wide text-slate-600">КЕЙС • B2B • Когнитивная нагрузка</div>
           <nav class="flex flex-wrap items-center gap-2 text-sm" aria-label="Навигация">
             <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="./index.html#cases">Кейсы</a>
             <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="./index.html#about">Обо мне</a>
@@ -35,369 +36,166 @@
           </nav>
         </div>
 
-        <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
+        <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
           <div>
             <h1 class="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              Как снизить когнитивную нагрузку в интерфейсе
+              Как я снижал когнитивную нагрузку в сложном интерфейсе
             </h1>
-            <p class="mt-3 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
-              Как упростить сложный интерфейс через группировку, иерархию, контекст и постепенное раскрытие: от перегрузки к контролю.
+            <p class="mt-3 text-sm leading-6 text-slate-700 sm:text-base">
+              Здесь задача была не “сделать чище”, а сократить объём лишней умственной работы, который интерфейс перекладывал на пользователя. Я собирал
+              решение вокруг понятной структуры: что важно сейчас, что можно отложить и как не заставлять человека каждый раз пересобирать картину экрана.
             </p>
-            <p class="mt-2 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
-              Работаю как системный слой между продуктом, разработкой и QA: формализую поведение системы так, чтобы решения можно было реализовать и проверить без трактовок.
-            </p>
-
-            <div class="mt-5 flex flex-wrap gap-2">
-              <a href="#solution" class="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
-                >Смотреть решение</a
-              >
-              <a
-                href="./safety-reliability-principles.html"
-                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
-                >Принципы надёжности и безопасности</a
-              >
-            </div>
           </div>
 
           <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Что получите</p>
+            <p class="text-xs font-semibold tracking-wide text-slate-600">Фокус работы</p>
             <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li><span class="font-semibold text-slate-900">Группировка</span>: логические блоки с заголовками и отступами.</li>
-              <li><span class="font-semibold text-slate-900">Иерархия</span>: 3 уровня — заголовки, подзаголовки, второстепенные элементы.</li>
-              <li><span class="font-semibold text-slate-900">Контекст</span>: ответы на «что? где? можно ли откатить?» — до действия.</li>
-              <li><span class="font-semibold text-slate-900">Progressive disclosure</span>: скрытие редких функций через «ещё»/«подробнее».</li>
-              <li><span class="font-semibold text-slate-900">Упрощение меток</span>: короткие иконки + тултипы вместо длинных описаний.</li>
+              <li><span class="font-semibold text-slate-900">Группировка</span> связанных сущностей и действий.</li>
+              <li><span class="font-semibold text-slate-900">Иерархия</span> вместо визуального равенства всего со всем.</li>
+              <li><span class="font-semibold text-slate-900">Контекст</span> до решения, а не после ошибки.</li>
+              <li><span class="font-semibold text-slate-900">Постепенное раскрытие</span> редких и сложных функций.</li>
             </ul>
           </div>
         </div>
       </header>
 
-      <section class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Где я сильнее всего</h2>
-        <div class="mt-4 grid gap-4 md:grid-cols-2">
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-sm font-semibold text-slate-900">Домены</h3>
-            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li>Админ-панели</li>
-              <li>Операционные интерфейсы</li>
-              <li>Системы с 200+ полями на странице</li>
-            </ul>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="overview">
+        <h2 class="text-lg font-semibold text-slate-900">Коротко о проекте</h2>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Тип интерфейса</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Админка / операционный интерфейс с большим количеством данных и действий.</p>
           </div>
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-sm font-semibold text-slate-900">Типовые риски</h3>
-            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li>Перегрузка визуальными элементами</li>
-              <li>Отсутствие иерархии</li>
-              <li>Нет группировки</li>
-              <li>Все функции видны сразу</li>
-              <li>Перегруженные метки и инструкции</li>
-            </ul>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Проблема</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Перегрузка элементами, отсутствие иерархии и избыточная видимость всех функций сразу.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Моя роль</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Продуктовый дизайнер, который переводит сложную структуру данных в ясный сценарий работы.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Результат</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Интерфейс с более понятным фокусом внимания, меньшим шумом и лучшей скоростью чтения.</p>
           </div>
         </div>
       </section>
 
-      <section id="problem" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Проблема</h2>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="challenge">
+        <h2 class="text-lg font-semibold text-slate-900">1. Вызов</h2>
         <p class="mt-3 text-sm leading-6 text-slate-700">
-          В интерфейсах сложных систем перегрузка возникает не из-за недостатка данных, а из-за их организации:
+          В сложных системах перегрузка возникает не потому, что данных слишком много, а потому что интерфейс одинаково показывает важное, второстепенное и редкое.
+          В результате пользователь не понимает, на что смотреть прямо сейчас, тратит лишнее внимание на ориентацию и чаще ошибается.
         </p>
-
-        <div class="mt-6 grid gap-6 lg:grid-cols-2">
-          <div class="space-y-6">
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">1) Перегрузка элементами</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Слишком много визуальных элементов на экране одновременно. Следствие: «эффект тумана», потеря фокуса.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">2) Отсутствие иерархии</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Все блоки выглядят одинаково важными. Следствие: затруднённый поиск нужного, замедление работы.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">3) Нет группировки</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Данные разбросаны без логических секций. Следствие: неочевидные связи, ошибки при заполнении.
-              </p>
-            </div>
+        <div class="mt-4 space-y-3">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Слишком много элементов одновременно</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Экран требовал постоянного сканирования и не подсказывал, где находится главный сигнал.</p>
           </div>
-
-          <div class="space-y-6">
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">4) Все функции видны сразу</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Нет скрытых/дополнительных элементов. Следствие: перегрузка, неочевидные действия.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">5) Перегруженные метки</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Текстовые метки и инструкции перегружают внимание. Следствие: игнорирование, пропуск важного.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
-              <h3 class="text-base font-semibold text-slate-900">Итог</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Пользователи не могут найти нужное и быстро теряют фокус, что приводит к ошибкам и снижению продуктивности.
-              </p>
-            </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Нет логической группировки</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Связанные вещи воспринимались как разрозненные, а важные связи приходилось удерживать в голове.</p>
           </div>
-        </div>
-
-        <!-- Micro-diagram 1: Chain of Overload -->
-        <div class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper">
-          <h3 class="text-base font-semibold text-slate-900">Цепочка перегрузки</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-700">
-            Как перегрузка трансформируется в ошибки:
-          </p>
-          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">↑</div>
-              <p class="mt-2 text-xs font-medium text-slate-900">Перегрузка</p>
-            </div>
-            <div class="hidden sm:flex h-0.5 w-full items-center justify-center bg-slate-200">
-              <div class="h-0.5 w-full bg-slate-200"></div>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">↑</div>
-              <p class="mt-2 text-xs font-medium text-slate-900">Нагрузка</p>
-            </div>
-            <div class="hidden sm:flex h-0.5 w-full items-center justify-center bg-slate-200">
-              <div class="h-0.5 w-full bg-slate-200"></div>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">↓</div>
-              <p class="mt-2 text-xs font-medium text-slate-900">Ошибки</p>
-            </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Редкие функции мешали частым сценариям</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Вместо помощи интерфейс показывал всё сразу и повышал порог входа в каждую задачу.</p>
           </div>
         </div>
       </section>
 
-      <section id="constraints" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Ограничения системы</h2>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="solution">
+        <h2 class="text-lg font-semibold text-slate-900">2. Решение</h2>
         <p class="mt-3 text-sm leading-6 text-slate-700">
-          При проектировании важно учитывать реальные ограничения:
+          Я выстроил решение вокруг четырёх принципов: группировка, иерархия, контекст и постепенное раскрытие. Вместе они позволили убрать ощущение “тумана”
+          и сделать экран объяснимым даже при высокой плотности данных.
         </p>
-
-        <div class="mt-6 grid gap-6 lg:grid-cols-2">
-          <div class="space-y-6">
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">1) Нельзя убрать данные</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Данные обязательны для работы. Следствие: необходимость сохранить всю информацию.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">2) Нельзя менять структуру данных</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Legacy-интеграции. Следствие: необходимость работать с текущей структурой.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">3) Нельзя упростить бизнес-логику</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Регуляторные требования. Следствие: необходимость сохранить сложность.
-              </p>
-            </div>
-          </div>
-
-          <div class="space-y-6">
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">4) Нельзя убрать старые модули</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Модули используются в процессах. Следствие: необходимость интегрировать их в новый интерфейс.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
-              <h3 class="text-base font-semibold text-slate-900">Модель принятия решения</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Пользователь действует не по «желанию», а по «ограничениям»:
-              </p>
-              <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div class="rounded-lg border border-slate-200 bg-white p-4 text-center">
-                  <div class="text-xs font-semibold text-slate-900">Ограничения</div>
-                  <div class="mt-1 text-xs text-slate-700">Что нельзя делать</div>
-                </div>
-                <div class="rounded-lg border border-slate-200 bg-white p-4 text-center">
-                  <div class="text-xs font-semibold text-slate-900">Паттерны</div>
-                  <div class="mt-1 text-xs text-slate-700">Как делать быстро</div>
-                </div>
-                <div class="rounded-lg border border-slate-200 bg-white p-4 text-center">
-                  <div class="text-xs font-semibold text-slate-900">Контекст</div>
-                  <div class="mt-1 text-xs text-slate-700">Что важно знать</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="solution" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Решение: снижение когнитивной нагрузки</h2>
-        <p class="mt-3 text-sm leading-6 text-slate-700">
-          Снижение нагрузки — не одной «фичей», а через систему решений, которые работают вместе.
-        </p>
-
-        <div class="mt-6 grid gap-6 lg:grid-cols-2">
-          <div class="space-y-6">
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">1) Группировка</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Сгруппировать поля и функции в логические секции с заголовками и отступами. Следствие: понятные блоки, логические связи.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">2) Иерархия</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Ввести 3 уровня визуальной иерархии: заголовки, подзаголовки, второстепенные элементы. Следствие: мгновенное выделение важного.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">3) Контекст</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Ответы на «что? где? можно ли откатить?» — до действия. Следствие: снижение нагрузки на память.
-              </p>
-            </div>
-          </div>
-
-          <div class="space-y-6">
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">4) Progressive disclosure</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Скрыть редко используемые функции через «ещё»/«подробнее». Следствие: меньше визуального шума.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-              <h3 class="text-base font-semibold text-slate-900">5) Упрощение меток</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-700">
-                Заменить длинные описания на короткие иконки + тултипы. Следствие: меньше текстовой перегрузки.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
-              <h3 class="text-base font-semibold text-slate-900">Как это работает вместе</h3>
-              <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-                <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Группировка создаёт структуру.</li>
-                <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Иерархия выделяет важное.</li>
-                <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Контекст снижает нагрузку.</li>
-                <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Progressive disclosure убирает шум.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Micro-diagram 2: 2x2 Grid of Principles -->
-        <div class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper">
-          <h3 class="text-base font-semibold text-slate-900">UX-принципы снижения нагрузки</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-700">
-            Четыре ключевых принципа, работающих вместе:
-          </p>
-          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
-              <div class="text-xs font-semibold text-slate-900">Группировка</div>
-              <p class="mt-1 text-xs text-slate-700">Связанное — рядом, логические блоки — с заголовками.</p>
-            </div>
-            <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
-              <div class="text-xs font-semibold text-slate-900">Иерархия</div>
-              <p class="mt-1 text-xs text-slate-700">Критическое — мгновенно, второстепенное — тихо.</p>
-            </div>
-            <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
-              <div class="text-xs font-semibold text-slate-900">Контекст</div>
-              <p class="mt-1 text-xs text-slate-700">Ответы на «что? где? можно ли откатить?» — до действия.</p>
-            </div>
-            <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
-              <div class="text-xs font-semibold text-slate-900">Упрощение</div>
-              <p class="mt-1 text-xs text-slate-700">Убираем лишнее, оставляем только нужное и понятное.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="results" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Результат</h2>
-        <p class="mt-3 text-sm leading-6 text-slate-700">
-          Такой подход помогает:
-        </p>
-
-        <div class="mt-6 grid gap-6 lg:grid-cols-2">
-          <div class="rounded-xl border border-slate-200 bg-white p-6">
-            <h3 class="text-sm font-semibold text-slate-900">Что изменилось (качественно)</h3>
-            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Пользователи быстрее находят нужные блоки без скролла.</li>
-              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Снижается количество ошибок при заполнении полей.</li>
-              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Уменьшается время на освоение новой сессии.</li>
-              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Появляется ощущение «контроля» — понятно, что видно и что доступно.</li>
-            </ul>
-          </div>
-
-          <div class="rounded-xl border border-slate-200 bg-accent-50 p-6">
-            <h3 class="text-sm font-semibold text-slate-900">Что измеримо (для бизнеса)</h3>
-            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Меньше ошибок при заполнении.</li>
-              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Быстрее адаптация новых сотрудников.</li>
-              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Выше продуктивность операторов.</li>
-              <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600"></span>Выше удовлетворённость интерфейсом.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Micro-diagram 3: Chain of Benefits -->
-        <div class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper">
-          <h3 class="text-base font-semibold text-slate-900">Цепочка эффекта</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-700">
-            Как снижение нагрузки трансформируется в реальные результаты:
-          </p>
-          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">↓</div>
-              <p class="mt-2 text-xs font-medium text-slate-900">Меньше нагрузки</p>
-            </div>
-            <div class="hidden sm:flex h-0.5 w-full items-center justify-center bg-slate-200">
-              <div class="h-0.5 w-full bg-slate-200"></div>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">→</div>
-              <p class="mt-2 text-xs font-medium text-slate-900">Быстрее работа</p>
-            </div>
-            <div class="hidden sm:flex h-0.5 w-full items-center justify-center bg-slate-200">
-              <div class="h-0.5 w-full bg-slate-200"></div>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">↓</div>
-              <p class="mt-2 text-xs font-medium text-slate-900">Меньше ошибок</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Связаться</h2>
-        <p class="mt-3 text-sm leading-6 text-slate-700">Присылайте роль, контекст продукта и главную операционную боль: ошибки, скорость, обучение, офлайн, SLA.</p>
         <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
-          <li>
-            <span class="font-semibold text-slate-900">Email:</span>
-            <a class="font-semibold text-accent hover:underline underline-offset-4" href="mailto:sharikov@gmail.com">sharikov@gmail.com</a>
-          </li>
-          <li>
-            <span class="font-semibold text-slate-900">Telegram:</span>
-            <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://t.me/PythonDVP">@PythonDVP</a>
-          </li>
-          <li>
-            <span class="font-semibold text-slate-900">CV:</span>
-            <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://krasnodar.hh.ru/resume/ffc2ae69ff0df278e20039ed1f496a76646375">hh.ru</a>
-          </li>
+          <li><span class="font-semibold text-slate-900">Группировка:</span> связанные блоки и действия собираются в читаемые секции.</li>
+          <li><span class="font-semibold text-slate-900">Иерархия:</span> интерфейс явно показывает, что сейчас главное, а что вторично.</li>
+          <li><span class="font-semibold text-slate-900">Контекст:</span> нужные подсказки и пояснения появляются рядом с решением, а не прячутся в отдельном слое.</li>
+          <li><span class="font-semibold text-slate-900">Постепенное раскрытие:</span> редкие или расширенные функции не мешают основному сценарию, но остаются доступны.</li>
+        </ul>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="research">
+        <h2 class="text-lg font-semibold text-slate-900">3. Исследование и логика выводов</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Я смотрел на проблему через вопрос: какую умственную работу сейчас делает за интерфейс сам пользователь? Чем больше такой скрытой работы, тем выше риск
+          усталости, пропусков и неверных действий.
+        </p>
+        <div class="mt-4 grid gap-3 lg:grid-cols-3">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Наблюдение</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Пользователю приходилось самому искать структуру и приоритеты на экране.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Вывод</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Проблема была не в нехватке функциональности, а в отсутствии ясной модели чтения и действия.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Решение</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Нужно было не удалять всё подряд, а перераспределить внимание и глубину интерфейса.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="concept">
+        <h2 class="text-lg font-semibold text-slate-900">4. Концепция</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Концепция сводилась к простому правилу: экран должен сам помогать собрать картину задачи. Пользователь не обязан заново проектировать интерфейс у себя
+          в голове каждый раз, когда открывает страницу.
+        </p>
+        <div class="mt-4 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between">
+          <div class="flex min-w-0 flex-1 items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">1</div>
+            <p class="text-sm font-medium leading-5 text-slate-900">Перегрузка</p>
+          </div>
+          <div class="flex justify-center text-slate-400 md:items-center" aria-hidden="true"><span class="text-lg font-semibold">→</span></div>
+          <div class="flex min-w-0 flex-1 items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">2</div>
+            <p class="text-sm font-medium leading-5 text-slate-900">Потеря фокуса</p>
+          </div>
+          <div class="flex justify-center text-slate-400 md:items-center" aria-hidden="true"><span class="text-lg font-semibold">→</span></div>
+          <div class="flex min-w-0 flex-1 items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">3</div>
+            <p class="text-sm font-medium leading-5 text-slate-900">Ошибки и замедление</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="design">
+        <h2 class="text-lg font-semibold text-slate-900">5. Дизайн и поставка решения</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          На уровне реализации это означало не только новые макеты, но и чёткие правила сборки интерфейса, чтобы команда дальше не вернулась к той же перегрузке.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Принципы группировки и отступов:</span> чтобы связанные данные читались как единое целое.</li>
+          <li><span class="font-semibold text-slate-900">Уровни визуальной иерархии:</span> заголовки, вторичный текст, вспомогательные метки и действия.</li>
+          <li><span class="font-semibold text-slate-900">Правила раскрытия редких функций:</span> “ещё”, расширенные режимы, дополнительные детали по запросу.</li>
+          <li><span class="font-semibold text-slate-900">Сокращение перегруженных меток:</span> короче, яснее, с поддержкой пояснений там, где это реально нужно.</li>
+        </ul>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="results">
+        <h2 class="text-lg font-semibold text-slate-900">6. Результаты</h2>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Что изменилось качественно</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Экран стал быстрее считываться, пользователь лучше понимал структуру страницы и реже терял контекст.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Что можно измерять</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Время поиска нужного действия, частоту ошибок, глубину взаимодействия с редкими функциями и скорость выполнения сценария.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="learnings">
+        <h2 class="text-lg font-semibold text-slate-900">7. Выводы</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Когнитивная нагрузка — это не “ощущение”, а реальная продуктовая проблема:</span> она напрямую влияет на ошибки и скорость работы.</li>
+          <li><span class="font-semibold text-slate-900">Хорошее упрощение не равно урезанию:</span> сильнее всего работает не удаление функций, а грамотное управление вниманием.</li>
+          <li><span class="font-semibold text-slate-900">Сильный UX в сложных интерфейсах — это помощь в мышлении:</span> интерфейс должен брать на себя часть когнитивной работы.</li>
         </ul>
       </section>
     </main>

@@ -7,7 +7,7 @@
       extend: {
         fontFamily: {
           sans: [
-            "Inter",
+            "Iosevka Charon",
             "system-ui",
             "-apple-system",
             "Segoe UI",

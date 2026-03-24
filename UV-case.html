@@ -4,14 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
-    <title>Тепловизор — кейс по контракту взаимодействия</title>
+    <title>Тепловизионная камера — кейс о контракте взаимодействия</title>
     <meta
       name="description"
-      content="Кейс UX для встроенной тепловизионной камеры: машина состояний, слои поверх живого изображения, состояния восстановления, передача в разработку/QA и протокол измерения."
+      content="Кейс о том, как я спроектировал контракт взаимодействия для тепловизионной камеры: состояния, оверлеи, восстановление после ошибок и измеримость."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta
+      name="keywords"
+      content="встроенный UX, тепловизор, кейс UX, контракт взаимодействия, машина состояний"
+    />
     <link rel="stylesheet" href="./tokens.css" />
     <link rel="stylesheet" href="./base.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,96 +36,154 @@
             >
           </nav>
         </div>
-        <h1 class="mt-3 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Тепловизионная камера: контракт взаимодействия поверх живого изображения</h1>
+        <h1 class="mt-3 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Тепловизионная камера: как сделать живое изображение управляемым интерфейсом</h1>
         <p class="mt-3 text-sm leading-6 text-slate-700">
-          Кейc о том, как убрать неоднозначность во встроенном интерфейсе с высокой ценой ошибки и сократить стоимость разработки/QA за счёт чёткого протокола.
+          Кейс о том, как я убирал неоднозначность во встроенном интерфейсе, где ошибка в состоянии или режиме стоит дорого и для пользователя, и для команды разработки.
         </p>
       </header>
 
-      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="tldr">
-        <h2 class="text-lg font-semibold text-slate-900">Коротко</h2>
-        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-          <li><span class="font-semibold text-slate-900">Цена ошибки:</span> неверное измерение, длинное обучение, рост дефектов QA на переходах и состояниях.</li>
-          <li><span class="font-semibold text-slate-900">Рычаг:</span> модель состояние → событие → эффект, правило одного оверлея, ошибки как состояния восстановления.</li>
-          <li><span class="font-semibold text-slate-900">Поставка:</span> таблицы состояний, правила слоёв, спецификация быстрого меню, передача в команду и тест-матрица.</li>
-          <li><span class="font-semibold text-slate-900">Измерение:</span> время до первого валидного измерения, частота предупреждений/ошибок, прокси путаницы режимов.</li>
-        </ul>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="overview">
+        <h2 class="text-lg font-semibold text-slate-900">Коротко о проекте</h2>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Контекст</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Живое изображение, ограниченное внимание, одна рука, работа в движении и в перчатках.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Основной риск</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Неверное измерение или неверное состояние из-за конкурирующих оверлеев и путаницы режимов.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Моя роль</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Продуктовый дизайнер, который собирает контракт состояний, ввода и поведения интерфейса.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Выход работы</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Модель состояний, правила слоёв, сценарии восстановления, артефакты для QA и измерения.</p>
+          </div>
+        </div>
       </section>
 
-      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="executive-summary">
-        <h2 class="text-lg font-semibold text-slate-900">A. Исполнительное резюме</h2>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="challenge">
+        <h2 class="text-lg font-semibold text-slate-900">1. Вызов</h2>
         <p class="mt-3 text-sm leading-6 text-slate-700">
-          Живое изображение — критический рабочий контекст: оператор действует одной рукой, часто в перчатках и с ограниченным вниманием. Ошибка в трактовке состояния
-          или ввода приводит к неверному измерению и каскаду дорогих эффектов: повторная диагностика, рост времени обучения, сложный QA. Цель — зафиксировать
-          однозначный контракт ввода, эффекта и переходов, чтобы система была предсказуемой для оператора и тестируемой для команды.
+          У встроенного интерфейса с живым изображением цена неоднозначности особенно высока: пользователь принимает решение прямо поверх видеопотока, а система
+          должна одновременно показывать контекст, режим, предупреждения и результат действия. Если эти слои спорят друг с другом, возникает путаница.
         </p>
-      </section>
-
-      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="failure-modes">
-        <h2 class="text-lg font-semibold text-slate-900">B. Режимы отказа</h2>
-        <div class="mt-3 space-y-3">
+        <div class="mt-4 space-y-3">
           <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
             <p class="text-sm font-semibold text-slate-900">Конкурирующие оверлеи</p>
-            <p class="mt-1 text-sm leading-6 text-slate-700">Оверлеи конкурируют за фокус и скрывают системную правду. Следствие: оператор ошибочно считает, что действие завершено.</p>
-          </div>
-          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
-            <p class="text-sm font-semibold text-slate-900">Неоднозначное сопоставление ввода</p>
-            <p class="mt-1 text-sm leading-6 text-slate-700">Одинаковый ввод в похожих состояниях даёт разные эффекты. Следствие: рост возвратов назад и ошибок “не туда нажал”.</p>
-          </div>
-          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
-            <p class="text-sm font-semibold text-slate-900">Отсутствующие состояния восстановления</p>
-            <p class="mt-1 text-sm leading-6 text-slate-700">Ошибка сообщается, но не даёт сценария выхода. Следствие: хаотичные повторы и “зависание” оператора.</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Несколько слоёв одновременно мешают читать системную правду и создают ложное ощущение завершённости действия.</p>
           </div>
           <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
             <p class="text-sm font-semibold text-slate-900">Путаница режимов</p>
-            <p class="mt-1 text-sm leading-6 text-slate-700">Непрозрачные режимы и слабая видимость текущего состояния. Следствие: неверные измерения и лишние переключения.</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Одинаковый ввод в похожих состояниях может приводить к разным последствиям, что дорого для обучения и диагностики.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Нет понятного восстановления</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Сообщение об ошибке без безопасного следующего шага оставляет пользователя один на один с неопределённостью.</p>
           </div>
         </div>
       </section>
 
-      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="interaction-contract">
-        <h2 class="text-lg font-semibold text-slate-900">C. Контракт взаимодействия</h2>
-        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-          <li><span class="font-semibold text-slate-900">Базовая модель:</span> состояние → событие → эффект для каждого критичного перехода.</li>
-          <li><span class="font-semibold text-slate-900">Правила слоёв:</span> над живым изображением активен не более одного оверлея.</li>
-          <li><span class="font-semibold text-slate-900">Спецификация быстрого меню:</span> безопасный быстрый доступ для частых действий, без глубоких настроек.</li>
-          <li><span class="font-semibold text-slate-900">Язык RGB:</span> каждому сигналу соответствует одно значение и один следующий шаг.</li>
-          <li><span class="font-semibold text-slate-900">Профили:</span> пресеты снижают когнитивную нагрузку, не ломая базовый контракт ввода.</li>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="solution">
+        <h2 class="text-lg font-semibold text-slate-900">2. Решение</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Я предложил строить интерфейс не как набор отдельных экранов, а как контракт взаимодействия: для каждого состояния должно быть понятно, какой ввод
+          допустим, что увидит пользователь и к какому эффекту это приведёт.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Модель “состояние → событие → эффект”:</span> для каждого критичного перехода.</li>
+          <li><span class="font-semibold text-slate-900">Правило одного активного оверлея:</span> над живым изображением не должно быть конкурирующих слоёв.</li>
+          <li><span class="font-semibold text-slate-900">Ясная видимость режима:</span> пользователь всегда понимает, где он находится и что сейчас можно сделать.</li>
+          <li><span class="font-semibold text-slate-900">Ошибки как сценарии восстановления:</span> у каждого сбоя есть безопасный путь продолжения.</li>
         </ul>
       </section>
 
-      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="handoff-qa">
-        <h2 class="text-lg font-semibold text-slate-900">D. Протокол передачи и QA</h2>
-        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-          <li>Таблицы состояний для разработки: допустимые и недопустимые переходы.</li>
-          <li>QA-матрица: переходы, невалидные переходы, пути восстановления.</li>
-          <li>Спецификации слоёв и приоритетов отображения поверх живого изображения.</li>
-          <li>Лог-хуки: <span class="font-mono text-xs">mode_change</span>, <span class="font-mono text-xs">warning_shown</span>, <span class="font-mono text-xs">measurement_taken</span>, <span class="font-mono text-xs">error_state_entered</span>.</li>
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="research">
+        <h2 class="text-lg font-semibold text-slate-900">3. Исследование и логика выводов</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Анализируя проблемные места, я смотрел не только на кнопки и сообщения, а на то, как вообще распределяется внимание пользователя между живым изображением,
+          системными слоями и результатом измерения.
+        </p>
+        <div class="mt-4 grid gap-3 lg:grid-cols-3">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Поле внимания ограничено</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Пользователь не может долго “разбирать” экран, потому что главный контекст постоянно меняется в реальном времени.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Ошибки рождались в переходах</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Самые дорогие сбои возникали не внутри одного экрана, а на стыке состояний, режимов и подтверждений.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Главный вывод</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Ключом к качеству здесь становится не “красивый UI”, а жёстко собранная модель поведения системы.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="concept">
+        <h2 class="text-lg font-semibold text-slate-900">4. Концепция</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Концептуально решение строилось вокруг одного принципа: интерфейс не должен спорить с живым изображением. Все служебные слои обязаны помогать принять
+          решение, а не создавать второй параллельный интерфейс поверх первого.
+        </p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Контракт слоёв</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Оверлеи не конкурируют за внимание и появляются по строгим правилам приоритета.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Контракт состояний</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Каждый режим объясняет, что сейчас активно, чего ждать дальше и как безопасно выйти из ошибки.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="design">
+        <h2 class="text-lg font-semibold text-slate-900">5. Дизайн и передача в команду</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          В этом проекте особенно важно было передать решение так, чтобы оно осталось целостным после реализации. Поэтому я упаковал его не только в визуальные
+          экраны, но и в набор проектных артефактов.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Таблицы состояний:</span> допустимые и недопустимые переходы для разработки.</li>
+          <li><span class="font-semibold text-slate-900">Правила слоёв:</span> приоритеты отображения и поведение поверх живого изображения.</li>
+          <li><span class="font-semibold text-slate-900">Сценарии восстановления:</span> какие действия доступны после ошибки и в каких случаях.</li>
+          <li><span class="font-semibold text-slate-900">QA-матрица и события аналитики:</span> чтобы проверять решение на переходах, предупреждениях и режимах.</li>
         </ul>
       </section>
 
-      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="measurement-protocol">
-        <h2 class="text-lg font-semibold text-slate-900">E. Протокол измерения</h2>
-        <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50">
-          <table class="w-full min-w-[860px] text-left text-sm">
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="results">
+        <h2 class="text-lg font-semibold text-slate-900">6. Результаты</h2>
+        <div class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50">
+          <table class="w-full min-w-[760px] text-left text-sm">
             <thead class="bg-white text-xs font-semibold tracking-wide text-slate-600">
               <tr>
-                <th class="px-4 py-3">Сигнал</th>
-                <th class="px-4 py-3">Что показывает</th>
-                <th class="px-4 py-3">Как интерпретировать</th>
+                <th class="px-4 py-3">Что оцениваем</th>
+                <th class="px-4 py-3">Что это показывает</th>
+                <th class="px-4 py-3">Зачем важно</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200 text-slate-700">
-              <tr><td class="px-4 py-3">Время до первого валидного измерения</td><td class="px-4 py-3">Скорость первого корректного результата</td><td class="px-4 py-3">Прокси обучаемости и ясности первого сценария</td></tr>
-              <tr><td class="px-4 py-3">Частота ошибок/предупреждений по режимам</td><td class="px-4 py-3">Частота ошибок/предупреждений по режимам</td><td class="px-4 py-3">Показывает “дорогие” зоны интерфейса</td></tr>
-              <tr><td class="px-4 py-3">Прокси путаницы режимов</td><td class="px-4 py-3">Быстрые переключения, возвраты назад, короткие циклы переключений</td><td class="px-4 py-3">Индикатор неоднозначных состояний</td></tr>
-              <tr><td class="px-4 py-3">Успешность первой сессии</td><td class="px-4 py-3">Успешность первой сессии без поддержки</td><td class="px-4 py-3">Прокси стоимости обучения</td></tr>
+              <tr><td class="px-4 py-3">Время до первого валидного измерения</td><td class="px-4 py-3">Насколько понятен стартовый сценарий</td><td class="px-4 py-3">Прокси обучаемости и ясности режима</td></tr>
+              <tr><td class="px-4 py-3">Ошибки и предупреждения по режимам</td><td class="px-4 py-3">Какие состояния всё ещё создают риск</td><td class="px-4 py-3">Помогает находить дорогие зоны интерфейса</td></tr>
+              <tr><td class="px-4 py-3">Быстрые переключения и возвраты</td><td class="px-4 py-3">Признак путаницы режимов</td><td class="px-4 py-3">Показывает неоднозначность контракта</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="mt-3 text-sm leading-6 text-slate-700">
-          Формат проверки тот же: baseline → change → compare → regression. Без выдуманных процентов, только корректный протокол и сопоставимые выборки.
+        <p class="mt-4 text-sm leading-6 text-slate-700">
+          Для этого кейса мне было важнее показать не выдуманные цифры, а то, как система проектируется так, чтобы её вообще можно было честно измерять и улучшать дальше.
         </p>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="learnings">
+        <h2 class="text-lg font-semibold text-slate-900">7. Выводы</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Во встроенных интерфейсах особенно важны переходы и состояния:</span> именно там чаще всего рождаются дорогие ошибки.</li>
+          <li><span class="font-semibold text-slate-900">Живое изображение нельзя перегружать вторым интерфейсом поверх него:</span> системные слои должны помогать, а не конкурировать.</li>
+          <li><span class="font-semibold text-slate-900">Сильный встроенный UX — это контракт, а не набор экранов:</span> если поведение не описано точно, команда неизбежно начнёт достраивать его сама.</li>
+        </ul>
       </section>
     </main>
   </body>

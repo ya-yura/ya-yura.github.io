@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="ru" class="h-full scroll-smooth bg-slate-50 text-slate-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Prompt Library — портфолио продуктового дизайнера</title>
+    <meta
+      name="description"
+      content="Библиотека промптов для аудита, упаковки и публикации портфолио продуктового дизайнера: roadmap, кейсы, метрики, SEO и QA."
+    />
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind-config.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="min-h-full font-sans antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:border-slate-200 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900"
+      >Перейти к содержанию</a
+    >
+
+    <main id="main" class="mx-auto max-w-[1120px] px-4 py-10 sm:px-6 lg:px-8">
+      <header class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="text-xs font-semibold tracking-wide text-slate-600">PLAYBOOK • CURSOR • PORTFOLIO UX</div>
+          <nav class="flex flex-wrap items-center gap-2 text-sm" aria-label="Навигация">
+            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#roadmap">Roadmap</a>
+            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#prompts">Промпты</a>
+            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#workflow">Workflow</a>
+            <a class="rounded-lg px-3 py-2 font-semibold text-accent hover:bg-accent-50" href="./index.html">К сайту</a>
+          </nav>
+        </div>
+
+        <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+          <div>
+            <h1 class="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              Библиотека промптов для упаковки портфолио продуктового дизайнера
+            </h1>
+            <p class="mt-3 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+              Здесь собран единый workflow: от первичного аудита сайта и формулировки УТП до генерации кейсов, SEO-метаданных,
+              QA-чек-листа и проверки гипотез после публикации.
+            </p>
+            <p class="mt-2 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
+              Порядок выстроен так, чтобы сначала получить основу позиционирования, затем собрать контент и только после этого
+              переходить к финальной валидации и улучшению конверсии.
+            </p>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              <a href="#roadmap" class="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+                >Открыть roadmap</a
+              >
+              <a
+                href="#prompts"
+                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
+                >Смотреть промпты</a
+              >
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-xs font-semibold tracking-wide text-slate-600">Что внутри</p>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+              <li><span class="font-semibold text-slate-900">10 промптов</span>: от аудита до A/B-проверок.</li>
+              <li><span class="font-semibold text-slate-900">Приоритеты</span>: что запускать сначала, а что позже.</li>
+              <li><span class="font-semibold text-slate-900">Workflow</span>: как соединять результаты без хаоса.</li>
+              <li><span class="font-semibold text-slate-900">Ручная валидация</span>: что обязательно править руками.</li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <section id="roadmap" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-semibold tracking-tight text-slate-900">Roadmap 1–10</h2>
+            <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-700">
+              Нумерация выровнена: сначала аудит и каркас контента, затем генерация основных блоков, потом SEO, QA и только в
+              финале пост-релизная проверка гипотез.
+            </p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
+            Рекомендуемый порядок: <span class="font-semibold text-slate-900">1 → 2 → 3 → 7 → 5 → 4 → 6 → 8 → 9 → 10</span>
+          </div>
+        </div>
+
+        <div class="mt-6 overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
+            <thead>
+              <tr class="text-slate-600">
+                <th class="px-3 py-3 font-semibold">#</th>
+                <th class="px-3 py-3 font-semibold">Промпт</th>
+                <th class="px-3 py-3 font-semibold">Цель</th>
+                <th class="px-3 py-3 font-semibold">Приоритет</th>
+                <th class="px-3 py-3 font-semibold">Когда запускать</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">1</td><td class="px-3 py-3">Аудит сайта</td><td class="px-3 py-3">Понять структуру, слабые места и точки редизайна.</td><td class="px-3 py-3">Высокий</td><td class="px-3 py-3">Старт проекта</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">2</td><td class="px-3 py-3">УТП / hero</td><td class="px-3 py-3">Зафиксировать позиционирование и ценность.</td><td class="px-3 py-3">Высокий</td><td class="px-3 py-3">Сразу после аудита</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">3</td><td class="px-3 py-3">Структура кейса</td><td class="px-3 py-3">Собрать каркас для каждой проектной истории.</td><td class="px-3 py-3">Высокий</td><td class="px-3 py-3">До написания текстов</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">4</td><td class="px-3 py-3">Полный текст кейса</td><td class="px-3 py-3">Превратить факты проекта в публикуемую статью.</td><td class="px-3 py-3">Очень высокий</td><td class="px-3 py-3">После структуры и фактов</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">5</td><td class="px-3 py-3">О себе и навыки</td><td class="px-3 py-3">Собрать доверительный контекст и краткую презентацию.</td><td class="px-3 py-3">Средний</td><td class="px-3 py-3">Параллельно с кейсами</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">6</td><td class="px-3 py-3">Визуалы и wireframes</td><td class="px-3 py-3">Быстро визуализировать обложки и layout страниц.</td><td class="px-3 py-3">Низкий</td><td class="px-3 py-3">После содержания</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">7</td><td class="px-3 py-3">Метрики и KPI</td><td class="px-3 py-3">Усилить кейс доказательствами и бизнес-эффектом.</td><td class="px-3 py-3">Высокий</td><td class="px-3 py-3">До финального текста кейса</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">8</td><td class="px-3 py-3">SEO и alt-тексты</td><td class="px-3 py-3">Подготовить метаданные и базовую discoverability.</td><td class="px-3 py-3">Средний</td><td class="px-3 py-3">Перед публикацией</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">9</td><td class="px-3 py-3">QA-чек-лист</td><td class="px-3 py-3">Проверить сайт на ошибки до релиза.</td><td class="px-3 py-3">Высокий</td><td class="px-3 py-3">Финальная проверка</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">10</td><td class="px-3 py-3">Валидация после релиза</td><td class="px-3 py-3">Проверить конверсию через A/B и обратную связь.</td><td class="px-3 py-3">Средний</td><td class="px-3 py-3">После публикации</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="workflow" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Workflow</h2>
+        <div class="mt-5 grid gap-4 md:grid-cols-2">
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5"><h3 class="text-sm font-semibold text-slate-900">1. Аудит и основа</h3><p class="mt-2 text-sm leading-6 text-slate-700">Запустите промпты 1–3, чтобы получить картину текущего сайта, собрать сильное позиционирование и подготовить каркас кейса до генерации больших текстов.</p></div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5"><h3 class="text-sm font-semibold text-slate-900">2. Генерация контента</h3><p class="mt-2 text-sm leading-6 text-slate-700">Дальше используйте порядок 2 → 3 → 7 → 5 → 4 → 6 → 8 → 9 → 10. После каждого шага вручную вычищайте повторы, уточняйте факты и заменяйте абстракции на реальные данные проекта.</p></div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5"><h3 class="text-sm font-semibold text-slate-900">3. Комбинирование</h3><p class="mt-2 text-sm leading-6 text-slate-700">УТП идёт в hero, кейс ложится в шаблон проектной страницы, метрики усиливают блок Results, а SEO и alt-тексты переезжают в head и медиа-слой сайта.</p></div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5"><h3 class="text-sm font-semibold text-slate-900">4. Валидация и качество</h3><p class="mt-2 text-sm leading-6 text-slate-700">До релиза пройдите QA-чек-лист, после релиза проверьте гипотезы через A/B-тесты и короткие интервью с рекрутерами или hiring managers.</p></div>
+        </div>
+      </section>
+
+      <section id="prompts" class="mt-8 space-y-6">
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold tracking-tight text-slate-900">Промпты</h2>
+              <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-700">Формулировки ниже уже приведены к одному стилю: они дают более устойчивый результат в Cursor и уменьшают долю шаблонного текста.</p>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">Формат: <span class="font-semibold text-slate-900">цель → требования → готовый блок ответа</span></div>
+          </div>
+        </div>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">1. АУДИТ САЙТА</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпт для UX-аудита портфолио</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Ты — UX-специалист и аудитор портфолио-сайтов. Проведи всесторонний аудит сайта {url} с учётом тематики и ключевых слов: {keywords}.
+
+Проверь:
+1. Структуру сайта
+2. Навигацию
+3. Hero-блок
+4. Кейсы / работы
+5. CTA
+6. SEO
+7. Скорость и техническое впечатление
+8. Адаптивность
+9. Доступность
+10. Общее позиционирование
+
+Формат ответа:
+- Пиши кратко, по делу, в Markdown
+- Для каждого раздела дай:
+  - 1–3 сильные стороны
+  - 1–3 слабые стороны
+  - короткие рекомендации
+- В конце добавь:
+  - Общую оценку сайта по 10-балльной шкале
+  - Топ-5 приоритетных улучшений
+  - Что критично исправить в первую очередь перед редизайном
+
+Если какие-то данные нельзя надёжно определить без доступа к коду или Lighthouse, так и укажи: “требует дополнительной проверки”.</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">2. УТП / HERO</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпт для уникального торгового предложения</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Ты — UX-копирайтер и бренд-стратег для портфолио продуктовых дизайнеров. Сгенерируй уникальное торговое предложение для портфолио на основе входных данных.
+
+Входные данные:
+- Специализация: {specialty}
+- Опыт: {experience}
+- Сферы: {domains}
+- Уровень: {mid_or_senior}
+
+Требования:
+- Сгенерируй 3 варианта УТП:
+  1. Короткое: 1 предложение
+  2. Среднее: 2–3 предложения
+  3. Длинное: 1 абзац
+- Если уровень = senior, делай акцент на системном мышлении, влиянии на продукт и бизнес-результат
+- Если уровень = mid, делай акцент на сильной практике, качестве исполнения и умении решать продуктовые задачи
+- Избегай пустых формулировок и общих клише
+- Язык ответа: русский
+
+Формат ответа:
+- markdown-список из 3 пунктов
+- У каждого пункта должен быть заголовок:
+  - Короткое
+  - Среднее
+  - Длинное
+- Не пиши пояснений, только готовые варианты УТП</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">3. СТРУКТУРА КЕЙСА</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпт для разбиения кейса на разделы</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Ты — UX-редактор и product design mentor. Разбей кейс продуктового дизайна на логические разделы для портфолио.
+
+Входные данные:
+- Название проекта: {project_title}
+- Роль: {role}
+
+Обязательные разделы:
+1. Название проекта и роль
+2. Задача / проблема
+3. Исследование
+4. Решение / прототипы
+5. Результат и метрики
+6. Выводы
+
+Для каждого раздела укажи:
+- название раздела
+- что именно в нём должно быть
+- в каком формате лучше подать информацию
+- что особенно важно показать, чтобы кейс выглядел убедительно
+
+Формат ответа:
+- markdown-список из 6 пунктов
+- В каждом пункте:
+  - Название раздела
+  - Короткое пояснение
+  - Рекомендуемый формат подачи</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">4. ПОЛНЫЙ КЕЙС</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпт для генерации статьи по проекту</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Ты — UX-редактор и senior product design storyteller. На основе входных данных составь полный кейс продуктового дизайна в формате статьи для портфолио.
+
+Входные данные:
+- Название проекта: {project_title}
+- Роль: {role}
+- Размер команды: {team_size}
+- Длительность проекта: {duration}
+- Проблема: {problem}
+- Инструменты: {tools}
+- Целевая аудитория: {target_users}
+- Решение: {solution}
+- Метрики до: {metrics_before}
+- Метрики после: {metrics_after}
+
+Структура кейса:
+1. Обзор
+2. Задача
+3. Исследование
+4. Решение
+5. Результаты
+6. Выводы
+
+Требования:
+- Пиши на русском языке
+- Оформляй ответ в Markdown
+- Используй заголовки и при необходимости маркированные списки
+- Не выдумывай факты, если данных недостаточно
+- В разделе «Результаты» сравни показатели до и после, если они переданы
+- В разделе «Решение» делай акцент на продуктовой логике, сценариях и итерациях
+- В разделе «Выводы» укажи уроки, ограничения и возможные следующие шаги</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">5. О СЕБЕ И НАВЫКИ</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпты для About и списка компетенций</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Промпт A. Ты — UX-копирайтер для портфолио продуктовых дизайнеров. Создай текст для раздела «О себе».
+
+Входные данные:
+- Опыт: {experience_years}
+- Роли / компетенции: {roles}
+- Что важно в дизайне: {design_values}
+
+Требования:
+- Объём: 3–5 предложений
+- Пиши от первого лица
+- Упомяни опыт, ключевые компетенции и отношение к дизайну
+- Сделай акцент не только на визуальной части, но и на решении продуктовых задач
+- Формат ответа: один абзац без заголовка
+
+Промпт B. Ты — карьерный редактор и UX-копирайтер. Сгенерируй список ключевых навыков продуктового дизайнера на основе опыта и инструментов.
+
+Входные данные:
+- Опыт: {experience_years}
+- Инструменты: {tools}
+
+Требования:
+- Вывод в формате markdown-списка
+- Включай не только инструменты, но и реальные навыки
+- Учитывай опыт: чем он выше, тем сильнее акцент на системное мышление и влияние на продукт
+- Формат: 8–12 пунктов без вступления и заключения</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">6. ВИЗУАЛЫ И WIREFRAMES</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпты для обложки кейса и макетов страниц</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Промпт A. Ты — арт-директор и product design visual editor. Придумай визуальную обложку для кейса продуктового дизайнера.
+
+Входные данные:
+- Название проекта: {project_title}
+- Контекст проекта: {project_context}
+- Брендовые цвета: {brand_colors}
+
+Опиши:
+- общую визуальную идею
+- композицию
+- фон
+- главный объект или графический акцент
+- цветовую палитру
+- типографику
+- короткий слоган
+
+Формат ответа:
+- markdown
+- разделы:
+  - Концепция
+  - Композиция
+  - Цвета
+  - Типографика
+  - Слоган
+  - Примечания
+
+Промпт B. Ты — UX-дизайнер и information architect. Создай wireframe главной страницы портфолио продуктового дизайнера в формате ASCII или Mermaid.
+
+Входные данные:
+- Цвета бренда: {brand_colors}
+- Шрифт: {font}
+
+На странице обязательно должны быть:
+- хедер с именем и навигацией
+- hero-блок с коротким позиционированием
+- блок с избранными кейсами
+- секция «О себе»
+- блок навыков или экспертизы
+- CTA-блок для связи
+- футер
+
+Промпт C. Ты — mobile UX designer. Создай упрощённый прототип мобильной версии портфолио размером 375×812 px в формате ASCII.
+
+Что должно быть:
+- компактный хедер
+- burger / swipe-меню
+- hero-блок
+- вертикальный список кейсов
+- краткий блок «О себе»
+- CTA для связи
+- футер</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">7. МЕТРИКИ И KPI</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпт для подбора доказательных метрик</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Ты — product analyst и UX-редактор. На основе качественных результатов проекта предложи подходящие количественные метрики, которые можно использовать в кейсе продуктового дизайнера.
+
+Входные данные:
+- Название проекта: {project_title}
+- Качественные результаты: {qualitative_outcomes}
+
+Требования:
+- Подбирай только те метрики, которые действительно связаны с описанными результатами
+- Для каждой метрики укажи:
+  - название
+  - что она измеряет
+  - почему она подходит
+  - простую формулу или способ расчёта
+- Если точные цифры неизвестны, не выдумывай значения
+
+Формат ответа:
+- markdown bullet list
+- 1–2 пункта
+- каждый пункт в формате:
+  - Название метрики
+  - Описание
+  - Почему подходит
+  - Формула / способ расчёта</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">8. SEO И МЕТАДАННЫЕ</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпты для meta tags и alt-текстов</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Промпт A. Ты — SEO-редактор и UX-копирайтер для портфолио продуктовых дизайнеров. Сгенерируй метаданные для страницы портфолио.
+
+Входные данные:
+- Специализация: {specialty}
+- Пример проекта: {project_title}
+- Имя дизайнера: {designer_name}
+- Язык страницы: {page_language}
+
+Нужно сгенерировать:
+- title
+- meta description
+- keywords
+
+Требования:
+- title до 60 символов
+- description до 155 символов
+- keywords — несколько релевантных фраз через запятую
+- Формат ответа:
+  &lt;title&gt;...&lt;/title&gt;
+  &lt;meta name="description" content="..."&gt;
+  &lt;meta name="keywords" content="..."&gt;
+
+Промпт B. Ты — UX-редактор и SEO-специалист. Для изображений кейсов сгенерируй короткие и полезные alt-тексты.
+
+Входные данные:
+- Список файлов: {image_list}
+- Контекст кейса: {project_context}
+- Тип изображений: {image_type}
+
+Требования:
+- Длина каждого alt-текста: 5–10 слов
+- Формат ответа: JSON
+- Ключ — имя файла, значение — alt-текст</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">9. QA ПЕРЕД ПУБЛИКАЦИЕЙ</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпт для предрелизного чек-листа</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Ты — QA-специалист и UX-аудитор. Составь чек-лист перед публикацией портфолио-сайта продуктового дизайнера.
+
+Входные данные:
+- Список страниц: {pages}
+
+Что нужно проверить:
+1. Скорость и производительность
+2. Адаптивность
+3. Доступность
+4. Ссылки и навигацию
+5. CTA и формы
+6. Контент и визуальную консистентность
+7. SEO и метаданные
+8. Базовую техническую корректность
+
+Требования:
+- Формат ответа: markdown-список
+- Группируй пункты по разделам проверки
+- Пиши короткие, проверяемые и конкретные пункты
+- Не добавляй вступление и заключение</code></pre></article>
+
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8"><p class="text-xs font-semibold tracking-wide text-slate-600">10. ПОСТ-РЕЛИЗНАЯ ВАЛИДАЦИЯ</p><h3 class="mt-2 text-lg font-semibold text-slate-900">Промпт для A/B-проверок и качественной обратной связи</h3><pre class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800"><code>Ты — product strategist и UX researcher. Составь план проверки эффективности портфолио после публикации.
+
+Входные данные:
+- Цель сайта: {goal}
+- Основные CTA: {cta_list}
+- Ключевые страницы: {pages}
+
+Сформируй:
+1. 3 гипотезы для A/B-тестирования
+2. Для каждой гипотезы:
+   - что меняем
+   - на какой странице
+   - какую метрику отслеживаем
+   - какой сигнал будет считаться улучшением
+3. Короткий список вопросов для 5 интервью с рекрутерами или hiring managers
+4. Рекомендации, как интерпретировать результаты без ложных выводов
+
+Формат ответа:
+- Markdown
+- Блоки: Гипотезы, Метрики, Интервью, Как принимать решения
+- Без воды и общих формулировок</code></pre></article>
+      </section>
+
+      <section class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Как использовать библиотеку</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Не публикуйте сырой вывод модели.</span> После каждого шага сверяйте факты, вычищайте клише и подставляйте реальные данные проекта.</li>
+          <li><span class="font-semibold text-slate-900">Используйте промпты как конструктор.</span> Hero, About, кейсы, метрики и SEO работают лучше вместе, чем по отдельности.</li>
+          <li><span class="font-semibold text-slate-900">Проверяйте результат на людях.</span> Даже сильный текст лучше валидировать через рекрутеров, hiring managers и аналитику поведения.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

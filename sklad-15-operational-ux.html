@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru" class="h-full scroll-smooth bg-slate-50 text-slate-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Склад-15 — кейс о снижении операционного риска</title>
+    <meta
+      name="description"
+      content="Склад-15: кейс о том, как я перестроил логику складского интерфейса вокруг цены ошибки, офлайна и скан-ориентированного сценария."
+    />
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind-config.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="min-h-full font-sans antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:border-slate-200 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900"
+      >Перейти к содержанию</a
+    >
+    <main id="main" class="mx-auto max-w-[1040px] px-4 py-10 sm:px-6 lg:px-8">
+      <header class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="text-xs font-semibold tracking-wide text-slate-600">КЕЙС • Складские операции • PWA/ТСД</p>
+          <nav class="flex flex-wrap gap-2 text-sm">
+            <a href="./index.html" class="rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-900 hover:border-slate-300">На главную</a>
+            <a href="./safety-reliability-principles.html" class="rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-900 hover:border-slate-300"
+              >Надёжность/безопасность</a
+            >
+          </nav>
+        </div>
+        <h1 class="mt-3 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Склад-15: как снизить стоимость операционной ошибки</h1>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Кейс о том, как я перевёл складской UX из набора экранов в понятную систему решений: от риска и полевых ограничений до измеримого результата.
+        </p>
+      </header>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="overview">
+        <h2 class="text-lg font-semibold text-slate-900">Коротко о проекте</h2>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Продукт</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Мобильный складской интерфейс для ТСД и PWA-сценариев.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Моя роль</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Продуктовый дизайнер с фокусом на операционный риск, сценарии ошибок и передачу решения в разработку.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Контекст</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Офлайн, шумный склад, работа одной рукой, перчатки, сканер как основной способ ввода.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Результат работы</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">Контракт взаимодействия, паттерны для критичных операций, критерии приёмки, QA-матрица и схема измерения эффекта.</p>
+          </div>
+        </div>
+        <p class="mt-4 text-sm leading-6 text-slate-700">
+          Этот кейс не про “красивый экран”, а про то, как дизайн в операционной среде снижает стоимость ошибки. Я собрал его как последовательную историю:
+          от бизнес-риска и полевых ограничений до решения, которое можно без потерь передать в разработку и проверить на данных.
+        </p>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="challenge">
+        <h2 class="text-lg font-semibold text-slate-900">1. Вызов</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          В складских операциях ошибка быстро выходит за пределы интерфейса и превращается в прямые издержки: срыв SLA, возвраты, пересборку, повторные
+          перемещения и долгую диагностику в конце смены. Проблема была не только в отдельных экранах, а в том, что сама логика взаимодействия оставляла
+          слишком много пространства для двусмысленности.
+        </p>
+        <div class="mt-4 space-y-3">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Неверное размещение или подбор</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Интерфейс не давал достаточно явной верификации скана до фиксации результата, поэтому ошибка попадала дальше по цепочке.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Повторы действий в офлайне</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Оператор не видел границу между “сохранено локально” и “доставлено в систему”, поэтому начинал страховаться лишними повторами.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Потеря следующего шага</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">После завершения действия не было явного перехода дальше, из-за чего распадался весь операционный цикл.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="solution">
+        <h2 class="text-lg font-semibold text-slate-900">2. Решение</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Вместо точечных правок экранов я предложил риск-ориентированный контракт взаимодействия. Его цель была простой: сделать правильное действие самым
+          естественным сценарием, а ошибку или неоднозначность переводить в управляемое состояние, а не в хаос повторов и трактовок.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Скан как основной язык интерфейса:</span> ключевые действия начинаются со скана, ручной ввод остаётся только контролируемым исключением.</li>
+          <li><span class="font-semibold text-slate-900">Явный цикл операции:</span> готовность к скану → проверка → фиксация эффекта → понятный следующий шаг.</li>
+          <li><span class="font-semibold text-slate-900">Видимая офлайн-правда:</span> оператор всегда понимает, действие только принято локально или уже синхронизировано.</li>
+          <li><span class="font-semibold text-slate-900">Ошибки как сценарии восстановления:</span> каждый сбой ведёт к безопасному действию, а не в тупик.</li>
+          <li><span class="font-semibold text-slate-900">Мультиоператорность как норма:</span> система учитывает совместную работу и помогает видеть вклад партнёра в операцию.</li>
+        </ul>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="research">
+        <h2 class="text-lg font-semibold text-slate-900">3. Исследование и логика выводов</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Работа началась не с визуального редизайна, а с декомпозиции реального риска. Мне было важно понять, где именно система создаёт неоднозначность и
+          почему оператор начинает компенсировать её своими ручными практиками.
+        </p>
+        <div class="mt-4 grid gap-3 lg:grid-cols-3">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Среда</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Шум, движение, перчатки, работа одной рукой, нестабильная сеть. Это сразу задаёт жёсткие требования к ясности состояния и размеру ошибок.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Критические моменты сценария</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Проблемы концентрировались в точках подтверждения скана, завершения операции, повторов в офлайне и передаче между операторами.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Главный инсайт</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Нужно было не “добавить подсказки”, а сделать так, чтобы система сама объясняла состояние операции и границы ответственности.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="concept">
+        <h2 class="text-lg font-semibold text-slate-900">4. Концепция</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Концептуально я собрал систему вокруг одной идеи: <span class="font-semibold text-slate-900">операция должна быть наблюдаемой от начала до конца</span>.
+          Пользователь не должен гадать, что произошло после скана, дошло ли действие до системы и какой следующий безопасный шаг допустим.
+        </p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Контракт завершения</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Операция считается завершённой только тогда, когда выполнены критерии проверки и обработаны расхождения.</p>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-900">Контракт восстановления</p>
+            <p class="mt-1 text-sm leading-6 text-slate-700">Любая ошибка переводит пользователя в понятное состояние: повторить, сверить, отменить, дождаться синхронизации или передать дальше.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="design">
+        <h2 class="text-lg font-semibold text-slate-900">5. Дизайн и передача в команду</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          Финальное решение было не набором отдельных экранов, а системой, которую можно воспроизводимо разработать и протестировать. Поэтому я оформил её через
+          артефакты, которые снижают риск трактовок внутри команды.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Диаграммы и таблицы состояний:</span> для приёмки, размещения, отбора и перемещений.</li>
+          <li><span class="font-semibold text-slate-900">Переиспользуемые паттерны интерфейса:</span> `ActionHeader`, `ScanZone`, `ErrorHint`, `OfflineBadge`.</li>
+          <li><span class="font-semibold text-slate-900">Критерии приёмки:</span> для критичных переходов, завершения операций и обработки сценариев расхождения.</li>
+          <li><span class="font-semibold text-slate-900">QA-матрица:</span> валидные и невалидные переходы, офлайн-сценарии, коллизии нескольких операторов.</li>
+          <li><span class="font-semibold text-slate-900">Словарь событий:</span> минимальный набор аналитики, чтобы решение можно было проверять не только качественно, но и количественно.</li>
+        </ul>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="results">
+        <h2 class="text-lg font-semibold text-slate-900">6. Результаты и как их проверять</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-700">
+          В этом кейсе я сознательно не рисую выдуманные проценты. Для меня было важнее показать систему измерения, по которой команда может честно сравнить версии
+          решения и увидеть, стало ли меньше ошибок, повторов и доработок.
+        </p>
+        <div class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50">
+          <table class="w-full min-w-[860px] text-left text-sm">
+            <thead class="bg-white text-xs font-semibold tracking-wide text-slate-600">
+              <tr>
+                <th class="px-4 py-3">Показатель</th>
+                <th class="px-4 py-3">Что показывает</th>
+                <th class="px-4 py-3">Какие данные нужны</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr><td class="px-4 py-3">Время до первого валидного скана</td><td class="px-4 py-3">Насколько быстро оператор входит в рабочий ритм без лишних попыток</td><td class="px-4 py-3">operation_id, doc_id, operator_id, offline_flag</td></tr>
+              <tr><td class="px-4 py-3">Частота ошибок по типам</td><td class="px-4 py-3">Какие сценарии всё ещё порождают сбои или неверные действия</td><td class="px-4 py-3">error_type, action_id, operation_id</td></tr>
+              <tr><td class="px-4 py-3">Повторные фиксации одной операции</td><td class="px-4 py-3">Есть ли хаос повторов из-за плохой видимости статуса</td><td class="px-4 py-3">doc_id, action_id, operator_id, partner_id</td></tr>
+              <tr><td class="px-4 py-3">Время завершения и доработки</td><td class="px-4 py-3">Стал ли процесс короче и чище после внедрения нового контракта</td><td class="px-4 py-3">doc_complete, mismatch_flag, rework_flag</td></tr>
+              <tr><td class="px-4 py-3">Ключевые события сценария</td><td class="px-4 py-3">Позволяют сравнивать версии и отслеживать регрессии</td><td class="px-4 py-3">operation_id, doc_id, operator_id, partner_id, action_id, offline_flag, error_type</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 text-sm leading-6 text-slate-700">
+          Если бы у меня был доступ к прод-данным, следующим шагом я бы собрал сегментации по складам, сменам, типам операций и профилям операторов, а затем
+          наложил бы на них карту ошибок и повторов, чтобы приоритизировать следующие итерации решения.
+        </p>
+      </section>
+
+      <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-paper" id="learnings">
+        <h2 class="text-lg font-semibold text-slate-900">7. Выводы</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+          <li><span class="font-semibold text-slate-900">Операционный интерфейс нельзя проектировать как обычный массовый пользовательский сценарий:</span> в нём ошибка стоит дорого, а двусмысленность быстро превращается в реальные потери.</li>
+          <li><span class="font-semibold text-slate-900">Сильное решение здесь рождается из протокола, а не из декора:</span> сначала состояние, переходы и границы ответственности, потом визуальный слой.</li>
+          <li><span class="font-semibold text-slate-900">Хороший дизайн для такой среды обязан быть передаваемым:</span> если решение нельзя точно отдать разработке, QA и аналитике, оно не доведено до конца.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

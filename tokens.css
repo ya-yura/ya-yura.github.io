@@ -1,6 +1,50 @@
+@font-face {
+  font-family: "Iosevka Charon";
+  src:
+    local("Iosevka Charon"),
+    local("IosevkaCharon-Regular"),
+    url("./fonts/iosevka-charon/IosevkaCharon-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Iosevka Charon";
+  src:
+    local("Iosevka Charon Medium"),
+    local("IosevkaCharon-Medium"),
+    url("./fonts/iosevka-charon/IosevkaCharon-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Iosevka Charon";
+  src:
+    local("Iosevka Charon Medium"),
+    local("IosevkaCharon-Medium"),
+    url("./fonts/iosevka-charon/IosevkaCharon-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Iosevka Charon";
+  src:
+    local("Iosevka Charon Bold"),
+    local("IosevkaCharon-Bold"),
+    url("./fonts/iosevka-charon/IosevkaCharon-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   /* Typography */
-  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-sans: "Iosevka Charon", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   /*
