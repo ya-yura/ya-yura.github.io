@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Тепловизионная камера — UX-контракт embedded-устройства</title>
+    <meta name="description" content="Embedded UX кейс тепловизионной камеры: как связать режимы, физический ввод, предупреждения и восстановление в понятное поведение устройства.">
+    <meta property="og:title" content="Тепловизионная камера — UX-контракт embedded-устройства">
+    <meta property="og:description" content="Embedded UX кейс тепловизионной камеры: как связать режимы, физический ввод, предупреждения и восстановление в понятное поведение устройства.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:image" content="../../mockups/png/03-thermal-camera-live-view-states.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../assets/site.css?v=20260521-redesign">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Основная навигация">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Юрий / сложные системы</a>
+        <div class="nav-links">
+          <a href="../index.html#work">Работы</a>
+          <a href="../evidence.html">Материалы</a>
+          <a href="../about.html">Обо мне</a>
+          <a href="../cv.html">Резюме</a>
+          <a href="ruchamp.html">Следующий кейс</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section dark case-hero">
+        <div class="container hero-grid">
+          <div class="stack">
+            <h1>Тепловизионная камера: когда экран должен объяснить режим раньше, чем пользователь ошибется.</h1>
+            <p class="lead">Я описал UX тепловизионной камеры как поведение устройства, а не как набор отдельных экранов. Пользователь меняет режим, смотрит на измерение, получает предупреждение и быстро решает: можно ли доверять показанию, что изменилось после ввода и как вернуться к валидному измерению.</p>
+            <div class="label-row">
+              <span class="claim fact">факт: embedded UX</span>
+              <span class="claim reconstructed">реконструкция: режимы</span>
+              <span class="claim need">нужно добыть: аппаратные ограничения</span>
+              <span class="claim proxy">прокси: предупреждения</span>
+            </div>
+          </div>
+          <figure class="visual-card contain">
+            <img src="../assets/visuals/03-thermal-camera-live-view-states.png" width="1600" height="1000" decoding="async" fetchpriority="high" alt="Тепловизионная камера: реконструированные состояния live view">
+            <figcaption class="visual-caption"><span>Измерительный экран, быстрое меню и предупреждения как поведенческий контракт</span><span class="claim reconstructed">концепт поведения</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container stack">
+          <div class="section-title">
+            <h2>Сложность</h2>
+            <p>В embedded-интерфейсе мало места для текста и почти нет времени на раздумья. Ошибка режима, скрытое предупреждение или неочевидная обратная связь после кнопки могут привести к неверному измерению. Поэтому экран, физический ввод, RGB-индикатор, меню и предупреждения работают как единая система.</p>
+          </div>
+          <div class="artifact-grid">
+            <article class="artifact-card"><span class="claim fact">Ввод</span><h3>Кнопка должна менять состояние понятно</h3><p>После физического или экранного ввода пользователь должен сразу видеть, что устройство приняло действие.</p></article>
+            <article class="artifact-card"><span class="claim proxy">Режим</span><h3>Текущий режим нельзя угадывать</h3><p>Режим влияет на доверие к измерению, поэтому он должен быть виден до, во время и после действия.</p></article>
+            <article class="artifact-card"><span class="claim need">Предупреждение</span><h3>Критический слой важнее меню</h3><p>Если устройство сообщает о проблеме, предупреждение не должно конкурировать с подсказками и вторичными слоями.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="section-title">
+            <h2>Усовершенствование</h2>
+            <p>Я собрал поведение камеры в контракт: какое событие меняет состояние, какой слой получает приоритет, как предупреждение объясняет причину проблемы и каким действием пользователь возвращается к измерению.</p>
+          </div>
+          <div class="flow">
+            <div class="flow-step"><strong>Войти в измерение</strong><span>Устройство показывает текущий режим и измерительную поверхность.</span><span class="claim need">реальный интерфейс</span></div>
+            <div class="flow-step"><strong>Сменить режим</strong><span>Физический или экранный ввод сразу дает обратную связь, чтобы пользователь не угадывал состояние.</span><span class="claim fact">ввод</span></div>
+            <div class="flow-step"><strong>Развести слои</strong><span>Измерение, меню и предупреждение не конкурируют за внимание в критический момент.</span><span class="claim ops">контракт</span></div>
+            <div class="flow-step"><strong>Показать предупреждение</strong><span>Пользователь видит причину, серьезность и действие восстановления.</span><span class="claim hypothesis">восстановление</span></div>
+            <div class="flow-step"><strong>Вернуть к измерению</strong><span>После ошибки интерфейс возвращает к измерительному экрану без двусмысленности.</span><span class="claim proxy">валидное измерение</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="motion-proof" data-interval="1750">
+            <div class="motion-proof-header">
+              <div class="label-row">
+                <span class="claim reconstructed">цикл устройства</span>
+                <span class="claim proxy">ясность режима</span>
+                <span class="claim need">приоритет предупреждения</span>
+              </div>
+              <h2>Сценарий в движении: режим, предупреждение, возврат к измерению</h2>
+              <p>Движение объясняет приоритет слоев: измерительный экран остается опорой, предупреждение не прячется за меню, восстановление возвращает пользователя к валидному измерению. Коротко и без фокусов.</p>
+            </div>
+            <div class="motion-proof-body">
+              <div class="motion-steps" aria-label="Состояния тепловизионной камеры">
+                <button class="motion-step" type="button"><strong>Измерение</strong><span>Пользователь видит текущий режим, статус и измерительную поверхность.</span></button>
+                <button class="motion-step" type="button"><strong>Ввод режима</strong><span>Ввод сразу меняет состояние и дает читаемую обратную связь.</span></button>
+                <button class="motion-step" type="button"><strong>Предупреждение</strong><span>Предупреждение получает приоритет над меню и вторичными слоями.</span></button>
+                <button class="motion-step" type="button"><strong>Восстановление</strong><span>Пользователь понимает, как вернуться к валидному измерению.</span></button>
+              </div>
+              <div class="motion-stage" aria-label="Цикл прототипа тепловизионной камеры">
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim fact">состояние: измерение</span>
+                    <h3>Измерение стабильно</h3>
+                    <p>Первый кадр показывает не только картинку камеры, но и режим, от которого зависит доверие к измерению.</p>
+                    <div class="proof-lines"><span class="proof-line strong"></span><span class="proof-line"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim ops">событие: ввод режима</span>
+                    <h3>Режим изменен</h3>
+                    <p>Обратная связь подтверждает, что устройство приняло ввод и сменило состояние.</p>
+                    <div class="proof-lines"><span class="proof-line success"></span><span class="proof-line strong"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim hypothesis">приоритет предупреждения</span>
+                    <h3>Предупреждение важнее меню</h3>
+                    <p>Критическое состояние не спорит с меню, подсказками и вторичными слоями.</p>
+                    <div class="proof-lines"><span class="proof-line warning"></span><span class="proof-line danger"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim proxy">валидное измерение</span>
+                    <h3>Возврат к измерению</h3>
+                    <p>Восстановление закрывает предупреждение и возвращает контекст измерения без лишней навигации.</p>
+                    <div class="proof-lines"><span class="proof-line success"></span><span class="proof-line"></span><span class="proof-line strong"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="motion-proof-note">
+              <p>Этот фрагмент показывает продуктовую логику embedded UX: экран не просто отображает сведения, а управляет доверием к измерению.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Состояние</th><th>Событие</th><th>Эффект</th><th>QA-вопрос</th></tr></thead>
+              <tbody>
+                <tr><td>Измерительный экран</td><td>Включение / возврат</td><td>Показать измерительную поверхность и текущий режим.</td><td>Может ли пользователь назвать текущий режим?</td></tr>
+                <tr><td>Быстрое меню</td><td>Ввод меню</td><td>Показать меню, не скрывая критическое предупреждение.</td><td>Не конкурирует ли меню с предупреждением?</td></tr>
+                <tr><td>Предупреждение</td><td>Датчик / батарея / неверное измерение</td><td>Объяснить причину и путь восстановления.</td><td>Понятно ли следующее действие?</td></tr>
+                <tr><td>Блокировка режима</td><td>Небезопасное переключение</td><td>Предотвратить случайную смену режима.</td><td>Понятно ли, почему действие заблокировано?</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="panel stack">
+            <h2>Почему это важно</h2>
+            <p>В embedded-интерфейсе мало места для объяснений, поэтому ясность режима, приоритет предупреждения и обратная связь после нажатия становятся не украшением, а продуктовым поведением.</p>
+            <p>Эффект такого решения проверяется через время до валидного измерения, долю неверно выбранных режимов, восстановление после предупреждения, повторные действия и вопросы QA по переходам состояний.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container value-grid">
+          <article class="artifact-card"><span class="claim hypothesis">гипотеза: пользователь</span><h3>Меньше путаницы режимов</h3><p>Пользователь быстрее понимает текущий режим, причину предупреждения и путь возврата к измерению.</p></article>
+          <article class="artifact-card"><span class="claim hypothesis">гипотеза: бизнес</span><h3>Меньше ошибок обучения</h3><p>Более ясное поведение устройства должно снижать нагрузку на обучение, вопросы в поддержку и риск неверного измерения. Нужна проверка на устройстве.</p></article>
+          <article class="artifact-card"><span class="claim fact">факт: команда</span><h3>Контракт для прошивки и QA</h3><p>Кейс показывает мышление о контракте поведения, вводе, приоритете слоев и восстановлении за пределами статичных экранов.</p></article>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container note">
+          <strong>Граница публичного показа:</strong> кейс подан как embedded UX-концепт и поведенческий контракт устройства. Акцент сделан на логике состояний, а не на раскрытии аппаратных или производственных деталей.
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container"><span>Кейс: тепловизионная камера</span><a class="text-link" href="../index.html">На главную</a></div></footer>
+    <script src="../assets/motion.js" defer></script>
+  </body>
+</html>

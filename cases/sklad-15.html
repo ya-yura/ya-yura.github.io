@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Склад-15 — UX приемки от скана</title>
+    <meta name="description" content="UX-кейс Склад-15: как ручную сверку план/факт превратить в сценарий от скана с явными расхождениями, очередью без сети, восстановлением, QA и прокси-метриками.">
+    <meta property="og:title" content="Склад-15 — UX приемки от скана">
+    <meta property="og:description" content="UX-кейс Склад-15: как ручную сверку план/факт превратить в сценарий от скана с явными расхождениями, очередью без сети, восстановлением, QA и прокси-метриками.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:image" content="../../mockups/png/02-sklad-15-state-machine-handoff.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../assets/site.css?v=20260521-redesign">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Основная навигация">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Юрий / сложные системы</a>
+        <div class="nav-links">
+          <a href="../index.html#work">Работы</a>
+          <a href="../evidence.html">Материалы</a>
+          <a href="../about.html">Обо мне</a>
+          <a href="../cv.html">Резюме</a>
+          <a href="industrial-data-platform.html">Следующий кейс</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section dark case-hero">
+        <div class="container hero-grid">
+          <div class="stack">
+            <h1>Склад-15: когда каждый скан должен сразу говорить, что произошло.</h1>
+            <p class="lead">Я разобрал сценарий приемки в складском Android/ТСД-приложении и перестроил его вокруг главного события операции — скана. Вместо ручной сверки строк интерфейс сразу отвечает оператору: позиция принята, найдено расхождение, действие сохранено без сети или нужно восстановиться.</p>
+            <div class="label-row">
+              <span class="claim fact">факт из резюме: Клеверенс, 2025-2026</span>
+              <span class="claim reconstructed">реконструкция: приемка</span>
+              <span class="claim need">нужно добыть: полевые тесты</span>
+              <span class="claim proxy">прокси: состояния ошибок</span>
+            </div>
+          </div>
+          <figure class="visual-card contain">
+            <img src="../assets/visuals/01-sklad-15-receiving-before-after.png" width="1600" height="1000" decoding="async" fetchpriority="high" alt="Склад-15: реконструкция приемки до и после">
+            <figcaption class="visual-caption"><span>Приемка: от ручной сверки к сценарию от скана</span><span class="claim reconstructed">логика прототипа</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container stack">
+          <div class="section-title">
+            <h2>Сложность</h2>
+            <p>Кладовщик работает в движении: в руках ТСД, рядом товар, документ, шум склада и мало времени на решение. В такой среде таблица с планом и фактом быстро становится источником ошибок: оператор сканирует позицию, но все равно ищет строку глазами, сверяет количество и пытается понять, можно ли продолжать.</p>
+          </div>
+          <div class="artifact-grid">
+            <article class="artifact-card"><span class="claim fact">контекст</span><h3>Маленький экран и физический сканер</h3><p>Интерфейс должен поддерживать быстрые повторяющиеся действия, а не требовать внимательного чтения каждой строки.</p></article>
+            <article class="artifact-card"><span class="claim need">риск</span><h3>Расхождение нельзя прятать</h3><p>Недобор, лишний товар, повторный скан и неверная позиция становятся отдельными состояниями с понятным следующим шагом.</p></article>
+            <article class="artifact-card"><span class="claim proxy">ограничение</span><h3>Сеть не всегда надежна</h3><p>Если действие сохранено локально, интерфейс не притворяется, что оно уже синхронизировано с сервером.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="section-title">
+            <h2>Усовершенствование</h2>
+            <p>Я сделал скан главным событием сценария. После каждого скана интерфейс не просто заполняет поле, а отвечает на рабочий вопрос оператора: позиция принята, есть расхождение, товар лишний, код не подходит, действие ушло в локальную очередь или операция закрыта.</p>
+          </div>
+          <div class="flow">
+            <div class="flow-step"><strong>Открыть документ</strong><span>Оператор выбирает ТТН или рабочую задачу и понимает, что именно принимает.</span><span class="claim fact">контекст</span></div>
+            <div class="flow-step"><strong>Сканировать товар</strong><span>Скан не просто заполняет поле, а двигает операцию вперед.</span><span class="claim proxy">первый валидный скан</span></div>
+            <div class="flow-step"><strong>Увидеть расхождение</strong><span>Недобор, лишний товар или неверный товар становятся явным состоянием с причиной.</span><span class="claim hypothesis">восстановление</span></div>
+            <div class="flow-step"><strong>Работать без сети</strong><span>Локально сохраненное действие не выдается за серверную правду.</span><span class="claim hypothesis">честный офлайн-статус</span></div>
+            <div class="flow-step"><strong>Закрыть итог</strong><span>Принятое, спорное и нерешенное разделены так, чтобы это мог проверить QA.</span><span class="claim ops">передача в разработку</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="motion-proof" data-interval="1700">
+            <div class="motion-proof-header">
+              <div class="label-row">
+                <span class="claim reconstructed">цикл скана</span>
+                <span class="claim proxy">восстановление</span>
+                <span class="claim need">офлайн-статус</span>
+              </div>
+              <h2>Сценарий в движении: скан, расхождение, восстановление</h2>
+              <p>Движение показывает не украшение, а ход операции: скан принят, строка сверена, появилось расхождение, действие сохранено без сети, итог синхронизирован. Такой прототип помогает обсуждать не “как выглядит экран”, а “что система сказала оператору после действия”.</p>
+            </div>
+            <div class="motion-proof-body">
+              <div class="motion-steps" aria-label="Состояния движения Склад-15">
+                <button class="motion-step" type="button"><strong>Скан товара</strong><span>Оператор сканирует позицию; интерфейс не заставляет искать строку глазами.</span></button>
+                <button class="motion-step" type="button"><strong>Проверка плана</strong><span>Система сверяет факт с ожидаемой строкой и показывает дельту.</span></button>
+                <button class="motion-step" type="button"><strong>Расхождение</strong><span>Недобор, излишек или неверный товар получают причину и следующий шаг.</span></button>
+                <button class="motion-step" type="button"><strong>Очередь без сети</strong><span>Действие сохранено локально, но не притворяется синхронизированным.</span></button>
+                <button class="motion-step" type="button"><strong>Синхронизация</strong><span>Итог разделяет принятое, спорное и нерешенное для оператора и QA.</span></button>
+              </div>
+              <div class="motion-stage" aria-label="Цикл прототипа Склад-15">
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim proxy">первый валидный скан</span>
+                    <h3>Скан принят</h3>
+                    <p>Обратная связь остается заметной: оператор понимает, что система приняла действие.</p>
+                    <div class="proof-lines"><span class="proof-line strong"></span><span class="proof-line"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim ops">проверка</span>
+                    <h3>План/факт сверены</h3>
+                    <p>Подсветка ведет к строке, где изменилась фактическая приемка.</p>
+                    <div class="proof-lines"><span class="proof-line success"></span><span class="proof-line strong"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim hypothesis">расхождение</span>
+                    <h3>Нужна проверка</h3>
+                    <p>Ошибка объясняет, что не совпало и как продолжить без хаоса.</p>
+                    <div class="proof-lines"><span class="proof-line warning"></span><span class="proof-line"></span><span class="proof-line danger"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim hypothesis">честный офлайн-статус</span>
+                    <h3>Действие в очереди</h3>
+                    <p>Интерфейс честно отделяет локальное сохранение от серверной синхронизации.</p>
+                    <div class="proof-lines"><span class="proof-line warning"></span><span class="proof-line strong"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim ops">QA / передача</span>
+                    <h3>Итог синхронизирован</h3>
+                    <p>Финальное состояние пригодно для передачи в разработку: принятое, спорное и остаток видны отдельно.</p>
+                    <div class="proof-lines"><span class="proof-line success"></span><span class="proof-line success"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="motion-proof-note">
+              <p>Этот цикл показывает логику прототипа: каждое состояние связано с событием, сообщением для оператора и ожидаемой проверкой со стороны QA.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split">
+          <div>
+            <div class="section-title">
+              <h2>Системная часть</h2>
+              <p>Главный артефакт кейса — не отдельный экран, а контракт поведения: какое событие запускает состояние, что видит оператор, что можно исправить без перезапуска и как QA проверяет каждый переход.</p>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Состояние</th><th>Триггер</th><th>Пользовательская ценность</th><th>QA-проверка</th></tr></thead>
+                <tbody>
+                  <tr><td>Успех</td><td>Скан ожидаемой позиции</td><td>Оператор видит, что позиция принята и можно продолжать.</td><td>Подтверждение заметно, связано со строкой и не исчезает слишком быстро.</td></tr>
+                  <tr><td>Расхождение</td><td>Принятое количество отличается от плана</td><td>Оператор видит дельту без ручного поиска в таблице.</td><td>Строка объясняет причину, величину расхождения и следующий шаг.</td></tr>
+                  <tr><td>Неверный товар</td><td>Незапланированный штрихкод</td><td>Ошибка не ломает поток: понятно, почему товар не принят.</td><td>Состояние можно исправить без перезапуска документа.</td></tr>
+                  <tr><td>Без сети</td><td>Потеря соединения</td><td>Работу можно продолжить, но статус синхронизации не замаскирован.</td><td>Локальная очередь не выглядит как завершенная операция.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <figure class="visual-card contain">
+            <img src="../assets/visuals/02-sklad-15-state-machine-handoff.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Склад-15: модель состояний и передача в разработку">
+            <figcaption class="visual-caption"><span>Модель состояний для разработки и QA</span><span class="claim reconstructed">системный артефакт</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="section-title">
+            <h2>Как проверять эффект</h2>
+            <p>Для такого сценария важны не абстрактные лайки к интерфейсу, а операционные сигналы: время до первого валидного скана, доля повторных сканов, скорость восстановления после ошибки, частота конфликтов без сети и количество вопросов по статусам.</p>
+          </div>
+          <div class="metric-grid">
+            <article class="metric"><span class="claim proxy">Скорость</span><strong>Скан</strong><p>Время до первого валидного скана и доля повторных сканов по документу.</p></article>
+            <article class="metric"><span class="claim proxy">Надежность</span><strong>Восстановление</strong><p>Время вернуться к работе после неверного товара, расхождения, лишней позиции, сбоя синхронизации или работы без сети.</p></article>
+            <article class="metric"><span class="claim ops">Команда</span><strong>Передача</strong><p>Таблица состояний, словарь событий и критерии приемки уменьшают риск разночтений между дизайном, разработкой и QA.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container value-grid">
+          <article class="artifact-card"><span class="claim hypothesis">гипотеза: пользователь</span><h3>Меньше ручной сверки</h3><p>Оператор быстрее понимает, что принято, что не совпало и какое действие безопасно делать дальше.</p></article>
+          <article class="artifact-card"><span class="claim hypothesis">гипотеза: бизнес</span><h3>Меньше операционного риска</h3><p>Ясные статусы должны снижать вероятность пересортицы, повторной работы, лишнего обучения и обращений в поддержку. Это нужно подтверждать на реальных операциях.</p></article>
+          <article class="artifact-card"><span class="claim fact">факт: команда</span><h3>Проще разработать и проверить</h3><p>Сценарий описан через события, состояния и критерии приемки, поэтому его можно обсуждать с разработкой и QA без потери смысла.</p></article>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container note">
+          <strong>Граница публичного показа:</strong> кейс подан как UX-аудит и прототипирование сценария приемки. В публичной версии не используются клиентские сведения, номера документов и внутренняя складская информация.
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container"><span>Кейс: Склад-15</span><a class="text-link" href="../index.html">На главную</a></div></footer>
+    <script src="../assets/motion.js" defer></script>
+  </body>
+</html>

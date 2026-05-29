@@ -1,300 +1,278 @@
 <!doctype html>
-<html lang="ru" class="h-full scroll-smooth bg-slate-50 text-slate-900">
+<html lang="ru">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
-    <title>Продуктовый дизайнер для сложных B2B и встроенных интерфейсов</title>
-    <meta
-      name="description"
-      content="Портфолио продуктового дизайнера для сложных B2B и встроенных интерфейсов: кейсы про снижение ошибок, когнитивной нагрузки и неоднозначности в критических сценариях."
-    />
-    <meta
-      name="keywords"
-      content="продуктовый дизайнер, UX-дизайнер, B2B UX, встроенные интерфейсы, критические интерфейсы, сложные системы, дизайн сложных интерфейсов"
-    />
-    <link rel="stylesheet" href="./tokens.css" />
-    <link rel="stylesheet" href="./base.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./tailwind-config.js"></script>
-    <link rel="stylesheet" href="./theme.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Юрий Пылёв — Product/UX для сложных рабочих систем</title>
+    <meta name="description" content="Портфолио Product/UX-дизайнера для B2B, industrial, embedded и операционных интерфейсов: кейсы про роли, состояния, ошибки, handoff и измеримость.">
+    <meta property="og:title" content="Юрий Пылёв — Product/UX для сложных рабочих систем">
+    <meta property="og:description" content="Портфолио Product/UX-дизайнера для B2B, industrial, embedded и операционных интерфейсов: кейсы про роли, состояния, ошибки, handoff и измеримость.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:image" content="../mockups/png/02-sklad-15-state-machine-handoff.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="assets/site.css?v=20260521-redesign">
   </head>
-  <body class="min-h-full font-sans antialiased">
-    <a
-      href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:border-slate-200 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900"
-      >Перейти к содержанию</a
-    >
-    <main id="main" class="mx-auto max-w-[1120px] px-4 py-10 sm:px-6 lg:px-8">
-      <header class="rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="text-xs font-semibold tracking-wide text-slate-600">ПОРТФОЛИО ПРОДУКТОВОГО ДИЗАЙНЕРА</div>
-          <nav class="flex flex-wrap items-center gap-2 text-sm" aria-label="Навигация">
-            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#cases">Кейсы</a>
-            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#expertise">Экспертиза</a>
-            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#process">Процесс</a>
-            <a class="rounded-lg px-3 py-2 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900" href="#about">Обо мне</a>
-            <a class="rounded-lg px-3 py-2 font-semibold text-accent hover:bg-accent-50" href="#contact">Связаться</a>
-          </nav>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Основная навигация">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          Юрий / сложные системы
+        </a>
+        <div class="nav-links">
+          <a href="#work">Работы</a>
+          <a href="evidence.html">Материалы</a>
+          <a href="about.html">Обо мне</a>
+          <a href="cv.html">Резюме</a>
+          <a href="cases/sklad-15.html">Склад-15</a>
         </div>
+      </nav>
+    </header>
 
-        <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">UX и продуктовый дизайн для интерфейсов, где ошибка дорого стоит</p>
-            <h1 class="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              Проектирую сложные B2B и встроенные интерфейсы так, чтобы ими можно было пользоваться, реализовывать и проверять без трактовок
-            </h1>
-            <p class="mt-3 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
-              Моя зона ответственности не заканчивается на UI. Я работаю на стыке продукта, разработки и QA: разбираю критические сценарии, убираю неоднозначность и
-              превращаю сложную логику системы в предсказуемый пользовательский опыт.
-            </p>
-            <p class="mt-2 text-pretty text-sm leading-6 text-slate-700 sm:text-base">
-              В портфолио ниже собраны кейсы про снижение стоимости ошибки, когнитивной нагрузки и дефектов на переходах состояний, а не просто про «редизайн экранов».
-            </p>
-
-            <div class="mt-5 flex flex-wrap gap-2">
-              <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700">B2B-продукты</span>
-              <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700">Критические сценарии</span>
-              <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700">Встроенные интерфейсы</span>
-              <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700">Системное мышление</span>
+    <main>
+      <section class="section dark hero">
+        <div class="container hero-grid">
+          <div class="stack">
+            <h1>Проектирую интерфейсы для B2B и embedded-систем, где ошибка быстро становится временем, деньгами и недоверием.</h1>
+            <p class="lead">В материалах сильнее всего видны складские операции, инженерные данные, event-платформы и внутренние инструменты. Я разбираю роли, состояния, ошибки, recovery, handoff, QA и метрики проверки. Звучит сухо? На практике именно это спасает рабочий сценарий.</p>
+            <div class="label-row">
+              <span class="claim fact">факт из резюме: 9+ лет</span>
+              <span class="claim fact">факт: B2B / internal tools</span>
+              <span class="claim fact">факт: industrial UX</span>
+              <span class="claim proxy">прокси: состояния и ошибки</span>
             </div>
-
-            <div class="mt-5 flex flex-wrap gap-2">
-              <a href="#cases" class="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
-                >Открыть кейсы</a
-              >
-              <a
-                href="#contact"
-                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
-                >Обсудить продукт</a
-              >
-              <a
-                href="./safety-reliability-principles.html"
-                class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-300"
-                >Принципы надёжности</a
-              >
+            <div class="button-row">
+              <a class="button" href="cases/sklad-15.html">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Начать со Склад-15
+              </a>
+              <a class="button secondary" href="evidence.html">Материалы и подход</a>
+              <a class="button secondary" href="cv.html">Открыть резюме</a>
             </div>
           </div>
 
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Что меняется в продукте</p>
-            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li><span class="font-semibold text-slate-900">Меньше ошибок в критических сценариях</span>: через явные состояния, защитные паттерны и контекст перед действием.</li>
-              <li><span class="font-semibold text-slate-900">Быстрее адаптация пользователей</span>: меньше «держать в голове», больше видимости и предсказуемости.</li>
-              <li><span class="font-semibold text-slate-900">Меньше неоднозначности для команды</span>: интерфейс проще реализовывать, тестировать и поддерживать.</li>
-              <li><span class="font-semibold text-slate-900">Чётче продуктовые решения</span>: дизайн опирается на риски, ограничения и измеримые сигналы качества.</li>
-            </ul>
-            <div class="mt-5 rounded-lg border border-slate-200 bg-white p-4">
-              <p class="text-xs font-semibold tracking-wide text-slate-600">Сигналы успеха</p>
-              <ul class="mt-2 space-y-2 text-sm leading-6 text-slate-700">
-                <li>частота ошибок / доля успешного выполнения сценария</li>
-                <li>время на выполнение задачи / время до первого корректного действия</li>
-                <li>время обучения / скорость онбординга</li>
-                <li>количество предупреждений, откатов и обращений в поддержку</li>
-              </ul>
-            </div>
+          <div class="proof-strip" aria-label="Визуальные материалы">
+            <figure class="visual-card contain">
+              <img src="assets/visuals/01-sklad-15-receiving-before-after.png" width="1600" height="1000" decoding="async" fetchpriority="high" alt="Реконструкция сценария приемки Склад-15">
+              <figcaption class="visual-caption"><span>Склад-15: приемка</span><span class="claim reconstructed">операция от скана</span></figcaption>
+            </figure>
+            <figure class="visual-card">
+              <img src="assets/visuals/photo_13@04-09-2024_12-40-43.jpg" width="1280" height="960" decoding="async" fetchpriority="high" alt="Инженерная карточка объекта в industrial data platform">
+              <figcaption class="visual-caption"><span>Карточка промышленного объекта</span><span class="claim need">инженерные данные</span></figcaption>
+            </figure>
+            <figure class="visual-card">
+              <img src="assets/visuals/photo_2@03-08-2024_21-04-08.jpg" width="1280" height="960" decoding="async" fetchpriority="high" alt="Операционный дашборд Ruchamp">
+              <figcaption class="visual-caption"><span>Ruchamp: операции</span><span class="claim fact">события и роли</span></figcaption>
+            </figure>
+            <figure class="visual-card contain">
+              <img src="assets/visuals/03-thermal-camera-live-view-states.png" width="1600" height="1000" decoding="async" fetchpriority="high" alt="Реконструкция состояний тепловизионной камеры">
+              <figcaption class="visual-caption"><span>Тепловизор: состояния</span><span class="claim reconstructed">режимы и предупреждения</span></figcaption>
+            </figure>
           </div>
-        </div>
-      </header>
-
-      <section class="mt-8 grid gap-4 md:grid-cols-3">
-        <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-paper">
-          <p class="text-xs font-semibold tracking-wide text-slate-600">Фокус</p>
-          <p class="mt-2 text-sm leading-6 text-slate-700">Операционные интерфейсы, админ-панели, встроенные экраны, где цена неправильного действия выше средней.</p>
-        </div>
-        <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-paper">
-          <p class="text-xs font-semibold tracking-wide text-slate-600">Подход</p>
-          <p class="mt-2 text-sm leading-6 text-slate-700">Соединяю UX, продуктовую логику и требования разработки, чтобы решения были не только понятными, но и реализуемыми.</p>
-        </div>
-        <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-paper">
-          <p class="text-xs font-semibold tracking-wide text-slate-600">Результат</p>
-          <p class="mt-2 text-sm leading-6 text-slate-700">На выходе получается не набор экранов, а контракт взаимодействия: состояния, переходы, приоритеты сигналов и критерии качества.</p>
         </div>
       </section>
 
-      <section id="cases" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <div class="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 class="text-xl font-semibold tracking-tight text-slate-900">Избранные кейсы</h2>
-            <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-700">
-              Каждый кейс показывает не только интерфейсное решение, но и продуктовую логику: какую ошибку мы предотвращаем, какой сценарий упрощаем и как это можно измерять.
-            </p>
+      <section class="section" id="work">
+        <div class="container">
+          <div class="section-title">
+            <h2>Где видна работа</h2>
+            <p>Я собрал портфолио вокруг задач, где интерфейс не украшает продукт, а держит операцию. Здесь важно быстро сделать частое действие, не пропустить риск, собрать разрозненный контекст и провести человека через роли, статусы и ошибки.</p>
           </div>
-        </div>
-        <div class="mt-6 grid gap-6 lg:grid-cols-2">
-          <a href="./sklad-15-operational-ux.html" class="group block rounded-xl border border-slate-200 bg-white p-6 shadow-paper transition hover:border-slate-300 hover:shadow-md lg:col-span-2">
-            <div class="text-xs font-semibold tracking-wide text-slate-600">ФЛАГМАНСКИЙ КЕЙС • СКЛАДСКОЙ UX • РАБОТА ОФЛАЙН</div>
-            <h3 class="mt-3 text-lg font-semibold text-slate-900 group-hover:text-accent">Склад-15: UX-архитектура для ТСД и PWA в реальной складской среде</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Самый глубокий кейс в портфолио: как превратить складской продукт с высокой ценой ошибки в систему со сканированием как основным действием и устойчивой работой офлайн,
-              измеримым UX и артефактами, по которым команда может быстро реализовывать и тестировать сценарии.
-            </p>
-            <ul class="mt-4 grid gap-1 text-sm leading-6 text-slate-700 sm:grid-cols-3">
-              <li><span class="font-semibold text-slate-900">Проблема:</span> стоимость ошибки в складских операциях, слабая пригодность интерфейса для реальной среды.</li>
-              <li><span class="font-semibold text-slate-900">Что сделано:</span> IA под реальные складские действия, устойчивое офлайн-поведение, сценарии со сканированием как основным действием, телеметрия и стратегия тестирования.</li>
-              <li><span class="font-semibold text-slate-900">Почему важен:</span> показывает не только UX, но и системную работу с ограничениями, передачей в разработку и измеримостью.</li>
-            </ul>
-          </a>
 
-          <a href="./UV-case.html" class="group block rounded-xl border border-slate-200 bg-white p-6 shadow-paper transition hover:border-slate-300 hover:shadow-md lg:col-span-2">
-            <div class="text-xs font-semibold tracking-wide text-slate-600">ВТОРОЙ КЛЮЧЕВОЙ КЕЙС • ВСТРОЕННЫЙ ИНТЕРФЕЙС • ВЫСОКАЯ ЦЕНА ОШИБКИ</div>
-            <h3 class="mt-3 text-lg font-semibold text-slate-900 group-hover:text-accent">Тепловизионная камера: контракт взаимодействия для интерфейса поверх живого изображения</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Второй по силе кейс после склада: как превратить встроенный интерфейс с живым изображением из набора спорящих состояний в систему, где режимы, оверлеи,
-              предупреждения и восстановление после ошибок работают как единый контракт для пользователя, разработки и QA.
-            </p>
-            <ul class="mt-4 grid gap-1 text-sm leading-6 text-slate-700 sm:grid-cols-3">
-              <li><span class="font-semibold text-slate-900">Проблема:</span> путаница режимов, конкурирующие оверлеи и дорогие ошибки на переходах состояний.</li>
-              <li><span class="font-semibold text-slate-900">Что сделано:</span> контракт «состояние → событие → эффект», правило одного активного слоя и сценарии восстановления.</li>
-              <li><span class="font-semibold text-slate-900">Почему важен:</span> хорошо показывает мою работу с embedded-средой, системной логикой и передачей решения в разработку.</li>
-            </ul>
-          </a>
+          <div class="case-grid">
+            <a class="case-card" href="cases/sklad-15.html">
+              <div class="card-media contain"><img src="assets/visuals/02-sklad-15-state-machine-handoff.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Склад-15: модель состояний и передача в разработку"></div>
+              <div class="card-body">
+                <div class="meta-row"><span class="claim fact">факт: складская операция</span><span class="claim reconstructed">реконструкция: Android / ТСД</span></div>
+                <h3>Склад-15: приемка от скана</h3>
+                <p><strong>Почему важно:</strong> оператор сверяет план и факт на маленьком экране, сканирует в движении и не может каждый раз заново читать таблицу.</p>
+                <p><strong>Что сделал:</strong> перестроил приемку вокруг скана: документ → скан → проверка → расхождение → восстановление → итог. Интерфейс ведет операцию, а не просто показывает строки.</p>
+                <div class="meta-row"><span class="claim proxy">прокси: меньше ручной сверки</span><span class="claim ops">артефакт: таблица состояний</span></div>
+              </div>
+            </a>
 
-          <a href="./complex-systems-ux.html" class="group block rounded-xl border border-slate-200 bg-white p-6 shadow-paper transition hover:border-slate-300 hover:shadow-md">
-            <div class="text-xs font-semibold tracking-wide text-slate-600">КЕЙС • B2B • Высокая цена ошибки</div>
-            <h3 class="mt-3 text-lg font-semibold text-slate-900 group-hover:text-accent">Как уменьшить ошибки оператора в критическом интерфейсе</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Как уменьшить ошибки оператора в сложных B2B-системах через систему защитных UX-решений: визуальную иерархию, разведение действий, контекст перед действием и ошибкоустойчивые сценарии.
-            </p>
-            <ul class="mt-4 space-y-1 text-sm leading-6 text-slate-700">
-              <li><span class="font-semibold text-slate-900">Проблема:</span> промахи в критичных действиях и высокая стоимость ошибки.</li>
-              <li><span class="font-semibold text-slate-900">Что изменилось:</span> система защитных паттернов вместо одиночных «фиксов».</li>
-              <li><span class="font-semibold text-slate-900">Что измерять:</span> частоту ошибок, откаты, время до корректного действия.</li>
-            </ul>
-          </a>
+            <a class="case-card" href="cases/industrial-data-platform.html">
+              <div class="card-media"><img src="assets/visuals/photo_19@04-09-2024_12-41-01.jpg" width="1280" height="960" loading="lazy" decoding="async" alt="Схема скважины и таблица параметров"></div>
+              <div class="card-body">
+                <div class="meta-row"><span class="claim fact">факт: industrial data</span><span class="claim fact">факт: Shell domain</span><span class="claim need">нужно добыть: право показа</span></div>
+                <h3>Industrial Data Platform: объект, карта, спецификации</h3>
+                <p><strong>Почему важно:</strong> инженерные объекты живут в карте, схемах, таблицах, отчетах и сертификатах. Контекст распался — легко выбрать не тот объект или собрать неполный пакет.</p>
+                <p><strong>Что сделал:</strong> связал карту, выбранный объект, технические параметры, поиск и импорт/экспорт в один рабочий экран. Пользователь видит состояние объекта, а не груду вкладок.</p>
+                <div class="meta-row"><span class="claim proxy">прокси: время найти объект</span><span class="claim need">нужно добыть: аналитика переключений</span></div>
+              </div>
+            </a>
 
-          <a href="./cognitive-load.html" class="group block rounded-xl border border-slate-200 bg-white p-6 shadow-paper transition hover:border-slate-300 hover:shadow-md">
-            <div class="text-xs font-semibold tracking-wide text-slate-600">КЕЙС • B2B • Снижение нагрузки</div>
-            <h3 class="mt-3 text-lg font-semibold text-slate-900 group-hover:text-accent">Как снизить когнитивную нагрузку в интерфейсе</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-700">
-              Как упростить сложный интерфейс через группировку, иерархию, контекст и постепенное раскрытие: от перегрузки к контролю.
-            </p>
-            <ul class="mt-4 space-y-1 text-sm leading-6 text-slate-700">
-              <li><span class="font-semibold text-slate-900">Проблема:</span> перегрузка данными, одинаковая визуальная важность всего на экране.</li>
-              <li><span class="font-semibold text-slate-900">Что изменилось:</span> иерархия, группировка и progressive disclosure.</li>
-              <li><span class="font-semibold text-slate-900">Что измерять:</span> время на задачу, долю успешного выполнения сценария, скорость обучения.</li>
-            </ul>
-          </a>
+            <a class="case-card" href="cases/thermal-camera.html">
+              <div class="card-media contain"><img src="assets/visuals/03-thermal-camera-live-view-states.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Состояния измерительного экрана тепловизионной камеры"></div>
+              <div class="card-body">
+                <div class="meta-row"><span class="claim fact">факт: embedded UX</span><span class="claim need">нужно добыть: параметры устройства</span></div>
+                <h3>Тепловизор: поведение устройства</h3>
+                <p><strong>Почему важно:</strong> в embedded-интерфейсе почти нет места для объяснений. Пользователь нажимает кнопку, меняет режим и сразу решает, можно ли доверять измерению.</p>
+                <p><strong>Как думал:</strong> описал поведение через состояние, событие и эффект: какой ввод меняет режим, какой слой важнее и как предупреждение возвращает к валидному измерению.</p>
+                <div class="meta-row"><span class="claim proxy">прокси: ясность режима</span><span class="claim ops">артефакт: контракт ввода</span></div>
+              </div>
+            </a>
+
+            <a class="case-card" href="cases/ruchamp.html">
+              <div class="card-media"><img src="assets/visuals/photo_4@03-08-2024_21-04-08.jpg" width="1280" height="960" loading="lazy" decoding="async" alt="Турнирная сетка Ruchamp"></div>
+              <div class="card-body">
+                <div class="meta-row"><span class="claim fact">факт: sport events</span><span class="claim fact">факт из резюме: Lead designer</span><span class="claim need">нужно добыть: launch evidence</span></div>
+                <h3>Ruchamp: жизненный цикл события</h3>
+                <p><strong>Почему важно:</strong> спортивное событие одновременно живет для организатора, спортсмена, команды, зрителя и судьи. У каждой роли свой следующий шаг, а статус должен быть один.</p>
+                <p><strong>Что сделал:</strong> собрал регистрацию, кабинет, страницу события, матчи, сетку и результаты в жизненный цикл: от заявки до публикации итогов.</p>
+                <div class="meta-row"><span class="claim proxy">прокси: актуальный статус</span><span class="claim ops">артефакт: lifecycle-модель</span></div>
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
-      <section id="expertise" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <div class="grid gap-8 lg:grid-cols-[1fr_1fr]">
-          <div>
-            <h2 class="text-xl font-semibold tracking-tight text-slate-900">Экспертиза</h2>
-            <p class="mt-3 text-sm leading-6 text-slate-700">
-              Сильнее всего я полезен там, где интерфейс влияет на операционное качество продукта: ошибки пользователей, время обучения, скорость реакции и надёжность процессов.
-            </p>
-            <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
-              <li><span class="font-semibold text-slate-900">UX-архитектура сложных сценариев</span> — состояния, переходы, ограничения, безопасные пути.</li>
-              <li><span class="font-semibold text-slate-900">Продуктовое мышление</span> — работа от бизнес-риска и пользовательской задачи, а не от украшения интерфейса.</li>
-              <li><span class="font-semibold text-slate-900">Прототипирование и спецификация</span> — артефакты, по которым удобно работать разработке и QA.</li>
-              <li><span class="font-semibold text-slate-900">Снижение когнитивной нагрузки</span> — иерархия, progressive disclosure, контекст до действия.</li>
-              <li><span class="font-semibold text-slate-900">Ошибкоустойчивость</span> — подтверждения, предпросмотр, recoverability, видимость последствий.</li>
-            </ul>
-          </div>
-          <div>
-            <h2 class="text-xl font-semibold tracking-tight text-slate-900">Навыки и роли</h2>
-            <div class="mt-4 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">UX-исследования и формулировка проблемы</div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">Информационная архитектура</div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">Вайрфреймы и интерактивные прототипы</div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">Дизайн-системы и UI-правила</div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">Передача в разработку и QA</div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">Метрики: частота ошибок, успешность сценариев, время на задачу</div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">Figma, прототипы, спецификации</div>
-              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">Работа с продуктом, аналитикой и разработкой</div>
+      <section class="section tight">
+        <div class="container">
+          <div class="motion-proof" data-interval="1900">
+            <div class="motion-proof-header">
+              <div class="label-row">
+                <span class="claim hypothesis">поведение интерфейса</span>
+                <span class="claim reconstructed">короткий цикл</span>
+                <span class="claim ops">доступно без движения</span>
+              </div>
+              <h2>Движение доказывает поведение, а не украшает страницу</h2>
+              <p>Зачем здесь анимация? В сложных продуктах она полезна только тогда, когда объясняет причинность: действие пользователя, системную проверку, ошибку, восстановление и новый статус. Поэтому движение собрано как короткий цикл поведения.</p>
+            </div>
+            <div class="motion-proof-body">
+              <div class="motion-steps" aria-label="Сценарии поведения">
+                <button class="motion-step" type="button"><strong>Действие</strong><span>Пользователь делает рабочий шаг: сканирует, выбирает объект, меняет статус.</span></button>
+                <button class="motion-step" type="button"><strong>Проверка</strong><span>Система сразу объясняет, что приняла, что сверяет и где есть риск.</span></button>
+                <button class="motion-step" type="button"><strong>Восстановление</strong><span>Ошибка получает безопасный следующий шаг, а не мертвую красную плашку.</span></button>
+                <button class="motion-step" type="button"><strong>Контекст</strong><span>Интерфейс показывает, что изменилось после действия и почему это важно для задачи.</span></button>
+              </div>
+              <div class="motion-stage" aria-label="Демонстрация движения как поведения интерфейса">
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim proxy">первый валидный шаг</span>
+                    <h3>Действие принято</h3>
+                    <p>Взгляд уходит к статусу, а не к декоративному эффекту.</p>
+                    <div class="proof-lines"><span class="proof-line strong"></span><span class="proof-line"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim hypothesis">ошибка как сценарий</span>
+                    <h3>Появилось расхождение</h3>
+                    <p>Интерфейс показывает причину и цену следующего действия.</p>
+                    <div class="proof-lines"><span class="proof-line warning"></span><span class="proof-line"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim ops">путь восстановления</span>
+                    <h3>Есть путь назад</h3>
+                    <p>Пользователь возвращается к задаче без перезапуска сценария.</p>
+                    <div class="proof-lines"><span class="proof-line success"></span><span class="proof-line"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+                <div class="proof-frame">
+                  <div class="proof-screen">
+                    <span class="claim need">граница решения</span>
+                    <h3>Контекст не теряется</h3>
+                    <p>Пользователь видит, где он находится в сценарии и что изменилось после действия.</p>
+                    <div class="proof-lines"><span class="proof-line danger"></span><span class="proof-line"></span><span class="proof-line"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="motion-proof-note">
+              <p>Если движение отключено в настройках системы, сайт оставляет статичные кадры, подписи и порядок состояний. Смысл сценария не зависит от анимации.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="process" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Как я работаю</h2>
-        <div class="mt-6 grid gap-4 md:grid-cols-4">
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">01</p>
-            <h3 class="mt-2 text-sm font-semibold text-slate-900">Разбираю риск и задачу</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-700">Формулирую, где именно теряется качество: ошибка, перегрузка, неоднозначность, стоимость обучения или дефекты handoff.</p>
+      <section class="section dark">
+        <div class="container">
+          <div class="section-title">
+            <h2>Как я думаю о продукте</h2>
+              <p>В сложных системах ценность дизайна часто появляется не в новом экране, а в честном договоре между пользователем, интерфейсом и разработкой: что произошло, какое состояние наступило, как выйти из ошибки и как это проверить.</p>
           </div>
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">02</p>
-            <h3 class="mt-2 text-sm font-semibold text-slate-900">Строю модель сценария</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-700">Выделяю состояния, решения пользователя, точки ошибки, ограничения среды и критические переходы.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">03</p>
-            <h3 class="mt-2 text-sm font-semibold text-slate-900">Проектирую решение</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-700">Собираю интерфейсные паттерны, правила приоритета сигналов, recovery-сценарии и артефакты для команды.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">04</p>
-            <h3 class="mt-2 text-sm font-semibold text-slate-900">Фиксирую, как мерить эффект</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-700">Смотрю на успешность сценариев, время на задачу, предупреждения, нагрузку на поддержку и другие сигналы, которые подтверждают эффект дизайна.</p>
+          <div class="artifact-grid">
+            <article class="artifact-card">
+              <span class="claim ops">модель состояний</span>
+              <h3>Сначала состояние, потом экран</h3>
+              <p>Таблица состояний переводит разговор из “нарисуем экран” в “что произошло, кто это видит, что делать дальше и что проверяет QA”.</p>
+            </article>
+            <article class="artifact-card">
+              <span class="claim ops">восстановление после ошибки</span>
+              <h3>Ошибка как рабочий сценарий</h3>
+              <p>Неверный скан, очередь без сети, предупреждение, пустое состояние и спорное совпадение нужно проектировать заранее. Именно тут пользователь решает, доверять системе или обходить ее.</p>
+            </article>
+            <article class="artifact-card">
+              <span class="claim proxy">план измерения</span>
+              <h3>Метрики без театра</h3>
+              <p>Для каждого решения я держу рядом продуктовый ориентир: время до действия, восстановление, повторные шаги, вопросы в поддержку или согласие в классификации.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="about" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <h2 class="text-xl font-semibold tracking-tight text-slate-900">Обо мне</h2>
-        <p class="mt-3 text-sm leading-6 text-slate-700">
-          Я работаю продуктовым и UX-дизайнером на проектах, где интерфейс напрямую влияет на качество операций: в B2B-системах, встроенных экранах и других продуктах со сложной логикой.
-        </p>
-        <p class="mt-3 text-sm leading-6 text-slate-700">
-          Мне ближе всего задачи, в которых нужно не просто «сделать удобнее», а понять, где именно рождается ошибка, перегрузка или путаница, и разложить это на понятную систему решений.
-        </p>
-        <p class="mt-3 text-sm leading-6 text-slate-700">
-          В дизайне я ценю ясность, предсказуемость и уважение к реальному контексту использования: ограничениям среды, скорости принятия решений и возможной цене промаха.
-        </p>
-        <p class="mt-3 text-sm leading-6 text-slate-700">
-          Поэтому мой результат обычно выглядит как связка из UX-архитектуры, правил поведения интерфейса, прототипов и критериев качества, а не только как набор красивых экранов.
-        </p>
-      </section>
-
-      <section id="contact" class="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-paper sm:p-8">
-        <div class="grid gap-6 lg:grid-cols-[1fr_320px]">
-          <div>
-            <h2 class="text-xl font-semibold tracking-tight text-slate-900">Связаться</h2>
-            <p class="mt-3 text-sm leading-6 text-slate-700">
-              Если у вас продукт со сложной операционной логикой, длинным обучением или дорогими ошибками, можно обсудить задачу и быстро понять, где дизайн реально повлияет на качество.
-            </p>
-            <p class="mt-3 text-sm leading-6 text-slate-700">Лучше всего приходить с тремя вводными: что за продукт, где болит процесс и какой сигнал вы хотите улучшить.</p>
+      <section class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Дополнительные работы</h2>
+            <p>Эти проекты расширяют картину опыта: телеком-самообслуживание, PPC SaaS, проверка комплаенс-рисков и внутренние админки. Домены разные, но задача знакомая: сделать сложный сценарий управляемым и проверяемым.</p>
           </div>
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold tracking-wide text-slate-600">Обычно обсуждаем</p>
-            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-              <li>ошибки пользователей и цена промаха</li>
-              <li>сложные сценарии и длинный onboarding</li>
-              <li>legacy-ограничения и handoff в разработку</li>
-              <li>что и как стоит измерять после изменений</li>
-            </ul>
+          <div class="secondary-grid">
+            <article class="artifact-card">
+              <span class="claim fact">Kubtel</span>
+              <h3>Kubtel: сервисный вход без развилки</h3>
+              <p>Публичный сайт, мобильные экраны, оплата, личный кабинет и внутренние панели Wi-Fi, TV и телефонии. Продуктовая задача: убрать лишние развилки между “найти услугу”, “понять тариф”, “оплатить” и “получить поддержку”.</p>
+            </article>
+            <article class="artifact-card">
+              <span class="claim fact">PPC Entourage</span>
+              <h3>Entourage: PPC SaaS от первой ценности до автоматизации</h3>
+              <p>Дашборд, массовый редактор, Auto Pilot, маркетплейс, обучение и состояния загрузки. Ядро задачи — довести пользователя до первой ценности, а потом дать инструменты для массовой оптимизации рекламы.</p>
+            </article>
+            <article class="artifact-card">
+              <span class="claim fact">Black Ice</span>
+              <h3>Black Ice: проверка, граф и аудит</h3>
+              <p>Дашборды, очередь проверки, граф расследования, роли, права, API, аудит и ошибки источников. Главная сложность — дать аналитику быстрый путь к решению, не пряча риск, источник и историю действий.</p>
+            </article>
           </div>
         </div>
-        <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
-          <li>
-            <span class="font-semibold text-slate-900">Email:</span>
-            <a class="font-semibold text-accent hover:underline underline-offset-4" href="mailto:sharikov@gmail.com">sharikov@gmail.com</a>
-          </li>
-          <li>
-            <span class="font-semibold text-slate-900">Telegram:</span>
-            <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://t.me/PythonDVP">@PythonDVP</a>
-          </li>
-          <li>
-            <span class="font-semibold text-slate-900">CV:</span>
-            <a class="font-semibold text-accent hover:underline underline-offset-4" href="https://krasnodar.hh.ru/resume/ffc2ae69ff0df278e20039ed1f496a76646375">hh.ru</a>
-          </li>
-        </ul>
       </section>
 
-      <footer class="mt-8 px-1 pb-6 text-sm text-slate-600">
-        <div class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-5">
-          <p>Портфолио продуктового дизайнера для сложных B2B и встроенных систем.</p>
-          <div class="flex flex-wrap items-center gap-4">
-            <a class="font-medium text-slate-700 hover:text-slate-900" href="#cases">Кейсы</a>
-            <a class="font-medium text-slate-700 hover:text-slate-900" href="#contact">Контакты</a>
+      <section class="section tight">
+        <div class="container split">
+          <div class="section-title">
+            <h2>Как читать кейсы</h2>
+            <p>Портфолио читается как цепочка решений: сначала сложность, потом улучшение, затем ценность для пользователя, бизнеса и команды. Чувствительные материалы обезличены, а метрики не выдаются за результат, если в материалах нет источника.</p>
+          </div>
+          <div class="panel stack">
+            <div class="label-row">
+              <span class="claim fact">сложность</span>
+              <span class="claim proxy">решение</span>
+              <span class="claim hypothesis">эффект</span>
+              <span class="claim need">границы показа</span>
+              <span class="claim reconstructed">материалы</span>
+            </div>
+            <p class="muted">Там, где нет подтвержденной аналитики, я говорю о направлении улучшения и о том, какими метриками его проверять: время операции, доля ошибок, повторные действия, обращения в поддержку, завершение сценария.</p>
+            <div class="button-row">
+              <a class="button" href="evidence.html">Материалы и подход</a>
+              <a class="button secondary" href="cv.html">Резюме и контакт</a>
+            </div>
           </div>
         </div>
-      </footer>
+      </section>
     </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span>Портфолио сложных операций: от хаотичного сценария к управляемому интерфейсу.</span>
+        <a class="text-link" href="README.md">Заметки о сайте</a>
+      </div>
+    </footer>
+    <script src="assets/motion.js" defer></script>
   </body>
 </html>
