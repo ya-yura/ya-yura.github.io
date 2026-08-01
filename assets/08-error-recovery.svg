@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
   <rect width="1600" height="900" fill="#F6F8FB"/>
   <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.h{font:700 28px Arial,sans-serif;fill:#0F172A}.body{font:400 22px Arial,sans-serif;fill:#334155}.bad{fill:#FEE2E2;stroke:#EF4444;stroke-width:2}.safe{fill:#DCFCE7;stroke:#22C55E;stroke-width:2}.info{fill:#DBEAFE;stroke:#60A5FA;stroke-width:2}.warn{fill:#FEF3C7;stroke:#F59E0B;stroke-width:2}.red{fill:#B91C1C}.green{fill:#166534}.blue{fill:#1D4ED8}</style>
-  <text x="80" y="92" class="title">Ошибка — это понятный путь восстановления</text><text x="80" y="135" class="sub">Человек должен знать, что сохранено и что делать дальше</text>
+  <text x="80" y="92" class="title">После ошибки должен быть понятен следующий шаг</text><text x="80" y="135" class="sub">Человек должен знать, что сохранено и что делать дальше</text>
   <rect x="120" y="250" width="430" height="470" rx="26" fill="#0F172A"/><text x="165" y="320" fill="#FFFFFF" class="h">Не удалось передать</text><text x="165" y="375" fill="#FCA5A5" class="body">Связь с сервером пропала</text><rect x="165" y="430" width="340" height="80" rx="16" class="safe"/><text x="335" y="480" text-anchor="middle" class="h green">37 сканирований сохранены</text><rect x="165" y="555" width="340" height="80" rx="16" class="info"/><text x="335" y="605" text-anchor="middle" class="h blue">Повторить отправку</text>
   <text x="700" y="235" class="h">Четыре коротких ответа</text>
   <rect x="700" y="280" width="760" height="92" rx="18" class="bad"/><text x="735" y="325" class="h red">Что случилось</text><text x="1040" y="325" class="body">Связь с сервером пропала</text>

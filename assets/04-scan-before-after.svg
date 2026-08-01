@@ -13,5 +13,5 @@
   <text x="1105" y="485" class="light body">Последний результат</text><text x="1105" y="525" class="green bold">Товар уже был: 12 штук</text>
   <rect x="1105" y="570" width="290" height="72" rx="14" fill="#1D4ED8"/><text x="1250" y="615" text-anchor="middle" class="white bold">Отменить последнее</text>
   <text x="1105" y="700" class="green body">Действие можно вернуть</text>
-  <line x1="570" y1="515" x2="1030" y2="515" stroke="#2563EB" stroke-width="6"/><polygon points="1030,515 1005,498 1005,532" fill="#2563EB"/><text x="800" y="480" text-anchor="middle" class="blue body">понятный результат за одну секунду</text>
+  <line x1="570" y1="515" x2="1030" y2="515" stroke="#2563EB" stroke-width="6"/><polygon points="1030,515 1005,498 1005,532" fill="#2563EB"/><text x="800" y="480" text-anchor="middle" class="blue body">понятный результат сразу</text>
 </svg>
