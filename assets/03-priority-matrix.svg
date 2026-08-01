@@ -6,7 +6,7 @@
   <line x1="250" y1="740" x2="1370" y2="740" stroke="#2563EB" stroke-width="5" marker-end="url(#arrow)"/><line x1="250" y1="740" x2="250" y2="205" stroke="#2563EB" stroke-width="5" marker-end="url(#arrow)"/>
   <text x="790" y="800" text-anchor="middle" class="axis">Как часто происходит</text><text x="135" y="480" text-anchor="middle" class="axis" transform="rotate(-90 135 480)">Насколько мешает работе</text>
   <line x1="810" y1="740" x2="810" y2="205" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="10 10"/><line x1="250" y1="470" x2="1370" y2="470" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="10 10"/>
-  <rect x="850" y="235" width="470" height="195" rx="20" fill="#DCFCE7" stroke="#86EFAC" stroke-width="3"/><text x="1085" y="280" text-anchor="middle" class="note">ПЕРВЫЙ ВЫПУСК</text><text x="1085" y="315" text-anchor="middle" class="small">самые частые и опасные проблемы</text>
+  <rect x="850" y="235" width="470" height="195" rx="20" fill="#DCFCE7" stroke="#86EFAC" stroke-width="3"/><text x="1085" y="280" text-anchor="middle" class="note">ПЕРВАЯ ВЕРСИЯ</text><text x="1085" y="315" text-anchor="middle" class="small">самые частые и опасные проблемы</text>
   <circle cx="1030" cy="370" r="36" fill="#DC2626"/><text x="1030" y="378" text-anchor="middle" fill="#FFFFFF" class="label">1</text><text x="1080" y="378" class="label">Повторное сканирование</text>
   <circle cx="1050" cy="415" r="27" fill="#F59E0B"/><text x="1100" y="423" class="label">Неполное завершение</text>
   <circle cx="1260" cy="535" r="23" fill="#F59E0B"/><text x="910" y="545" class="label">Неясное количество</text>
