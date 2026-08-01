@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#F6F8FB"/>
+  <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#64748B"/></marker></defs>
+  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.head{font:700 24px Arial,sans-serif;fill:#0F172A}.body{font:400 21px Arial,sans-serif;fill:#475569}.state{font:700 23px Arial,sans-serif;fill:#0F172A}.safe{fill:#DCFCE7;stroke:#22C55E}.warn{fill:#FEF3C7;stroke:#F59E0B}.bad{fill:#FEE2E2;stroke:#EF4444}.info{fill:#DBEAFE;stroke:#60A5FA}.box{stroke-width:3}</style>
+  <text x="80" y="92" class="title">Что происходит после сканирования</text><text x="80" y="135" class="sub">Один понятный путь вместо догадок</text>
+  <rect x="80" y="340" width="230" height="130" rx="20" class="box info"/><text x="195" y="395" text-anchor="middle" class="state">Ждём скан</text><text x="195" y="430" text-anchor="middle" class="body">можно сканировать</text>
+  <line x1="310" y1="405" x2="400" y2="405" stroke="#64748B" stroke-width="4" marker-end="url(#arrow)"/>
+  <rect x="410" y="340" width="230" height="130" rx="20" class="box info"/><text x="525" y="395" text-anchor="middle" class="state">Проверяем</text><text x="525" y="430" text-anchor="middle" class="body">система думает</text>
+  <line x1="640" y1="405" x2="730" y2="405" stroke="#64748B" stroke-width="4" marker-end="url(#arrow)"/>
+  <rect x="740" y="250" width="250" height="130" rx="20" class="box safe"/><text x="865" y="305" text-anchor="middle" class="state">Добавлено</text><text x="865" y="340" text-anchor="middle" class="body">товар принят</text>
+  <rect x="740" y="425" width="250" height="130" rx="20" class="box warn"/><text x="865" y="480" text-anchor="middle" class="state">Нужно решение</text><text x="865" y="515" text-anchor="middle" class="body">нужна проверка</text>
+  <rect x="1080" y="250" width="250" height="130" rx="20" class="box bad"/><text x="1205" y="305" text-anchor="middle" class="state">Ошибка</text><text x="1205" y="340" text-anchor="middle" class="body">показываем причину</text>
+  <rect x="1080" y="425" width="250" height="130" rx="20" class="box info"/><text x="1205" y="480" text-anchor="middle" class="state">Нет связи</text><text x="1205" y="515" text-anchor="middle" class="body">сохраняем на терминале</text>
+  <line x1="640" y1="405" x2="730" y2="315" stroke="#64748B" stroke-width="4" marker-end="url(#arrow)"/><line x1="640" y1="405" x2="730" y2="490" stroke="#64748B" stroke-width="4" marker-end="url(#arrow)"/><line x1="990" y1="315" x2="1070" y2="315" stroke="#64748B" stroke-width="4" marker-end="url(#arrow)"/><line x1="990" y1="490" x2="1070" y2="490" stroke="#64748B" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="80" y="700" class="head">Главное правило</text><text x="80" y="745" class="body">Каждое состояние говорит человеку: что случилось и что делать дальше.</text>
+</svg>

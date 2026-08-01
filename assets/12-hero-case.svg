@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#0F172A"/>
+  <style>.title{font:700 54px Arial,sans-serif;fill:#FFFFFF}.sub{font:400 26px Arial,sans-serif;fill:#CBD5E1}.h{font:700 27px Arial,sans-serif;fill:#FFFFFF}.body{font:400 21px Arial,sans-serif;fill:#CBD5E1}.blue{fill:#60A5FA}.green{fill:#4ADE80}.orange{fill:#FBBF24}.red{fill:#F87171}.card{fill:#1E293B;stroke:#334155;stroke-width:2}</style>
+  <text x="90" y="120" class="title">Я проектировал не кнопки, а понятное состояние приёмки</text>
+  <text x="90" y="175" class="sub">Человек всегда понимает: что ждёт система, что принято, что сохранено и что делать дальше.</text>
+  <rect x="90" y="265" width="340" height="220" rx="24" class="card"/><text x="125" y="325" class="h">1. Понять контекст</text><text x="125" y="375" class="body">Какой документ?</text><text x="125" y="410" class="body">Какой товар?</text><text x="125" y="445" class="body">Какой режим работы?</text>
+  <rect x="505" y="265" width="340" height="220" rx="24" class="card"/><text x="540" y="325" class="h">2. Понять результат</text><text x="540" y="375" class="body">Что произошло после скана?</text><text x="540" y="410" class="body">Товар принят или нет?</text><text x="540" y="445" class="body">Можно ли продолжать?</text>
+  <rect x="920" y="265" width="340" height="220" rx="24" class="card"/><text x="955" y="325" class="h">3. Безопасно закончить</text><text x="955" y="375" class="body">Где сохранён документ?</text><text x="955" y="410" class="body">Дошёл ли он до учёта?</text><text x="955" y="445" class="body">Что делать при ошибке?</text>
+  <rect x="1335" y="265" width="180" height="220" rx="24" class="card"/><text x="1425" y="325" text-anchor="middle" class="h">4. Проверить</text><text x="1425" y="375" text-anchor="middle" class="body">Сначала</text><text x="1425" y="410" text-anchor="middle" class="body">измерить</text><text x="1425" y="445" text-anchor="middle" class="body">результат</text>
+  <text x="90" y="590" class="h">Четыре главные истории</text>
+  <rect x="90" y="635" width="300" height="78" rx="18" fill="#1E3A8A"/><text x="240" y="684" text-anchor="middle" class="h">Сканирование</text>
+  <rect x="430" y="635" width="300" height="78" rx="18" fill="#14532D"/><text x="580" y="684" text-anchor="middle" class="h">Количество</text>
+  <rect x="770" y="635" width="300" height="78" rx="18" fill="#713F12"/><text x="920" y="684" text-anchor="middle" class="h">Документ</text>
+  <rect x="1110" y="635" width="405" height="78" rx="18" fill="#7F1D1D"/><text x="1312" y="684" text-anchor="middle" class="h">Ошибка и восстановление</text>
+  <text x="90" y="815" class="body">Основано на изучении инструкций. Частоту проблем ещё нужно проверить на реальном складе.</text>
+</svg>

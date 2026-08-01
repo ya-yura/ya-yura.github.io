@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#F6F8FB"/>
+  <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#2563EB"/></marker></defs>
+  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.num{font:700 26px Arial,sans-serif;fill:#FFFFFF}.h{font:700 27px Arial,sans-serif;fill:#0F172A}.body{font:400 21px Arial,sans-serif;fill:#475569}.circle{fill:#2563EB}.line{stroke:#2563EB;stroke-width:5;marker-end:url(#arrow)}</style>
+  <text x="80" y="92" class="title">Как проверить решение</text><text x="80" y="135" class="sub">Идём от понимания проблемы к пробному запуску</text>
+  <circle cx="240" cy="365" r="52" class="circle"/><text x="240" y="375" text-anchor="middle" class="num">1</text><text x="240" y="465" text-anchor="middle" class="h">Разговор</text><text x="240" y="505" text-anchor="middle" class="body">спросить кладовщика</text><text x="240" y="538" text-anchor="middle" class="body">о сложных местах</text>
+  <line x1="300" y1="365" x2="515" y2="365" class="line"/>
+  <circle cx="590" cy="365" r="52" class="circle"/><text x="590" y="375" text-anchor="middle" class="num">2</text><text x="590" y="465" text-anchor="middle" class="h">Наблюдение</text><text x="590" y="505" text-anchor="middle" class="body">посмотреть работу</text><text x="590" y="538" text-anchor="middle" class="body">на складе</text>
+  <line x1="650" y1="365" x2="865" y2="365" class="line"/>
+  <circle cx="940" cy="365" r="52" class="circle"/><text x="940" y="375" text-anchor="middle" class="num">3</text><text x="940" y="465" text-anchor="middle" class="h">Проверка макета</text><text x="940" y="505" text-anchor="middle" class="body">дать человеку</text><text x="940" y="538" text-anchor="middle" class="body">пройти сценарий</text>
+  <line x1="1000" y1="365" x2="1215" y2="365" class="line"/>
+  <circle cx="1290" cy="365" r="52" class="circle"/><text x="1290" y="375" text-anchor="middle" class="num">4</text><text x="1290" y="465" text-anchor="middle" class="h">Пробный запуск</text><text x="1290" y="505" text-anchor="middle" class="body">проверить на одном</text><text x="1290" y="538" text-anchor="middle" class="body">складе</text>
+  <rect x="250" y="690" width="1100" height="80" rx="18" fill="#DCFCE7" stroke="#86EFAC" stroke-width="2"/><text x="800" y="740" text-anchor="middle" class="h">Сначала текущий уровень, потом сравнение.</text>
+</svg>

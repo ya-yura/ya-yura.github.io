@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#F6F8FB"/>
+  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.h{font:700 32px Arial,sans-serif;fill:#0F172A}.screen{fill:#0F172A;stroke:#334155;stroke-width:5}.white{fill:#FFFFFF}.light{fill:#CBD5E1}.green{fill:#22C55E}.red{fill:#EF4444}.blue{fill:#60A5FA}.body{font:400 24px Arial,sans-serif}.bold{font:700 24px Arial,sans-serif}.dark{fill:#0F172A}.muted{fill:#94A3B8}</style>
+  <text x="80" y="92" class="title">Сканирование должно быть понятным</text><text x="80" y="135" class="sub">После каждого сканирования человек сразу видит, что произошло</text>
+  <text x="350" y="215" text-anchor="middle" class="h">ДО</text><text x="1250" y="215" text-anchor="middle" class="h">ПОСЛЕ</text>
+  <rect x="170" y="255" width="360" height="520" rx="34" class="screen"/><rect x="1070" y="255" width="360" height="520" rx="34" class="screen"/>
+  <text x="205" y="310" class="light body">Приёмка товара</text><text x="1105" y="310" class="light body">Приёмка товара</text>
+  <rect x="205" y="350" width="290" height="80" rx="14" fill="#1E293B"/><text x="350" y="400" text-anchor="middle" class="white bold">Скан принят</text>
+  <text x="205" y="485" class="light body">Что изменилось?</text><text x="205" y="525" class="muted body">Не видно</text>
+  <rect x="205" y="570" width="290" height="72" rx="14" fill="#7F1D1D"/><text x="350" y="615" text-anchor="middle" class="white bold">Скан ещё раз</text>
+  <text x="205" y="700" class="red body">Товар может удалиться</text>
+  <rect x="1105" y="350" width="290" height="80" rx="14" fill="#14532D"/><text x="1250" y="400" text-anchor="middle" class="white bold">Добавлено +12 штук</text>
+  <text x="1105" y="485" class="light body">Последний результат</text><text x="1105" y="525" class="green bold">Товар уже был: 12 штук</text>
+  <rect x="1105" y="570" width="290" height="72" rx="14" fill="#1D4ED8"/><text x="1250" y="615" text-anchor="middle" class="white bold">Отменить последнее</text>
+  <text x="1105" y="700" class="green body">Действие можно вернуть</text>
+  <line x1="570" y1="515" x2="1030" y2="515" stroke="#2563EB" stroke-width="6"/><polygon points="1030,515 1005,498 1005,532" fill="#2563EB"/><text x="800" y="480" text-anchor="middle" class="blue body">понятный результат за одну секунду</text>
+</svg>
