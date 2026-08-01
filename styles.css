@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: "TikTok Sans";
   src: url("fonts/tiktok-sans-cyrillic-ext-standard-normal.woff2") format("woff2");
@@ -212,4 +213,277 @@ h1, h2, h3, h4 { font-family: var(--display); }
 .meta-item strong { display: block; margin-top: 7px; font-size: 13px; }
 .case-hero-art { position: relative; }
 .case-hero-art img { width: 100%; border-radius: var(--radius-lg); border: 1px solid rgba(11,13,13,.16); box-shadow: 0 25px 70px rgba(36,47,38,.16); }
-.hero-×]8¶‰žËkºwµçMÑ•´µµ¥¹¤…ÉÑ¥±”ìµ¥¸µ¡•¥¡Ðè€ÄÜÁÁàìÁ…‘‘¥¹œè€ÈÑÁàì‰…­É½Õ¹èÙ…È ´µ¥¹¬µÍ½™Ð¤ìô(¹ÍåÍÑ•´µµ¥¹¤ÍÁ…¸ì½±½ÈèÙ…È ´µ±¥µ”¤ì™½¹Ðµ™…µ¥±äèÙ…È ´µµ½¹¼¤ì™½¹ÐµÍ¥é”è€ÄÅÁàìô(¹ÍåÍÑ•´µµ¥¹¤ Ììµ…É¥¸è€ÌÁÁà€À€áÁàì™½¹ÐµÍ¥é”è€ÈÍÁàì±•ÑÑ•ÈµÍÁ…¥¹œè€´¸ÀÕ•´ìô(¹ÍåÍÑ•´µµ¥¹¤Àìµ…É¥¸è€Àì½±½ÈèÙ…È ´µµÕÑ•¤ì™½¹ÐµÍ¥é”è€ÄÍÁàìô(¹…Í”µ•¹ìÁ…‘‘¥¹œè€ÄÀÁÁà€Àì‰…­É½Õ¹èÙ…È ´µ±¥µ”¤ì½±½ÈèÙ…È ´µ¥¹¬¤ìô(¹…Í”µ•¹µÉ¥ì‘¥ÍÁ±…äè™±•àì©ÕÍÑ¥™äµ½¹Ñ•¹ÐèÍÁ…”µ‰•ÑÝ••¸ì…±¥¸µ¥Ñ•µÌè•¹ì…Àè€ÐÁÁàìô(¹…Í”µ•¹ Èìµ…àµÝ¥‘Ñ è€àÀÁÁàìµ…É¥¸è€ÄáÁà€À€Àì™½¹ÐµÍ¥é”è±…µÀ ÌáÁà°€ÕÙÜ°€ÜÉÁà¤ì±¥¹”µ¡•¥¡Ðè€¸äÔì±•ÑÑ•ÈµÍÁ…¥¹œè€´¸ÀÝ•´ìô(¹…Í”µ•¹€¹‰ÕÑÑ½¸ì‰½É‘•Èµ½±½ÈèÙ…È ´µ¥¹¬¤ìô((¼¨-U	Q0½¹•ÁÐ€¨¼(¹­Õ‰Ñ•°µÁ…”€¹…Í”µ¡•É¼ì‰…­É½Õ¹è€”á•‰”Ðìô(¹­Õ‰Ñ•°µÁ…”€¹…Í”µ¡•É¼µ…ÉÐìÁ…‘‘¥¹œè€ÈÕÁàì‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÉ…‘¥ÕÌµ±œ¤ì‰…­É½Õ¹è€å‘™Ôìô(¹Í•ÉÙ¥”µÁÉ½‘ÕÐì½Ù•É™±½Üè¡¥‘‘•¸ì‰½É‘•Èè€ÅÁàÍ½±¥€ˆåŒÑˆàì‰½É‘•ÈµÉ…‘¥ÕÌè€ÄåÁàì‰…­É½Õ¹è€™‰™˜àì½±½ÈèÙ…È ´µ¥¹¬¤ì‰½àµÍ¡…‘½Üè€À€ÌÁÁà€ÜÕÁàÉ‰„ Ðä°ØÐ°Ðà°¸Äà¤ìô(¹Í•ÉÙ¥”µÁÉ½‘ÕÐµÑ½Àì‘¥ÍÁ±…äè™±•àì…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì©ÕÍÑ¥™äµ½¹Ñ•¹ÐèÍÁ…”µ‰•ÑÝ••¸ì…Àè€ÈÁÁàìÁ…‘‘¥¹œè€ÄÝÁà€ÄåÁàì‰½É‘•Èµ‰½ÑÑ½´è€ÅÁàÍ½±¥€‘”Í‘„ì™½¹ÐµÍ¥é”è€ÄÉÁàìô(¹Í•ÉÙ¥”µÝ½É‘µ…É¬ì½±½Èè€ŒÅŒÕ˜ÐÌì™½¹ÐµÝ•¥¡Ðè€äÀÀì±•ÑÑ•ÈµÍÁ…¥¹œè€¸ÀÙ•´ìô(¹Í•ÉÙ¥”µ…Ù…Ñ…Èì‘¥ÍÁ±…äèÉ¥ìÁ±…”µ¥Ñ•µÌè•¹Ñ•ÈìÝ¥‘Ñ è€ÌÁÁàì¡•¥¡Ðè€ÌÁÁàì‰½É‘•ÈµÉ…‘¥ÕÌè€ÔÀ”ì‰…­É½Õ¹è€”É˜Á”Øì½±½Èè€ŒÅŒÕ˜ÐÌì™½¹ÐµÍ¥é”è€ÄÁÁàì™½¹ÐµÝ•¥¡Ðè€àÀÀìô(¹Í•ÉÙ¥”µÁÉ½‘ÕÐµ‰½‘äìÁ…‘‘¥¹œè€ÈáÁàìô(¹Í•ÉÙ¥”µÁÉ½‘ÕÐµ½¹Ñ•áÐì‘¥ÍÁ±…äè™±•àì©ÕÍÑ¥™äµ½¹Ñ•¹ÐèÍÁ…”µ‰•ÑÝ••¸ì…Àè€ÄáÁàìÁ…‘‘¥¹œµ‰½ÑÑ½´è€ÈÑÁàìô(¹Í•ÉÙ¥”µÁÉ½‘ÕÐµ½¹Ñ•áÐÍµ…±°ì‘¥ÍÁ±…äè‰±½¬ì½±½Èè€ŒÜÌàÀÜÜì™½¹Ðµ™…µ¥±äèÙ…È ´µµ½¹¼¤ì™½¹ÐµÍ¥é”è€åÁàìÑ•áÐµÑÉ…¹Í™½É´èÕÁÁ•É…Í”ìô(¹Í•ÉÙ¥”µÁÉ½‘ÕÐµ½¹Ñ•áÐÍÑÉ½¹œì‘¥ÍÁ±…äè‰±½¬ìµ…É¥¸µÑ½Àè€ÕÁàì™½¹ÐµÍ¥é”è€ÄÑÁàìô(¹Í•ÉÙ¥”µ…±•ÉÐì‘¥ÍÁ±…äèÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€ÐÕÁà€Å™Èì…Àè€ÄáÁàìÁ…‘‘¥¹œè€ÈÉÁàì‰½É‘•Èè€ÅÁàÍ½±¥€ˆá‘‘ŒÈì‰½É‘•ÈµÉ…‘¥ÕÌè€ÄÙÁàì‰…­É½Õ¹è€•™˜å˜Àìô(¹Í•ÉÙ¥”µ…±•ÉÐµ¹Õµ‰•Èì½±½Èè€ŒÉˆá„ÔÈì™½¹Ðµ™…µ¥±äèÙ…È ´µµ½¹¼¤ì™½¹ÐµÍ¥é”è€ÄÉÁàì™½¹ÐµÝ•¥¡Ðè€àÀÀìô(¹Í•ÉÙ¥”µ…±•ÉÐÍµ…±°ì½±½Èè€ŒÕŒÝ„ØÔì™½¹Ðµ™…µ¥±äèÙ…È ´µµ½¹¼¤ì™½¹ÐµÍ¥é”è€åÁàìô(¹Í•ÉÙ¥”µ…±•ÉÐ Ììµ…É¥¸è€ÄÁÁà€À€áÁàì™½¹ÐµÍ¥é”è€ÈÕÁàì±¥¹”µ¡•¥¡Ðè€Ä¸ÀÔì±•ÑÑ•ÈµÍÁ…¥¹œè€´¸ÀÕ•´ìô(¹Í•ÉÙ¥”µ…±•ÉÐÀìµ…É¥¸è€Àì½±½Èè€ŒÔÌØÌÕ„ì™½¹ÐµÍ¥é”è€ÄÉÁàìô(¹Í•ÉÙ¥”µÕÁ‘…Ñ”ìÉ¥µ½±Õµ¸è€Ä€¼€´Äì‘¥ÍÁ±…äè™±•àì©ÕÍÑ¥™äµ½¹Ñ•¹ÐèÍÁ…”µ‰•ÑÝ••¸ì…Àè€ÄÕÁàìµ…É¥¸µÑ½Àè€ÄÉÁàìÁ…‘‘¥¹œµÑ½Àè€ÄÑÁàì‰½É‘•ÈµÑ½Àè€ÅÁàÍ½±¥€™”ÙÌì½±½Èè€ŒÔÌÜÀÕŒì™½¹ÐµÍ¥é”è€ÄÅÁàìô(¹Í•ÉÙ¥”µÕÁ‘…Ñ”ÍÑÉ½¹œì½±½Èè€ŒÅŒÕ˜ÐÌìô(¹Í•ÉÙ¥”µÑ¥µ•±¥¹”µ±…É”ì‘¥ÍÁ±…äèÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÉ•Á•…Ð Ì°€Å™È¤ì…Àè€ÄÁÁàìµ…É¥¸µÑ½Àè€ÈÁÁàìô(¹Í•ÉÙ¥”µÑ¥µ•±¥¹”µ±…É”‘¥ØìÁ…‘‘¥¹œµÑ½Àè€ÄÑÁàì‰½É‘•ÈµÑ½Àè€ÉÁàÍ½±¥€ŒÉˆá„ÔÈìô(¹Í•ÉÙ¥”µÑ¥µ•±¥¹”µ±…É”‘¥Øé±…ÍÐµ¡¥±ì‰½É‘•Èµ½±½Èè€…Í„ìô(¹Í•ÉÙ¥”µÑ¥µ•±¥¹”µ±…É”ÍÁ…¸ì‘¥ÍÁ±…äè‰±½¬ì½±½Èè€ŒÜÌàÀÜÜì™½¹Ðµ™…µ¥±äèÙ…È ´µµ½¹¼¤ì™½¹ÐµÍ¥é”è€åÁàìô(¹Í•ÉÙ¥”µÑ¥µ•±¥¹”µ±…É”ÍÑÉ½¹œì‘¥ÍÁ±…äè‰±½¬ìµ…É¥¸µÑ½Àè€ÕÁàì™½¹ÐµÍ¥é”è€ÄÅÁàìô(¹­Õ‰Ñ•°µ½¹ÑÉ…ÍÐì‘¥ÍÁ±…äèÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È€Å™Èì…Àè€ÈÁÁàìô(¹½¹ÑÉ…ÍÐµ…ÉìÁ…‘‘¥¹œè€ÈáÁàì‰½É‘•Èè€ÅÁàÍ½±¥É‰„ ÄÄ°ÄÌ°ÄÌ°¸ÄÌ¤ì‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÉ…‘¥ÕÌµµ¤ìô(¹½¹ÑÉ…ÍÐµ…É¹‰•™½É”ì‰…­É½Õ¹è€˜Ý˜Å•ìô(¹½¹ÑÉ…ÍÐµ…É¹…™Ñ•Èì‰…­É½Õ¹è€•‘˜Ý•”ì‰½É‘•Èµ½±½Èè€ˆÝ‘‰‰ìô(¹½¹ÑÉ…ÍÐµ…ÉÍÁ…¸ì½±½Èè€ŒÙ˜ÝŒÜÌì™½¹Ðµ™…µ¥±äèÙ…È ´µµ½¹¼¤ì™½¹ÐµÍ¥é”è€ÄÁÁàìÑ•áÐµÑÉ…¹Í™½É´èÕÁÁ•É…Í”ìô(¹½¹ÑÉ…ÍÐµ…É Ììµ…É¥¸è€ÌÕÁà€À€ÄÕÁàì™½¹ÐµÍ¥é”è€ÈáÁàì±•ÑÑ•ÈµÍÁ…¥¹œè€´¸ÀÕ•´ìô(¹½¹ÑÉ…ÍÐµ…ÉÀìµ…É¥¸è€Àì½±½Èè€ŒÕˆØÜÕ˜ì™½¹ÐµÍ¥é”è€ÄÑÁàìô(¹‰±Õ•ÁÉ¥¹ÐµÍ¥µÁ±”ì‘¥ÍÁ±…äèÉ¥ì…Àè€ÅÁàì‰…­É½Õ¹è€ŒÝÁŒØì‰½É‘•Èè€ÅÁàÍ½±¥€ŒÝÁŒØìô(¹‰±Õ•ÁÉ¥¹ÐµÉ½Üì‘¥ÍÁ±…äèÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€ÄÜÁÁàÉ•Á•…Ð Ð°€Å™È¤ì…Àè€ÅÁàì‰…­É½Õ¹è€ŒÝÁŒØìô(¹‰±Õ•ÁÉ¥¹ÐµÉ½Ü€ø€¨ìµ¥¸µ¡•¥¡Ðè€àÉÁàìÁ…‘‘¥¹œè€ÄÝÁàì‰…­É½Õ¹è€˜á™…˜Ôì½±½Èè€ŒÑ„ÔàÑ”ì™½¹ÐµÍ¥é”è€ÄÉÁàìô(¹‰±Õ•ÁÉ¥¹ÐµÉ½Ü¹¡•…€ø€¨ìµ¥¸µ¡•¥¡Ðè…ÕÑ¼ì‰…­É½Õ¹è€‘™”Ý‘Œì½±½Èè€ŒÅˆÈäÈÀì™½¹Ðµ™…µ¥±äèÙ…È ´µµ½¹¼¤ì™½¹ÐµÍ¥é”è€ÄÁÁàìÑ•áÐµÑÉ…¹Í™½É´èÕÁÁ•É…Í”ìô((¹É•Ù•…°ì½Á…¥Ñäè€ÀìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•d ÄáÁà¤ìÑÉ…¹Í¥Ñ¥½¸è½Á…¥Ñä€ÜÀÁµÌ•…Í”°ÑÉ…¹Í™½É´€ÜÀÁµÌ•…Í”ìô(¹É•Ù•…°¹¥ÌµÙ¥Í¥‰±”ì½Á…¥Ñäè€ÄìÑÉ…¹Í™½É´è¹½¹”ìô)µ•‘¥„€¡ÁÉ•™•ÉÌµÉ•‘Õ•µµ½Ñ¥½¸èÉ•‘Õ”¤ì¡Ñµ°ìÍÉ½±°µ‰•¡…Ù¥½Èè…ÕÑ¼ìô€¹É•Ù•…°ì½Á…¥Ñäè€ÄìÑÉ…¹Í™½É´è¹½¹”ìÑÉ…¹Í¥Ñ¥½¸è¹½¹”ìô€¨°€¨èé‰•™½É”°€¨èé…™Ñ•Èì…¹¥µ…Ñ¥½¸è¹½¹”€…¥µÁ½ÉÑ…¹ÐìÑÉ…¹Í¥Ñ¥½¸µ‘ÕÉ…Ñ¥½¸è€¸ÀÅµÌ€…¥µÁ½ÉÑ…¹Ðìôô()µ•‘¥„€¡µ…àµÝ¥‘Ñ è€äØÁÁà¤ì(€€¹¡•É¼°€¹…Í”µ¡•É¼µÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èì…Àè€ÐÑÁàìô(€€¹¡•É¼ìµ¥¸µ¡•¥¡Ðè…ÕÑ¼ìÁ…‘‘¥¹œµÑ½Àè€ÜÉÁàìô(€€¹¡•É¼µ…ÉÐìµ¥¸µ¡•¥¡Ðè€ÐÈÁÁàìô(€€¹Ý½É¬µÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èìô(€€¹Ý½É¬µ…ÉµÍ•½¹‘…Éäìµ¥¸µ¡•¥¡Ðè€ÔÄÁÁàìô(€€¹Í¥¹…°µÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÉ•Á•…Ð È°€Å™È¤ìô(€€¹…Í”µ¡•É¼µ…ÉÐìµ…àµÝ¥‘Ñ è€ÜàÁÁàìô(€€¹½¹Ñ…Ðµ…Éì…±¥¸µ¥Ñ•µÌèÍÑ…ÉÐì™±•àµ‘¥É•Ñ¥½¸è½±Õµ¸ìô)ô)µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÜÈÁÁà¤ì(€€¹¹…ØµÝÉ…À°€¹½¹Ñ…¥¹•È°€¹…Í”µÁ…”€¹½¹Ñ…¥¹•ÈìÝ¥‘Ñ èµ¥¸ ÄÀÀ”€´€ÌÁÁà°Ù…È ´µµ…à¤¤ìô(€€¹¹…ØµÝÉ…Àìµ¥¸µ¡•¥¡Ðè€ØÙÁàìô(€€¹Ý½É‘µ…É¬µÉ½±”ì‘¥ÍÁ±…äè¹½¹”ìô(€€¹¹…ØµÑ½±”ì‘¥ÍÁ±…äè¥¹±¥¹”µ™±•àìô(€€¹Í¥Ñ”µ¹…ØìÁ½Í¥Ñ¥½¸è…‰Í½±ÕÑ”ìÑ½Àè€ØÙÁàìÉ¥¡Ðè€ÄÕÁàì±•™Ðè€ÄÕÁàì‘¥ÍÁ±…äè¹½¹”ì™±•àµ‘¥É•Ñ¥½¸è½±Õµ¸ì…±¥¸µ¥Ñ•µÌèÍÑÉ•Ñ ì…Àè€ÀìÁ…‘‘¥¹œè€ÄÁÁàì‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ±¥¹”¤ì‰½É‘•ÈµÉ…‘¥ÕÌè€ÄáÁàì‰…­É½Õ¹èÙ…È ´µ¥¹¬µÍ½™Ð¤ì‰½àµÍ¡…‘½ÜèÙ…È ´µÍ¡…‘½Ü¤ìô(€€¹…Í”µÁ…”€¹Í¥Ñ”µ¹…Øì‰…­É½Õ¹èÙ…È ´µÁ…Á•È¤ì‰½É‘•Èµ½±½ÈèÉ‰„ ÄÄ°ÄÌ°ÄÌ°¸ÄÔ¤ìô(€€¹Í¥Ñ”µ¹…Ø¹½Á•¸ì‘¥ÍÁ±…äè™±•àìô(€€¹Í¥Ñ”µ¹…Ø„ìÁ…‘‘¥¹œè€ÄÍÁàìô(€€¹¹…ØµÑ„ì‘¥ÍÁ±…äè¹½¹”ìô(€€¹¡•É¼ìÁ…‘‘¥¹œè€ØÁÁà€À€ØÕÁàìô(€€¹¡•É¼ Äì™½¹ÐµÍ¥é”è±…µÀ ÐåÁà°€ÄÕÙÜ°€ÜáÁà¤ìô(€€¹¡•É¼µ…ÉÐìµ¥¸µ¡•¥¡Ðè€ÌÄÁÁàìô(€€¹™±½…ÐµÑ…œì‘¥ÍÁ±…äè¹½¹”ìô(€€¹ÁÉ½½˜µÍÑÉ¥ÀìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÉ•Á•…Ð È°€Å™È¤ìô(€€¹ÁÉ½½˜µ¥Ñ•´é¹Ñ µ¡¥± È¤ì‰½É‘•ÈµÉ¥¡Ðè€Àìô(€€¹ÁÉ½½˜µ¥Ñ•´é¹Ñ µ¡¥± µ¸¬È¤ì‰½É‘•Èµ‰½ÑÑ½´è€ÅÁàÍ½±¥Ù…È ´µ±¥¹”µÍ½™Ð¤ìô(€€¹Í•Ñ¥½¸°€¹…Í”µÍ•Ñ¥½¸ìÁ…‘‘¥¹œè€àÑÁà€Àìô(€€¹Í•Ñ¥½¸µ¡•…‘¥¹œ°€¹¡…ÁÑ•Èµ¡•…ì‘¥ÍÁ±…äè‰±½¬ìô(€€¹Í•Ñ¥½¸µ¡•…‘¥¹œ€øÀìµ…É¥¸µÑ½Àè€ÈÑÁàìô(€€¹Ý½É¬µ…É°€¹Ý½É¬µ…Éµµ…¥¸ìµ¥¸µ¡•¥¡Ðè€ÔÌÁÁàìô(€€¹Ý½É¬µ…É Ìì™½¹ÐµÍ¥é”è€ÐÁÁàìô(€€¹ÁÉ¥¹¥Á±•Ì°€¹ÍåÍÑ•´µµ¥¹¤ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èìô(€€¹Í¥¹…°µÉ¥°€¹ÑÝ¼µ½±Õµ¸°€¹­Õ‰Ñ•°µ½¹ÑÉ…ÍÐìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èìô(€€¹½¹Ñ…ÐµÍ•Ñ¥½¸ìÁ…‘‘¥¹œè€àÕÁà€À€ÔÁÁàìô(€€¹½¹Ñ…Ðµ…ÉìÁ…‘‘¥¹œè€ÌÁÁàìô(€€¹…Í”µ¡•É¼ìÁ…‘‘¥¹œè€ÜÉÁà€À€ØÁÁàìô(€€¹…Í”µ¡•É¼ Äì™½¹ÐµÍ¥é”è±…µÀ ÐáÁà°€ÄÑÙÜ°€ÜáÁà¤ìô(€€¹…Í”µÍÕµµ…ÉäìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÉ•Á•…Ð È°€Å™È¤ìô(€€¹…Í”µÍÕµµ…Éäµ¥Ñ•´é¹Ñ µ¡¥± È¤ì‰½É‘•ÈµÉ¥¡Ðè€Àìô(€€¹…Í”µÍÕµµ…Éäµ¥Ñ•´é¹Ñ µ¡¥± µ¸¬È¤ì‰½É‘•Èµ‰½ÑÑ½´è€ÅÁàÍ½±¥É‰„ ÄÄ°ÄÌ°ÄÌ°¸ÄÐ¤ìô(€€¹…Í”µÍÕµµ…Éäµ¥Ñ•´é¹Ñ µ¡¥± Ì¤ìÁ…‘‘¥¹œµ±•™Ðè€ÀìÁ…‘‘¥¹œµÑ½Àè€ÈÁÁàìô(€€¹¡…ÁÑ•Èµ¡•… Èì™½¹ÐµÍ¥é”è€ÐÉÁàìô(€€¹ÍåÍÑ•´µµ¥¹¤ì…Àè€ÅÁàìô(€€¹…Í”µ•¹ìÁ…‘‘¥¹œè€àÁÁà€Àìô(€€¹…Í”µ•¹µÉ¥ì‘¥ÍÁ±…äè‰±½¬ìô(€€¹…Í”µ•¹€¹‰ÕÑÑ½¸ìµ…É¥¸µÑ½Àè€ÌÁÁàìô(€€¹‰±Õ•ÁÉ¥¹ÐµÉ½ÜìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èìô(€€¹‰±Õ•ÁÉ¥¹ÐµÉ½Ü€ø€¨ìµ¥¸µ¡•¥¡Ðè…ÕÑ¼ìô(€€¹‰±Õ•ÁÉ¥¹ÐµÉ½Ü¹¡•…ì‘¥ÍÁ±…äè¹½¹”ìô(€€¹Í•ÉÙ¥”µÁÉ½‘ÕÐµ‰½‘äìÁ…‘‘¥¹œè€ÄáÁàìô(€€¹Í•ÉÙ¥”µ…±•ÉÐìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èìô(€€¹Í•ÉÙ¥”µÕÁ‘…Ñ”ìÉ¥µ½±Õµ¸è…ÕÑ¼ìô(€€¹Í•ÉÙ¥”µÑ¥µ•±¥¹”µ±…É”ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èìô(€€¹Í¥Ñ”µ™½½Ñ•Èì‘¥ÍÁ±…äè‰±½¬ìô(€€¹™½½Ñ•Èµ±¥¹­Ììµ…É¥¸è€ÄÝÁà€Àìô)ô((¼¨1¥¡Ð•‘¥Ñ½É¥…°ÍåÍÑ•´èµ…Ñ¡•ÌÑ¡”½É¥¥¹…°Á½ÉÑ™½±¥¼Á…•Ì¸€¨¼(éÉ½½Ðì(€€´µ¥¹¬è€ŒÄÈÄÈÄÈì(€€´µ¥¹¬µÍ½™Ðè€™™™™™˜ì(€€´µ¥¹¬µ…Éè€™‰™‰˜àì(€€´µ±¥¹”è€ÉÁŒàì(€€´µ±¥¹”µÍ½™ÐèÉ‰„ Äà°€Äà°€Äà°€À¸ÄÐ¤ì(€€´µÁ…Á•Èè€˜Ñ˜É•Œì(€€´µÁ…Á•ÈµÍ½™Ðè€”Õ”Ñ‘”ì(€€´µµÕÑ•è€ŒÙÙˆØÔì(€€´µµÕÑ•µ‘…É¬è€ŒÑ”ÑÐäì(€€´µ±¥µ”è€˜ÈÔÔÉŒì(€€´µ±¥µ”µ‘••Àè€ŒÄØÜÐÐäì(€€´µå…¸è€ŒÑ˜àÌäÀì(€€´µ½É…¹”è€ŒÌàÜÀàì(€€´µÉ•è€„àÐÌÌÀì(€€´µÍ¡…‘½Üè€À€ÈÙÁà€ÜÁÁàÉ‰„ Äà°€Äà°€Äà°€À¸ÄÌ¤ì)ô()‰½‘äì‰…­É½Õ¹èÙ…È ´µÁ…Á•È¤ì½±½ÈèÙ…È ´µ¥¹¬¤ìô(¹Í¥Ñ”µ¡•…‘•Èì‰…­É½Õ¹èÉ‰„ ÈÐÐ°€ÈÐÈ°€ÈÌØ°€À¸ä¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹…Í”µÁ…”€¹Í¥Ñ”µ¡•…‘•Èì‰…­É½Õ¹èÉ‰„ ÈÐÐ°€ÈÐÈ°€ÈÌØ°€À¸äÈ¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹Ý½É‘µ…É¬µµ…É¬°€¹…Í”µÁ…”€¹Ý½É‘µ…É¬µµ…É¬ì‰½É‘•Èµ½±½ÈèÙ…È ´µ¥¹¬¤ì½±½ÈèÙ…È ´µ¥¹¬¤ìô(¹Ý½É‘µ…É¬µÉ½±”°€¹…Í”µÁ…”€¹Ý½É‘µ…É¬µÉ½±”°€¹Í¥Ñ”µ¹…Ø°€¹…Í”µÁ…”€¹Í¥Ñ”µ¹…Øì½±½ÈèÙ…È ´µµÕÑ•¤ìô(¹Í¥Ñ”µ¹…Ø„é¡½Ù•È°€¹Í¥Ñ”µ¹…Ø„é™½ÕÌµÙ¥Í¥‰±”°€¹…Í”µÁ…”€¹Í¥Ñ”µ¹…Ø„é¡½Ù•È°€¹…Í”µÁ…”€¹Í¥Ñ”µ¹…Ø„é™½ÕÌµÙ¥Í¥‰±”ì½±½ÈèÙ…È ´µ¥¹¬¤ìô(¹¹…ØµÑ„ì‰…­É½Õ¹èÙ…È ´µ¥¹¬¤ì½±½ÈèÙ…È ´µÁ…Á•È¤ìô(¹¹…ØµÑ½±”°€¹…Í”µÁ…”€¹¹…ØµÑ½±”ì½±½ÈèÙ…È ´µ¥¹¬¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹Í¥Ñ”µ¹…Øì‰…­É½Õ¹èÙ…È ´µÁ…Á•È¤ìô(¹¡•É¼µ±•…ì½±½ÈèÙ…È ´µµÕÑ•µ‘…É¬¤ìô(¹‰ÕÑÑ½¸µÅÕ¥•Ðì½±½ÈèÙ…È ´µ¥¹¬¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹¡•É¼µ…ÉÐèé‰•™½É”ì‰½É‘•Èµ½±½ÈèÉ‰„ ÈÐÈ°€àÔ°€ÐÐ°€¸Ì¤ìô(¹¡•É¼µ¥µ…”µ…Éì‰…­É½Õ¹è€™™˜ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹¡•É¼µ¥µ…”µ…É™¥…ÁÑ¥½¸ì½±½ÈèÙ…È ´µµÕÑ•¤ìô(¹™±½…ÐµÑ…œì‰…­É½Õ¹èÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€¸äÐ¤ì½±½ÈèÙ…È ´µ±¥µ”¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥µ”¤ìô(¹™±½…ÐµÑ…œ¹ÑÝ¼ì½±½ÈèÙ…È ´µå…¸¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µå…¸¤ìô(¹ÁÉ½½˜µÍÑÉ¥Àì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹ÁÉ½½˜µ¥Ñ•´ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹ÁÉ½½˜µ¥Ñ•´ÍÑÉ½¹œì½±½ÈèÙ…È ´µ±¥µ”¤ìô(¹ÁÉ½½˜µ¥Ñ•´ÍÁ…¸ì½±½ÈèÙ…È ´µµÕÑ•¤ìô(¹Ý½É¬µ…Éì‰…­É½Õ¹è€™™˜ì½±½ÈèÙ…È ´µ¥¹¬¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹Ý½É¬µ…Éµµ…¥¸ì½±½Èè€™™˜ì‰…­É½Õ¹è€ŒÅˆÅˆÅ„ìô(¹Ý½É¬µ…Éµµ…¥¸Àì½±½Èè€”É”É‘ˆìô(¹Ý½É¬µ…ÉµÍ•½¹‘…Éäì‰…­É½Õ¹è€™™˜ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹Ý½É¬µ…ÉµÍ•½¹‘…ÉäÀì½±½ÈèÙ…È ´µµÕÑ•µ‘…É¬¤ìô(¹ÁÉ¥¹¥Á±•Ìì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ì‰…­É½Õ¹èÙ…È ´µ±¥¹”¤ìô(¹ÁÉ¥¹¥Á±”ì‰…­É½Õ¹è€™™˜ì½±½ÈèÙ…È ´µ¥¹¬¤ìô(¹ÁÉ¥¹¥Á±”Àì½±½ÈèÙ…È ´µµÕÑ•µ‘…É¬¤ìô(¹±¥¡ÐµÍ•Ñ¥½¸ì‰…­É½Õ¹è€™™˜ìô(¹Í¥¹…°µ…Éì‰…­É½Õ¹è€™‰™‰˜àì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹Í¥¹…°µ…ÉÀì½±½ÈèÙ…È ´µµÕÑ•µ‘…É¬¤ìô(¹½¹Ñ…Ðµ…Éì‰…­É½Õ¹è€™™˜ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹½¹Ñ…Ðµ±¥¹­Ì„ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ì½±½ÈèÙ…È ´µ±¥µ”µ‘••À¤ìô(¹Í¥Ñ”µ™½½Ñ•Èì‰…­É½Õ¹èÑÉ…¹ÍÁ…É•¹Ðì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ì½±½ÈèÙ…È ´µµÕÑ•¤ìô(¹…Í”µÁ…”€¹Í¥Ñ”µ™½½Ñ•Èì‰…­É½Õ¹èÑÉ…¹ÍÁ…É•¹Ðì½±½ÈèÙ…È ´µµÕÑ•¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹…Í”µÁ…”€¹Í¥Ñ”µ™½½Ñ•È€¹™½½Ñ•Èµ±¥¹­Ì„é¡½Ù•Èì½±½ÈèÙ…È ´µ¥¹¬¤ìô(¹…Í”µÍ•Ñ¥½¸µ‘…É¬ì‰…­É½Õ¹è€™™˜ì½±½ÈèÙ…È ´µ¥¹¬¤ìô(¹…Í”µÍ•Ñ¥½¸µ‘…É¬€¹¡…ÁÑ•Èµ¡•…À°€¹…Í”µÍ•Ñ¥½¸µ‘…É¬€¹¥µ…”µ…ÁÑ¥½¸ì½±½ÈèÙ…È ´µµÕÑ•µ‘…É¬¤ìô(¹…Í”µÍ•Ñ¥½¸µ‘…É¬€¹ÍÑ½Éäµ…Éì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ì‰…­É½Õ¹è€™‰™‰˜àìô(¹…Í”µÍ•Ñ¥½¸µ‘…É¬€¹ÍÑ½Éäµ…ÉÀì½±½ÈèÙ…È ´µµÕÑ•µ‘…É¬¤ìô(¹…Í”µÍ•Ñ¥½¸µ‘…É¬€¹ÍÑ½Éäµ…É¥µœì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹…Í”µÍ•Ñ¥½¸µ‘…É¬€¹Á±…¥¸µ±¥ÍÐ±¤ì½±½ÈèÙ…È ´µµÕÑ•µ‘…É¬¤ìô(¹…Í”µÍ•Ñ¥½¸µ‘…É¬€¹ÅÕ½Ñ”ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥µ”¤ìô(¹ÍåÍÑ•´µµ¥¹¤ì‰…­É½Õ¹èÙ…È ´µ±¥¹”¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”¤ìô(¹ÍåÍÑ•´µµ¥¹¤…ÉÑ¥±”ì‰…­É½Õ¹è€™™˜ìô(¹ÍåÍÑ•´µµ¥¹¤Àì½±½ÈèÙ…È ´µµÕÑ•µ‘…É¬¤ìô(¹…Í”µ•¹ì‰…­É½Õ¹èÙ…È ´µ±¥µ”¤ìô(¹…Í”µ•¹€¹‰ÕÑÑ½¸ì‰½É‘•Èµ½±½ÈèÙ…È ´µ¥¹¬¤ì‰…­É½Õ¹èÙ…È ´µ¥¹¬¤ì½±½Èè€™™˜ìô(¹…Í”µ•¹€¹‰ÕÑÑ½¸é¡½Ù•Èì‰…­É½Õ¹èÑÉ…¹ÍÁ…É•¹Ðì½±½ÈèÙ…È ´µ¥¹¬¤ìô(¹…Í”µÁ…”€¹¹…ØµÑ„ì‰…­É½Õ¹èÙ…È ´µ¥¹¬¤ì½±½ÈèÙ…È ´µÁ…Á•È¤ìô(¹…Í”µÁ…”€¹Í¥Ñ”µ¹…Ø¹½Á•¸ì‰…­É½Õ¹èÙ…È ´µÁ…Á•È¤ìô((¼¨I•ÍÁ½¹Í¥Ù”ÑåÁ”Í…™•Ñäè±½¹œIÕÍÍ¥…¸Ý½É‘ÌµÕÍÐÍÑ…ä¥¹Í¥‘”Ñ¡”Ù¥•ÝÁ½ÉÐ¸€¨¼)¡Ñµ°°‰½‘äìµ…àµÝ¥‘Ñ è€ÄÀÀ”ì½Ù•É™±½Üµàè±¥Àìô)¥µœ°ÍÙœ°Ù¥‘•¼ìµ…àµÝ¥‘Ñ è€ÄÀÀ”ì¡•¥¡Ðè…ÕÑ¼ìô(¹¡•É¼€ø€¨°€¹…Í”µ¡•É¼µÉ¥€ø€¨°€¹Í•Ñ¥½¸µ¡•…‘¥¹œ€ø€¨°€¹…Í”µÍ•Ñ¥½¸€¹½¹Ñ…¥¹•È€ø€¨°€¹½¹Ñ…Ðµ…É€ø€¨°€¹Ý½É¬µ…É€ø€¨°€¹Í¥Ñ”µ™½½Ñ•È€ø€¨°€¹Ý½É¬µÉ¥€ø€¨°€¹ÁÉ½½˜µÍÑÉ¥À€ø€¨°€¹Í¥¹…°µÉ¥€ø€¨°€¹ÑÝ¼µ½±Õµ¸€ø€¨°€¹­Õ‰Ñ•°µ½¹ÑÉ…ÍÐ€ø€¨°€¹…Í”µÍÕµµ…Éä€ø€¨ìµ¥¸µÝ¥‘Ñ è€Àìô) Ä° È° Ì° Ðìµ…àµÝ¥‘Ñ è€ÄÀÀ”ìÑ•áÐµÝÉ…Àè‰…±…¹”ì½Ù•É™±½ÜµÝÉ…Àè…¹åÝ¡•É”ìô)À°±¤°„°‰ÕÑÑ½¸°Íµ…±°°ÍÁ…¸°ÍÑÉ½¹œì½Ù•É™±½ÜµÝÉ…Àè‰É•…¬µÝ½Éìô(¹¡•É¼ Ä°€¹…Í”µ¡•É¼ Ä°€¹½¹Ñ…Ðµ…É È°€¹Ý½É¬µ…É Ì°€¹Í•Ñ¥½¸µ¡•…‘¥¹œ È°€¹Í•Ñ¥½¸µ¡•…‘¥¹œ Ì°€¹…Í”µÍ•Ñ¥½¸ È°€¹¡…ÁÑ•Èµ¡•… Èì¡åÁ¡•¹Ìè¹½¹”ìô(¹¡•É¼ Ä°€¹…Í”µ¡•É¼ Äì½Ù•É™±½ÜµÝÉ…Àè¹½Éµ…°ìÑ•áÐµÝÉ…ÀèÁÉ•ÑÑäìô(¹‰ÕÑÑ½¸°€¹¹…ØµÑ„ìµ…àµÝ¥‘Ñ è€ÄÀÀ”ìÝ¡¥Ñ”µÍÁ…”è¹½Éµ…°ìÑ•áÐµ…±¥¸è±•™Ðìô()µ•‘¥„€¡µ…àµÝ¥‘Ñ è€äØÁÁà¤ì(€€¹¡•É¼°€¹…Í”µ¡•É¼µÉ¥ìµ¥¸µÝ¥‘Ñ è€Àìô(€€¹¡•É¼ Äì™½¹ÐµÍ¥é”è±…µÀ ÐÑÁà°€ÝÙÜ°€ØáÁà¤ìô(€€¹…Í”µ¡•É¼ Äì™½¹ÐµÍ¥é”è±…µÀ ÐÑÁà°€Ø¸ÕÙÜ°€ÜÁÁà¤ìô)ô()µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÜÈÁÁà¤ì(€€¹¹…ØµÝÉ…À°€¹½¹Ñ…¥¹•È°€¹…Í”µÁ…”€¹½¹Ñ…¥¹•ÈìÝ¥‘Ñ è…±Œ ÄÀÀ”€´€ÌÁÁà¤ìô(€€¹¡•É¼ìÁ…‘‘¥¹œè€ÔÙÁà€À€ØÉÁàìô(€€¹¡•É¼ Äìµ…àµÝ¥‘Ñ è€ÄÀÀ”ì™½¹ÐµÍ¥é”è±…µÀ ÌáÁà°€ä¸áÙÜ°€ÔÑÁà¤ì±¥¹”µ¡•¥¡Ðè€Äì±•ÑÑ•ÈµÍÁ…¥¹œè€´¸ÀÐÕ•´ì½Ù•É™±½ÜµÝÉ…Àè‰É•…¬µÝ½Éìô(€€¹¡•É¼µ±•…ìµ…àµÝ¥‘Ñ è€ÄÀÀ”ì™½¹ÐµÍ¥é”è±…µÀ ÄÝÁà°€Ð¸ÙÙÜ°€ÈÁÁà¤ì±¥¹”µ¡•¥¡Ðè€Ä¸ÐÈìô(€€¹¡•É¼µ…Ñ¥½¹Ìì…±¥¸µ¥Ñ•µÌèÍÑÉ•Ñ ì…Àè€ÄÑÁàìô(€€¹¡•É¼µ…Ñ¥½¹Ì€¹‰ÕÑÑ½¸ì…±¥¸µÍ•±˜è™±•àµÍÑ…ÉÐìÁ…‘‘¥¹œè€ÄÍÁà€ÄÙÁàì™½¹ÐµÍ¥é”è€ÄÉÁàì±¥¹”µ¡•¥¡Ðè€Ä¸ÈÔìô(€€¹¡•É¼µµ•Ñ„ì™½¹ÐµÍ¥é”è€ÄÅÁàì±¥¹”µ¡•¥¡Ðè€Ä¸ÐÔìô(€€¹¡•É¼µ…ÉÐìµ¥¸µÝ¥‘Ñ è€Àìµ¥¸µ¡•¥¡Ðè€ÌÀÁÁàìô(€€¹¡•É¼µ¥µ…”µ…ÉìÑÉ…¹Í™½É´è¹½¹”ìô(€€¹…Í”µ¡•É¼ìÁ…‘‘¥¹œè€ØÙÁà€À€ÔÕÁàìô(€€¹…Í”µ¡•É¼ Äìµ…àµÝ¥‘Ñ è€ÄÀÀ”ì™½¹ÐµÍ¥é”è±…µÀ ÌÙÁà°€ä¸ÉÙÜ°€ÔÉÁà¤ì±¥¹”µ¡•¥¡Ðè€Äì±•ÑÑ•ÈµÍÁ…¥¹œè€´¸ÀÕ•´ì½Ù•É™±½ÜµÝÉ…Àè‰É•…¬µÝ½Éìô(€€¹…Í”µ¡•É¼µ±•…ìµ…àµÝ¥‘Ñ è€ÄÀÀ”ì™½¹ÐµÍ¥é”è±…µÀ ÄÝÁà°€Ð¸ÕÙÜ°€ÈÁÁà¤ì±¥¹”µ¡•¥¡Ðè€Ä¸ÐÈìô(€€¹…Í”µ­¥­•È°€¹•å•‰É½Ü°€¹Í•Ñ¥½¸µ¥¹‘•àì™½¹ÐµÍ¥é”è€ÄÁÁàì±•ÑÑ•ÈµÍÁ…¥¹œè€¸Àå•´ì±¥¹”µ¡•¥¡Ðè€Ä¸ÐÔìô(€€¹Í•Ñ¥½¸µ¡•…‘¥¹œ È°€¹Í•Ñ¥½¸µ¡•…‘¥¹œ Ì°€¹…Í”µÍ•Ñ¥½¸ È°€¹¡…ÁÑ•Èµ¡•… Èì™½¹ÐµÍ¥é”è±…µÀ ÌÁÁà°€à¸ÑÙÜ°€ÐÑÁà¤ì±¥¹”µ¡•¥¡Ðè€Ä¸ÀÈì±•ÑÑ•ÈµÍÁ…¥¹œè€´¸ÀÐÕ•´ìô(€€¹½¹Ñ…Ðµ…É Èì™½¹ÐµÍ¥é”è±…µÀ ÌÉÁà°€åÙÜ°€ÔÁÁà¤ì±¥¹”µ¡•¥¡Ðè€Äìô(€€¹Ý½É¬µ…É Ìì™½¹ÐµÍ¥é”è±…µÀ ÈáÁà°€Ü¸áÙÜ°€ÌáÁà¤ì±¥¹”µ¡•¥¡Ðè€Äìô(€€¹Í•ÉÙ¥”µÁÉ•Ù¥•ÜµÑ¥Ñ±”°€¹Í•ÉÙ¥”µ…±•ÉÐ Ì°€¹½¹ÑÉ…ÍÐµ…É Ìì™½¹ÐµÍ¥é”è±…µÀ ÈÅÁà°€Ø¸ÍÙÜ°€ÈáÁà¤ìô(€€¹½¹Ñ…Ðµ…ÉìÁ…‘‘¥¹œè€ÈÑÁàìô(€€¹½¹Ñ…Ðµ±¥¹­ÌìÝ¥‘Ñ è€ÄÀÀ”ìµ¥¸µÝ¥‘Ñ è€Àìô(€€¹…Í”µ¡•É¼µ…ÉÐìµ¥¸µÝ¥‘Ñ è€Àìô(€€¹…Í”µ¡•É¼µ…ÉÐ€¹¡•É¼µÍÑ¥­•ÈìÉ¥¡Ðè€ÄÉÁàì‰½ÑÑ½´è€ÄÉÁàìµ…àµÝ¥‘Ñ èµ¥¸ ÄäÁÁà°…±Œ ÄÀÀ”€´€ÈÑÁà¤¤ìô(€€¹Í•ÉÙ¥”µÁÉ½‘ÕÐµ½¹Ñ•áÐ°€¹Í•ÉÙ¥”µÕÁ‘…Ñ”ìµ¥¸µÝ¥‘Ñ è€Àì™±•àµÝÉ…ÀèÝÉ…Àìô(€€¹Í•ÉÙ¥”µÁÉ½‘ÕÐµ½¹Ñ•áÐ€ø€¨°€¹Í•ÉÙ¥”µÕÁ‘…Ñ”€ø€¨ìµ¥¸µÝ¥‘Ñ è€Àìô(€€¹‰±Õ•ÁÉ¥¹ÐµÉ½Ü€ø€¨ìµ¥¸µÝ¥‘Ñ è€Àì½Ù•É™±½ÜµÝÉ…Àè…¹åÝ¡•É”ìô)ô()µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÐàÁÁà¤ì(€€¹¹…ØµÝÉ…À°€¹½¹Ñ…¥¹•È°€¹…Í”µÁ…”€¹½¹Ñ…¥¹•ÈìÝ¥‘Ñ è…±Œ ÄÀÀ”€´€ÈÑÁà¤ìô(€€¹¹…ØµÝÉ…Àì…Àè€ÄÉÁàìô(€€¹¡•É¼ìÁ…‘‘¥¹œè€ÐáÁà€À€ÔÙÁàìô(€€¹¡•É¼ Äì™½¹ÐµÍ¥é”è±…µÀ ÌÑÁà°€ä¸áÙÜ°€ÐÙÁà¤ì±¥¹”µ¡•¥¡Ðè€Ä¸ÀÈìô(€€¹¡•É¼µ±•…ì™½¹ÐµÍ¥é”è€ÄÙÁàìô(€€¹¡•É¼µ…Ñ¥½¹Ì€¹‰ÕÑÑ½¸ìÝ¥‘Ñ è€ÄÀÀ”ì©ÕÍÑ¥™äµ½¹Ñ•¹ÐèÍÁ…”µ‰•ÑÝ••¸ìô(€€¹…Í”µ¡•É¼ìÁ…‘‘¥¹œµÑ½Àè€ÔÑÁàìô(€€¹…Í”µ¡•É¼ Äì™½¹ÐµÍ¥é”è±…µÀ ÌÑÁà°€åÙÜ°€ÐÙÁà¤ìô(€€¹…Í”µ¡•É¼µ±•…ì™½¹ÐµÍ¥é”è€ÄÙÁàìô(€€¹…Í”µ¡•É¼µµ•Ñ„°€¹…Í”µÍÕµµ…ÉäìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èìô(€€¹…Í”µÍÕµµ…Éäµ¥Ñ•´°€¹…Í”µÍÕµµ…Éäµ¥Ñ•´é¹Ñ µ¡¥± È¤°€¹…Í”µÍÕµµ…Éäµ¥Ñ•´é¹Ñ µ¡¥± Ì¤ì‰½É‘•ÈµÉ¥¡Ðè€Àì‰½É‘•Èµ‰½ÑÑ½´è€ÅÁàÍ½±¥É‰„ ÄÄ°ÄÌ°ÄÌ°¸ÄÐ¤ìÁ…‘‘¥¹œè€ÄÙÁà€Àìô(€€¹…Í”µÍÕµµ…Éäµ¥Ñ•´é±…ÍÐµ¡¥±ì‰½É‘•Èµ‰½ÑÑ½´è€Àìô(€€¹Í•ÉÙ¥”µÁÉ•Ù¥•ÜìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™Èìô(€€¹Í•ÉÙ¥”µÁÉ½‘ÕÐµ‰½‘äìÁ…‘‘¥¹œè€ÄÙÁàìô(€€¹Í•ÉÙ¥”µ…±•ÉÐìÁ…‘‘¥¹œè€ÄÝÁàìô(€€¹½¹Ñ…Ðµ…ÉìÁ…‘‘¥¹œè€ÈÁÁàìô(€€¹Í¥Ñ”µ™½½Ñ•Èì…Àè€ÄÙÁàìô)ô
+.hero-sticker { position: absolute; right: -20px; bottom: 25px; max-width: 190px; padding: 15px; border-radius: 15px; background: var(--ink); color: var(--lime); font-family: var(--mono); font-size: 10px; line-height: 1.45; text-transform: uppercase; }
+.case-summary { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(11,13,13,.14); border-bottom: 1px solid rgba(11,13,13,.14); }
+.case-summary-item { padding: 24px 20px 24px 0; border-right: 1px solid rgba(11,13,13,.14); }
+.case-summary-item:not(:first-child) { padding-left: 20px; }
+.case-summary-item:last-child { border-right: 0; }
+.case-summary-item strong { display: block; font-size: 31px; letter-spacing: -.06em; }
+.case-summary-item span { display: block; margin-top: 5px; color: var(--muted-dark); font-size: 12px; }
+.case-section { padding: 120px 0; background: var(--paper); }
+.case-section-dark { background: var(--ink); color: var(--paper); }
+.case-section-dark .section-lead { color: var(--muted); }
+.chapter-head { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 50px; margin-bottom: 46px; }
+.chapter-head .section-index { margin-top: 7px; }
+.chapter-head h2 { margin: 0; }
+.chapter-head p { max-width: 730px; margin: 22px 0 0; color: #566259; font-size: 17px; }
+.case-section-dark .chapter-head p { color: var(--muted); }
+.full-image { width: 100%; border: 1px solid rgba(11,13,13,.13); border-radius: var(--radius-md); box-shadow: 0 24px 70px rgba(15,23,18,.09); }
+.case-section-dark .full-image { border-color: var(--line); box-shadow: none; }
+.image-caption { display: flex; justify-content: space-between; gap: 20px; margin-top: 14px; color: var(--muted-dark); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.case-section-dark .image-caption { color: var(--muted); }
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.two-column > * { min-width: 0; }
+.story-card { padding: 30px; border: 1px solid rgba(11,13,13,.14); border-radius: var(--radius-md); background: #fff; }
+.case-section-dark .story-card { border-color: var(--line); background: var(--ink-soft); }
+.story-card h3 { margin: 0 0 12px; font-size: 27px; letter-spacing: -.05em; }
+.story-card p { margin: 0; color: var(--muted-dark); font-size: 14px; }
+.case-section-dark .story-card p { color: var(--muted); }
+.story-card img { width: 100%; margin: 23px 0 0; border-radius: 13px; border: 1px solid rgba(11,13,13,.12); }
+.case-section-dark .story-card img { border-color: var(--line); }
+.plain-list { display: grid; gap: 14px; margin: 25px 0 0; padding: 0; list-style: none; }
+.plain-list li { position: relative; padding-left: 24px; color: var(--muted-dark); font-size: 15px; }
+.case-section-dark .plain-list li { color: var(--muted); }
+.plain-list li::before { content: ""; position: absolute; top: .63em; left: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--lime-deep); }
+.quote { margin: 55px 0 0; padding: 30px 0 0 34px; border-left: 2px solid var(--lime-deep); font-size: clamp(26px, 3.1vw, 44px); line-height: 1.05; letter-spacing: -.06em; }
+.case-section-dark .quote { border-color: var(--lime); }
+.system-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.system-mini article { min-height: 170px; padding: 24px; background: var(--ink-soft); }
+.system-mini span { color: var(--lime); font-family: var(--mono); font-size: 11px; }
+.system-mini h3 { margin: 30px 0 8px; font-size: 23px; letter-spacing: -.05em; }
+.system-mini p { margin: 0; color: var(--muted); font-size: 13px; }
+.case-end { padding: 100px 0; background: var(--lime); color: var(--ink); }
+.case-end-grid { display: flex; justify-content: space-between; align-items: end; gap: 40px; }
+.case-end h2 { max-width: 800px; margin: 18px 0 0; font-size: clamp(38px, 5vw, 72px); line-height: .95; letter-spacing: -.07em; }
+.case-end .button { border-color: var(--ink); }
+
+/* KUBTEL concept */
+.kubtel-page .case-hero { background: #e8ebe4; }
+.kubtel-page .case-hero-art { padding: 25px; border-radius: var(--radius-lg); background: #d9dfd5; }
+.service-product { overflow: hidden; border: 1px solid #b9c4b8; border-radius: 19px; background: #fbfcf8; color: var(--ink); box-shadow: 0 30px 75px rgba(49,64,48,.18); }
+.service-product-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 17px 19px; border-bottom: 1px solid #dce3da; font-size: 12px; }
+.service-wordmark { color: #1c5f43; font-weight: 900; letter-spacing: .06em; }
+.service-avatar { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #e2f0e6; color: #1c5f43; font-size: 10px; font-weight: 800; }
+.service-product-body { padding: 28px; }
+.service-product-context { display: flex; justify-content: space-between; gap: 18px; padding-bottom: 24px; }
+.service-product-context small { display: block; color: #738077; font-family: var(--mono); font-size: 9px; text-transform: uppercase; }
+.service-product-context strong { display: block; margin-top: 5px; font-size: 14px; }
+.service-alert { display: grid; grid-template-columns: 45px 1fr; gap: 18px; padding: 22px; border: 1px solid #b8ddc2; border-radius: 16px; background: #eff9f0; }
+.service-alert-number { color: #2b8a52; font-family: var(--mono); font-size: 12px; font-weight: 800; }
+.service-alert small { color: #5c7a65; font-family: var(--mono); font-size: 9px; }
+.service-alert h3 { margin: 10px 0 8px; font-size: 25px; line-height: 1.05; letter-spacing: -.05em; }
+.service-alert p { margin: 0; color: #53635a; font-size: 12px; }
+.service-update { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 15px; margin-top: 12px; padding-top: 14px; border-top: 1px solid #cfe6d3; color: #53705c; font-size: 11px; }
+.service-update strong { color: #1c5f43; }
+.service-timeline-large { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+.service-timeline-large div { padding-top: 14px; border-top: 2px solid #2b8a52; }
+.service-timeline-large div:last-child { border-color: #cad3ca; }
+.service-timeline-large span { display: block; color: #738077; font-family: var(--mono); font-size: 9px; }
+.service-timeline-large strong { display: block; margin-top: 5px; font-size: 11px; }
+.kubtel-contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.contrast-card { padding: 28px; border: 1px solid rgba(11,13,13,.13); border-radius: var(--radius-md); }
+.contrast-card.before { background: #f7f1ed; }
+.contrast-card.after { background: #edf7ee; border-color: #b7dbbd; }
+.contrast-card span { color: #6f7c73; font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
+.contrast-card h3 { margin: 35px 0 15px; font-size: 28px; letter-spacing: -.05em; }
+.contrast-card p { margin: 0; color: #5b675f; font-size: 14px; }
+.blueprint-simple { display: grid; gap: 1px; background: #c7d0c6; border: 1px solid #c7d0c6; }
+.blueprint-row { display: grid; grid-template-columns: 170px repeat(4, 1fr); gap: 1px; background: #c7d0c6; }
+.blueprint-row > * { min-height: 82px; padding: 17px; background: #f8faf5; color: #4a584e; font-size: 12px; }
+.blueprint-row.head > * { min-height: auto; background: #dfe7dc; color: #1b2920; font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; } }
+
+@media (max-width: 960px) {
+  .hero, .case-hero-grid { grid-template-columns: 1fr; gap: 44px; }
+  .hero { min-height: auto; padding-top: 72px; }
+  .hero-art { min-height: 420px; }
+  .work-grid { grid-template-columns: 1fr; }
+  .work-card-secondary { min-height: 510px; }
+  .signal-grid { grid-template-columns: repeat(2, 1fr); }
+  .case-hero-art { max-width: 780px; }
+  .contact-card { align-items: start; flex-direction: column; }
+}
+@media (max-width: 720px) {
+  .nav-wrap, .container, .case-page .container { width: min(100% - 30px, var(--max)); }
+  .nav-wrap { min-height: 66px; }
+  .wordmark-role { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .site-nav { position: absolute; top: 66px; right: 15px; left: 15px; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 10px; border: 1px solid var(--line); border-radius: 18px; background: var(--ink-soft); box-shadow: var(--shadow); }
+  .case-page .site-nav { background: var(--paper); border-color: rgba(11,13,13,.15); }
+  .site-nav.open { display: flex; }
+  .site-nav a { padding: 13px; }
+  .nav-cta { display: none; }
+  .hero { padding: 60px 0 65px; }
+  .hero h1 { font-size: clamp(49px, 15vw, 78px); }
+  .hero-art { min-height: 310px; }
+  .float-tag { display: none; }
+  .proof-strip { grid-template-columns: repeat(2, 1fr); }
+  .proof-item:nth-child(2) { border-right: 0; }
+  .proof-item:nth-child(-n+2) { border-bottom: 1px solid var(--line-soft); }
+  .section, .case-section { padding: 84px 0; }
+  .section-heading, .chapter-head { display: block; }
+  .section-heading > p { margin-top: 24px; }
+  .work-card, .work-card-main { min-height: 530px; }
+  .work-card h3 { font-size: 40px; }
+  .principles, .system-mini { grid-template-columns: 1fr; }
+  .signal-grid, .two-column, .kubtel-contrast { grid-template-columns: 1fr; }
+  .contact-section { padding: 85px 0 50px; }
+  .contact-card { padding: 30px; }
+  .case-hero { padding: 72px 0 60px; }
+  .case-hero h1 { font-size: clamp(48px, 14vw, 78px); }
+  .case-summary { grid-template-columns: repeat(2, 1fr); }
+  .case-summary-item:nth-child(2) { border-right: 0; }
+  .case-summary-item:nth-child(-n+2) { border-bottom: 1px solid rgba(11,13,13,.14); }
+  .case-summary-item:nth-child(3) { padding-left: 0; padding-top: 20px; }
+  .chapter-head h2 { font-size: 42px; }
+  .system-mini { gap: 1px; }
+  .case-end { padding: 80px 0; }
+  .case-end-grid { display: block; }
+  .case-end .button { margin-top: 30px; }
+  .blueprint-row { grid-template-columns: 1fr; }
+  .blueprint-row > * { min-height: auto; }
+  .blueprint-row.head { display: none; }
+  .service-product-body { padding: 18px; }
+  .service-alert { grid-template-columns: 1fr; }
+  .service-update { grid-column: auto; }
+  .service-timeline-large { grid-template-columns: 1fr; }
+  .site-footer { display: block; }
+  .footer-links { margin: 17px 0; }
+}
+
+/* Light editorial system: matches the original portfolio pages. */
+:root {
+  --ink: #121212;
+  --ink-soft: #ffffff;
+  --ink-card: #fbfbf8;
+  --line: #d2d0c8;
+  --line-soft: rgba(18, 18, 18, 0.14);
+  --paper: #f4f2ec;
+  --paper-soft: #e5e4de;
+  --muted: #6d6b65;
+  --muted-dark: #4e4d49;
+  --lime: #f2552c;
+  --lime-deep: #167449;
+  --cyan: #4f8390;
+  --orange: #c38708;
+  --red: #a84330;
+  --shadow: 0 26px 70px rgba(18, 18, 18, 0.13);
+}
+
+body { background: var(--paper); color: var(--ink); }
+.site-header { background: rgba(244, 242, 236, 0.9); border-color: var(--line); }
+.case-page .site-header { background: rgba(244, 242, 236, 0.92); border-color: var(--line); }
+.wordmark-mark, .case-page .wordmark-mark { border-color: var(--ink); color: var(--ink); }
+.wordmark-role, .case-page .wordmark-role, .site-nav, .case-page .site-nav { color: var(--muted); }
+.site-nav a:hover, .site-nav a:focus-visible, .case-page .site-nav a:hover, .case-page .site-nav a:focus-visible { color: var(--ink); }
+.nav-cta { background: var(--ink); color: var(--paper); }
+.nav-toggle, .case-page .nav-toggle { color: var(--ink); border-color: var(--line); }
+.site-nav { background: var(--paper); }
+.hero-lead { color: var(--muted-dark); }
+.button-quiet { color: var(--ink); border-color: var(--line); }
+.hero-art::before { border-color: rgba(242, 85, 44, .3); }
+.hero-image-card { background: #fff; border-color: var(--line); }
+.hero-image-card figcaption { color: var(--muted); }
+.float-tag { background: rgba(255, 255, 255, .94); color: var(--lime); border-color: var(--lime); }
+.float-tag.two { color: var(--cyan); border-color: var(--cyan); }
+.proof-strip { border-color: var(--line); }
+.proof-item { border-color: var(--line); }
+.proof-item strong { color: var(--lime); }
+.proof-item span { color: var(--muted); }
+.work-card { background: #fff; color: var(--ink); border-color: var(--line); }
+.work-card-main { color: #fff; background: #1b1b1a; }
+.work-card-main p { color: #e2e2db; }
+.work-card-secondary { background: #fff; border-color: var(--line); }
+.work-card-secondary p { color: var(--muted-dark); }
+.principles { border-color: var(--line); background: var(--line); }
+.principle { background: #fff; color: var(--ink); }
+.principle p { color: var(--muted-dark); }
+.light-section { background: #fff; }
+.signal-card { background: #fbfbf8; border-color: var(--line); }
+.signal-card p { color: var(--muted-dark); }
+.contact-card { background: #fff; border-color: var(--line); }
+.contact-links a { border-color: var(--line); color: var(--lime-deep); }
+.site-footer { background: transparent; border-color: var(--line); color: var(--muted); }
+.case-page .site-footer { background: transparent; color: var(--muted); border-color: var(--line); }
+.case-page .site-footer .footer-links a:hover { color: var(--ink); }
+.case-section-dark { background: #fff; color: var(--ink); }
+.case-section-dark .chapter-head p, .case-section-dark .image-caption { color: var(--muted-dark); }
+.case-section-dark .story-card { border-color: var(--line); background: #fbfbf8; }
+.case-section-dark .story-card p { color: var(--muted-dark); }
+.case-section-dark .story-card img { border-color: var(--line); }
+.case-section-dark .plain-list li { color: var(--muted-dark); }
+.case-section-dark .quote { border-color: var(--lime); }
+.system-mini { background: var(--line); border-color: var(--line); }
+.system-mini article { background: #fff; }
+.system-mini p { color: var(--muted-dark); }
+.case-end { background: var(--lime); }
+.case-end .button { border-color: var(--ink); background: var(--ink); color: #fff; }
+.case-end .button:hover { background: transparent; color: var(--ink); }
+.case-page .nav-cta { background: var(--ink); color: var(--paper); }
+.case-page .site-nav.open { background: var(--paper); }
+
+/* Responsive type safety: long Russian words must stay inside the viewport. */
+html, body { max-width: 100%; overflow-x: clip; }
+img, svg, video { max-width: 100%; height: auto; }
+.hero > *, .case-hero-grid > *, .section-heading > *, .case-section .container > *, .contact-card > *, .work-card > *, .site-footer > *, .work-grid > *, .proof-strip > *, .signal-grid > *, .two-column > *, .kubtel-contrast > *, .case-summary > * { min-width: 0; }
+h1, h2, h3, h4 { max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
+p, li, a, button, small, span, strong { overflow-wrap: break-word; }
+.hero h1, .case-hero h1, .contact-card h2, .work-card h3, .section-heading h2, .section-heading h3, .case-section h2, .chapter-head h2 { hyphens: none; }
+.hero h1, .case-hero h1 { overflow-wrap: normal; text-wrap: pretty; }
+.button, .nav-cta { max-width: 100%; white-space: normal; text-align: left; }
+
+@media (max-width: 960px) {
+  .hero, .case-hero-grid { min-width: 0; }
+  .hero h1 { font-size: clamp(44px, 7vw, 68px); }
+  .case-hero h1 { font-size: clamp(44px, 6.5vw, 70px); }
+}
+
+@media (max-width: 720px) {
+  .nav-wrap, .container, .case-page .container { width: calc(100% - 30px); }
+  .hero { padding: 56px 0 62px; }
+  .hero h1 { max-width: 100%; font-size: clamp(38px, 9.8vw, 54px); line-height: 1; letter-spacing: -.045em; overflow-wrap: break-word; }
+  .hero-lead { max-width: 100%; font-size: clamp(17px, 4.6vw, 20px); line-height: 1.42; }
+  .hero-actions { align-items: stretch; gap: 14px; }
+  .hero-actions .button { align-self: flex-start; padding: 13px 16px; font-size: 12px; line-height: 1.25; }
+  .hero-meta { font-size: 11px; line-height: 1.45; }
+  .hero-art { min-width: 0; min-height: 300px; }
+  .hero-image-card { transform: none; }
+  .case-hero { padding: 66px 0 55px; }
+  .case-hero h1 { max-width: 100%; font-size: clamp(36px, 9.2vw, 52px); line-height: 1; letter-spacing: -.05em; overflow-wrap: break-word; }
+  .case-hero-lead { max-width: 100%; font-size: clamp(17px, 4.5vw, 20px); line-height: 1.42; }
+  .case-kicker, .eyebrow, .section-index { font-size: 10px; letter-spacing: .09em; line-height: 1.45; }
+  .section-heading h2, .section-heading h3, .case-section h2, .chapter-head h2 { font-size: clamp(30px, 8.4vw, 44px); line-height: 1.02; letter-spacing: -.045em; }
+  .contact-card h2 { font-size: clamp(32px, 9vw, 50px); line-height: 1; }
+  .work-card h3 { font-size: clamp(28px, 7.8vw, 38px); line-height: 1; }
+  .service-preview-title, .service-alert h3, .contrast-card h3 { font-size: clamp(21px, 6.3vw, 28px); }
+  .contact-card { padding: 24px; }
+  .contact-links { width: 100%; min-width: 0; }
+  .case-hero-art { min-width: 0; }
+  .case-hero-art .hero-sticker { right: 12px; bottom: 12px; max-width: min(190px, calc(100% - 24px)); }
+  .service-product-context, .service-update { min-width: 0; flex-wrap: wrap; }
+  .service-product-context > *, .service-update > * { min-width: 0; }
+  .blueprint-row > * { min-width: 0; overflow-wrap: anywhere; }
+}
+
+@media (max-width: 480px) {
+  .nav-wrap, .container, .case-page .container { width: calc(100% - 24px); }
+  .nav-wrap { gap: 12px; }
+  .hero { padding: 48px 0 56px; }
+  .hero h1 { font-size: clamp(34px, 9.8vw, 46px); line-height: 1.02; }
+  .hero-lead { font-size: 16px; }
+  .hero-actions .button { width: 100%; justify-content: space-between; }
+  .case-hero { padding-top: 54px; }
+  .case-hero h1 { font-size: clamp(34px, 9vw, 46px); }
+  .case-hero-lead { font-size: 16px; }
+  .case-hero-meta, .case-summary { grid-template-columns: 1fr; }
+  .case-summary-item, .case-summary-item:nth-child(2), .case-summary-item:nth-child(3) { border-right: 0; border-bottom: 1px solid rgba(11,13,13,.14); padding: 16px 0; }
+  .case-summary-item:last-child { border-bottom: 0; }
+  .service-preview { grid-template-columns: 1fr; }
+  .service-product-body { padding: 16px; }
+  .service-alert { padding: 17px; }
+  .contact-card { padding: 20px; }
+  .site-footer { gap: 16px; }
+}
