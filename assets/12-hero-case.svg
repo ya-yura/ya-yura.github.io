@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
   <rect width="1600" height="900" fill="#0F172A"/>
-  <style>.title{font:700 54px Arial,sans-serif;fill:#FFFFFF}.sub{font:400 26px Arial,sans-serif;fill:#CBD5E1}.h{font:700 27px Arial,sans-serif;fill:#FFFFFF}.body{font:400 21px Arial,sans-serif;fill:#CBD5E1}.blue{fill:#60A5FA}.green{fill:#4ADE80}.orange{fill:#FBBF24}.red{fill:#F87171}.card{fill:#1E293B;stroke:#334155;stroke-width:2}</style>
+  <style>:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}.title{font:700 54px var(--font-heading);fill:#FFFFFF}.sub{font:400 26px var(--font-body);fill:#CBD5E1}.h{font:700 27px var(--font-heading);fill:#FFFFFF}.body{font:400 21px var(--font-body);fill:#CBD5E1}.blue{fill:#60A5FA}.green{fill:#4ADE80}.orange{fill:#FBBF24}.red{fill:#F87171}.card{fill:#1E293B;stroke:#334155;stroke-width:2}</style>
   <text x="90" y="120" class="title">Я проектировал не кнопки, а понятное состояние приёмки</text>
   <text x="90" y="175" class="sub">Человек всегда понимает: что ждёт система, что принято, что сохранено и что делать дальше.</text>
   <rect x="90" y="265" width="340" height="220" rx="24" class="card"/><text x="125" y="325" class="h">1. Понять контекст</text><text x="125" y="375" class="body">Какой документ?</text><text x="125" y="410" class="body">Какой товар?</text><text x="125" y="445" class="body">Какой режим работы?</text>

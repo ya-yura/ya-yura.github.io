@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
   <rect width="1600" height="900" fill="#F6F8FB"/>
   <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#64748B"/></marker></defs>
-  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.head{font:700 24px Arial,sans-serif;fill:#0F172A}.body{font:400 21px Arial,sans-serif;fill:#475569}.state{font:700 23px Arial,sans-serif;fill:#0F172A}.safe{fill:#DCFCE7;stroke:#22C55E}.warn{fill:#FEF3C7;stroke:#F59E0B}.bad{fill:#FEE2E2;stroke:#EF4444}.info{fill:#DBEAFE;stroke:#60A5FA}.box{stroke-width:3}</style>
+  <style>:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}.title{font:700 48px var(--font-heading);fill:#0F172A}.sub{font:400 24px var(--font-body);fill:#475569}.head{font:700 24px var(--font-heading);fill:#0F172A}.body{font:400 21px var(--font-body);fill:#475569}.state{font:700 23px var(--font-heading);fill:#0F172A}.safe{fill:#DCFCE7;stroke:#22C55E}.warn{fill:#FEF3C7;stroke:#F59E0B}.bad{fill:#FEE2E2;stroke:#EF4444}.info{fill:#DBEAFE;stroke:#60A5FA}.box{stroke-width:3}</style>
   <text x="80" y="92" class="title">Что происходит после сканирования</text><text x="80" y="135" class="sub">Один понятный путь вместо догадок</text>
   <rect x="80" y="340" width="230" height="130" rx="20" class="box info"/><text x="195" y="395" text-anchor="middle" class="state">Ждём скан</text><text x="195" y="430" text-anchor="middle" class="body">можно сканировать</text>
   <line x1="310" y1="405" x2="400" y2="405" stroke="#64748B" stroke-width="4" marker-end="url(#arrow)"/>

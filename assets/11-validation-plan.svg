@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
   <rect width="1600" height="900" fill="#F6F8FB"/>
   <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#2563EB"/></marker></defs>
-  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.num{font:700 26px Arial,sans-serif;fill:#FFFFFF}.h{font:700 27px Arial,sans-serif;fill:#0F172A}.body{font:400 21px Arial,sans-serif;fill:#475569}.circle{fill:#2563EB}.line{stroke:#2563EB;stroke-width:5;marker-end:url(#arrow)}</style>
+  <style>:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}.title{font:700 48px var(--font-heading);fill:#0F172A}.sub{font:400 24px var(--font-body);fill:#475569}.num{font:700 26px var(--font-body);fill:#FFFFFF}.h{font:700 27px var(--font-heading);fill:#0F172A}.body{font:400 21px var(--font-body);fill:#475569}.circle{fill:#2563EB}.line{stroke:#2563EB;stroke-width:5;marker-end:url(#arrow)}</style>
   <text x="80" y="92" class="title">Как проверить решение</text><text x="80" y="135" class="sub">Идём от понимания проблемы к пробному запуску</text>
   <circle cx="240" cy="365" r="52" class="circle"/><text x="240" y="375" text-anchor="middle" class="num">1</text><text x="240" y="465" text-anchor="middle" class="h">Разговор</text><text x="240" y="505" text-anchor="middle" class="body">спросить кладовщика</text><text x="240" y="538" text-anchor="middle" class="body">о сложных местах</text>
   <line x1="300" y1="365" x2="515" y2="365" class="line"/>

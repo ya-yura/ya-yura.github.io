@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
   <rect width="1600" height="900" fill="#F6F8FB"/>
-  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.head{font:700 23px Arial,sans-serif;fill:#0F172A}.body{font:400 21px Arial,sans-serif;fill:#334155}.cell{fill:#FFFFFF;stroke:#CBD5E1;stroke-width:2}.blue{fill:#DBEAFE}.green{fill:#DCFCE7}</style>
+  <style>:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}.title{font:700 48px var(--font-heading);fill:#0F172A}.sub{font:400 24px var(--font-body);fill:#475569}.head{font:700 23px var(--font-heading);fill:#0F172A}.body{font:400 21px var(--font-body);fill:#334155}.cell{fill:#FFFFFF;stroke:#CBD5E1;stroke-width:2}.blue{fill:#DBEAFE}.green{fill:#DCFCE7}</style>
   <text x="80" y="92" class="title">Что будем измерять</text><text x="80" y="135" class="sub">Сначала узнаём текущий уровень, потом сравниваем с результатом</text>
   <rect x="80" y="220" width="1440" height="75" rx="14" fill="#E2E8F0"/><text x="115" y="268" class="head">Что хотим улучшить</text><text x="615" y="268" class="head">Что смотрим</text><text x="1110" y="268" class="head">Как поймём, что стало лучше</text>
   <rect x="80" y="310" width="1440" height="86" class="cell"/><text x="115" y="362" class="body">Повторное сканирование</text><text x="615" y="362" class="body">Сколько раз действие повторяют</text><text x="1110" y="362" class="body">Повторов становится меньше</text>
