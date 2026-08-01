@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
   <rect width="1600" height="900" fill="#F6F8FB"/>
-  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.h{font:700 32px Arial,sans-serif;fill:#0F172A}.screen{fill:#0F172A;stroke:#334155;stroke-width:5}.white{fill:#FFFFFF}.light{fill:#CBD5E1}.green{fill:#22C55E}.red{fill:#EF4444}.blue{fill:#60A5FA}.body{font:400 24px Arial,sans-serif}.bold{font:700 24px Arial,sans-serif}.dark{fill:#0F172A}.muted{fill:#94A3B8}</style>
+  <style>:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}.title{font:700 48px var(--font-heading);fill:#0F172A}.sub{font:400 24px var(--font-body);fill:#475569}.h{font:700 32px var(--font-heading);fill:#0F172A}.screen{fill:#0F172A;stroke:#334155;stroke-width:5}.white{fill:#FFFFFF}.light{fill:#CBD5E1}.green{fill:#22C55E}.red{fill:#EF4444}.blue{fill:#60A5FA}.body{font:400 24px var(--font-body)}.bold{font:700 24px var(--font-body)}.dark{fill:#0F172A}.muted{fill:#94A3B8}</style>
   <text x="80" y="92" class="title">Сканирование должно быть понятным</text><text x="80" y="135" class="sub">После каждого сканирования человек сразу видит, что произошло</text>
   <text x="350" y="215" text-anchor="middle" class="h">ДО</text><text x="1250" y="215" text-anchor="middle" class="h">ПОСЛЕ</text>
   <rect x="170" y="255" width="360" height="520" rx="34" class="screen"/><rect x="1070" y="255" width="360" height="520" rx="34" class="screen"/>

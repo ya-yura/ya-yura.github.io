@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
   <rect width="1600" height="900" fill="#F6F8FB"/>
   <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#2563EB"/></marker></defs>
-  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.axis{font:700 22px Arial,sans-serif;fill:#334155}.label{font:700 20px Arial,sans-serif;fill:#0F172A}.small{font:400 18px Arial,sans-serif;fill:#475569}.note{font:700 22px Arial,sans-serif;fill:#166534}</style>
+  <style>:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}.title{font:700 48px var(--font-heading);fill:#0F172A}.sub{font:400 24px var(--font-body);fill:#475569}.axis{font:700 22px var(--font-heading);fill:#334155}.label{font:700 20px var(--font-body);fill:#0F172A}.small{font:400 18px var(--font-body);fill:#475569}.note{font:700 22px var(--font-heading);fill:#166534}</style>
   <text x="80" y="92" class="title">Что брать в первую очередь</text><text x="80" y="135" class="sub">Чем чаще проблема и чем сильнее её последствия, тем раньше её исправляем</text>
   <line x1="250" y1="740" x2="1370" y2="740" stroke="#2563EB" stroke-width="5" marker-end="url(#arrow)"/><line x1="250" y1="740" x2="250" y2="205" stroke="#2563EB" stroke-width="5" marker-end="url(#arrow)"/>
   <text x="790" y="800" text-anchor="middle" class="axis">Как часто происходит</text><text x="135" y="480" text-anchor="middle" class="axis" transform="rotate(-90 135 480)">Насколько мешает работе</text>
