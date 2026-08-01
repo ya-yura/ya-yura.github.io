@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#F6F8FB"/>
+  <style>.title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.head{font:700 23px Arial,sans-serif;fill:#0F172A}.body{font:400 21px Arial,sans-serif;fill:#334155}.cell{fill:#FFFFFF;stroke:#CBD5E1;stroke-width:2}.blue{fill:#DBEAFE}.green{fill:#DCFCE7}</style>
+  <text x="80" y="92" class="title">Что будем измерять</text><text x="80" y="135" class="sub">Сначала узнаём текущий уровень, потом сравниваем с новым</text>
+  <rect x="80" y="220" width="1440" height="75" rx="14" fill="#E2E8F0"/><text x="115" y="268" class="head">Что хотим улучшить</text><text x="615" y="268" class="head">Что смотрим</text><text x="1110" y="268" class="head">Как поймём, что стало лучше</text>
+  <rect x="80" y="310" width="1440" height="86" class="cell"/><text x="115" y="362" class="body">Повторное сканирование</text><text x="615" y="362" class="body">Сколько раз действие повторяют</text><text x="1110" y="362" class="body">Повторов становится меньше</text>
+  <rect x="80" y="396" width="1440" height="86" class="cell green"/><text x="115" y="448" class="body">Неполное завершение</text><text x="615" y="448" class="body">Сколько документов закрыли с пропусками</text><text x="1110" y="448" class="body">Опасных завершений меньше</text>
+  <rect x="80" y="482" width="1440" height="86" class="cell"/><text x="115" y="534" class="body">Ошибки передачи</text><text x="615" y="534" class="body">Сколько документов не дошло</text><text x="1110" y="534" class="body">Ошибки быстрее находят и исправляют</text>
+  <rect x="80" y="568" width="1440" height="86" class="cell green"/><text x="115" y="620" class="body">Время разбора</text><text x="615" y="620" class="body">Сколько длится работа с проблемой</text><text x="1110" y="620" class="body">Разбор занимает меньше времени</text>
+  <rect x="80" y="654" width="1440" height="86" class="cell"/><text x="115" y="706" class="body">Ошибки количества</text><text x="615" y="706" class="body">Сколько раз пересчитывают товар</text><text x="1110" y="706" class="body">Пересчётов и споров меньше</text>
+  <rect x="80" y="795" width="1440" height="55" rx="14" class="blue"/><text x="110" y="830" class="body">Не обещаем проценты заранее. Сначала измеряем, потом делаем вывод.</text>
+</svg>

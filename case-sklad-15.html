@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Склад 15 — кейс о превращении технической приёмки в управляемый пользовательский сценарий.">
+  <title>Склад 15 — Приёмка без скрытых рисков</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="case-page">
+  <header class="site-header"><div class="nav-wrap">
+    <a class="wordmark" href="index.html"><span class="wordmark-mark">YP</span><span class="wordmark-role">Product / UX Engineer</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
+    <nav class="site-nav" id="site-nav"><a href="index.html#work">Кейсы</a><a href="#evidence">Исследование</a><a href="#solutions">Решения</a><a href="#measure">Проверка</a></nav>
+    <a class="nav-cta" href="index.html#contact">Связаться</a>
+  </div></header>
+
+  <main>
+    <section class="case-hero"><div class="container case-hero-grid">
+      <div class="reveal"><p class="case-kicker">01 · Product UX · Клеверенс</p><h1>Приёмка без скрытых <em>рисков</em></h1><p class="case-hero-lead">Как превратить техническую операцию на терминале в управляемый сценарий — с понятным состоянием, безопасным завершением и единым центром исключений.</p><div class="case-hero-meta"><div class="meta-item"><span>Роль</span><strong>Product / UX Engineer</strong></div><div class="meta-item"><span>Моя работа</span><strong>Исследование · модель состояний</strong></div><div class="meta-item"><span>Формат</span><strong>Desk research + концепция</strong></div><div class="meta-item"><span>Результат</span><strong>Система решений + план пилота</strong></div></div></div>
+      <div class="case-hero-art reveal"><img src="assets/safe-receipt-portfolio-cover.png" alt="Визуализация кейса Безопасная приёмка"><span class="hero-sticker">Система должна объяснять: что произошло, что сохранено и что делать дальше.</span></div>
+    </div></section>
+    <div class="container case-summary"><div class="case-summary-item"><strong>10</strong><span>проблем в карте</span></div><div class="case-summary-item"><strong>4</strong><span>сценария первого релиза</span></div><div class="case-summary-item"><strong>12</strong><span>визуальных артефактов</span></div><div class="case-summary-item"><strong>1</strong><span>план проверки и пилота</span></div></div>
+
+    <section class="case-section" id="evidence"><div class="container">
+      <div class="chapter-head reveal"><p class="section-index">01 — Контекст</p><div><h2>В приёмке ошибка интерфейса становится операционной потерей</h2><p>Кладовщик работает в шуме, спешке, перчатках и нестабильной сети. Если система не объясняет состояние, ошибка превращается в повторный скан, простой, расхождение в учёте или ручное вмешательство старшего смены.</p></div></div>
+      <img class="full-image reveal" src="assets/01-system-map.svg" alt="Схема системы: учётная система, центральный сервер и терминал кладовщика"><div class="image-caption"><span>Карта всей системы</span><span>человек · терминал · сервер · учёт</span></div>
+      <div class="quote reveal">«Я проектировал не экраны, а рабочую уверенность: человек должен понимать, что система ждёт, что произошло после скана, что уже сохранено и как безопасно продолжить.»</div>
+    </div></section>
+
+    <section class="case-section case-section-dark"><div class="container">
+      <div class="chapter-head reveal"><p class="section-index">02 — Доказательства</p><div><h2>Не выдавать гипотезу за полевой факт</h2><p>Публичных отзывов кладовщиков мало. Поэтому я разделил, что подтверждено документацией и повторяющимся поведением продукта, а что пока остаётся гипотезой для проверки на реальном складе.</p></div></div>
+      <div class="two-column"><div class="reveal"><img class="full-image" src="assets/02-evidence-strength.svg" alt="Таблица силы доказательств"><div class="image-caption"><span>Сила доказательств</span><span>факт ≠ гипотеза</span></div></div><div class="reveal"><img class="full-image" src="assets/03-priority-matrix.svg" alt="Матрица частоты и тяжести проблем"><div class="image-caption"><span>Матрица приоритетов</span><span>частота × тяжесть</span></div></div></div>
+    </div></section>
+
+    <section class="case-section" id="solutions"><div class="container">
+      <div class="chapter-head reveal"><p class="section-index">03 — Решения</p><div><h2>Четыре решения, которые меняют поведение системы</h2><p>Я собрал проблемы в четыре истории. Каждая отвечает на один вопрос: что сейчас создаёт риск, какое правило нужно изменить и как понять, что человек снова может работать.</p></div></div>
+      <div class="two-column">
+        <article class="story-card reveal"><h3>Повторный скан не должен быть лотереей</h3><p>После каждого действия человек видит результат. Если повтор опасен, система объясняет последствия и даёт отменить последнее действие.</p><img src="assets/04-scan-before-after.svg" alt="Сравнение сканирования до и после"></article>
+        <article class="story-card reveal"><h3>Количество должно объяснять себя</h3><p>Единица измерения, упаковка и пересчёт находятся рядом с числом. Не нужно держать арифметику иерархии в голове.</p><img src="assets/06-quantity-explained.svg" alt="Понятное количество: короба, штуки, план и факт"></article>
+        <article class="story-card reveal"><h3>«Завершить» должно означать завершить</h3><p>Статус разделяет локальное сохранение, отправку на сервер и принятие в учётной системе — без ложного чувства финала.</p><img src="assets/07-document-lifecycle.svg" alt="Жизненный цикл документа"></article>
+        <article class="story-card reveal"><h3>Ошибка должна возвращать человека в рабочий поток</h3><p>Сообщение отвечает на четыре вопроса: что случилось, что сохранено, что сделать сейчас и когда нужна помощь.</p><img src="assets/08-error-recovery.svg" alt="Сценарий восстановления после ошибки"></article>
+      </div>
+    </div></section>
+
+    <section class="case-section case-section-dark"><div class="container">
+      <div class="chapter-head reveal"><p class="section-index">04 — Система</p><div><h2>Из решений собрана система, а не коллекция экранов</h2><p>Общие блоки удерживают единый смысл на терминале и в панели старшего смены: результат скана, модель количества, путь документа и подсказка при ошибке.</p></div></div>
+      <img class="full-image reveal" src="assets/09-common-blocks.svg" alt="Общие блоки системы и их состояния"><div class="image-caption"><span>Библиотека поведения</span><span>один смысл · много экранов</span></div>
+      <div class="system-mini" style="margin-top:28px"><article><span>01</span><h3>Результат сканирования</h3><p>Добавлено, нужно решение, нет связи.</p></article><article><span>02</span><h3>Количество</h3><p>План, факт, остаток и единица рядом.</p></article><article><span>03</span><h3>Путь документа</h3><p>Сохранён, ждёт отправки, принят.</p></article></div>
+    </div></section>
+
+    <section class="case-section" id="measure"><div class="container">
+      <div class="chapter-head reveal"><p class="section-index">05 — Проверка</p><div><h2>Проект заканчивается не макетом, а способом проверить пользу</h2><p>Я зафиксировал, что измерять в текущем процессе, как проверить понимание прототипа и какие сигналы смотреть перед запуском на одном складе.</p></div></div>
+      <div class="two-column"><div class="reveal"><img class="full-image" src="assets/10-what-to-measure.svg" alt="Таблица метрик для проверки решения"><div class="image-caption"><span>Что измерять</span><span>сначала текущий уровень</span></div></div><div class="reveal"><img class="full-image" src="assets/11-validation-plan.svg" alt="План проверки: разговор, наблюдение, макет и пробный запуск"><div class="image-caption"><span>Как проверить</span><span>от разговора к пробному запуску</span></div></div></div>
+    </div></section>
+
+    <section class="case-end"><div class="container case-end-grid"><div><p class="case-kicker">Вывод для продукта</p><h2>Меньше догадок на терминале. Больше контроля в процессе</h2></div><a class="button" href="index.html#contact">Обсудить похожую задачу <span>↗</span></a></div></section>
+  </main>
+  <footer class="site-footer container"><span>Юрий Пылёв · Склад 15</span><span><a href="index.html">← Все кейсы</a></span></footer>
+  <script src="script.js"></script>
+  <script src="typography.js"></script>
+</body>
+</html>

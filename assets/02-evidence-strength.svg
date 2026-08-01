@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#F6F8FB"/>
+  <style>
+    .title{font:700 48px Arial,sans-serif;fill:#0F172A}.sub{font:400 24px Arial,sans-serif;fill:#475569}.head{font:700 24px Arial,sans-serif;fill:#0F172A}.body{font:400 23px Arial,sans-serif;fill:#334155}.small{font:400 21px Arial,sans-serif;fill:#475569}.cell{fill:#FFFFFF;stroke:#CBD5E1;stroke-width:2}.good{fill:#DCFCE7}.mid{fill:#FEF3C7}.low{fill:#F1F5F9}
+  </style>
+  <text x="80" y="92" class="title">Насколько мы уверены в проблеме</text>
+  <text x="80" y="135" class="sub">Честно разделяем факты, сигналы и предположения</text>
+  <rect x="80" y="205" width="1440" height="80" rx="16" fill="#E2E8F0"/>
+  <text x="115" y="255" class="head">Как мы знаем</text><text x="610" y="255" class="head">Что это значит простыми словами</text><text x="1380" y="255" class="head">Уверенность</text>
+  <rect x="80" y="300" width="1440" height="92" class="cell good"/><text x="115" y="337" class="body">Прямое подтверждение</text><text x="610" y="337" class="body">Пользователь прямо сказал или показал проблему</text><text x="1390" y="337" class="head">Высокая</text>
+  <rect x="80" y="392" width="1440" height="92" class="cell good"/><text x="115" y="429" class="body">Повторяющийся сигнал</text><text x="610" y="429" class="body">Одну и ту же часть системы много раз улучшали</text><text x="1390" y="429" class="head">Высокая</text>
+  <rect x="80" y="484" width="1440" height="92" class="cell mid"/><text x="115" y="521" class="body">Видно из инструкции</text><text x="610" y="521" class="body">Шаги и предупреждения показывают, где люди ошибаются</text><text x="1390" y="521" class="head">Средняя</text>
+  <rect x="80" y="576" width="1440" height="92" class="cell mid"/><text x="115" y="613" class="body">Типичная складская проблема</text><text x="610" y="613" class="body">Такое часто бывает в похожих складских процессах</text><text x="1390" y="613" class="head">Средняя</text>
+  <rect x="80" y="668" width="1440" height="92" class="cell low"/><text x="115" y="705" class="body">Предположение</text><text x="610" y="705" class="body">Кажется логичным, но это нужно проверить на людях</text><text x="1390" y="705" class="head">Низкая</text>
+  <rect x="80" y="805" width="1440" height="54" rx="14" fill="#DBEAFE"/><text x="110" y="840" class="small">Публичных отзывов кладовщиков мало. Поэтому следующий шаг — наблюдение на реальном складе.</text>
+</svg>
