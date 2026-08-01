@@ -1,6 +1,12 @@
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
 
+const assetVersion = '20260801';
+document.querySelectorAll('img[src^="assets/"]').forEach((image) => {
+  const source = image.getAttribute('src');
+  if (source && !source.includes('?')) image.setAttribute('src', `${source}?v=${assetVersion}`);
+});
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('open');
