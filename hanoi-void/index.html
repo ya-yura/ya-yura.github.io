@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080a13" />
+    <meta name="description" content="HANOI//VOID — бесконечный 3D-рогалик на базе Ханойских башен." />
+    <title>HANOI//VOID — infinite tower protocol</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <div class="noise" aria-hidden="true"></div>
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">H<span>//</span>V</div>
+          <div>
+            <div class="brand-title">HANOI<span>//</span>VOID</div>
+            <div class="brand-subtitle">infinite tower protocol</div>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="signal"><i></i><span>VOID LINK</span></div>
+          <button class="icon-button" id="btn-sound" type="button" aria-label="Выключить звук">♫</button>
+          <button class="icon-button" id="btn-pause" type="button" aria-label="Пауза">Ⅱ</button>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <aside class="sidebar sidebar-left">
+          <section class="intro-panel">
+            <div class="eyebrow">SECTOR / <span id="sector-name">THE SHARD</span></div>
+            <h1>Сломай<br /><em>законы.</em></h1>
+            <p>Каждый расклад — новый разлом пространства. Собери ядро в целевой башне, пока бездна не перехватила протокол.</p>
+            <div class="status-line"><span class="status-dot"></span><span id="status-copy">Система стабильна</span></div>
+          </section>
+
+          <section class="level-panel panel-block">
+            <div class="panel-label">CURRENT RUN</div>
+            <div class="level-row">
+              <span class="level-number" id="level-number">01</span>
+              <div class="level-meta">
+                <span class="difficulty-chip" id="difficulty-chip">INITIATE</span>
+                <strong id="level-title">Сигнал из пустоты</strong>
+              </div>
+            </div>
+            <div class="progress-track"><span id="progress-bar"></span></div>
+            <div class="mini-stats">
+              <div><span>ДИСКИ</span><strong id="disk-count">05</strong></div>
+              <div><span>СТЕРЖНИ</span><strong id="peg-count">03</strong></div>
+              <div><span>SEED</span><strong id="seed-value">----</strong></div>
+            </div>
+            <div class="rainbow-legend" aria-label="Порядок дисков от маленького к большому"><span>SMALL</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span>LARGE</span></div>
+          </section>
+
+          <section class="rule-panel panel-block">
+            <div class="panel-label">ANOMALY DETECTED</div>
+            <div class="anomaly-card" id="anomaly-card">
+              <div class="anomaly-icon" id="anomaly-icon">◈</div>
+              <div><strong id="anomaly-title">STABLE CORE</strong><p id="anomaly-copy">Базовая физика. Никаких оправданий.</p></div>
+            </div>
+          </section>
+
+          <section class="control-panel panel-block">
+            <div class="panel-label">PROTOCOL</div>
+            <button class="wide-button" id="btn-new" type="button"><span>Новый сектор</span><b>↗</b></button>
+            <button class="text-button" id="btn-reset" type="button">Пересобрать расклад <span>R</span></button>
+          </section>
+        </aside>
+
+        <section class="arena-column">
+          <div class="arena-head">
+            <div><span class="eyebrow">LIVE FEED</span><strong id="mission-copy">Найди путь к зелёному ядру</strong></div>
+            <div class="arena-tools"><span id="hover-copy">Кликни по стержню, чтобы выбрать диск</span><span class="key-hint">1—6 / выбор</span></div>
+          </div>
+          <div class="arena" id="scene-wrap">
+            <div id="scene" aria-label="3D-поле Ханойских башен"></div>
+            <div class="scene-vignette" aria-hidden="true"></div>
+            <div class="scene-corner corner-tl">X <span id="scene-x">018</span><br />Y <span id="scene-y">077</span></div>
+            <div class="scene-corner corner-br">SYS <span class="green">ONLINE</span><br /><span id="fps-copy">60 FPS</span></div>
+            <div class="selection-readout" id="selection-readout"><span class="readout-dot"></span><span id="selection-copy">Выбери источник</span></div>
+            <div class="pause-overlay" id="pause-overlay" hidden><div class="pause-mark">Ⅱ</div><strong>ПРОТОКОЛ НА ПАУЗЕ</strong><span>Нажми пробел, чтобы продолжить</span></div>
+          </div>
+          <div class="arena-foot">
+            <div class="goal-readout"><span class="goal-symbol">◎</span><div><span>ЦЕЛЕВОЕ ЯДРО</span><strong id="goal-copy">Башня 03 / собрать полностью</strong></div></div>
+            <div class="live-stat"><span>СЕРИЯ</span><strong id="combo-copy">x01</strong></div>
+            <div class="live-stat"><span>ОЧКИ</span><strong id="score-copy">000000</strong></div>
+          </div>
+        </section>
+
+        <aside class="sidebar sidebar-right">
+          <section class="objective-panel panel-block">
+            <div class="objective-heading"><div class="panel-label">OBJECTIVE</div><span id="objective-tag">PRIMARY</span></div>
+            <h2>Собери<br /><span>ядро.</span></h2>
+            <p id="objective-copy">Перенеси все диски в башню с зелёным маяком. Большой диск не может лежать на маленьком.</p>
+            <div class="objective-meter"><span id="objective-progress"></span></div>
+            <div class="objective-footer"><span id="objective-left">05 дисков вне цели</span><span id="move-copy">ХОД 000</span></div>
+          </section>
+
+          <section class="boosters-panel panel-block">
+            <div class="panel-label">VOID TOOLS</div>
+            <div class="booster-grid">
+              <button class="booster" data-boost="rewind" type="button"><span class="booster-glyph">↶</span><span><b>REWIND</b><small>отменить ход</small></span><em id="rewind-count">03</em></button>
+              <button class="booster" data-boost="scan" type="button"><span class="booster-glyph">⌁</span><span><b>SCAN</b><small>просканировать путь</small></span><em id="scan-count">02</em></button>
+              <button class="booster" data-boost="quantum" type="button"><span class="booster-glyph">✦</span><span><b>QUANTUM</b><small>сломать правило</small></span><em id="quantum-count">01</em></button>
+              <button class="booster" data-boost="stasis" type="button"><span class="booster-glyph">◌</span><span><b>STASIS</b><small>заморозить таймер</small></span><em id="stasis-count">01</em></button>
+            </div>
+          </section>
+
+          <section class="telemetry-panel panel-block">
+            <div class="telemetry-grid">
+              <div><span>ВРЕМЯ</span><strong id="time-copy">00:00</strong></div>
+              <div><span>ХОДЫ</span><strong id="moves-copy">000</strong></div>
+              <div><span>РЕКОРД</span><strong id="best-copy">—</strong></div>
+              <div><span>КОМБО</span><strong id="streak-copy">0</strong></div>
+            </div>
+          </section>
+
+          <section class="history-panel panel-block">
+            <div class="history-heading"><div class="panel-label">MOVE LOG</div><span id="history-count">0 / ∞</span></div>
+            <ol id="move-history" class="move-history"><li class="empty-history">История появится здесь</li></ol>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="footer"><span>HANOI//VOID <b>v1.0.0</b></span><span>LOCAL STATE <i></i> AUTO-SAVED</span><span>КЛИКАЙ • ТАПАЙ • СОБИРАЙ СЕРИЮ</span></footer>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+      <div class="modal-backdrop" id="complete-modal" hidden>
+        <section class="complete-modal" role="dialog" aria-modal="true" aria-labelledby="complete-title">
+          <div class="complete-rings" aria-hidden="true"><span></span><span></span><span>✦</span></div>
+          <div class="eyebrow">SIGNAL LOCKED / SECTOR CLEARED</div>
+          <h2 id="complete-title">Ядро собрано.</h2>
+          <p id="complete-copy">Ты пережил разлом.</p>
+          <div class="complete-stats"><div><span>ОЧКИ</span><strong id="complete-score">000000</strong></div><div><span>ХОДЫ</span><strong id="complete-moves">000</strong></div><div><span>ВРЕМЯ</span><strong id="complete-time">00:00</strong></div></div>
+          <div class="modal-actions"><button class="text-button" id="btn-replay" type="button">Повторить сектор</button><button class="wide-button" id="btn-next" type="button"><span>Следующий разлом</span><b>↗</b></button></div>
+        </section>
+      </div>
+    </div>
+    <script defer src="./game.js"></script>
+  </body>
+</html>
