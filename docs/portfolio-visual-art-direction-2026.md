@@ -73,9 +73,11 @@
 8. карта измерений «сигнал → решение»;
 9. путь проверки от наблюдения до пилота.
 
-Файл внутренней иллюстрации: `site/assets/sklad-exception-hub-light-20260810.png`.
+Файл внутренней иллюстрации: `site/assets/sklad-exception-workstation-light-v2-20260810.png`.
 
-Её роль — показать, что неизвестный товар, отсутствующая марка, транспортная упаковка и проблема сканирования сходятся не в четыре отдельных тупика, а в один управляемый центр исключений.
+Её роль — показать реальное рабочее место, где сходятся тара, маркировка, терминал и документы. Единый центр исключений теперь выражен обычным лотком контроля и композицией предметов, а не фантазийными соединителями.
+
+Предыдущий файл `site/assets/sklad-exception-hub-light-20260810.png` сохранён как архив, но больше не используется на сайте. Версия отклонена из-за стеклянных платформ, светящихся трубок, условной металлической банки, кристаллической формы в центре и неестественной логики соединений.
 
 ### Схемы KUBTEL
 
@@ -91,7 +93,7 @@
 
 ## Финальные запросы для генерации
 
-Оба изображения созданы встроенным ImageGen. Сгенерированный текст в изображениях запрещён; все подписи добавлены в коде.
+Все растровые изображения созданы встроенным ImageGen. Сгенерированный текст в изображениях запрещён; все подписи добавлены в коде.
 
 ### Запрос для «Склад 15»
 
@@ -101,9 +103,25 @@
 
 > Create a premium, text-free hero visual for a world-class service-design / product UX portfolio case study about an internet provider showing a clear live service status during an outage. Composition: wide landscape 16:10 with the main object group centered-right and useful negative space. Build a calm, precise service-status object from three connected translucent acrylic stages: detection, diagnosis, and recovery. Include a believable minimal home/router symbol, a signal wave, a route of small glass nodes, one clear active stage, and a final restored-state check. The connection should read immediately as a real service moving through stages, not as random decoration. Art direction: bright off-white with a very pale cool blue-green tint, soft studio daylight, sophisticated glass and frosted acrylic materials, clean editorial bento geometry, restrained shadows, deep teal, clear sky blue, lavender and one small warm coral accent. Contemporary European product-design case study, technically precise, generous whitespace, vivid yet calm, premium and human. Strict exclusions: absolutely no words, letters, numbers, logos, brands, watermarks, fake UI text, dark background, cyberpunk, generic floating bubbles, clutter, duplicate devices, warped geometry, glossy toy look, impossible router hardware. No screen with fake content.
 
-### Запрос для центра исключений «Склада 15»
+### Запрос для рабочего места разбора исключений «Склада 15»
 
-> Create a premium editorial product-design case-study illustration, landscape 16:10. Bright warm off-white seamless background. In the center: one refined coral-red translucent exception hub, shaped like a shallow rounded tray/capsule. Around it, four purposeful warehouse objects: a matte white shipping carton with a simple black barcode stripe pattern but no readable digits; a small metallic product canister with an abstract circular machine-readable mark but no readable code; a pale mint reusable transit crate with subtle nesting geometry; and a compact rugged handheld scanner silhouette. Thin mint and sky-blue acrylic connector rails converge from all four objects into the central hub, clearly suggesting that different warehouse exceptions arrive in one controlled place. Light technical 3D, clean glass and acrylic materials, subtle metal, soft studio shadows, restrained coral/mint/sky/lilac palette, crisp premium industrial-design rendering, generous negative space, sophisticated rather than playful. Keep all important objects within the central 80 percent for responsive cropping. No words, no letters, no numbers, no logos, no UI, no watermark, no dark background, no random decorative blobs.
+Основная генерация:
+
+> Use case: precise-object-edit. Asset type: a wide internal illustration for a senior product/UX portfolio case study about safe warehouse receiving. Image 1 is the edit target and may be used only for its bright off-white field, airy spacing, muted mint plus coral palette, and the general idea of one place where exceptions are handled. Discard its geometry completely: remove the glass platforms, glowing tubes, silver canister, crystalline shards, floating parts, and all invented machinery. Rebuild the scene from scratch as a physically believable receiving workstation that looks art-directed, constructed from real manufactured objects, and photographed in a premium studio.
+>
+> Scene: one clean warm-white warehouse workbench, seen from a calm three-quarter top-down camera at roughly 50 mm with restrained perspective. In the center sits a real shallow rectangular document tray made from coral powder-coated metal, with rounded corners and ordinary manufacturing thickness. Inside it lies one flat white receiving sheet on a dark clipboard and two plain removable barcode labels; the paper is flat and geometrically correct. Around the tray, arranged on the same tabletop and grounded by natural contact shadows: one normal kraft corrugated shipping carton with closed flaps and one correctly rectangular white barcode label made only of black vertical bars; one standard reusable Euro plastic tote in muted mint with credible ribs, handles, wall thickness and an open top; one compact rugged handheld warehouse mobile computer resting flat at a slight angle, with a coherent screen, side grips and physical buttons but no readable interface; and one ordinary roll of white thermal labels. Add only two small pieces of real colored warehouse floor tape on the tabletop, one mint and one coral, to organize the inspection area. No connecting tubes or symbolic cables.
+>
+> Style and material: sophisticated high-end catalog product photography or exceptionally realistic CGI indistinguishable from a photographed set; real cardboard fibers, matte polypropylene crate, powder-coated metal tray, rubberized terminal, paper and adhesive labels. Soft large-window studio light from upper left, gentle neutral shadows, precise edges, no haze, no noise, no glass, no glossy toy finish. Bright warm off-white background, spacious editorial composition, restrained coral and mint accents, technically calm and human. All five objects must be complete, mechanically plausible, separate from one another and fully supported by the tabletop. Keep the important group within the central 82 percent for responsive cropping.
+>
+> Strict constraints: absolutely no words, letters, digits, logos, brands, watermarks, fake UI text, decorative symbols, sci-fi elements, transparent acrylic, glowing lines, pipes, impossible joints, floating objects, duplicated objects, melted plastic, warped box flaps, bent barcode, asymmetrical crate walls, extra scanner handles, broken perspective, visual noise, random particles or crystalline forms. The result must feel like a top agency set designer and product photographer made it from real warehouse equipment.
+
+Первая точечная коррекция — очистка клавиатуры и бланка:
+
+> Use case: precise-object-edit. Image 1 is the edit target. Preserve the scene, camera, crop, warm off-white background, lighting, shadows, object count, object positions, kraft carton, mint Euro tote, coral metal tray, label roll, clipboard, mobile terminal, colored tape pieces, materials and palette exactly as they are. Make only a micro-detail cleanup pass. Replace every keycap on the rugged handheld terminal with a coherent, evenly spaced grid of plain unmarked matte-black rectangular keys. Simplify the white receiving sheet on the clipboard to a clean blank operational form made only from straight pale-gray horizontal and vertical ruling lines. Keep each barcode as a clean rectangular set of straight parallel black vertical bars with consistent edges and no digits or letters. Do not move, add, remove or redesign any object; no words, letters, digits, logos, brands, watermarks, fake UI, glowing elements, transparent acrylic, noise, particles, warped geometry or extra hardware.
+
+Финальная точечная коррекция — удаление оставшихся микрометок:
+
+> Use case: precise-object-edit. Image 1 is the edit target. Preserve absolutely everything in the image exactly: camera, crop, lighting, background, shadows, carton, mint crate, coral metal tray, black clipboard, two loose barcode labels, label roll, rugged terminal with blank unmarked keys, colored tape pieces, positions, scale, materials and colors. Change only the sheet of paper held by the clipboard: replace the printed table/form with one completely plain, clean, unprinted warm-white rectangular sheet. It must contain no grid, no ruling, no form fields, no tiny marks, no pseudo-text, no dots, no smudges and no symbols. Keep the two separate loose barcode labels lying on top of the blank sheet exactly where they are; each barcode remains a clean rectangle of straight black vertical bars without digits or letters. Keep the metal clipboard clip and black backing geometrically correct. Do not alter anything else. No added or removed objects, no words, letters, digits, logos, brands, watermark, fake UI, noise, particles, warping, extra buttons, sci-fi details, acrylic, glass, glow or perspective changes.
 
 ### Запрос для непрерывного контекста KUBTEL
 
