@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Склад 15 — кейс о том, как превратить техническую приёмку в понятный рабочий сценарий.">
+  <meta name="description" content="Склад 15 — кейс о приёмке, где видно состояние документа, сохранён прогресс и исключено опасное завершение.">
   <meta name="theme-color" content="#f7f6f2">
   <title>Склад 15 — Приёмка без скрытых рисков</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -34,50 +34,50 @@
 
   <main id="main">
     <section class="case-hero"><div class="container case-hero-grid">
-      <div class="reveal"><p class="case-kicker">01 · Product UX · Клеверенс</p><h1>Приёмка без скрытых <em>рисков</em></h1><p class="case-hero-lead">Как превратить техническую операцию на терминале в понятный рабочий сценарий: показывать состояние, не давать завершить неполный документ и собирать исключения в одном месте.</p><div class="case-hero-meta"><div class="meta-item"><span>Роль</span><strong>Product / UX Engineer</strong></div><div class="meta-item"><span>Моя работа</span><strong>Исследование · сценарии и состояния</strong></div><div class="meta-item"><span>Формат</span><strong>Desk research + концепция</strong></div><div class="meta-item"><span>Результат</span><strong>Система решений и план пилота</strong></div></div></div>
-      <div class="case-hero-art sklad-case-stage reveal"><img src="assets/portfolio-sklad-hero-light-20260810.png" width="1586" height="992" alt="Терминал приёмки, состояния документа и путь синхронизации" fetchpriority="high"><span class="stage-chip stage-chip-success"><i></i>Скан принят</span><span class="stage-chip stage-chip-alert"><i></i>Есть 2 исключения</span><span class="hero-sticker">Понятно, что произошло, что сохранилось и какой шаг безопасен дальше</span></div>
+      <div class="reveal"><p class="case-kicker">01 · Product UX · Клеверенс</p><h1>Приёмка, в которой <em>видно, что происходит</em></h1><p class="case-hero-lead">Я разобрал, как терминал, сервер и учётная система передают друг другу состояние документа. Из этого собрал сценарий, который сохраняет прогресс, показывает исключение и не даёт закрыть документ раньше времени.</p><div class="case-hero-meta"><div class="meta-item"><span>Роль</span><strong>Product / UX Engineer</strong></div><div class="meta-item"><span>Моя работа</span><strong>Исследование · карта сценария · состояния</strong></div><div class="meta-item"><span>Формат</span><strong>Документация + концепция</strong></div><div class="meta-item"><span>Результат</span><strong>Сценарий и план проверки</strong></div></div></div>
+      <div class="case-hero-art sklad-case-stage reveal"><img src="assets/portfolio-sklad-hero-light-20260810.png" width="1586" height="992" alt="Терминал приёмки, состояния документа и путь синхронизации" fetchpriority="high"><span class="stage-chip stage-chip-success"><i></i>Скан принят</span><span class="stage-chip stage-chip-alert"><i></i>Есть 2 исключения</span><span class="hero-sticker">После каждого действия понятно, что сохранено и что делать дальше</span></div>
     </div></section>
-    <div class="container case-summary"><div class="case-summary-item"><strong>10</strong><span>проблем в карте сценария</span></div><div class="case-summary-item"><strong>4</strong><span>сценария первого релиза</span></div><div class="case-summary-item"><strong>12</strong><span>схем и экранов</span></div><div class="case-summary-item"><strong>1</strong><span>план проверки и пилота</span></div></div>
+    <div class="container case-summary"><div class="case-summary-item"><strong>10</strong><span>проблем в карте сценария</span></div><div class="case-summary-item"><strong>4</strong><span>сценария для первого релиза</span></div><div class="case-summary-item"><strong>12</strong><span>макетов и схем</span></div><div class="case-summary-item"><strong>1</strong><span>план пилота</span></div></div>
 
     <section class="case-section" id="evidence"><div class="container">
-      <div class="chapter-head reveal"><p class="section-index">01 — Контекст</p><div><h2>На приёмке ошибка интерфейса быстро становится потерей для склада</h2><p>Кладовщик работает в шуме, спешке, перчатках и нестабильной сети. Если система не объясняет своё состояние, ошибка превращается в повторный скан, простой, расхождение в учёте или ручное вмешательство старшего смены.</p></div></div>
+      <div class="chapter-head reveal"><p class="section-index">01 — Контекст</p><div><h2>На складе ошибка в интерфейсе быстро превращается в операционную проблему</h2><p>Кладовщик работает в шуме, в перчатках и с неустойчивой связью. Если терминал не объясняет, что произошло, один неверный шаг приводит к повторному сканированию, простою, расхождению в учёте или вызову старшего смены.</p></div></div>
       <div class="system-map-panel reveal" role="img" aria-label="Документ проходит через учётную систему, центральный сервер и терминал кладовщика; между слоями возникают риски неизвестного штрихкода, потери связи, неполной синхронизации и повторного сканирования">
-        <div class="system-map-intro"><span>Один документ · три слоя</span><strong>Состояние должно совпадать во всей системе</strong></div>
+        <div class="system-map-intro"><span>Один документ · три точки контроля</span><strong>У всех участников должно быть одно и то же состояние</strong></div>
         <div class="system-flow">
-          <article class="system-node tone-violet"><span>01</span><h3>Учётная система</h3><p>Документы и справочник товаров</p></article>
+          <article class="system-node tone-violet"><span>01</span><h3>Учётная система</h3><p>Товары и документы</p></article>
           <div class="flow-link"><span>документы</span><i></i><span>состояние</span></div>
-          <article class="system-node tone-blue"><span>02</span><h3>Центральный сервер</h3><p>Обмен данными и очередь отправки</p></article>
+          <article class="system-node tone-blue"><span>02</span><h3>Центральный сервер</h3><p>Передача и очередь</p></article>
           <div class="flow-link"><span>результат</span><i></i><span>сканирование</span></div>
-          <article class="system-node tone-mint"><span>03</span><h3>Терминал</h3><p>Действия кладовщика и обратная связь</p></article>
+          <article class="system-node tone-mint"><span>03</span><h3>Терминал</h3><p>Сканирование и подсказки</p></article>
         </div>
         <div class="risk-row"><span>Неизвестный штрихкод</span><span>Нет связи</span><span>Документ не дошёл</span><span>Повторный скан</span></div>
       </div><div class="image-caption"><span>Карта всей системы</span><span>человек · терминал · сервер · учёт</span></div>
-      <div class="quote reveal">«Я проектировал не отдельные экраны, а уверенность в работе: человек должен понимать, что система ждёт, что произошло после скана, что уже сохранилось и как безопасно продолжить.»</div>
+      <div class="quote reveal">«Я не начинал с экранов. Сначала нужно было понять, где теряется уверенность: после скана, при передаче или в момент завершения.»</div>
     </div></section>
 
     <section class="case-section evidence-section"><div class="container">
-      <div class="chapter-head reveal"><p class="section-index">02 — Доказательства</p><div><h2>Гипотезу нельзя выдавать за факт</h2><p>В открытом доступе почти нет отзывов кладовщиков. Поэтому я разделил, что подтверждается документацией и повторяющимися сценариями в интерфейсе, а что пока остаётся гипотезой, которую нужно проверить на реальном складе.</p></div></div>
+      <div class="chapter-head reveal"><p class="section-index">02 — Доказательства</p><div><h2>Факты отдельно, гипотезы отдельно</h2><p>В открытой документации нет полевых отзывов кладовщиков. Поэтому я не выдаю предположения за наблюдения: отдельно фиксирую подтверждённое, отдельно — то, что нужно проверить на реальном складе.</p></div></div>
       <div class="case-visual-grid">
         <article class="diagram-card tone-lilac reveal" aria-labelledby="evidence-title">
-          <header class="diagram-header"><span class="diagram-eyebrow">Сила доказательств</span><h3 id="evidence-title">От факта к предположению</h3><p>Чем ближе сигнал к реальной работе, тем увереннее можно принимать решение.</p></header>
+          <header class="diagram-header"><span class="diagram-eyebrow">Как оценивал уверенность</span><h3 id="evidence-title">Что подтверждено, а что ещё нужно проверить</h3><p>Чем ближе наблюдение к реальной работе, тем меньше риск принять красивое предположение за решение.</p></header>
           <ol class="evidence-ladder">
-            <li class="evidence-step evidence-step-strong"><span class="evidence-number">01</span><div><strong>Прямое подтверждение</strong><p>Пользователь сказал или показал проблему.</p></div><span class="confidence">Высокая</span></li>
-            <li class="evidence-step evidence-step-strong"><span class="evidence-number">02</span><div><strong>Повторяющийся сигнал</strong><p>Одну часть системы много раз исправляли.</p></div><span class="confidence">Высокая</span></li>
-            <li class="evidence-step evidence-step-medium"><span class="evidence-number">03</span><div><strong>Видно из инструкции</strong><p>Предупреждения показывают место частых ошибок.</p></div><span class="confidence">Средняя</span></li>
-            <li class="evidence-step evidence-step-medium"><span class="evidence-number">04</span><div><strong>Похожий складской случай</strong><p>Проблема типична для близких процессов.</p></div><span class="confidence">Средняя</span></li>
-            <li class="evidence-step evidence-step-low"><span class="evidence-number">05</span><div><strong>Предположение</strong><p>Звучит логично, но требует наблюдения.</p></div><span class="confidence">Низкая</span></li>
+            <li class="evidence-step evidence-step-strong"><span class="evidence-number">01</span><div><strong>Прямая работа</strong><p>Пользователь описал проблему или показал её в процессе.</p></div><span class="confidence">Высокая</span></li>
+            <li class="evidence-step evidence-step-strong"><span class="evidence-number">02</span><div><strong>Повторяющийся сигнал</strong><p>Один и тот же участок продукта приходится исправлять снова и снова.</p></div><span class="confidence">Высокая</span></li>
+            <li class="evidence-step evidence-step-medium"><span class="evidence-number">03</span><div><strong>След из документации</strong><p>Предупреждение или ограничение указывает, где пользователь может ошибиться.</p></div><span class="confidence">Средняя</span></li>
+            <li class="evidence-step evidence-step-medium"><span class="evidence-number">04</span><div><strong>Сходный процесс</strong><p>Такая же проблема встречается в близкой складской операции.</p></div><span class="confidence">Средняя</span></li>
+            <li class="evidence-step evidence-step-low"><span class="evidence-number">05</span><div><strong>Рабочая гипотеза</strong><p>Версия выглядит правдоподобно, но без наблюдения это не факт.</p></div><span class="confidence">Низкая</span></li>
           </ol>
-          <p class="diagram-note">Следующий шаг — наблюдение на реальном складе, а не ещё один кабинетный вывод.</p>
+          <p class="diagram-note">Следующий шаг — посмотреть на эту операцию в реальной смене.</p>
         </article>
 
         <article class="diagram-card tone-peach reveal" aria-labelledby="priority-title">
-          <header class="diagram-header"><span class="diagram-eyebrow">Матрица приоритетов</span><h3 id="priority-title">Частота × тяжесть</h3><p>В первую версию попадает то, что одновременно случается часто и дорого обходится.</p></header>
+          <header class="diagram-header"><span class="diagram-eyebrow">Матрица приоритетов</span><h3 id="priority-title">Частота × цена ошибки</h3><p>В первый релиз попадает то, что случается регулярно и дорого обходится.</p></header>
           <div class="matrix-scale"><span>Мешает мало</span><span>Мешает сильно</span></div>
           <div class="priority-matrix" role="img" aria-label="Матрица частоты и тяжести проблем">
-            <div class="matrix-cell matrix-cell-low"><small>Редко · низкий риск</small><strong>Позже</strong><span>Редкие настройки</span></div>
-            <div class="matrix-cell matrix-cell-watch"><small>Часто · низкий риск</small><strong>Наблюдать</strong><span>Лишнее подтверждение</span></div>
-            <div class="matrix-cell matrix-cell-watch"><small>Редко · высокий риск</small><strong>Подготовить путь</strong><span>Неизвестный товар</span></div>
-            <div class="matrix-cell matrix-cell-first"><small>Часто · высокий риск</small><strong>Первая версия</strong><ul><li>Неполное завершение</li><li>Повторный скан</li><li>Неясное количество</li><li>Ошибка связи</li></ul></div>
+            <div class="matrix-cell matrix-cell-low"><small>Редко · низкий риск</small><strong>Позже</strong><span>Редкие сценарии</span></div>
+            <div class="matrix-cell matrix-cell-watch"><small>Часто · низкий риск</small><strong>Наблюдать</strong><span>Лишнее действие</span></div>
+            <div class="matrix-cell matrix-cell-watch"><small>Редко · высокий риск</small><strong>Продумать обработку</strong><span>Неизвестный штрихкод</span></div>
+            <div class="matrix-cell matrix-cell-first"><small>Часто · высокий риск</small><strong>Сначала</strong><ul><li>Неполное завершение</li><li>Повторный скан</li><li>Неясное количество</li><li>Ошибка связи</li></ul></div>
           </div>
           <div class="matrix-frequency"><span>Редко</span><span>Как часто происходит</span><span>Часто</span></div>
         </article>
@@ -85,27 +85,27 @@
     </div></section>
 
     <section class="case-section" id="solutions"><div class="container">
-      <div class="chapter-head reveal"><p class="section-index">03 — Решения</p><div><h2>Четыре изменения, которые снижают риск в приёмке</h2><p>Я свёл проблемы к четырём изменениям. Для каждого зафиксировал: что создаёт риск, какое правило меняем и как понять, что человек может продолжить работу.</p></div></div>
+      <div class="chapter-head reveal"><p class="section-index">03 — Решения</p><div><h2>Четыре изменения для безопасной приёмки</h2><p>Для каждого изменения я связал проблему, правило интерфейса и способ проверить, что кладовщик может продолжить работу.</p></div></div>
       <div class="two-column solution-grid">
-        <article class="story-card tone-mint reveal"><span class="story-index">01 · действие</span><h3>Повторный скан не должен быть лотереей</h3><p>После каждого действия человек видит результат. Если повтор опасен, система объясняет последствия и даёт отменить последнее действие.</p>
+        <article class="story-card tone-mint reveal"><span class="story-index">01 · действие</span><h3>Повторный скан должен быть предсказуемым</h3><p>После действия терминал сразу показывает результат. Если повтор может изменить количество, он предупреждает об этом и даёт отменить последний шаг.</p>
           <div class="mini-compare" aria-label="Сравнение обратной связи до и после">
             <div class="mini-screen is-before"><div class="mini-screen-top"><span>До</span><small>Приёмка товара</small></div><div class="mini-scan-state"><i></i><strong>Скан принят</strong><span>Что изменилось — не видно</span></div><div class="mini-danger"><span>Скан ещё раз</span><strong>Товар может удалиться</strong></div></div>
             <div class="mini-screen is-after"><div class="mini-screen-top"><span>После</span><small>Приёмка товара</small></div><div class="mini-scan-state is-success"><i>✓</i><strong>Добавлено 12 штук</strong><span>Товар уже был · всего 24</span></div><div class="mini-undo"><span>Последнее действие</span><strong>Отменить</strong></div></div>
           </div>
         </article>
-        <article class="story-card tone-blue reveal"><span class="story-index">02 · количество</span><h3>Количество должно быть понятно без расчётов</h3><p>Единица измерения, упаковка и пересчёт показываются рядом с числом. Человеку не приходится держать арифметику в голове.</p>
+        <article class="story-card tone-blue reveal"><span class="story-index">02 · количество</span><h3>Количество должно читаться сразу</h3><p>Рядом с числом видны единица измерения, упаковка и пересчёт. Не нужно держать арифметику в голове.</p>
           <div class="quantity-demo" aria-label="План, факт и остаток в коробах и штуках">
             <div class="quantity-before"><small>До</small><strong>8</strong><span>чего именно?</span></div>
             <div class="quantity-after"><div class="quantity-row"><span>План</span><strong>10 коробов</strong><small>120 штук</small></div><div class="quantity-bar"><i style="width:80%"></i></div><div class="quantity-row is-fact"><span>Факт</span><strong>8 коробов</strong><small>96 штук</small></div><div class="quantity-row is-left"><span>Осталось</span><strong>2 короба</strong><small>24 штуки</small></div></div>
           </div>
         </article>
-        <article class="story-card tone-lilac reveal"><span class="story-index">03 · документ</span><h3>«Завершить» должно означать завершить</h3><p>Статус показывает разницу между сохранением на терминале, отправкой на сервер и принятием в учёте — чтобы кнопка не создавала ложного ощущения, что всё закончено.</p>
+        <article class="story-card tone-lilac reveal"><span class="story-index">03 · документ</span><h3>«Завершить» значит передать документ дальше</h3><p>Статус разделяет работу на терминале, отправку на сервер и принятие в учётной системе. Кнопка не создаёт ложного ощущения, что документ уже принят.</p>
           <div class="lifecycle-demo" aria-label="Путь документа от работы до принятия в учётной системе">
             <div class="lifecycle-stage is-done"><i>✓</i><span>В работе</span><small>приёмка</small></div><div class="lifecycle-stage is-done"><i>✓</i><span>Сохранён</span><small>на терминале</small></div><div class="lifecycle-stage is-current"><i>3</i><span>Ждёт отправки</span><small>нет связи</small></div><div class="lifecycle-stage"><i>4</i><span>На сервере</span><small>передача</small></div><div class="lifecycle-stage"><i>5</i><span>Принят</span><small>в учёте</small></div>
           </div>
           <div class="lifecycle-branch"><span>Если передача не удалась</span><strong>Показать причину → дать повторить</strong></div>
         </article>
-        <article class="story-card tone-peach reveal"><span class="story-index">04 · исключение</span><h3>После ошибки должно быть понятно, что делать</h3><p>Сообщение должно ответить на четыре вопроса: что случилось, что сохранено, что сделать сейчас и когда нужна помощь.</p>
+        <article class="story-card tone-peach reveal"><span class="story-index">04 · исключение</span><h3>Ошибка должна подсказывать следующий шаг</h3><p>Сообщение отвечает на четыре простых вопроса: что произошло, что сохранено, что сделать сейчас и когда позвать старшего.</p>
           <div class="recovery-demo" aria-label="Четыре ответа после ошибки передачи">
             <div class="recovery-alert"><span>Не удалось передать</span><strong>37 сканирований сохранены</strong><small>Связь с сервером пропала</small><b>Повторить отправку</b></div>
             <ol class="recovery-answers"><li><span>01</span><div><strong>Что случилось</strong><small>Пропала связь</small></div></li><li><span>02</span><div><strong>Что сохранено</strong><small>Все сканирования</small></div></li><li><span>03</span><div><strong>Что сделать</strong><small>Проверить связь</small></div></li><li><span>04</span><div><strong>Когда нужна помощь</strong><small>Если повтор не сработал</small></div></li></ol>
@@ -114,7 +114,7 @@
       </div>
       <figure class="exception-journey-panel reveal" id="exception-journey" aria-labelledby="exception-journey-title">
         <header class="exception-journey-head">
-          <div><span class="journey-kicker">Проектное решение · сквозной сценарий</span><h3 id="exception-journey-title">Как одно исключение проходит весь путь</h3><p>Неизвестный штрихкод не обрывает приёмку: система сохраняет работу, запрещает опасное завершение и возвращает решение на терминал.</p></div>
+          <div><span class="journey-kicker">Рабочая концепция · один сценарий</span><h3 id="exception-journey-title">Что происходит после неизвестного штрихкода</h3><p>Приёмка продолжается, прогресс сохраняется, завершение блокируется до решения, а результат возвращается на терминал.</p></div>
           <div class="journey-legend" aria-label="Роли в сценарии"><span class="is-operator"><i></i>Кладовщик</span><span class="is-system"><i></i>Система</span><span class="is-supervisor"><i></i>Старший смены</span></div>
         </header>
 
@@ -130,7 +130,7 @@
               </div>
               <div class="journey-device-keys" aria-hidden="true"><i></i><i></i><i></i></div>
             </div>
-            <p class="journey-stage-note"><strong>Человек видит факт</strong><span>Предыдущая работа не потеряна; дальнейшее действие зависит от правил склада.</span></p>
+            <p class="journey-stage-note"><strong>Факт виден сразу</strong><span>Предыдущая работа не потеряна; дальше можно выбрать действие по правилам склада.</span></p>
           </li>
 
           <li class="journey-stage journey-stage-guard">
@@ -142,7 +142,7 @@
               <ul><li><i>✓</i><span>Создано исключение №&nbsp;24</span></li><li><i>✓</i><span>Контекст документа сохранён</span></li><li><i>→</i><span>Приёмку можно продолжить</span></li></ul>
               <div class="journey-gate"><span>До завершения</span><b>Нужно решить 1&nbsp;исключение</b></div>
             </div>
-            <p class="journey-stage-note"><strong>Блокируется только риск</strong><span>Система не даёт закрыть неполный документ, но не останавливает смену.</span></p>
+            <p class="journey-stage-note"><strong>Останавливается только опасный шаг</strong><span>Неполный документ нельзя закрыть, но остальные позиции можно принимать.</span></p>
           </li>
 
           <li class="journey-stage journey-stage-queue">
@@ -159,7 +159,7 @@
               <div class="journey-queue-row"><span>Нет марки</span><i>Новый</i></div>
               <div class="journey-queue-row is-resolved"><span>Транспортная упаковка</span><i>Решено</i></div>
             </div>
-            <p class="journey-stage-note"><strong>У задачи есть владелец</strong><span>В очереди уже есть документ, место, количество и безопасное действие.</span></p>
+            <p class="journey-stage-note"><strong>У задачи есть владелец</strong><span>В очереди видны документ, место, количество и действие, с которого можно начать.</span></p>
           </li>
 
           <li class="journey-stage journey-stage-result">
@@ -172,7 +172,7 @@
               <div class="journey-finish-state"><div><span>Проверка завершения</span><strong>Можно завершить</strong></div><b>0 обязательных исключений</b></div>
               <div class="journey-sync-path" aria-label="Документ сохранён на терминале, передан на сервер и принят в учётной системе"><span class="is-done">На терминале</span><i></i><span class="is-done">На сервере</span><i></i><span class="is-done">Принят в учёте</span></div>
             </div>
-            <p class="journey-stage-note"><strong>Результат виден до конца</strong><span>Решение вернулось на терминал, а статус документа дошёл до учёта.</span></p>
+            <p class="journey-stage-note"><strong>Решение дошло до учёта</strong><span>Терминал показывает результат, а документ получает тот же статус в учётной системе.</span></p>
           </li>
         </ol>
 
@@ -182,7 +182,7 @@
     </div></section>
 
     <section class="case-section system-section"><div class="container">
-      <div class="chapter-head reveal"><p class="section-index">04 — Система</p><div><h2>Из этих решений получается единая система, а не набор отдельных экранов</h2><p>Одинаковые блоки дают один и тот же смысл на терминале и в панели старшего смены: результат скана, количество, путь документа и подсказка при ошибке.</p></div></div>
+      <div class="chapter-head reveal"><p class="section-index">04 — Система</p><div><h2>Общие правила вместо набора разрозненных экранов</h2><p>Одни и те же блоки работают на терминале и у старшего смены: результат скана, количество, путь документа и подсказка при ошибке.</p></div></div>
       <div class="component-library reveal" aria-label="Библиотека общих блоков системы">
         <article class="component-tile component-tile-scan"><span class="component-label">01 · Результат скана</span><div class="component-scan"><i>✓</i><div><strong>Добавлено 12 штук</strong><small>Короб № 4 · всего 48</small></div></div><div class="component-states"><span>Добавлено</span><span>Нужно решить</span><span>Нет связи</span></div></article>
         <article class="component-tile component-tile-quantity"><span class="component-label">02 · Количество</span><div class="component-number"><strong>96</strong><span>штук</span></div><div class="component-progress"><i style="width:80%"></i></div><small>8 из 10 коробов</small></article>
@@ -193,14 +193,14 @@
     </div></section>
 
     <section class="case-section validation-section" id="measure"><div class="container">
-      <div class="chapter-head reveal"><p class="section-index">05 — Проверка</p><div><h2>Работа не заканчивается макетом: нужно проверить, помогает ли решение</h2><p>В кейсе я зафиксировал, что измерять в текущем процессе, как проверить понимание прототипа и какие сигналы смотреть перед запуском на одном складе.</p></div></div>
+      <div class="chapter-head reveal"><p class="section-index">05 — Проверка</p><div><h2>Макет — только начало проверки</h2><p>Сначала фиксирую текущие ошибки, затем проверяю понимание прототипа и только после этого предлагаю пилот на одном складе.</p></div></div>
       <div class="case-visual-grid">
-        <article class="diagram-card tone-mint reveal"><header class="diagram-header"><span class="diagram-eyebrow">Что измерять</span><h3>Сигнал → решение</h3><p>Сначала фиксируем текущий уровень. Проценты появляются только после сравнения.</p></header><div class="metric-map"><div class="metric-row"><strong>Повторные сканы</strong><span>Сколько действий повторяют</span><b>Повторов меньше</b></div><div class="metric-row"><strong>Неполные документы</strong><span>Сколько закрыли с пропусками</span><b>Опасных завершений меньше</b></div><div class="metric-row"><strong>Ошибки передачи</strong><span>Сколько документов не дошло</span><b>Сбой быстрее замечают</b></div><div class="metric-row"><strong>Время разбора</strong><span>Сколько длится исключение</span><b>Решение занимает меньше времени</b></div><div class="metric-row"><strong>Повторный пересчёт</strong><span>Сколько раз сверяют количество</span><b>Пересчётов и споров меньше</b></div></div><p class="diagram-note">Метрика нужна не для красивого отчёта, а для следующего продуктового решения.</p></article>
-        <article class="diagram-card tone-blue reveal"><header class="diagram-header"><span class="diagram-eyebrow">Как проверить</span><h3>От наблюдения к пилоту</h3><p>Каждый шаг отвечает на свой вопрос и не маскирует неизвестность.</p></header><ol class="validation-path"><li><span>01</span><div><strong>Разговор</strong><p>Где кладовщик сомневается и почему?</p></div><small>Проблема</small></li><li><span>02</span><div><strong>Наблюдение</strong><p>Что реально происходит у стеллажа?</p></div><small>Поведение</small></li><li><span>03</span><div><strong>Проверка макета</strong><p>Понятен ли статус без подсказки?</p></div><small>Понимание</small></li><li><span>04</span><div><strong>Пилот на одном складе</strong><p>Меняются ли ошибки и время разбора?</p></div><small>Эффект</small></li></ol><div class="stop-rule"><span>Правило остановки</span><strong>Если статус понимают по-разному, в разработку не идём</strong></div></article>
+        <article class="diagram-card tone-mint reveal"><header class="diagram-header"><span class="diagram-eyebrow">Что измерять</span><h3>Сигнал → решение</h3><p>Сначала замеряем исходное состояние. Эффект виден только в сравнении.</p></header><div class="metric-map"><div class="metric-row"><strong>Повторные сканы</strong><span>Сколько действий повторяют</span><b>Повторов меньше</b></div><div class="metric-row"><strong>Неполные документы</strong><span>Сколько закрыли с пропусками</span><b>Опасных завершений меньше</b></div><div class="metric-row"><strong>Ошибки передачи</strong><span>Сколько документов не дошло</span><b>Сбой быстрее замечают</b></div><div class="metric-row"><strong>Время разбора</strong><span>Сколько длится исключение</span><b>Решение занимает меньше времени</b></div><div class="metric-row"><strong>Повторный пересчёт</strong><span>Сколько раз сверяют количество</span><b>Пересчётов и споров меньше</b></div></div><p class="diagram-note">Метрика нужна, чтобы выбрать следующий шаг, а не украсить отчёт.</p></article>
+        <article class="diagram-card tone-blue reveal"><header class="diagram-header"><span class="diagram-eyebrow">Как проверить</span><h3>От наблюдения к пилоту</h3><p>Каждый этап закрывает один вопрос. Если ответ неясен, дальше не идём.</p></header><ol class="validation-path"><li><span>01</span><div><strong>Разговор</strong><p>Где кладовщик останавливается?</p></div><small>Проблема</small></li><li><span>02</span><div><strong>Наблюдение</strong><p>Что происходит у стеллажа?</p></div><small>Поведение</small></li><li><span>03</span><div><strong>Проверка макета</strong><p>Виден ли статус без подсказки?</p></div><small>Понимание</small></li><li><span>04</span><div><strong>Пилот на одном складе</strong><p>Меняется ли число ошибок и время разбора?</p></div><small>Эффект</small></li></ol><div class="stop-rule"><span>Правило остановки</span><strong>Если статус трактуют по-разному, до разработки не дошли</strong></div></article>
       </div>
     </div></section>
 
-    <section class="case-end"><div class="container case-end-grid"><div><p class="case-kicker">Вывод для продукта</p><h2>Меньше догадок на терминале, больше контроля в процессе</h2></div><a class="button" href="index.html#contact">Обсудить похожую задачу <span>↗</span></a></div></section>
+    <section class="case-end"><div class="container case-end-grid"><div><p class="case-kicker">Вывод для продукта</p><h2>Приёмка должна показывать следующий безопасный шаг</h2></div><a class="button" href="index.html#contact">Обсудить похожую задачу <span>↗</span></a></div></section>
   </main>
   <footer class="site-footer container"><span>Юрий Пылёв · Склад 15</span><span><a href="index.html">← Все кейсы</a></span></footer>
   <script src="script.js?v=20260810"></script>
