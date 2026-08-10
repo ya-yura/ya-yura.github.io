@@ -8,7 +8,7 @@
   <title>Склад 15 — Приёмка без скрытых рисков</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg">
-  <link rel="stylesheet" href="styles-v2.css?v=20260810c">
+  <link rel="stylesheet" href="styles-v2.css?v=20260810d">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -99,7 +99,73 @@
           </div>
         </article>
       </div>
-      <figure class="inner-art-panel reveal"><img src="assets/sklad-exception-workstation-light-v2-20260810.png" width="1586" height="992" loading="lazy" alt="Рабочее место разбора складских исключений: короб, оборотная тара, терминал, этикетки и центральный лоток контроля"><figcaption><span>Рабочее место разбора исключений</span><span>тара · маркировка · терминал · один порядок действий</span></figcaption></figure>
+      <figure class="exception-journey-panel reveal" id="exception-journey" aria-labelledby="exception-journey-title">
+        <header class="exception-journey-head">
+          <div><span class="journey-kicker">Проектное решение · сквозной сценарий</span><h3 id="exception-journey-title">Как одно исключение проходит весь путь</h3><p>Неизвестный штрихкод не обрывает приёмку: система сохраняет работу, запрещает опасное завершение и возвращает решение на терминал.</p></div>
+          <div class="journey-legend" aria-label="Роли в сценарии"><span class="is-operator"><i></i>Кладовщик</span><span class="is-system"><i></i>Система</span><span class="is-supervisor"><i></i>Старший смены</span></div>
+        </header>
+
+        <ol class="exception-journey-flow">
+          <li class="journey-stage journey-stage-scan">
+            <div class="journey-stage-head"><span>01</span><small>Обнаружить</small></div>
+            <div class="journey-device" aria-label="Экран терминала с неизвестным штрихкодом">
+              <div class="journey-device-screen">
+                <div class="journey-device-top"><span>Приёмка</span><i>Сохранено</i></div>
+                <div class="journey-device-alert"><b>!</b><div><small>Штрихкод не найден</small><strong>Товар не добавлен</strong></div></div>
+                <div class="journey-preserved"><span>Работа сохранена</span><strong>37 сканирований</strong></div>
+                <div class="journey-device-actions"><span class="is-primary">Продолжить как неизвестный</span><span>Найти товар</span></div>
+              </div>
+              <div class="journey-device-keys" aria-hidden="true"><i></i><i></i><i></i></div>
+            </div>
+            <p class="journey-stage-note"><strong>Человек видит факт</strong><span>Предыдущая работа не потеряна; дальнейшее действие зависит от правил склада.</span></p>
+          </li>
+
+          <li class="journey-stage journey-stage-guard">
+            <div class="journey-stage-head"><span>02</span><small>Сохранить и защитить</small></div>
+            <div class="journey-guard-card">
+              <div class="journey-guard-icon" aria-hidden="true"><i></i></div>
+              <span class="journey-status journey-status-warning">Правило безопасности</span>
+              <strong>Завершить пока нельзя</strong>
+              <ul><li><i>✓</i><span>Создано исключение №&nbsp;24</span></li><li><i>✓</i><span>Контекст документа сохранён</span></li><li><i>→</i><span>Приёмку можно продолжить</span></li></ul>
+              <div class="journey-gate"><span>До завершения</span><b>Нужно решить 1&nbsp;исключение</b></div>
+            </div>
+            <p class="journey-stage-note"><strong>Блокируется только риск</strong><span>Система не даёт закрыть неполный документ, но не останавливает смену.</span></p>
+          </li>
+
+          <li class="journey-stage journey-stage-queue">
+            <div class="journey-stage-head"><span>03</span><small>Передать ответственному</small></div>
+            <div class="journey-queue-window">
+              <div class="journey-queue-top"><strong>Центр исключений</strong><span>3</span></div>
+              <div class="journey-queue-focus">
+                <span class="journey-status journey-status-danger">Требует решения</span>
+                <strong>Неизвестный товар</strong>
+                <small>Документ 024 · зона А-12 · 6&nbsp;штук</small>
+                <div class="journey-assignee"><span>Назначено</span><b>Старшему смены</b></div>
+                <div class="journey-queue-action">Связать с товаром <b>→</b></div>
+              </div>
+              <div class="journey-queue-row"><span>Нет марки</span><i>Новый</i></div>
+              <div class="journey-queue-row is-resolved"><span>Транспортная упаковка</span><i>Решено</i></div>
+            </div>
+            <p class="journey-stage-note"><strong>У задачи есть владелец</strong><span>В очереди уже есть документ, место, количество и безопасное действие.</span></p>
+          </li>
+
+          <li class="journey-stage journey-stage-result">
+            <div class="journey-stage-head"><span>04</span><small>Вернуть результат</small></div>
+            <div class="journey-result-card">
+              <div class="journey-result-mark" aria-hidden="true">✓</div>
+              <span class="journey-status journey-status-success">Решение получено</span>
+              <strong>Товар определён</strong>
+              <small>Кабель силовой · 6&nbsp;штук</small>
+              <div class="journey-finish-state"><div><span>Проверка завершения</span><strong>Можно завершить</strong></div><b>0 обязательных исключений</b></div>
+              <div class="journey-sync-path" aria-label="Документ сохранён на терминале, передан на сервер и принят в учётной системе"><span class="is-done">На терминале</span><i></i><span class="is-done">На сервере</span><i></i><span class="is-done">Принят в учёте</span></div>
+            </div>
+            <p class="journey-stage-note"><strong>Результат виден до конца</strong><span>Решение вернулось на терминал, а статус документа дошёл до учёта.</span></p>
+          </li>
+        </ol>
+
+        <div class="journey-outcomes" aria-label="Практический результат сценария"><span><i>01</i>Ритм приёмки сохранён</span><span><i>02</i>Неполный документ не закрыт</span><span><i>03</i>У исключения есть владелец</span><span><i>04</i>Решение прослеживается до учёта</span></div>
+        <figcaption><span>Концепция сценария неизвестного штрихкода</span><span>терминал → правило безопасности → очередь → учёт</span></figcaption>
+      </figure>
     </div></section>
 
     <section class="case-section system-section"><div class="container">
@@ -128,3 +194,4 @@
   <script src="typography.js"></script>
 </body>
 </html>
+
