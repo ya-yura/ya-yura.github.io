@@ -833,7 +833,7 @@ p, li, a, button, small, span, strong { overflow-wrap: break-word; }
 .recovery-answers small { display: block; margin-top: 3px; color: var(--text); font-size: 9px; line-height: 1.25; }
 
 .inner-art-panel { overflow: hidden; margin: 22px 0 0; padding: 12px 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: linear-gradient(135deg, #fff, #f9f5ff 48%, #eef9f5); box-shadow: var(--shadow-card); }
-.inner-art-panel img { display: block; width: 100%; aspect-ratio: 1.5 / 1; object-fit: cover; border-radius: 24px; background: #fbfaf7; }
+.inner-art-panel img { display: block; width: 100%; aspect-ratio: 1.6 / 1; object-fit: cover; border-radius: 24px; background: #fbfaf7; }
 .inner-art-panel figcaption { display: flex; justify-content: space-between; gap: 20px; padding: 13px 5px 0; color: var(--muted); font-size: 10px; font-weight: 680; letter-spacing: .07em; text-transform: uppercase; }
 .inner-art-panel-compact { margin-block: 22px; }
 
