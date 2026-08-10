@@ -8,7 +8,7 @@
   <title>Юрий Пылёв — Product / UX Engineer</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg">
-  <link rel="stylesheet" href="styles-v2.css?v=20260810c">
+  <link rel="stylesheet" href="styles-v2.css?v=20260810g">
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -60,7 +60,34 @@
       </div>
       <div class="work-grid">
         <a class="work-card work-card-main reveal" href="case-sklad-15.html">
-          <div class="work-card-image"><img src="assets/portfolio-sklad-hero-light-20260810.png" width="1586" height="992" loading="lazy" alt="Система безопасной приёмки: терминал, состояния и синхронизация"></div>
+          <div class="work-card-image case-cover-story sklad-cover-story" role="img" aria-label="Неизвестный штрихкод во время приёмки: предыдущие 86 позиций сохранены, завершение документа заблокировано, исключение передано старшему смены">
+            <div class="cover-story-content" aria-hidden="true">
+              <div class="cover-story-topline"><span>Приёмка 024 · зона А-12</span><i>Критический момент</i></div>
+              <div class="sklad-cover-layout">
+                <div class="sklad-cover-progress">
+                  <span class="cover-ui-label">Что сохранено</span>
+                  <strong>86</strong><small>позиций уже принято</small>
+                  <div class="cover-progress-track"><i></i></div>
+                  <p>Повторять сканы не нужно</p>
+                </div>
+                <div class="sklad-cover-terminal">
+                  <div class="cover-terminal-top"><span>Склад 15</span><i>Сохранено</i></div>
+                  <div class="cover-barcode" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="cover-terminal-alert"><b>!</b><div><small>Штрихкод не найден</small><strong>Товар не добавлен</strong></div></div>
+                  <div class="cover-terminal-state"><span>Документ</span><b>в работе</b></div>
+                  <div class="cover-terminal-keys"><i></i><i></i><i></i></div>
+                </div>
+                <div class="sklad-cover-guard">
+                  <span class="cover-ui-label">Правило <span class="cover-label-wide">безопасности</span></span>
+                  <div class="cover-guard-mark">!</div>
+                  <strong>Завершить пока нельзя</strong>
+                  <p>Нужно решить 1&nbsp;исключение</p>
+                  <div class="cover-owner"><span>Владелец</span><b>Старший смены</b></div>
+                </div>
+              </div>
+              <div class="sklad-cover-route"><span class="is-done">Кладовщик</span><i></i><span class="is-current">Центр исключений</span><i></i><span>Безопасное завершение</span></div>
+            </div>
+          </div>
           <div class="work-card-body">
             <small>01 · Product UX · Клеверенс</small>
             <h3>«Склад 15»: как превратить приёмку из набора настроек в понятный процесс</h3>
@@ -69,11 +96,27 @@
           </div>
         </a>
         <a class="work-card work-card-secondary reveal" href="case-kubtel.html">
-          <div class="work-card-visual kubtel-cover">
-            <img class="kubtel-cover-image" src="assets/portfolio-kubtel-status-light-20260810.png" width="1586" height="992" loading="lazy" alt="Путь статуса услуги от обнаружения сбоя до восстановления">
-            <div class="service-preview">
-              <div class="service-preview-card"><span class="service-preview-label">Состояние услуги</span><h4 class="service-preview-title">Восстанавливаем соединение</h4><span class="service-status">Следующее обновление до 16:30</span></div>
-              <div class="service-preview-card"><span class="service-preview-label">Путь кейса</span><div class="service-timeline"><span>Сбой найден</span><span>Причина понятна</span><span>Ремонт идёт</span></div></div>
+          <div class="work-card-visual case-cover-story kubtel-cover-story" role="img" aria-label="Персональный статус аварии KUBTEL связан с тем же контекстом у поддержки и завершается подтверждением восстановления связи">
+            <div class="cover-story-content" aria-hidden="true">
+              <div class="cover-story-topline"><span>INC-2841 · ул. Красная, 176</span><i>Один статус для всех каналов</i></div>
+              <div class="kubtel-cover-layout">
+                <div class="kubtel-cover-status">
+                  <div class="kubtel-cover-appbar"><strong>KUBTEL</strong><span>Личный кабинет</span></div>
+                  <span class="kubtel-cover-freshness">Обновлено 8&nbsp;минут назад</span>
+                  <strong>Восстанавливаем соединение</strong>
+                  <p>Ремонт линии идёт. Роутер перезагружать не требуется.</p>
+                  <div class="kubtel-cover-update"><span>Следующая информация</span><b>до 16:30</b></div>
+                  <div class="kubtel-cover-notify">Уведомить об изменении <b>→</b></div>
+                </div>
+                <div class="kubtel-cover-context">
+                  <div class="kubtel-support-proof">
+                    <span>Поддержка</span><strong>Контекст уже открыт</strong>
+                    <ul><li>Адрес найден <i>✓</i></li><li>INC-2841 <i>✓</i></li><li>Абонент видел статус <i>✓</i></li></ul>
+                  </div>
+                  <div class="kubtel-resolution-proof"><b>✓</b><div><span>Связь восстановлена</span><strong>Подтвердить результат</strong></div></div>
+                </div>
+              </div>
+              <div class="kubtel-cover-route"><span class="is-done">Сбой найден</span><i></i><span class="is-current">Ремонт идёт</span><i></i><span>Ответ вернётся сам</span></div>
             </div>
           </div>
           <div class="work-card-body">
