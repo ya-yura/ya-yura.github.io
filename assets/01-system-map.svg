@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#F6F8FB"/>
+  <rect width="1600" height="900" fill="#FFFDFC"/>
   <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#2563EB"/></marker>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#7158E8"/></marker>
   </defs>
-  <style>:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}
-    .title{font:700 48px var(--font-heading);fill:#0F172A}.sub{font:400 24px var(--font-body);fill:#475569}.head{font:700 30px var(--font-heading);fill:#0F172A}.body{font:400 22px var(--font-body);fill:#334155}.small{font:400 20px var(--font-body);fill:#475569}.label{font:700 20px var(--font-body);fill:#2563EB}.danger{font:700 20px var(--font-body);fill:#B91C1C}.box{fill:#FFFFFF;stroke:#CBD5E1;stroke-width:2}.line{stroke:#2563EB;stroke-width:5;fill:none;marker-end:url(#arrow)}
+  <style>@font-face{font-family:'Uncage';src:url('../fonts/Uncage-Medium.woff2') format('woff2');font-weight:500}@font-face{font-family:'Uncage';src:url('../fonts/Uncage-Bold.woff2') format('woff2');font-weight:700}@font-face{font-family:'TikTok Sans';src:url('../fonts/tiktok-sans-cyrillic-standard-normal.woff2') format('woff2');font-weight:300 900}@font-face{font-family:'TikTok Sans';src:url('../fonts/tiktok-sans-latin-standard-normal.woff2') format('woff2');font-weight:300 900}:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}
+    .title{font:700 48px var(--font-heading);fill:#151514}.sub{font:400 24px var(--font-body);fill:#74716B}.head{font:700 30px var(--font-heading);fill:#151514}.body{font:400 22px var(--font-body);fill:#4D4B47}.small{font:400 20px var(--font-body);fill:#74716B}.label{font:700 20px var(--font-body);fill:#7158E8}.danger{font:700 20px var(--font-body);fill:#CF381B}.box{fill:#FFFFFF;stroke:#D9D6CF;stroke-width:2}.line{stroke:#7158E8;stroke-width:5;fill:none;marker-end:url(#arrow)}
   </style>
   <text x="80" y="92" class="title">Как работает приёмка</text>
   <text x="80" y="135" class="sub">Три части системы и места, где чаще всего возникает проблема</text>
   <rect x="80" y="245" width="390" height="245" rx="24" class="box"/>
   <rect x="605" y="245" width="390" height="245" rx="24" class="box"/>
   <rect x="1130" y="245" width="390" height="245" rx="24" class="box"/>
-  <circle cx="145" cy="305" r="28" fill="#DBEAFE"/><text x="145" y="315" text-anchor="middle" class="head">1</text>
-  <circle cx="670" cy="305" r="28" fill="#DBEAFE"/><text x="670" y="315" text-anchor="middle" class="head">2</text>
-  <circle cx="1195" cy="305" r="28" fill="#DBEAFE"/><text x="1195" y="315" text-anchor="middle" class="head">3</text>
+  <circle cx="145" cy="305" r="28" fill="#EEE9FF"/><text x="145" y="315" text-anchor="middle" class="head">1</text>
+  <circle cx="670" cy="305" r="28" fill="#EEE9FF"/><text x="670" y="315" text-anchor="middle" class="head">2</text>
+  <circle cx="1195" cy="305" r="28" fill="#EEE9FF"/><text x="1195" y="315" text-anchor="middle" class="head">3</text>
   <text x="190" y="315" class="head">Учётная система</text>
   <text x="715" y="315" class="head">Центральный сервер</text>
   <text x="1240" y="315" class="head">Терминал кладовщика</text>
@@ -25,8 +25,8 @@
   <line x1="1120" y1="360" x2="995" y2="360" class="line"/><text x="1057" y="338" text-anchor="middle" class="label">результат</text>
   <line x1="595" y1="430" x2="470" y2="430" class="line"/><text x="532" y="458" text-anchor="middle" class="label">состояние</text>
   <text x="80" y="590" class="head">Где всё может сломаться</text>
-  <rect x="80" y="635" width="320" height="92" rx="16" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/><text x="105" y="675" class="danger">Неизвестный штрихкод</text><text x="105" y="708" class="small">товар не найден</text>
-  <rect x="440" y="635" width="250" height="92" rx="16" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/><text x="465" y="675" class="danger">Нет связи</text><text x="465" y="708" class="small">данные не уходят</text>
-  <rect x="730" y="635" width="350" height="92" rx="16" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/><text x="755" y="675" class="danger">Завершили, но не дошло</text><text x="755" y="708" class="small">в учётной системе пусто</text>
-  <rect x="1120" y="635" width="320" height="92" rx="16" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/><text x="1145" y="675" class="danger">Повторное сканирование</text><text x="1145" y="708" class="small">товар меняется снова</text>
+  <rect x="80" y="635" width="320" height="92" rx="16" fill="#FFE6DC" stroke="#FFB5A4" stroke-width="2"/><text x="105" y="675" class="danger">Неизвестный штрихкод</text><text x="105" y="708" class="small">товар не найден</text>
+  <rect x="440" y="635" width="250" height="92" rx="16" fill="#FFE6DC" stroke="#FFB5A4" stroke-width="2"/><text x="465" y="675" class="danger">Нет связи</text><text x="465" y="708" class="small">данные не уходят</text>
+  <rect x="730" y="635" width="350" height="92" rx="16" fill="#FFE6DC" stroke="#FFB5A4" stroke-width="2"/><text x="755" y="675" class="danger">Завершили, но не дошло</text><text x="755" y="708" class="small">в учётной системе пусто</text>
+  <rect x="1120" y="635" width="320" height="92" rx="16" fill="#FFE6DC" stroke="#FFB5A4" stroke-width="2"/><text x="1145" y="675" class="danger">Повторное сканирование</text><text x="1145" y="708" class="small">товар меняется снова</text>
 </svg>

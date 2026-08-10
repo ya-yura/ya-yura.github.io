@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#F6F8FB"/>
-  <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#2563EB"/></marker></defs>
-  <style>:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}.title{font:700 48px var(--font-heading);fill:#0F172A}.sub{font:400 24px var(--font-body);fill:#475569}.h{font:700 25px var(--font-heading);fill:#0F172A}.body{font:400 20px var(--font-body);fill:#475569}.safe{fill:#DCFCE7;stroke:#22C55E;stroke-width:3}.wait{fill:#FEF3C7;stroke:#F59E0B;stroke-width:3}.bad{fill:#FEE2E2;stroke:#EF4444;stroke-width:3}.line{stroke:#2563EB;stroke-width:5;marker-end:url(#arrow)}.green{fill:#166534}.red{fill:#B91C1C}</style>
+  <rect width="1600" height="900" fill="#FFFDFC"/>
+  <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#7158E8"/></marker></defs>
+  <style>@font-face{font-family:'Uncage';src:url('../fonts/Uncage-Medium.woff2') format('woff2');font-weight:500}@font-face{font-family:'Uncage';src:url('../fonts/Uncage-Bold.woff2') format('woff2');font-weight:700}@font-face{font-family:'TikTok Sans';src:url('../fonts/tiktok-sans-cyrillic-standard-normal.woff2') format('woff2');font-weight:300 900}@font-face{font-family:'TikTok Sans';src:url('../fonts/tiktok-sans-latin-standard-normal.woff2') format('woff2');font-weight:300 900}:root{--font-heading:"Uncage",sans-serif;--font-body:"TikTok Sans",sans-serif}.title{font:700 48px var(--font-heading);fill:#151514}.sub{font:400 24px var(--font-body);fill:#74716B}.h{font:700 25px var(--font-heading);fill:#151514}.body{font:400 20px var(--font-body);fill:#74716B}.safe{fill:#DFF7ED;stroke:#22C55E;stroke-width:3}.wait{fill:#FEF3C7;stroke:#F0A52F;stroke-width:3}.bad{fill:#FEE2E2;stroke:#EF4444;stroke-width:3}.line{stroke:#7158E8;stroke-width:5;marker-end:url(#arrow)}.green{fill:#166534}.red{fill:#CF381B}</style>
   <text x="80" y="92" class="title">Документ живёт в нескольких местах</text><text x="80" y="135" class="sub">Кнопка «Завершить» не означает, что результат уже попал в учётную систему</text>
   <rect x="80" y="300" width="225" height="160" rx="22" class="safe"/><text x="192" y="360" text-anchor="middle" class="h">В работе</text><text x="192" y="400" text-anchor="middle" class="body">идёт приёмка</text>
   <line x1="305" y1="380" x2="365" y2="380" class="line"/>
@@ -13,7 +13,7 @@
   <line x1="1190" y1="380" x2="1250" y2="380" class="line"/>
   <rect x="1260" y="300" width="260" height="160" rx="22" class="safe"/><text x="1390" y="350" text-anchor="middle" class="h">Принят</text><text x="1390" y="385" text-anchor="middle" class="h">в учётной системе</text><text x="1390" y="425" text-anchor="middle" class="body green">результат подтверждён</text>
   <rect x="675" y="580" width="255" height="130" rx="22" class="bad"/><text x="802" y="630" text-anchor="middle" class="h red">Не получилось</text><text x="802" y="670" text-anchor="middle" class="body">показываем причину</text>
-  <rect x="980" y="580" width="255" height="130" rx="22" fill="#DBEAFE" stroke="#60A5FA" stroke-width="3"/><text x="1107" y="630" text-anchor="middle" class="h">Повторить</text><text x="1107" y="670" text-anchor="middle" class="body">отправить ещё раз</text>
+  <rect x="980" y="580" width="255" height="130" rx="22" fill="#EEE9FF" stroke="#60A5FA" stroke-width="3"/><text x="1107" y="630" text-anchor="middle" class="h">Повторить</text><text x="1107" y="670" text-anchor="middle" class="body">отправить ещё раз</text>
   <line x1="782" y1="460" x2="802" y2="570" class="line"/><line x1="930" y1="645" x2="970" y2="645" class="line"/><line x1="1235" y1="645" x2="1390" y2="465" class="line"/>
   <text x="80" y="800" class="h">Человек всегда видит, где находится документ.</text>
 </svg>

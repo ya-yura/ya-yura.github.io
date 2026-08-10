@@ -4,12 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Портфолио Юрия Пылёва — Product / UX Engineer. Проектирую сложные B2B- и сервисные продукты: исследую задачу, собираю понятные сценарии и проверяю результат.">
+  <meta name="theme-color" content="#f7f6f2">
   <title>Юрий Пылёв — Product / UX Engineer</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-v2.css?v=20260810">
 </head>
 <body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="site-header">
     <div class="nav-wrap">
       <a class="wordmark" href="index.html" aria-label="Юрий Пылёв, на главную">
@@ -23,7 +25,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero container" id="top">
       <div class="hero-copy reveal">
         <p class="eyebrow">Product / UX Engineer · сложные B2B- и сервисные продукты</p>
@@ -35,11 +37,11 @@
         </div>
       </div>
       <div class="hero-art reveal">
-        <span class="float-tag one">01 · увидеть риск до действия</span>
-        <span class="float-tag two">02 · вернуть человека в рабочий поток</span>
-        <figure class="hero-image-card">
-          <img src="assets/safe-receipt-portfolio-cover.png" alt="Обложка кейса Безопасная приёмка для Склад 15">
-          <figcaption><span>Selected work / Warehouse UX</span><span>01 / 02</span></figcaption>
+        <figure class="hero-stage hero-stage-sklad">
+          <img src="assets/portfolio-sklad-hero-light-20260810.png" width="1586" height="992" alt="Терминал приёмки, связанные состояния документа и путь синхронизации" fetchpriority="high">
+          <span class="stage-chip stage-chip-success"><i></i>Скан принят</span>
+          <span class="stage-chip stage-chip-alert"><i></i>2 исключения требуют решения</span>
+          <figcaption><span>Склад 15 · безопасная приёмка</span><span>Флагманский кейс</span></figcaption>
         </figure>
       </div>
     </section>
@@ -58,7 +60,7 @@
       </div>
       <div class="work-grid">
         <a class="work-card work-card-main reveal" href="case-sklad-15.html">
-          <div class="work-card-image"><img src="assets/safe-receipt-research-priorities.png" alt="Исследование и приоритеты для кейса Склад 15"></div>
+          <div class="work-card-image"><img src="assets/portfolio-sklad-hero-light-20260810.png" width="1586" height="992" loading="lazy" alt="Система безопасной приёмки: терминал, состояния и синхронизация"></div>
           <div class="work-card-body">
             <small>01 · Product UX · Клеверенс</small>
             <h3>«Склад 15»: как превратить приёмку из набора настроек в понятный процесс</h3>
@@ -67,7 +69,8 @@
           </div>
         </a>
         <a class="work-card work-card-secondary reveal" href="case-kubtel.html">
-          <div class="work-card-visual">
+          <div class="work-card-visual kubtel-cover">
+            <img class="kubtel-cover-image" src="assets/portfolio-kubtel-status-light-20260810.png" width="1586" height="992" loading="lazy" alt="Путь статуса услуги от обнаружения сбоя до восстановления">
             <div class="service-preview">
               <div class="service-preview-card"><span class="service-preview-label">Состояние услуги</span><h4 class="service-preview-title">Восстанавливаем соединение</h4><span class="service-status">Следующее обновление до 16:30</span></div>
               <div class="service-preview-card"><span class="service-preview-label">Путь кейса</span><div class="service-timeline"><span>Сбой найден</span><span>Причина понятна</span><span>Ремонт идёт</span></div></div>
@@ -119,7 +122,7 @@
   </main>
 
   <footer class="site-footer container"><span>Юрий Пылёв · Product / UX Engineer</span></footer>
-  <script src="script.js?v=20260801"></script>
+  <script src="script.js?v=20260810"></script>
   <script src="typography.js"></script>
 </body>
 </html>
