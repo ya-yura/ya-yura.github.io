@@ -8,12 +8,12 @@
   <title>Склад 15 — Приёмка без скрытых рисков</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg">
-  <link rel="stylesheet" href="styles-v2.css?v=20260810">
+  <link rel="stylesheet" href="styles-v2.css?v=20260810b">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="site-header"><div class="nav-wrap">
-    <a class="wordmark" href="index.html" aria-label="Юрий Пылёв, на главную"><span class="wordmark-mark"><img src="assets/yury-avatar.jpg" alt=""></span><span class="wordmark-role">Product / UX Engineer</span></a>
+    <a class="wordmark" href="index.html" aria-label="Юрий Пылёв, на главную"><span class="wordmark-mark"><img src="assets/yury-avatar.jpg" width="512" height="512" alt=""></span><span class="wordmark-role">Product / UX Engineer</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
     <nav class="site-nav" id="site-nav" aria-label="Навигация по кейсу"><a href="index.html#work">Кейсы</a><a href="#evidence">Исследование</a><a href="#solutions">Решения</a><a href="#measure">Проверка</a></nav>
     <a class="nav-cta" href="index.html#contact">Связаться</a>
@@ -44,28 +44,81 @@
 
     <section class="case-section evidence-section"><div class="container">
       <div class="chapter-head reveal"><p class="section-index">02 — Доказательства</p><div><h2>Гипотезу нельзя выдавать за факт</h2><p>В открытом доступе почти нет отзывов кладовщиков. Поэтому я разделил, что подтверждается документацией и повторяющимися сценариями в интерфейсе, а что пока остаётся гипотезой, которую нужно проверить на реальном складе.</p></div></div>
-      <div class="two-column"><div class="visual-panel tone-lilac reveal"><img class="full-image" src="assets/02-evidence-strength.svg" loading="lazy" alt="Таблица силы доказательств"><div class="image-caption"><span>Сила доказательств</span><span>факт ≠ гипотеза</span></div></div><div class="visual-panel tone-peach reveal"><img class="full-image" src="assets/03-priority-matrix.svg" loading="lazy" alt="Матрица частоты и тяжести проблем"><div class="image-caption"><span>Матрица приоритетов</span><span>частота × тяжесть</span></div></div></div>
+      <div class="case-visual-grid">
+        <article class="diagram-card tone-lilac reveal" aria-labelledby="evidence-title">
+          <header class="diagram-header"><span class="diagram-eyebrow">Сила доказательств</span><h3 id="evidence-title">От факта к предположению</h3><p>Чем ближе сигнал к реальной работе, тем увереннее можно принимать решение.</p></header>
+          <ol class="evidence-ladder">
+            <li class="evidence-step evidence-step-strong"><span class="evidence-number">01</span><div><strong>Прямое подтверждение</strong><p>Пользователь сказал или показал проблему.</p></div><span class="confidence">Высокая</span></li>
+            <li class="evidence-step evidence-step-strong"><span class="evidence-number">02</span><div><strong>Повторяющийся сигнал</strong><p>Одну часть системы много раз исправляли.</p></div><span class="confidence">Высокая</span></li>
+            <li class="evidence-step evidence-step-medium"><span class="evidence-number">03</span><div><strong>Видно из инструкции</strong><p>Предупреждения показывают место частых ошибок.</p></div><span class="confidence">Средняя</span></li>
+            <li class="evidence-step evidence-step-medium"><span class="evidence-number">04</span><div><strong>Похожий складской случай</strong><p>Проблема типична для близких процессов.</p></div><span class="confidence">Средняя</span></li>
+            <li class="evidence-step evidence-step-low"><span class="evidence-number">05</span><div><strong>Предположение</strong><p>Звучит логично, но требует наблюдения.</p></div><span class="confidence">Низкая</span></li>
+          </ol>
+          <p class="diagram-note">Следующий шаг — наблюдение на реальном складе, а не ещё один кабинетный вывод.</p>
+        </article>
+
+        <article class="diagram-card tone-peach reveal" aria-labelledby="priority-title">
+          <header class="diagram-header"><span class="diagram-eyebrow">Матрица приоритетов</span><h3 id="priority-title">Частота × тяжесть</h3><p>В первую версию попадает то, что одновременно случается часто и дорого обходится.</p></header>
+          <div class="matrix-scale"><span>Мешает мало</span><span>Мешает сильно</span></div>
+          <div class="priority-matrix" role="img" aria-label="Матрица частоты и тяжести проблем">
+            <div class="matrix-cell matrix-cell-low"><small>Редко · низкий риск</small><strong>Позже</strong><span>Редкие настройки</span></div>
+            <div class="matrix-cell matrix-cell-watch"><small>Часто · низкий риск</small><strong>Наблюдать</strong><span>Лишнее подтверждение</span></div>
+            <div class="matrix-cell matrix-cell-watch"><small>Редко · высокий риск</small><strong>Подготовить путь</strong><span>Неизвестный товар</span></div>
+            <div class="matrix-cell matrix-cell-first"><small>Часто · высокий риск</small><strong>Первая версия</strong><ul><li>Неполное завершение</li><li>Повторный скан</li><li>Неясное количество</li><li>Ошибка связи</li></ul></div>
+          </div>
+          <div class="matrix-frequency"><span>Редко</span><span>Как часто происходит</span><span>Часто</span></div>
+        </article>
+      </div>
     </div></section>
 
     <section class="case-section" id="solutions"><div class="container">
       <div class="chapter-head reveal"><p class="section-index">03 — Решения</p><div><h2>Четыре изменения, которые снижают риск в приёмке</h2><p>Я свёл проблемы к четырём изменениям. Для каждого зафиксировал: что создаёт риск, какое правило меняем и как понять, что человек может продолжить работу.</p></div></div>
-      <div class="two-column">
-        <article class="story-card tone-mint reveal"><span class="story-index">01 · действие</span><h3>Повторный скан не должен быть лотереей</h3><p>После каждого действия человек видит результат. Если повтор опасен, система объясняет последствия и даёт отменить последнее действие.</p><img src="assets/04-scan-before-after.svg" loading="lazy" alt="Сравнение сканирования до и после"></article>
-        <article class="story-card tone-blue reveal"><span class="story-index">02 · количество</span><h3>Количество должно быть понятно без расчётов</h3><p>Единица измерения, упаковка и пересчёт показываются рядом с числом. Человеку не приходится держать арифметику в голове.</p><img src="assets/06-quantity-explained.svg" loading="lazy" alt="Понятное количество: короба, штуки, план и факт"></article>
-        <article class="story-card tone-lilac reveal"><span class="story-index">03 · документ</span><h3>«Завершить» должно означать завершить</h3><p>Статус показывает разницу между сохранением на терминале, отправкой на сервер и принятием в учёте — чтобы кнопка не создавала ложного ощущения, что всё закончено.</p><img src="assets/07-document-lifecycle.svg" loading="lazy" alt="Жизненный цикл документа"></article>
-        <article class="story-card tone-peach reveal"><span class="story-index">04 · исключение</span><h3>После ошибки должно быть понятно, что делать</h3><p>Сообщение должно ответить на четыре вопроса: что случилось, что сохранено, что сделать сейчас и когда нужна помощь.</p><img src="assets/08-error-recovery.svg" loading="lazy" alt="Сценарий восстановления после ошибки"></article>
+      <div class="two-column solution-grid">
+        <article class="story-card tone-mint reveal"><span class="story-index">01 · действие</span><h3>Повторный скан не должен быть лотереей</h3><p>После каждого действия человек видит результат. Если повтор опасен, система объясняет последствия и даёт отменить последнее действие.</p>
+          <div class="mini-compare" aria-label="Сравнение обратной связи до и после">
+            <div class="mini-screen is-before"><div class="mini-screen-top"><span>До</span><small>Приёмка товара</small></div><div class="mini-scan-state"><i></i><strong>Скан принят</strong><span>Что изменилось — не видно</span></div><div class="mini-danger"><span>Скан ещё раз</span><strong>Товар может удалиться</strong></div></div>
+            <div class="mini-screen is-after"><div class="mini-screen-top"><span>После</span><small>Приёмка товара</small></div><div class="mini-scan-state is-success"><i>✓</i><strong>Добавлено 12 штук</strong><span>Товар уже был · всего 24</span></div><div class="mini-undo"><span>Последнее действие</span><strong>Отменить</strong></div></div>
+          </div>
+        </article>
+        <article class="story-card tone-blue reveal"><span class="story-index">02 · количество</span><h3>Количество должно быть понятно без расчётов</h3><p>Единица измерения, упаковка и пересчёт показываются рядом с числом. Человеку не приходится держать арифметику в голове.</p>
+          <div class="quantity-demo" aria-label="План, факт и остаток в коробах и штуках">
+            <div class="quantity-before"><small>До</small><strong>8</strong><span>чего именно?</span></div>
+            <div class="quantity-after"><div class="quantity-row"><span>План</span><strong>10 коробов</strong><small>120 штук</small></div><div class="quantity-bar"><i style="width:80%"></i></div><div class="quantity-row is-fact"><span>Факт</span><strong>8 коробов</strong><small>96 штук</small></div><div class="quantity-row is-left"><span>Осталось</span><strong>2 короба</strong><small>24 штуки</small></div></div>
+          </div>
+        </article>
+        <article class="story-card tone-lilac reveal"><span class="story-index">03 · документ</span><h3>«Завершить» должно означать завершить</h3><p>Статус показывает разницу между сохранением на терминале, отправкой на сервер и принятием в учёте — чтобы кнопка не создавала ложного ощущения, что всё закончено.</p>
+          <div class="lifecycle-demo" aria-label="Путь документа от работы до принятия в учётной системе">
+            <div class="lifecycle-stage is-done"><i>✓</i><span>В работе</span><small>приёмка</small></div><div class="lifecycle-stage is-done"><i>✓</i><span>Сохранён</span><small>на терминале</small></div><div class="lifecycle-stage is-current"><i>3</i><span>Ждёт отправки</span><small>нет связи</small></div><div class="lifecycle-stage"><i>4</i><span>На сервере</span><small>передача</small></div><div class="lifecycle-stage"><i>5</i><span>Принят</span><small>в учёте</small></div>
+          </div>
+          <div class="lifecycle-branch"><span>Если передача не удалась</span><strong>Показать причину → дать повторить</strong></div>
+        </article>
+        <article class="story-card tone-peach reveal"><span class="story-index">04 · исключение</span><h3>После ошибки должно быть понятно, что делать</h3><p>Сообщение должно ответить на четыре вопроса: что случилось, что сохранено, что сделать сейчас и когда нужна помощь.</p>
+          <div class="recovery-demo" aria-label="Четыре ответа после ошибки передачи">
+            <div class="recovery-alert"><span>Не удалось передать</span><strong>37 сканирований сохранены</strong><small>Связь с сервером пропала</small><b>Повторить отправку</b></div>
+            <ol class="recovery-answers"><li><span>01</span><div><strong>Что случилось</strong><small>Пропала связь</small></div></li><li><span>02</span><div><strong>Что сохранено</strong><small>Все сканирования</small></div></li><li><span>03</span><div><strong>Что сделать</strong><small>Проверить связь</small></div></li><li><span>04</span><div><strong>Когда нужна помощь</strong><small>Если повтор не сработал</small></div></li></ol>
+          </div>
+        </article>
       </div>
+      <figure class="inner-art-panel reveal"><img src="assets/sklad-exception-hub-light-20260810.png" width="1536" height="1024" loading="lazy" alt="Разные складские исключения сходятся в один центр обработки"><figcaption><span>Единый центр исключений</span><span>разные причины · один управляемый сценарий</span></figcaption></figure>
     </div></section>
 
     <section class="case-section system-section"><div class="container">
       <div class="chapter-head reveal"><p class="section-index">04 — Система</p><div><h2>Из этих решений получается единая система, а не набор отдельных экранов</h2><p>Одинаковые блоки дают один и тот же смысл на терминале и в панели старшего смены: результат скана, количество, путь документа и подсказка при ошибке.</p></div></div>
-      <div class="visual-panel tone-lilac reveal"><img class="full-image" src="assets/09-common-blocks.svg" loading="lazy" alt="Общие блоки системы и их состояния"><div class="image-caption"><span>Библиотека поведения</span><span>один смысл · много экранов</span></div></div>
-      <div class="system-mini" style="margin-top:28px"><article><span>01</span><h3>Результат сканирования</h3><p>Добавлено, нужна проверка, нет связи.</p></article><article><span>02</span><h3>Количество</h3><p>План, факт, остаток и единица рядом.</p></article><article><span>03</span><h3>Путь документа</h3><p>Сохранён, ждёт отправки, принят.</p></article></div>
+      <div class="component-library reveal" aria-label="Библиотека общих блоков системы">
+        <article class="component-tile component-tile-scan"><span class="component-label">01 · Результат скана</span><div class="component-scan"><i>✓</i><div><strong>Добавлено 12 штук</strong><small>Короб № 4 · всего 48</small></div></div><div class="component-states"><span>Добавлено</span><span>Нужно решить</span><span>Нет связи</span></div></article>
+        <article class="component-tile component-tile-quantity"><span class="component-label">02 · Количество</span><div class="component-number"><strong>96</strong><span>штук</span></div><div class="component-progress"><i style="width:80%"></i></div><small>8 из 10 коробов</small></article>
+        <article class="component-tile component-tile-path"><span class="component-label">03 · Путь документа</span><div class="component-path"><span class="done">Сохранён</span><i></i><span class="current">Ждёт отправки</span><i></i><span>Принят</span></div><p>Статус одинаков на терминале и у старшего смены.</p></article>
+        <article class="component-tile component-tile-help"><span class="component-label">04 · Подсказка при ошибке</span><strong>Данные не потеряны</strong><p>Проверьте связь и повторите отправку.</p><span class="component-action">Повторить</span></article>
+        <article class="component-tile component-tile-queue"><span class="component-label">05 · Очередь исключений</span><div class="queue-row"><i class="queue-dot coral"></i><span>Неизвестный товар</span><small>Новый</small></div><div class="queue-row"><i class="queue-dot amber"></i><span>Нет марки</span><small>В работе</small></div><div class="queue-row"><i class="queue-dot green"></i><span>Транспортная упаковка</span><small>Решено</small></div></article>
+      </div>
     </div></section>
 
     <section class="case-section validation-section" id="measure"><div class="container">
       <div class="chapter-head reveal"><p class="section-index">05 — Проверка</p><div><h2>Работа не заканчивается макетом: нужно проверить, помогает ли решение</h2><p>В кейсе я зафиксировал, что измерять в текущем процессе, как проверить понимание прототипа и какие сигналы смотреть перед запуском на одном складе.</p></div></div>
-      <div class="two-column"><div class="visual-panel tone-mint reveal"><img class="full-image" src="assets/10-what-to-measure.svg" loading="lazy" alt="Таблица метрик для проверки решения"><div class="image-caption"><span>Что измерять</span><span>сначала текущий уровень</span></div></div><div class="visual-panel tone-blue reveal"><img class="full-image" src="assets/11-validation-plan.svg" loading="lazy" alt="План проверки: разговор, наблюдение, макет и пробный запуск"><div class="image-caption"><span>Как проверить</span><span>от разговора к пробному запуску</span></div></div></div>
+      <div class="case-visual-grid">
+        <article class="diagram-card tone-mint reveal"><header class="diagram-header"><span class="diagram-eyebrow">Что измерять</span><h3>Сигнал → решение</h3><p>Сначала фиксируем текущий уровень. Проценты появляются только после сравнения.</p></header><div class="metric-map"><div class="metric-row"><strong>Повторные сканы</strong><span>Сколько действий повторяют</span><b>Повторов меньше</b></div><div class="metric-row"><strong>Неполные документы</strong><span>Сколько закрыли с пропусками</span><b>Опасных завершений меньше</b></div><div class="metric-row"><strong>Ошибки передачи</strong><span>Сколько документов не дошло</span><b>Сбой быстрее замечают</b></div><div class="metric-row"><strong>Время разбора</strong><span>Сколько длится исключение</span><b>Решение занимает меньше времени</b></div><div class="metric-row"><strong>Повторный пересчёт</strong><span>Сколько раз сверяют количество</span><b>Пересчётов и споров меньше</b></div></div><p class="diagram-note">Метрика нужна не для красивого отчёта, а для следующего продуктового решения.</p></article>
+        <article class="diagram-card tone-blue reveal"><header class="diagram-header"><span class="diagram-eyebrow">Как проверить</span><h3>От наблюдения к пилоту</h3><p>Каждый шаг отвечает на свой вопрос и не маскирует неизвестность.</p></header><ol class="validation-path"><li><span>01</span><div><strong>Разговор</strong><p>Где кладовщик сомневается и почему?</p></div><small>Проблема</small></li><li><span>02</span><div><strong>Наблюдение</strong><p>Что реально происходит у стеллажа?</p></div><small>Поведение</small></li><li><span>03</span><div><strong>Проверка макета</strong><p>Понятен ли статус без подсказки?</p></div><small>Понимание</small></li><li><span>04</span><div><strong>Пилот на одном складе</strong><p>Меняются ли ошибки и время разбора?</p></div><small>Эффект</small></li></ol><div class="stop-rule"><span>Правило остановки</span><strong>Если статус понимают по-разному, в разработку не идём</strong></div></article>
+      </div>
     </div></section>
 
     <section class="case-end"><div class="container case-end-grid"><div><p class="case-kicker">Вывод для продукта</p><h2>Меньше догадок на терминале, больше контроля в процессе</h2></div><a class="button" href="index.html#contact">Обсудить похожую задачу <span>↗</span></a></div></section>

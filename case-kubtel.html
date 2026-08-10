@@ -8,12 +8,12 @@
   <title>KUBTEL — Статус вместо шквала звонков</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg">
-  <link rel="stylesheet" href="styles-v2.css?v=20260810">
+  <link rel="stylesheet" href="styles-v2.css?v=20260810b">
 </head>
 <body class="case-page kubtel-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="site-header"><div class="nav-wrap">
-    <a class="wordmark" href="index.html" aria-label="Юрий Пылёв, на главную"><span class="wordmark-mark"><img src="assets/yury-avatar.jpg" alt=""></span><span class="wordmark-role">Product / UX Engineer</span></a>
+    <a class="wordmark" href="index.html" aria-label="Юрий Пылёв, на главную"><span class="wordmark-mark"><img src="assets/yury-avatar.jpg" width="512" height="512" alt=""></span><span class="wordmark-role">Product / UX Engineer</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
     <nav class="site-nav" id="site-nav" aria-label="Навигация по кейсу"><a href="index.html#work">Кейсы</a><a href="#insight">Инсайт</a><a href="#concept">Концепция</a><a href="#validation">Проверка</a></nav>
     <a class="nav-cta" href="index.html#contact">Связаться</a>
@@ -35,6 +35,17 @@
     <section class="case-section kubtel-concept-section" id="concept"><div class="container">
       <div class="chapter-head reveal"><p class="section-index">02 — Концепция</p><div><h2>Одна модель состояния для аварии, обращения и оплаты</h2><p>Во всех трёх сценариях должны совпадать одни и те же данные: услуга, адрес, номер обращения, время обновления и следующий шаг. Тогда интерфейс становится частью сервиса, а не отдельным экраном.</p></div></div>
       <div class="system-mini"><article class="reveal"><span>01 · Авария</span><h3>Показать статус</h3><p>Причина, этап работ и время следующего подтверждённого обновления.</p></article><article class="reveal"><span>02 · Обращение</span><h3>Не спрашивать дважды</h3><p>Сохранить результат диагностики и передать его дальше вместе с контекстом.</p></article><article class="reveal"><span>03 · Оплата</span><h3>Довести до результата</h3><p>Показать путь от ожидания платежа до восстановления услуги.</p></article></div>
+      <figure class="inner-art-panel inner-art-panel-compact reveal"><img src="assets/kubtel-context-chain-light-20260810.png" width="1536" height="1024" loading="lazy" alt="Адрес, история обращения и статус услуги связаны в один непрерывный контекст"><figcaption><span>Контекст не теряется между каналами</span><span>адрес → история → статус → подтверждение</span></figcaption></figure>
+      <article class="diagram-card kubtel-service-card tone-lilac reveal" aria-labelledby="service-loop-title">
+        <header class="diagram-header"><span class="diagram-eyebrow">Цикл статуса</span><h3 id="service-loop-title">Сервис возвращается с ответом сам</h3><p>Каждый этап содержит не только состояние, но и обещание следующего обновления.</p></header>
+        <ol class="service-loop">
+          <li class="service-loop-step is-done"><span>01</span><div><strong>Связать адрес</strong><p>Определить услугу и масштаб сбоя.</p></div><small>Контекст найден</small></li>
+          <li class="service-loop-step is-done"><span>02</span><div><strong>Создать инцидент</strong><p>Зафиксировать причину и время начала.</p></div><small>Сбой подтверждён</small></li>
+          <li class="service-loop-step is-current"><span>03</span><div><strong>Обновлять статус</strong><p>Показывать этап и время следующей информации.</p></div><small>Ремонт идёт</small></li>
+          <li class="service-loop-step"><span>04</span><div><strong>Сообщить о восстановлении</strong><p>Не заставлять человека проверять связь самому.</p></div><small>Услуга доступна</small></li>
+          <li class="service-loop-step"><span>05</span><div><strong>Закрыть цикл</strong><p>Получить подтверждение и сохранить историю.</p></div><small>Контекст сохранён</small></li>
+        </ol>
+      </article>
       <div class="blueprint-simple" style="margin-top:30px"><div class="blueprint-row head"><span>Кто отвечает</span><span>Найти</span><span>Объяснить</span><span>Действие</span><span>Закрыть</span></div><div class="blueprint-row"><strong>Человек</strong><span>Видит, что связь пропала</span><span>Понимает масштаб</span><span>Подписывается на обновление</span><span>Подтверждает восстановление</span></div><div class="blueprint-row"><strong>Личный кабинет</strong><span>Связывает адрес и услугу</span><span>Показывает свежий статус</span><span>Сохраняет результат</span><span>Закрывает цикл уведомлением</span></div><div class="blueprint-row"><strong>Сервис</strong><span>Создаёт инцидент</span><span>Обновляет этап</span><span>Передаёт статус ремонта</span><span>Подтверждает стабильность</span></div></div>
     </div></section>
 
@@ -42,10 +53,13 @@
       <div class="chapter-head reveal"><p class="section-index">03 — Приоритеты</p><div><h2>Сначала убираем главную неопределённость</h2><p>В первой версии пользователь сам получает ответ по критическим сценариям, а все сценарии используют один слой данных. Задача не в полном визуальном редизайне: сначала нужно убрать главную причину повторного контакта.</p></div></div>
       <div class="two-column"><article class="story-card reveal"><h3>Первый релиз</h3><ul class="plain-list"><li>Центр состояния услуги</li><li>История обращения без потери контекста</li><li>Понятное время следующего обновления</li></ul></article><article class="story-card reveal"><h3>Следующий слой</h3><ul class="plain-list"><li>Восстановление доступа</li><li>Жизненный цикл договора</li><li>Сервисные уведомления</li></ul></article></div>
       <div class="chapter-head reveal" style="margin-top:100px"><p class="section-index">04 — Измерение</p><div><h2>Каждая метрика должна объяснять, что изменилось</h2><p>Не обещаю снижение обращений заранее. Сначала нужен текущий уровень, затем проверка понимания и только после этого — сравнение сопоставимых периодов и регионов.</p></div></div>
-      <div class="two-column"><div class="visual-panel tone-mint reveal"><img class="full-image" src="assets/10-what-to-measure.svg" loading="lazy" alt="Принцип измерения без выдуманных процентов"><div class="image-caption"><span>Честная проверка эффекта</span><span>сначала текущий уровень</span></div></div><div class="visual-panel tone-blue reveal"><img class="full-image" src="assets/11-validation-plan.svg" loading="lazy" alt="План проверки решения"><div class="image-caption"><span>От разговора к запуску</span><span>без риска для пользователя</span></div></div></div>
+      <div class="case-visual-grid">
+        <article class="diagram-card tone-mint reveal"><header class="diagram-header"><span class="diagram-eyebrow">Что измерять</span><h3>Не звонок сам по себе, а причина звонка</h3><p>Сравниваем сопоставимые периоды и регионы, а не подбираем удобную цифру.</p></header><div class="metric-map kubtel-metrics"><div class="metric-row"><strong>Повторный контакт</strong><span>То же обращение в течение 24 часов</span><b>Контекст не приходится объяснять заново</b></div><div class="metric-row"><strong>Время до ясного ответа</strong><span>От сбоя до понятного статуса</span><b>Человек раньше понимает следующий шаг</b></div><div class="metric-row"><strong>Сохранённый контекст</strong><span>Адрес, диагностика и история доступны оператору</span><b>Меньше повторных вопросов</b></div><div class="metric-row"><strong>Самостоятельное завершение</strong><span>Сценарий закрыт без звонка</span><b>Самообслуживание действительно помогает</b></div></div><p class="diagram-note">Снижение звонков имеет смысл только вместе с ростом ясности, а не вместо него.</p></article>
+        <article class="diagram-card tone-blue reveal"><header class="diagram-header"><span class="diagram-eyebrow">Как проверить</span><h3>От причин обращений к одному региону</h3><p>Проверка идёт поэтапно, чтобы не выкатывать неопределённость на всю базу.</p></header><ol class="validation-path kubtel-validation"><li><span>01</span><div><strong>Разобрать обращения</strong><p>Выделить 3 главные причины повторного контакта.</p></div><small>Причина</small></li><li><span>02</span><div><strong>Проверить прототип</strong><p>Понятны ли статус и время обновления без звонка?</p></div><small>Понимание</small></li><li><span>03</span><div><strong>Запустить в одном регионе</strong><p>Сравнить похожие аварии до и после.</p></div><small>Пилот</small></li><li><span>04</span><div><strong>Сверить качество</strong><p>Контактов меньше, а ясность не ухудшилась?</p></div><small>Решение</small></li></ol><div class="stop-rule"><span>Правило остановки</span><strong>Если человек не понимает следующий шаг, масштабирование рано</strong></div></article>
+      </div>
     </div></section>
 
-    <section class="case-end"><div class="container case-end-grid"><div><p class="case-kicker">Вывод для продукта</p><h2>Хороший сервис честно говорит, что происходит, и не заставляет человека ждать вслепую.</h2></div><a class="button" href="index.html#contact">Обсудить похожую задачу <span>↗</span></a></div></section>
+    <section class="case-end"><div class="container case-end-grid"><div><p class="case-kicker">Вывод для продукта</p><h2>Хороший сервис честно говорит, что происходит, и не заставляет человека ждать вслепую</h2></div><a class="button" href="index.html#contact">Обсудить похожую задачу <span>↗</span></a></div></section>
   </main>
   <footer class="site-footer container"><span>Юрий Пылёв · KUBTEL</span><span><a href="index.html">← Все кейсы</a></span></footer>
   <script src="script.js?v=20260810"></script>
