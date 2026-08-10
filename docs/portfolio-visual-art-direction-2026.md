@@ -103,15 +103,27 @@
 
 ### Схемы KUBTEL
 
-Общие складские картинки удалены из кейса. Вместо них добавлены:
+Кейс использует четыре собственные смысловые конструкции:
 
-1. собственный цикл статуса от привязки адреса до подтверждения восстановления;
-2. карта сервисных метрик: повторный контакт, время до ясного ответа, сохранённый контекст и самостоятельное завершение;
-3. путь проверки от разбора причин обращений до пилота в одном регионе.
+1. сквозной переход от инцидента по адресу до подтверждения восстановления;
+2. цикл статуса от привязки адреса до закрытия истории;
+3. карта сервисных метрик: повторный контакт, время до ясного ответа, сохранённый контекст и самостоятельное завершение;
+4. путь проверки от разбора причин обращений до пилота в одном регионе.
 
-Файл внутренней иллюстрации: `site/assets/kubtel-context-chain-light-20260810.png`.
+### Сквозной переход между каналами
 
-Её роль — показать непрерывную связь между адресом, историей обращения, текущим состоянием услуги и подтверждением результата.
+Текущая внутренняя иллюстрация реализована как адаптивная HTML/CSS-композиция `service-handoff-panel` в `site/case-kubtel.html`; стили находятся в `site/styles-v2.css`.
+
+Её место выбрано намеренно: после трёх продуктовых направлений и перед циклом статуса. Визуал показывает один конкретный случай, в котором личный кабинет и поддержка используют один контекст:
+
+1. адрес и услуга сопоставляются с массовым инцидентом;
+2. абонент видит подтверждённый этап и время следующего обновления;
+3. при переходе в поддержку оператор уже видит адрес, инцидент, показанный статус и действие абонента;
+4. восстановление возвращается в кабинет, а история закрывается после подтверждения.
+
+Практическая задача визуала — доказать четыре свойства концепции: авария определяется по адресу, следующий апдейт обозначен честно, контекст не приходится повторять, восстановление подтверждается. Эффект пока не измерен: это продуктовая гипотеза для проверки на прототипе и региональном пилоте.
+
+Архивный файл `site/assets/kubtel-context-chain-light-20260810.png` больше не подключён. Он сохраняется как история итерации, но отклонён: дом, стеклянная капсула, кольцо и галочка не показывали действия пользователя, переход в поддержку, владельца данных и результат сервиса.
 
 ## Растровые изображения и запросы для генерации
 
@@ -147,7 +159,9 @@
 
 > Use case: precise-object-edit. Image 1 is the edit target. Preserve absolutely everything in the image exactly: camera, crop, lighting, background, shadows, carton, mint crate, coral metal tray, black clipboard, two loose barcode labels, label roll, rugged terminal with blank unmarked keys, colored tape pieces, positions, scale, materials and colors. Change only the sheet of paper held by the clipboard: replace the printed table/form with one completely plain, clean, unprinted warm-white rectangular sheet. It must contain no grid, no ruling, no form fields, no tiny marks, no pseudo-text, no dots, no smudges and no symbols. Keep the two separate loose barcode labels lying on top of the blank sheet exactly where they are; each barcode remains a clean rectangle of straight black vertical bars without digits or letters. Keep the metal clipboard clip and black backing geometrically correct. Do not alter anything else. No added or removed objects, no words, letters, digits, logos, brands, watermark, fake UI, noise, particles, warping, extra buttons, sci-fi details, acrylic, glass, glow or perspective changes.
 
-### Запрос для непрерывного контекста KUBTEL
+### Архивный запрос для непрерывного контекста KUBTEL
+
+Версия по этому запросу отклонена: материальный образ был аккуратным, но оставался декоративной метафорой и не объяснял работу сервиса. Текст сохранён только как история итерации.
 
 > Create a premium editorial product-design case-study illustration, landscape 16:10, on a bright warm off-white seamless background. Depict one continuous customer-service context chain as a refined light technical 3D object. On the left: a minimal matte-white home with a small mint router and an abstract location pin token. In the center: three overlapping translucent lavender and sky-blue rounded cards held together inside a clear glass capsule, representing preserved conversation history; cards contain only simple lines and dots, no readable text. On the right: a coral service-status ring with a small mint pulse indicator and a clear confirmation disc. Connect all elements with one elegant translucent mint rail so the composition reads as address → saved context → current service state → confirmation. Clean glass/acrylic materials, subtle metal, soft studio shadows, restrained coral/mint/sky/lilac palette, crisp premium industrial-design rendering, generous negative space, sophisticated and calm. Keep important objects within the central 80 percent for responsive cropping. No words, no letters, no numbers, no logos, no brand marks, no UI text, no watermark, no dark background, no random decorative blobs.
 
@@ -204,7 +218,7 @@
 - Настоящая HTML-карточка статуса лежит поверх него и содержит весь значимый текст без артефактов.
 - Контраст «до / после», общая модель состояния и сервисная схема используют тот же карточный язык, что и главная.
 - Метрики и план проверки относятся только к KUBTEL и больше не повторяют складские материалы.
-- Внутренняя иллюстрация показывает сохранение контекста между адресом, обращением и статусом услуги.
+- Внутренняя схема показывает не метафору, а точный переход: адрес → персональный статус → поддержка с готовым контекстом → подтверждённое восстановление.
 
 ## Защита от признаков генерации
 
@@ -248,4 +262,3 @@
 - Обновление изображений на живом сайте: `docs/how-to-update-live-images.md`.
 - Развёртывание сайта: `docs/github-pages-deploy.md`.
 - Исходная дизайн-система кейса: `docs/safe-receipt-design-system.md`.
-

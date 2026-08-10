@@ -8,7 +8,7 @@
   <title>KUBTEL — Статус вместо шквала звонков</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg">
-  <link rel="stylesheet" href="styles-v2.css?v=20260810c">
+  <link rel="stylesheet" href="styles-v2.css?v=20260810f">
 </head>
 <body class="case-page kubtel-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -35,7 +35,66 @@
     <section class="case-section kubtel-concept-section" id="concept"><div class="container">
       <div class="chapter-head reveal"><p class="section-index">02 — Концепция</p><div><h2>Одна модель состояния для аварии, обращения и оплаты</h2><p>Во всех трёх сценариях должны совпадать одни и те же данные: услуга, адрес, номер обращения, время обновления и следующий шаг. Тогда интерфейс становится частью сервиса, а не отдельным экраном.</p></div></div>
       <div class="system-mini"><article class="reveal"><span>01 · Авария</span><h3>Показать статус</h3><p>Причина, этап работ и время следующего подтверждённого обновления.</p></article><article class="reveal"><span>02 · Обращение</span><h3>Не спрашивать дважды</h3><p>Сохранить результат диагностики и передать его дальше вместе с контекстом.</p></article><article class="reveal"><span>03 · Оплата</span><h3>Довести до результата</h3><p>Показать путь от ожидания платежа до восстановления услуги.</p></article></div>
-      <figure class="inner-art-panel inner-art-panel-compact reveal"><img src="assets/kubtel-context-chain-light-20260810.png" width="1586" height="992" loading="lazy" alt="Адрес, история обращения и статус услуги связаны в один непрерывный контекст"><figcaption><span>Контекст не теряется между каналами</span><span>адрес → история → статус → подтверждение</span></figcaption></figure>
+      <figure class="service-handoff-panel reveal" id="kubtel-context-handoff" aria-labelledby="service-handoff-title">
+        <header class="service-handoff-head">
+          <div><span class="handoff-kicker">Проектное решение · сквозной сценарий</span><h3 id="service-handoff-title">Как помощь продолжается между каналами</h3><p>Один подтверждённый инцидент связывает адрес, личный кабинет и поддержку. Человеку не приходится заново искать статус и пересказывать уже известное.</p></div>
+          <div class="handoff-legend" aria-label="Участники сценария"><span class="is-customer"><i></i>Абонент</span><span class="is-product"><i></i>Личный кабинет</span><span class="is-support"><i></i>Поддержка</span></div>
+        </header>
+
+        <ol class="service-handoff-flow">
+          <li class="handoff-stage handoff-stage-address">
+            <div class="handoff-stage-head"><span>01</span><small>Связать с адресом</small></div>
+            <div class="handoff-address-card">
+              <div class="handoff-address-top"><span>Домашний интернет</span><i>Связь пропала</i></div>
+              <div class="handoff-address-main"><small>Адрес услуги</small><strong>ул. Красная, 176</strong><span>Лицевой счёт и оборудование найдены</span></div>
+              <div class="handoff-incident-match"><b>✓</b><div><small>Совпадение по сети</small><strong>Массовый инцидент INC-2841</strong></div></div>
+            </div>
+            <p class="handoff-stage-note"><strong>Сначала — контекст</strong><span>Сервис отличает общую аварию от проблемы домашнего оборудования до советов и звонка.</span></p>
+          </li>
+
+          <li class="handoff-stage handoff-stage-status">
+            <div class="handoff-stage-head"><span>02</span><small>Дать ясный статус</small></div>
+            <div class="handoff-cabinet-card">
+              <div class="handoff-appbar"><strong>KUBTEL</strong><span>Личный кабинет</span></div>
+              <span class="handoff-status-label">Обновлено 8&nbsp;минут назад</span>
+              <strong>Восстанавливаем соединение</strong>
+              <p>Бригада устраняет повреждение линии. Роутер перезагружать не требуется.</p>
+              <div class="handoff-next-update"><span>Следующая информация</span><b>до 16:30</b></div>
+              <div class="handoff-subscribe">Уведомить об изменении <b>→</b></div>
+            </div>
+            <p class="handoff-stage-note"><strong>Не выдумывать срок ремонта</strong><span>Человек получает подтверждённый этап и время следующего сообщения вместо неопределённого ожидания.</span></p>
+          </li>
+
+          <li class="handoff-stage handoff-stage-support">
+            <div class="handoff-stage-head"><span>03</span><small>Передать без повтора</small></div>
+            <div class="handoff-support-card">
+              <div class="handoff-support-top"><div><small>Входящий звонок</small><strong>Обращение K-6021</strong></div><span>Контекст открыт</span></div>
+              <div class="handoff-context-row"><span>Адрес</span><b>ул. Красная, 176</b><i>✓</i></div>
+              <div class="handoff-context-row"><span>Инцидент</span><b>INC-2841 · ремонт идёт</b><i>✓</i></div>
+              <div class="handoff-context-row"><span>Абонент видел</span><b>статус и апдейт до 16:30</b><i>✓</i></div>
+              <div class="handoff-context-row"><span>Действие</span><b>подписка включена</b><i>✓</i></div>
+              <div class="handoff-support-action">Продолжить с этого места <b>→</b></div>
+            </div>
+            <p class="handoff-stage-note"><strong>Не спрашивать дважды</strong><span>Оператор видит тот же инцидент, свежесть данных и действие абонента — без повторной диагностики.</span></p>
+          </li>
+
+          <li class="handoff-stage handoff-stage-close">
+            <div class="handoff-stage-head"><span>04</span><small>Закрыть с подтверждением</small></div>
+            <div class="handoff-resolution-card">
+              <div class="handoff-resolution-mark">✓</div>
+              <span class="handoff-resolved-label">Связь восстановлена</span>
+              <strong>Сигнал стабилен 15&nbsp;минут</strong>
+              <p>Инцидент INC-2841 завершён. Проверьте подключение на своих устройствах.</p>
+              <div class="handoff-confirm-actions"><span class="is-primary">Всё работает</span><span>Нужна помощь</span></div>
+              <div class="handoff-history-state"><span>История сохранена</span><b>K-6021 · закрыт после ответа</b></div>
+            </div>
+            <p class="handoff-stage-note"><strong>Сервис возвращается сам</strong><span>Результат приходит в кабинет и уведомление; подтверждение завершает историю, а не обрывает её.</span></p>
+          </li>
+        </ol>
+
+        <div class="handoff-outcomes" aria-label="Практический результат сценария"><span><i>01</i>Авария определена по адресу</span><span><i>02</i>Следующий апдейт обещан честно</span><span><i>03</i>Контекст не приходится повторять</span><span><i>04</i>Восстановление подтверждено</span></div>
+        <figcaption><span>Концепция единого контекста KUBTEL</span><span>адрес → инцидент → поддержка → подтверждение</span></figcaption>
+      </figure>
       <article class="diagram-card kubtel-service-card tone-lilac reveal" aria-labelledby="service-loop-title">
         <header class="diagram-header"><span class="diagram-eyebrow">Цикл статуса</span><h3 id="service-loop-title">Сервис возвращается с ответом сам</h3><p>Каждый этап содержит не только состояние, но и обещание следующего обновления.</p></header>
         <ol class="service-loop">
