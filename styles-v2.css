@@ -307,6 +307,11 @@ p, li, a, button, small, span, strong { overflow-wrap: break-word; }
 }
 
 .hero-meta { color: var(--muted); font-size: 12px; }
+.hero-ui-link { display: inline-grid; gap: 2px; padding: 8px 0; color: var(--green); }
+.hero-ui-link strong { color: var(--ink); font-size: 14px; font-weight: 760; }
+.hero-ui-link span { font-size: 12px; }
+.hero-ui-link:hover strong,
+.hero-ui-link:hover span { color: var(--coral-dark); }
 .hero-art { position: relative; min-width: 0; }
 
 .hero-stage {
