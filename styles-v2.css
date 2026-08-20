@@ -646,6 +646,11 @@ p, li, a, button, small, span, strong { overflow-wrap: break-word; }
 .contact-links { display: grid; gap: 10px; min-width: 0; }
 .contact-links a { padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--green); font-size: 14px; font-weight: 650; }
 .contact-links a:hover { color: var(--coral-dark); }
+.contact-links .contact-links-featured { display: grid; gap: 5px; margin-bottom: 4px; padding: 14px 16px 15px; border: 1px solid rgba(0,126,88,.24); border-radius: 14px; background: rgba(255,255,255,.76); box-shadow: 0 12px 24px rgba(0,126,88,.08); }
+.contact-links-featured strong { display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-size: 16px; letter-spacing: -.02em; }
+.contact-links-featured strong span { color: var(--coral-dark); }
+.contact-links-featured small { color: var(--text); font-size: 12px; font-weight: 560; line-height: 1.35; }
+.contact-links .contact-links-featured:hover { border-color: rgba(255,87,51,.55); color: var(--ink); }
 
 .site-footer { display: flex; justify-content: space-between; gap: 24px; padding: 25px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 
