@@ -77,6 +77,33 @@
 .sk-design-system li strong { font-size: 15px; }
 .sk-design-system li span { color: #b7b7b0; font-size: 13px; }
 .sk-demo-note { max-width: 850px; margin: 22px 0 0; color: #6c6658; font-size: 12px; line-height: 1.5; }
+.sk-principles-intro { display:inline-block; margin-top:20px; padding-bottom:5px; border-bottom:1px solid #9d7300; color:#725000; font-size:13px; font-weight:750; }
+.sk-principles { padding:clamp(23px,4vw,48px); border:1px solid #363636; border-radius:18px; background:#090909; color:#fff; scroll-margin-top:100px; }
+.sk-principles-heading { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px 40px; align-items:end; padding-bottom:32px; border-bottom:1px solid #ffb000; }
+.sk-principles-heading > .sk-eyebrow { grid-column:1 / -1; }
+.sk-principles-heading h3 { margin:0; font-size:clamp(30px,3.1vw,46px); font-weight:500; line-height:1.09; letter-spacing:-.045em; }
+.sk-principles-heading > p { max-width:520px; margin:0; color:#c8c8c1; font-size:15px; line-height:1.65; }
+.sk-principles-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 36px; padding:0; margin:0; list-style:none; }
+.sk-principles-grid > li { display:flex; flex-direction:column; min-width:0; padding-block:30px; border-bottom:1px solid #393939; }
+.sk-principle-number { color:#ffb000; font-size:10px; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
+.sk-principles-grid h4 { margin:18px 0 15px; font-size:clamp(24px,2.3vw,33px); font-weight:500; line-height:1.13; letter-spacing:-.035em; }
+.sk-principles-grid > li > p { margin:0 0 23px; color:#c8c8c1; font-size:14px; line-height:1.65; }
+.sk-principle-example { margin-top:auto; padding:18px; border-left:2px solid #ffb000; background:#171713; }
+.sk-principle-example strong { display:block; color:#ffb000; font-size:16px; line-height:1.35; }
+.sk-principle-example span { display:block; margin-top:10px; color:#cecec5; font-size:13px; line-height:1.55; }
+.sk-principle-example a { display:inline-block; margin-top:15px; padding-bottom:3px; border-bottom:1px solid #85857c; color:#fff; font-size:11px; }
+.sk-principle-example a:hover { color:#ffb000; border-color:#ffb000; }
+.sk-hardware-check { margin-top:30px; padding:25px; border:1px solid #716032; background:#19170f; }
+.sk-hardware-check h4 { max-width:850px; margin:15px 0 13px; font-size:clamp(24px,2.3vw,32px); font-weight:500; line-height:1.13; letter-spacing:-.035em; }
+.sk-hardware-check p { max-width:1000px; margin:0; color:#cecec5; font-size:14px; line-height:1.65; }
+.sk-story[id] { scroll-margin-top:100px; }
+@media(max-width:700px) {
+  .sk-principles-heading, .sk-principles-grid { grid-template-columns:1fr; }
+  .sk-principles-heading { gap:20px; }
+  .sk-principles-grid > li { padding-block:25px; }
+  .sk-principle-example { padding:16px; }
+  .sk-hardware-check { padding:19px; }
+}
 .hero-stage.sk-home-stage { background: #090909; padding: 0; }
 .hero-stage.sk-home-stage > img { width: 100%; height: 580px; object-fit: cover; object-position: 50% 45%; border-radius: 0; }
 .hero-stage.sk-home-stage figcaption { position: relative; background: #090909; color: #fff; padding: 17px 20px; }
